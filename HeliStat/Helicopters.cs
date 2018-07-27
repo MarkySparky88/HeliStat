@@ -13,7 +13,6 @@ namespace HeliStat
 {
     public partial class frmHelicopters : Form
     {
-        
         // connection string from file "DBConnection.settings"
         private string connString = DBConnection.Default.HeliStatDBConnection;
 
