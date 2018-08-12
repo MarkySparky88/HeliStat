@@ -215,6 +215,28 @@ namespace HeliStat
         }
 
         /// <summary>
+        /// Toolstrip
+        /// </summary>
+
+        // Toolstrip-Button "Add"
+        private void toolStripBtnAdd_Click(object sender, EventArgs e)
+        {
+            AddHeli();
+        }
+
+        // Toolstrip-Button "Update"
+        private void toolStripBtnUpdate_Click(object sender, EventArgs e)
+        {
+            UpdateHeli();
+        }
+
+        // Toolstrip-Button "Delete"
+        private void toolStripBtnDelete_Click(object sender, EventArgs e)
+        {
+            RemoveHeli();
+        }
+
+        /// <summary>
         /// Functions
         /// </summary>
 

@@ -47,11 +47,17 @@
             this.btnRemoveAircraftType = new System.Windows.Forms.Button();
             this.btnRemoveOperator = new System.Windows.Forms.Button();
             this.btnClearFields = new System.Windows.Forms.Button();
+            this.toolStripHeli = new System.Windows.Forms.ToolStrip();
+            this.toolStripBtnAdd = new System.Windows.Forms.ToolStripButton();
+            this.toolStripBtnUpdate = new System.Windows.Forms.ToolStripButton();
+            this.toolStripBtnDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             registrationLabel = new System.Windows.Forms.Label();
             aircraftTypeLabel = new System.Windows.Forms.Label();
             noOfEngLabel = new System.Windows.Forms.Label();
             operatorLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHelicopters)).BeginInit();
+            this.toolStripHeli.SuspendLayout();
             this.SuspendLayout();
             // 
             // registrationLabel
@@ -236,11 +242,60 @@
             this.btnClearFields.UseVisualStyleBackColor = true;
             this.btnClearFields.Click += new System.EventHandler(this.btnClearFields_Click);
             // 
+            // toolStripHeli
+            // 
+            this.toolStripHeli.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripBtnAdd,
+            this.toolStripBtnUpdate,
+            this.toolStripBtnDelete,
+            this.toolStripSeparator1});
+            this.toolStripHeli.Location = new System.Drawing.Point(0, 0);
+            this.toolStripHeli.Name = "toolStripHeli";
+            this.toolStripHeli.Size = new System.Drawing.Size(848, 25);
+            this.toolStripHeli.TabIndex = 38;
+            this.toolStripHeli.Text = "toolStrip1";
+            // 
+            // toolStripBtnAdd
+            // 
+            this.toolStripBtnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnAdd.Image = global::HeliStat.Properties.Resources.icons8_plus_math_24;
+            this.toolStripBtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnAdd.Name = "toolStripBtnAdd";
+            this.toolStripBtnAdd.Size = new System.Drawing.Size(23, 22);
+            this.toolStripBtnAdd.Text = "toolStripButton1";
+            this.toolStripBtnAdd.Click += new System.EventHandler(this.toolStripBtnAdd_Click);
+            // 
+            // toolStripBtnUpdate
+            // 
+            this.toolStripBtnUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnUpdate.Image = global::HeliStat.Properties.Resources.icons8_restart_24;
+            this.toolStripBtnUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnUpdate.Name = "toolStripBtnUpdate";
+            this.toolStripBtnUpdate.Size = new System.Drawing.Size(23, 22);
+            this.toolStripBtnUpdate.Text = "toolStripButton2";
+            this.toolStripBtnUpdate.Click += new System.EventHandler(this.toolStripBtnUpdate_Click);
+            // 
+            // toolStripBtnDelete
+            // 
+            this.toolStripBtnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnDelete.Image = global::HeliStat.Properties.Resources.icons8_trash_32;
+            this.toolStripBtnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnDelete.Name = "toolStripBtnDelete";
+            this.toolStripBtnDelete.Size = new System.Drawing.Size(23, 22);
+            this.toolStripBtnDelete.Text = "toolStripButton3";
+            this.toolStripBtnDelete.Click += new System.EventHandler(this.toolStripBtnDelete_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // frmHelicopters
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(848, 569);
+            this.Controls.Add(this.toolStripHeli);
             this.Controls.Add(this.btnClearFields);
             this.Controls.Add(this.btnRemoveOperator);
             this.Controls.Add(this.btnRemoveAircraftType);
@@ -267,6 +322,8 @@
             this.Text = "HeliStats v0.0.1 - Helicopters";
             this.Load += new System.EventHandler(this.frmHelicopters_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHelicopters)).EndInit();
+            this.toolStripHeli.ResumeLayout(false);
+            this.toolStripHeli.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -287,5 +344,10 @@
         private System.Windows.Forms.Button btnRemoveAircraftType;
         private System.Windows.Forms.Button btnRemoveOperator;
         private System.Windows.Forms.Button btnClearFields;
+        private System.Windows.Forms.ToolStrip toolStripHeli;
+        private System.Windows.Forms.ToolStripButton toolStripBtnAdd;
+        private System.Windows.Forms.ToolStripButton toolStripBtnUpdate;
+        private System.Windows.Forms.ToolStripButton toolStripBtnDelete;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
