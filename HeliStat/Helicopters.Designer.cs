@@ -50,7 +50,7 @@
             this.toolStripHeli = new System.Windows.Forms.ToolStrip();
             this.toolStripBtnAdd = new System.Windows.Forms.ToolStripButton();
             this.toolStripBtnUpdate = new System.Windows.Forms.ToolStripButton();
-            this.toolStripBtnDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripBtnRemove = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             registrationLabel = new System.Windows.Forms.Label();
             aircraftTypeLabel = new System.Windows.Forms.Label();
@@ -247,7 +247,7 @@
             this.toolStripHeli.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripBtnAdd,
             this.toolStripBtnUpdate,
-            this.toolStripBtnDelete,
+            this.toolStripBtnRemove,
             this.toolStripSeparator1});
             this.toolStripHeli.Location = new System.Drawing.Point(0, 0);
             this.toolStripHeli.Name = "toolStripHeli";
@@ -262,7 +262,7 @@
             this.toolStripBtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnAdd.Name = "toolStripBtnAdd";
             this.toolStripBtnAdd.Size = new System.Drawing.Size(23, 22);
-            this.toolStripBtnAdd.Text = "toolStripButton1";
+            this.toolStripBtnAdd.Text = "Add Heli";
             this.toolStripBtnAdd.Click += new System.EventHandler(this.toolStripBtnAdd_Click);
             // 
             // toolStripBtnUpdate
@@ -272,18 +272,18 @@
             this.toolStripBtnUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnUpdate.Name = "toolStripBtnUpdate";
             this.toolStripBtnUpdate.Size = new System.Drawing.Size(23, 22);
-            this.toolStripBtnUpdate.Text = "toolStripButton2";
+            this.toolStripBtnUpdate.Text = "Update Heli";
             this.toolStripBtnUpdate.Click += new System.EventHandler(this.toolStripBtnUpdate_Click);
             // 
-            // toolStripBtnDelete
+            // toolStripBtnRemove
             // 
-            this.toolStripBtnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBtnDelete.Image = global::HeliStat.Properties.Resources.icons8_trash_32;
-            this.toolStripBtnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBtnDelete.Name = "toolStripBtnDelete";
-            this.toolStripBtnDelete.Size = new System.Drawing.Size(23, 22);
-            this.toolStripBtnDelete.Text = "toolStripButton3";
-            this.toolStripBtnDelete.Click += new System.EventHandler(this.toolStripBtnDelete_Click);
+            this.toolStripBtnRemove.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnRemove.Image = global::HeliStat.Properties.Resources.icons8_trash_32;
+            this.toolStripBtnRemove.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnRemove.Name = "toolStripBtnRemove";
+            this.toolStripBtnRemove.Size = new System.Drawing.Size(23, 22);
+            this.toolStripBtnRemove.Text = "Remove Heli";
+            this.toolStripBtnRemove.Click += new System.EventHandler(this.toolStripBtnRemove_Click);
             // 
             // toolStripSeparator1
             // 
@@ -347,7 +347,7 @@
         private System.Windows.Forms.ToolStrip toolStripHeli;
         private System.Windows.Forms.ToolStripButton toolStripBtnAdd;
         private System.Windows.Forms.ToolStripButton toolStripBtnUpdate;
-        private System.Windows.Forms.ToolStripButton toolStripBtnDelete;
+        private System.Windows.Forms.ToolStripButton toolStripBtnRemove;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

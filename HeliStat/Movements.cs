@@ -235,8 +235,8 @@ namespace HeliStat
                 }
             }
             FillCbxArrDep();
-            cbxArrFrom.SelectedItem = null;
-            cbxDepTo.SelectedItem = null;
+            cbxArrFrom.ResetText();
+            cbxDepTo.ResetText();
         }
 
         // remove ICAO designator from database
@@ -660,12 +660,12 @@ namespace HeliStat
         // clears all fields
         private void ClearFields()
         {
-            cbxRegistration.SelectedItem = null;
-            tbxAircraftType.Text = null;
-            tbxOperator.Text = null;
-            cbxTypeOfOps.SelectedItem = null;
-            cbxArrFrom.SelectedItem = null;
-            cbxDepTo.SelectedItem = null;
+            cbxRegistration.ResetText();
+            tbxAircraftType.ResetText();
+            tbxOperator.ResetText();
+            cbxTypeOfOps.ResetText();
+            cbxArrFrom.ResetText();
+            cbxDepTo.ResetText();
         }
 
         // Button "Clear fields"

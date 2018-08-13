@@ -231,7 +231,7 @@ namespace HeliStat
         }
 
         // Toolstrip-Button "Delete"
-        private void toolStripBtnDelete_Click(object sender, EventArgs e)
+        private void toolStripBtnRemove_Click(object sender, EventArgs e)
         {
             RemoveHeli();
         }
@@ -264,8 +264,7 @@ namespace HeliStat
                 }
             }
             FillCbxAircraftType();
-            cbxAircraftType.SelectedItem = null;
-            ClearFields();
+            cbxAircraftType.ResetText();
         }
 
         // remove aircraft type
@@ -312,7 +311,6 @@ namespace HeliStat
             // TODO how is this working in case of an error in the code above?
             FillCbxAircraftType();
             cbxAircraftType.ResetText();
-            ClearFields();   
         }
 
         // add new operator to database
@@ -339,8 +337,7 @@ namespace HeliStat
                 }
             }
             FillCbxOperator();
-            cbxOperator.Text = null;
-            ClearFields();
+            cbxOperator.ResetText();
         }
 
         // remove operator
@@ -386,8 +383,7 @@ namespace HeliStat
             }
             // TODO how is this working in case of an error in the code above?
             FillCbxOperator();
-            cbxOperator.Text = null;
-            ClearFields();
+            cbxOperator.ResetText();
         }
 
         // add heli to database
@@ -546,10 +542,10 @@ namespace HeliStat
         // clears all fields
         private void ClearFields()
         {
-            tbxRegistration.Text = null;
-            cbxAircraftType.SelectedItem = null;
-            cbxNoOfEng.SelectedItem = null;
-            cbxOperator.SelectedItem = null;
+            tbxRegistration.ResetText();
+            cbxAircraftType.ResetText();
+            cbxNoOfEng.ResetText();
+            cbxOperator.ResetText();
         }
 
         // alphabetical characters only (tbx registration)
