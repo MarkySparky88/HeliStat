@@ -42,16 +42,15 @@
             this.btnAddHeli = new System.Windows.Forms.Button();
             this.dgvHelicopters = new System.Windows.Forms.DataGridView();
             this.btnRemoveHeli = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.btnUpdateHeli = new System.Windows.Forms.Button();
             this.btnRemoveAircraftType = new System.Windows.Forms.Button();
             this.btnRemoveOperator = new System.Windows.Forms.Button();
             this.btnClearFields = new System.Windows.Forms.Button();
             this.toolStripHeli = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripBtnAdd = new System.Windows.Forms.ToolStripButton();
             this.toolStripBtnUpdate = new System.Windows.Forms.ToolStripButton();
             this.toolStripBtnRemove = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             registrationLabel = new System.Windows.Forms.Label();
             aircraftTypeLabel = new System.Windows.Forms.Label();
             noOfEngLabel = new System.Windows.Forms.Label();
@@ -192,16 +191,6 @@
             this.btnRemoveHeli.UseVisualStyleBackColor = true;
             this.btnRemoveHeli.Click += new System.EventHandler(this.btnRemoveHeli_Click);
             // 
-            // btnClose
-            // 
-            this.btnClose.Location = new System.Drawing.Point(15, 534);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 33;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
             // btnUpdateHeli
             // 
             this.btnUpdateHeli.Location = new System.Drawing.Point(15, 292);
@@ -255,6 +244,11 @@
             this.toolStripHeli.TabIndex = 38;
             this.toolStripHeli.Text = "toolStrip1";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // toolStripBtnAdd
             // 
             this.toolStripBtnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -285,11 +279,6 @@
             this.toolStripBtnRemove.Text = "Remove Heli";
             this.toolStripBtnRemove.Click += new System.EventHandler(this.toolStripBtnRemove_Click);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
             // frmHelicopters
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -300,7 +289,6 @@
             this.Controls.Add(this.btnRemoveOperator);
             this.Controls.Add(this.btnRemoveAircraftType);
             this.Controls.Add(this.btnUpdateHeli);
-            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnRemoveHeli);
             this.Controls.Add(this.dgvHelicopters);
             this.Controls.Add(this.btnAddHeli);
@@ -339,7 +327,6 @@
         private System.Windows.Forms.Button btnAddHeli;
         private System.Windows.Forms.DataGridView dgvHelicopters;
         private System.Windows.Forms.Button btnRemoveHeli;
-        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnUpdateHeli;
         private System.Windows.Forms.Button btnRemoveAircraftType;
         private System.Windows.Forms.Button btnRemoveOperator;

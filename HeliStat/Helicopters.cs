@@ -203,17 +203,6 @@ namespace HeliStat
             UpdateHeli();
         }
 
-        // Button "Close"
-        // TODO save or ask something here?
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            // Update combobox "Registration" in "Movements" form
-            frmMovements movements = new frmMovements();
-            movements.FillCbxRegistration();
-
-            this.Close();
-        }
-
         /// <summary>
         /// Toolstrip
         /// </summary>
@@ -542,10 +531,10 @@ namespace HeliStat
         // clears all fields
         private void ClearFields()
         {
-            tbxRegistration.ResetText();
-            cbxAircraftType.ResetText();
-            cbxNoOfEng.ResetText();
-            cbxOperator.ResetText();
+            tbxRegistration.Text = null;
+            cbxAircraftType.Text = null;
+            cbxNoOfEng.Text = null;
+            cbxOperator.Text = null;
         }
 
         // alphabetical characters only (tbx registration)

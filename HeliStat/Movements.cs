@@ -205,6 +205,34 @@ namespace HeliStat
             SetTakeOff();
         }
 
+        // Button "Clear fields"
+        private void btnClearFields_Click(object sender, EventArgs e)
+        {
+            ClearFields();
+        }
+
+        /// <summary>
+        /// Toolstrip
+        /// </summary>
+
+        // Toolstrip-Button "Add"
+        private void toolStripBtnAdd_Click(object sender, EventArgs e)
+        {
+            AddMovement();
+        }
+
+        // Toolstrip-Button "Update"
+        private void toolStripBtnUpdate_Click(object sender, EventArgs e)
+        {
+            UpdateMovement();
+        }
+
+        // Toolstrip-Button "Delete"
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            DeleteMovement();
+        }
+
         /// <summary>
         /// Functions
         /// </summary>
@@ -660,18 +688,12 @@ namespace HeliStat
         // clears all fields
         private void ClearFields()
         {
-            cbxRegistration.ResetText();
-            tbxAircraftType.ResetText();
-            tbxOperator.ResetText();
-            cbxTypeOfOps.ResetText();
-            cbxArrFrom.ResetText();
-            cbxDepTo.ResetText();
-        }
-
-        // Button "Clear fields"
-        private void btnClearFields_Click(object sender, EventArgs e)
-        {
-            ClearFields();
+            cbxRegistration.Text = null;
+            tbxAircraftType.Text = null;
+            tbxOperator.Text = null;
+            cbxTypeOfOps.Text = null;
+            cbxArrFrom.Text = null;
+            cbxDepTo.Text = null;
         }
     }
 }
