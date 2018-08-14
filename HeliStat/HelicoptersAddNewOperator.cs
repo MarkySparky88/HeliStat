@@ -27,10 +27,12 @@ namespace HeliStat
         // Click OK
         private void btnOK_Click(object sender, EventArgs e)
         {
+            // TODO catch wrong entries
             if (tbxOperator.Text != null)
             {
                 newOperator = tbxOperator.Text.ToString();
             }
+            // T
             else
             {
                 MessageBox.Show("Enter an operator name.", "Missing operator",

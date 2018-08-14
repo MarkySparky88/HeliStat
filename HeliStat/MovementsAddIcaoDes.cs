@@ -19,23 +19,34 @@ namespace HeliStat
             get { return newIcaoDesignator; }
         }
 
+        public bool ValidationResult;
+
         public frmMovementsAddIcaoDes()
         {
             InitializeComponent();
         }
 
-        // Button "OK"
-        private void btnOK_Click(object sender, EventArgs e)
+        // check user input
+        public bool UserEntryValidation()
         {
-            if (tbxIcaoDesignator.Text != null)
+            if (tbxIcaoDesignator.Text != null && tbxIcaoDesignator.Text.Length == 4)
             {
                 newIcaoDesignator = tbxIcaoDesignator.Text.ToString();
+                return true;
             }
             else
             {
-                MessageBox.Show("Enter an ICAO Designator.", "Missing ICAO Designator",
+                MessageBox.Show("Enter a valid ICAO-Designator (4 characters).", "Invalid or missing ICAO-Designator",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
             }
+        }
+
+        // Button "OK"
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            ValidationResult = UserEntryValidation();
+            tbxIcaoDesignator.Text = null;
         }
     }
 }

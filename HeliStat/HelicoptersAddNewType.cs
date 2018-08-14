@@ -27,6 +27,7 @@ namespace HeliStat
         // Button "OK"
         private void btnOK_Click(object sender, EventArgs e)
         {
+            // TODO catch wrong entries
             if (tbxAircraftType.Text != null)
             {
                 newAircraftType = tbxAircraftType.Text.ToString();
