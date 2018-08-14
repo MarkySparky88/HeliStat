@@ -13,10 +13,6 @@ namespace HeliStat
 {
     public partial class frmMovements : Form
     {
-        
-        // connection string from file "DBConnection.settings"
-        private static string connString = DBConnection.Default.HeliStatDBConnection;
-
         // Constructor
         public frmMovements()
         {
@@ -40,7 +36,7 @@ namespace HeliStat
         {
             DataTable dataTable = new DataTable();
 
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -73,7 +69,7 @@ namespace HeliStat
         {
             cbxRegistration.Items.Clear();
 
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -110,7 +106,7 @@ namespace HeliStat
             cbxArrFrom.Items.Clear();
             cbxDepTo.Items.Clear();
 
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -240,7 +236,7 @@ namespace HeliStat
         // add ICAO designator to database
         private void AddIcaoDesignator(frmMovementsAddIcaoDes addIcaoDes)
         {
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -285,7 +281,7 @@ namespace HeliStat
                 return;
             }
 
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -324,7 +320,7 @@ namespace HeliStat
 
             if (NoEmptyFields())
             {
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(Program.ConnString))
                 {
                     try
                     {
@@ -405,7 +401,7 @@ namespace HeliStat
 
             if (NoEmptyFields())
             {
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(Program.ConnString))
                 {
                     try
                     {
@@ -462,7 +458,7 @@ namespace HeliStat
                 return;
             }
 
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -510,7 +506,7 @@ namespace HeliStat
 
             if (DateTimeNotEmpty())
             {
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(Program.ConnString))
                 {
                     try
                     {
@@ -563,7 +559,7 @@ namespace HeliStat
 
             if (DateTimeNotEmpty())
             {
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(Program.ConnString))
                 {
                     try
                     {
@@ -634,7 +630,7 @@ namespace HeliStat
         // shows values in textboxes "aircraft type" and "operator" of selected helicopter
         private void cbxRegistration_SelectedIndexChanged(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
