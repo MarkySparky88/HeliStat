@@ -19,25 +19,40 @@ namespace HeliStat
             get { return newOperator; }
         }
 
+        public bool ValidationResult = false;
+
         public frmHelicoptersAddNewOperator()
         {
             InitializeComponent();
         }
 
-        // Click OK
-        private void btnOK_Click(object sender, EventArgs e)
+        // TODO check if operator already exists in database
+        // check user input if correct (not null or empty)
+        private bool CheckUserInput()
         {
-            // TODO catch wrong entries
-            if (tbxOperator.Text != null)
+            if (!String.IsNullOrEmpty(tbxOperator.Text))
             {
                 newOperator = tbxOperator.Text.ToString();
+                return true;
             }
-            // T
             else
             {
                 MessageBox.Show("Enter an operator name.", "Missing operator",
-                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
             }
+        }
+
+        // Click OK
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            ValidationResult = CheckUserInput();
+        }
+
+        // TODO cancel button not working
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

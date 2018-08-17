@@ -19,24 +19,40 @@ namespace HeliStat
             get { return newAircraftType; }
         }
 
+        public bool ValidationResult = false;
+
         public frmHelicoptersAddNewType()
         {
             InitializeComponent();
         }
 
-        // Button "OK"
-        private void btnOK_Click(object sender, EventArgs e)
+        // TODO check if aircraft type already exists in database
+        // check user input if correct (not null or empty)
+        private bool CheckUserInput()
         {
-            // TODO catch wrong entries
-            if (tbxAircraftType.Text != null)
+            if (!String.IsNullOrEmpty(tbxAircraftType.Text))
             {
                 newAircraftType = tbxAircraftType.Text.ToString();
+                return true;
             }
             else
             {
                 MessageBox.Show("Enter an aircraft type.", "Missing aircraft type",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
             }
+        }
+
+        // Button "OK"
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            ValidationResult = CheckUserInput();
+        }
+
+        // TODO cancel button not working
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

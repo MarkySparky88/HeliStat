@@ -19,17 +19,18 @@ namespace HeliStat
             get { return newIcaoDesignator; }
         }
 
-        public bool ValidationResult;
+        public bool ValidationResult = false;
 
         public frmMovementsAddIcaoDes()
         {
             InitializeComponent();
         }
 
-        // check user input
-        public bool UserEntryValidation()
+        // TODO check if ICAO designator already exists in database
+        // check user input if correct (ICAO 4-letter code)
+        private bool CheckUserInput()
         {
-            if (tbxIcaoDesignator.Text != null && tbxIcaoDesignator.Text.Length == 4)
+            if (!string.IsNullOrEmpty(tbxIcaoDesignator.Text) && tbxIcaoDesignator.TextLength == 4)
             {
                 newIcaoDesignator = tbxIcaoDesignator.Text.ToString();
                 return true;
@@ -45,8 +46,13 @@ namespace HeliStat
         // Button "OK"
         private void btnOK_Click(object sender, EventArgs e)
         {
-            ValidationResult = UserEntryValidation();
-            tbxIcaoDesignator.Text = null;
+            ValidationResult = CheckUserInput();
+        }
+
+        // TODO cancel button not working
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

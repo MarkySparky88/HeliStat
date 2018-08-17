@@ -161,7 +161,9 @@ namespace HeliStat
 
             while (addIcaoDes.ValidationResult == false)
             {
-                if (addIcaoDes.ShowDialog() == DialogResult.OK && addIcaoDes.ValidationResult == true)
+                addIcaoDes.ShowDialog();
+
+                if (addIcaoDes.DialogResult == DialogResult.OK && addIcaoDes.ValidationResult == true)
                 {
                     AddIcaoDesignator(addIcaoDes);
                 }

@@ -147,9 +147,14 @@ namespace HeliStat
         {
             frmHelicoptersAddNewType helicoptersAddNewType = new frmHelicoptersAddNewType();
 
-            if (helicoptersAddNewType.ShowDialog() == DialogResult.OK)
+            while (helicoptersAddNewType.ValidationResult == false)
             {
-                AddNewAircraftType(helicoptersAddNewType);
+                helicoptersAddNewType.ShowDialog();
+
+                if (helicoptersAddNewType.DialogResult == DialogResult.OK && helicoptersAddNewType.ValidationResult == true)
+                {
+                    AddNewAircraftType(helicoptersAddNewType);
+                }
             }
         }
 
@@ -164,9 +169,14 @@ namespace HeliStat
         {
             frmHelicoptersAddNewOperator helicoptersAddNewOperator = new frmHelicoptersAddNewOperator();
 
-            if (helicoptersAddNewOperator.ShowDialog() == DialogResult.OK)
+            while (helicoptersAddNewOperator.ValidationResult == false)
             {
-                AddNewOperator(helicoptersAddNewOperator);
+                helicoptersAddNewOperator.ShowDialog();
+
+                if (helicoptersAddNewOperator.DialogResult == DialogResult.OK && helicoptersAddNewOperator.ValidationResult == true)
+                {
+                    AddNewOperator(helicoptersAddNewOperator);
+                }
             }
         }
 
