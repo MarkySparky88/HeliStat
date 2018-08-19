@@ -159,11 +159,9 @@ namespace HeliStat
         {
             frmMovementsAddIcaoDes addIcaoDes = new frmMovementsAddIcaoDes();
 
-            while (addIcaoDes.ValidationResult == false)
+            while (addIcaoDes.DialogBoxStatus == false)
             {
-                addIcaoDes.ShowDialog();
-
-                if (addIcaoDes.DialogResult == DialogResult.OK && addIcaoDes.ValidationResult == true)
+                if (addIcaoDes.ShowDialog() == DialogResult.OK && addIcaoDes.DialogBoxStatus == true)
                 {
                     AddIcaoDesignator(addIcaoDes);
                 }

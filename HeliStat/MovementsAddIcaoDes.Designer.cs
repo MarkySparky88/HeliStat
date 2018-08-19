@@ -51,7 +51,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(179, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Add ICAO Designator (4-letter code):";
+            this.label1.Text = "Add ICAO-Designator (4-letter code):";
             // 
             // btnOK
             // 

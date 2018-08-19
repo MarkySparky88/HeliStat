@@ -39,6 +39,7 @@
             // 
             this.tbxAircraftType.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbxAircraftType.Location = new System.Drawing.Point(13, 35);
+            this.tbxAircraftType.MaxLength = 4;
             this.tbxAircraftType.Name = "tbxAircraftType";
             this.tbxAircraftType.Size = new System.Drawing.Size(261, 20);
             this.tbxAircraftType.TabIndex = 0;
@@ -48,9 +49,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 13);
+            this.label1.Size = new System.Drawing.Size(162, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Aircraft type (ICAO 4-letter):";
+            this.label1.Text = "Aircraft type (ICAO 4-letter code):";
             // 
             // btnOK
             // 

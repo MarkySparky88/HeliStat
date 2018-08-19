@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HeliStat
@@ -19,7 +12,7 @@ namespace HeliStat
             get { return newOperator; }
         }
 
-        public bool ValidationResult = false;
+        public bool DialogBoxStatus = false;
 
         public frmHelicoptersAddNewOperator()
         {
@@ -43,16 +36,17 @@ namespace HeliStat
             }
         }
 
-        // Click OK
+        // Button "OK"
         private void btnOK_Click(object sender, EventArgs e)
         {
-            ValidationResult = CheckUserInput();
+            DialogBoxStatus = CheckUserInput();
         }
 
-        // TODO cancel button not working
+        // Button "Cancel"
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+            DialogBoxStatus = true;
         }
     }
 }
