@@ -145,15 +145,68 @@ namespace HeliStat
         // Button "+" (Aircraft Type)
         private void btnAddNewAircraftType_Click(object sender, EventArgs e)
         {
+            string tableName = "tblAircraftTypes";
+      
             frmHelicoptersAddNewType helicoptersAddNewType = new frmHelicoptersAddNewType();
 
             while (helicoptersAddNewType.DialogBoxStatus == false)
             {
                 if (helicoptersAddNewType.ShowDialog() == DialogResult.OK && helicoptersAddNewType.DialogBoxStatus == true)
                 {
-                    AddNewAircraftType(helicoptersAddNewType);
+                    if (!CheckIfEntryExists(tableName, helicoptersAddNewType))
+                    {
+                        AddNewAircraftType(helicoptersAddNewType);
+                    }
+                    else
+                    {
+                        MessageBox.Show("This aircraft type already exists.\nEnter a new aircraft type", "Aircraft type exists",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        helicoptersAddNewType.DialogBoxStatus = false;
+                    }
                 }
             }
+        }
+
+        // TODO tableName cannot be parameterized (see for possible workaround https://stackoverflow.com/questions/17947736/sqlparameter-does-not-allows-table-name-other-options-without-sql-injection-at)
+        // TODO move this function to the correct place in this class
+        // TODO make this function usable for new aircraft type AND new operator
+        // TODO fuction not yet really tested.. (use console output as a help)
+        // checks if record already exists in database
+        private bool CheckIfEntryExists(string tableName, frmHelicoptersAddNewType helicoptersAddNewType)
+        {
+            bool doesExist = false;
+
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                    string cmdText = @"SELECT COUNT(*) FROM tblAircraftTypes
+                                        WHERE AircraftType = @AircraftType";
+
+                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@AircraftType", helicoptersAddNewType.NewAircraftType);
+
+                        int entryExists = (int)cmd.ExecuteScalar();
+
+                        if (entryExists > 0)
+                        {
+                            doesExist = true;
+                        }
+                        else
+                        {
+                            doesExist = false;
+                        }
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            return doesExist;
         }
 
         // Button "-" (Aircraft type)
