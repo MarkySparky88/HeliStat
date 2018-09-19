@@ -170,7 +170,7 @@ namespace HeliStat
         // TODO tableName cannot be parameterized (see for possible workaround https://stackoverflow.com/questions/17947736/sqlparameter-does-not-allows-table-name-other-options-without-sql-injection-at)
         // TODO move this function to the correct place in this class
         // TODO make this function usable for new aircraft type AND new operator
-        // TODO fuction not yet really tested.. (use console output as a help)
+        // TODO fuction not yet really tested, but seems to work (use console output as a help)
         // checks if record already exists in database
         private bool CheckIfEntryExists(string tableName, frmHelicoptersAddNewType helicoptersAddNewType)
         {
@@ -181,8 +181,8 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = @"SELECT COUNT(*) FROM tblAircraftTypes
-                                        WHERE AircraftType = @AircraftType";
+                    string cmdText = @"SELECT COUNT(*) FROM [tblAircraftTypes]
+                                        WHERE ([AircraftType] = @AircraftType)";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -192,10 +192,12 @@ namespace HeliStat
 
                         if (entryExists > 0)
                         {
+                            //Console.WriteLine("Entry exists.");
                             doesExist = true;
                         }
                         else
                         {
+                            //Console.WriteLine("Entry does not exist.");
                             doesExist = false;
                         }
                     }
