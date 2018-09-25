@@ -19,7 +19,6 @@ namespace HeliStat
             InitializeComponent();
         }
 
-        // TODO check if operator already exists in database
         // check user input if correct (not null or empty)
         private bool CheckUserInput()
         {

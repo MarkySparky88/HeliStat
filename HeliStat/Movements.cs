@@ -163,7 +163,17 @@ namespace HeliStat
             {
                 if (addIcaoDes.ShowDialog() == DialogResult.OK && addIcaoDes.DialogBoxStatus == true)
                 {
-                    AddIcaoDesignator(addIcaoDes);
+                    if (!checkIfDesignatorExists(addIcaoDes))
+                    {
+                        AddIcaoDesignator(addIcaoDes);
+                    }
+                    else
+                    {
+                        MessageBox.Show("This ICAO-Designator already exists.\nEnter a new ICAO-Designator.", "ICAO-Designator exists",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        addIcaoDes.DialogBoxStatus = false;
+                    }
+
                 }
             }
         }
@@ -593,6 +603,47 @@ namespace HeliStat
             }
             // TODO is there a better way to reload the new added data in the datagrid?
             dgvMovements.DataSource = FillDataGridView();
+        }
+
+        // TODO function does exactly the same as functions in Helicopters-class (aircraft type & operator) -> combine into one function!
+        // checks if record (ICAO-Designator) already exists in database
+        private bool checkIfDesignatorExists(frmMovementsAddIcaoDes addIcaoDes)
+        {
+            bool doesExist = false;
+
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                    string cmdText = @"SELECT COUNT(*) FROM [tblAirportCodes]
+                                        WHERE ([AirportCode] = @AirportCode)";
+
+                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@AirportCode", addIcaoDes.NewIcaoDesignator);
+
+                        int entryExists = (int)cmd.ExecuteScalar();
+
+                        if (entryExists > 0)
+                        {
+                            //Console.WriteLine("Entry exists.");
+                            doesExist = true;
+                        }
+                        else
+                        {
+                            //Console.WriteLine("Entry does not exist.");
+                            doesExist = false;
+                        }
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            return doesExist;
         }
 
         // checks if no empty fields (left side of datagridview) before handling database

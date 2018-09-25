@@ -75,12 +75,6 @@
     <Compile Include="Helicopters.Designer.cs">
       <DependentUpon>Helicopters.cs</DependentUpon>
     </Compile>
-    <Compile Include="MovementsAddYear.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MovementsAddYear.Designer.cs">
-      <DependentUpon>MovementsAddYear.cs</DependentUpon>
-    </Compile>
     <Compile Include="TestClass.cs" />
     <Compile Include="TestForm.cs">
       <SubType>Form</SubType>
@@ -143,9 +137,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MovementsAddIcaoDes.resx">
       <DependentUpon>MovementsAddIcaoDes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MovementsAddYear.resx">
-      <DependentUpon>MovementsAddYear.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

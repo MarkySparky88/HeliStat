@@ -19,7 +19,6 @@ namespace HeliStat
             InitializeComponent();
         }
 
-        // TODO check if ICAO designator already exists in database
         // check user input if correct (ICAO 4-letter code)
         private bool CheckUserInput()
         {

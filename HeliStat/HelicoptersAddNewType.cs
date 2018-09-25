@@ -19,7 +19,6 @@ namespace HeliStat
             InitializeComponent();
         }
 
-        // TODO check if aircraft type already exists in database
         // check user input if correct (not null or empty)
         private bool CheckUserInput()
         {

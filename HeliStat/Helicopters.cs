@@ -145,70 +145,24 @@ namespace HeliStat
         // Button "+" (Aircraft Type)
         private void btnAddNewAircraftType_Click(object sender, EventArgs e)
         {
-            string tableName = "tblAircraftTypes";
-      
             frmHelicoptersAddNewType helicoptersAddNewType = new frmHelicoptersAddNewType();
 
             while (helicoptersAddNewType.DialogBoxStatus == false)
             {
                 if (helicoptersAddNewType.ShowDialog() == DialogResult.OK && helicoptersAddNewType.DialogBoxStatus == true)
                 {
-                    if (!CheckIfEntryExists(tableName, helicoptersAddNewType))
+                    if (!checkIfAircraftTypeExists(helicoptersAddNewType))
                     {
                         AddNewAircraftType(helicoptersAddNewType);
                     }
                     else
                     {
-                        MessageBox.Show("This aircraft type already exists.\nEnter a new aircraft type", "Aircraft type exists",
+                        MessageBox.Show("This aircraft type already exists.\nEnter a new aircraft type.", "Aircraft type exists",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         helicoptersAddNewType.DialogBoxStatus = false;
                     }
                 }
             }
-        }
-
-        // TODO tableName cannot be parameterized (see for possible workaround https://stackoverflow.com/questions/17947736/sqlparameter-does-not-allows-table-name-other-options-without-sql-injection-at)
-        // TODO move this function to the correct place in this class
-        // TODO make this function usable for new aircraft type AND new operator
-        // TODO fuction not yet really tested, but seems to work (use console output as a help)
-        // checks if record already exists in database
-        private bool CheckIfEntryExists(string tableName, frmHelicoptersAddNewType helicoptersAddNewType)
-        {
-            bool doesExist = false;
-
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
-            {
-                try
-                {
-                    connection.Open();
-                    string cmdText = @"SELECT COUNT(*) FROM [tblAircraftTypes]
-                                        WHERE ([AircraftType] = @AircraftType)";
-
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@AircraftType", helicoptersAddNewType.NewAircraftType);
-
-                        int entryExists = (int)cmd.ExecuteScalar();
-
-                        if (entryExists > 0)
-                        {
-                            //Console.WriteLine("Entry exists.");
-                            doesExist = true;
-                        }
-                        else
-                        {
-                            //Console.WriteLine("Entry does not exist.");
-                            doesExist = false;
-                        }
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            return doesExist;
         }
 
         // Button "-" (Aircraft type)
@@ -226,7 +180,16 @@ namespace HeliStat
             {
                 if (helicoptersAddNewOperator.ShowDialog() == DialogResult.OK && helicoptersAddNewOperator.DialogBoxStatus == true)
                 {
-                    AddNewOperator(helicoptersAddNewOperator);
+                    if (!checkIfOperatorExists(helicoptersAddNewOperator))
+                    {
+                        AddNewOperator(helicoptersAddNewOperator);
+                    }
+                    else
+                    {
+                        MessageBox.Show("This operator already exists.\nEnter a new operator.", "Operator exists",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        helicoptersAddNewOperator.DialogBoxStatus = false;
+                    }
                 }
             }
         }
@@ -572,7 +535,93 @@ namespace HeliStat
             dgvHelicopters.DataSource = FillDataGridView();
             ClearFields();
         }
-        
+
+        // TODO tableName cannot be parameterized (see for possible workaround https://stackoverflow.com/questions/17947736/sqlparameter-does-not-allows-table-name-other-options-without-sql-injection-at)
+        // oder https://stackoverflow.com/questions/23357481/how-can-i-pass-a-table-name-to-sqlcommand
+        // TODO make this function usable for new aircraft type AND new operator
+        // TODO parameters (tableName, helicoptersAddNewType) in function definition / title really needed?
+        // TODO fuction not yet really tested, but seems to work (use console output as a help)
+        // checks if record (aircraft type) already exists in database
+        private bool checkIfAircraftTypeExists(frmHelicoptersAddNewType helicoptersAddNewType)
+        {
+            bool doesExist = false;
+
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                    string cmdText = @"SELECT COUNT(*) FROM [tblAircraftTypes]
+                                        WHERE ([AircraftType] = @AircraftType)";
+
+                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@AircraftType", helicoptersAddNewType.NewAircraftType);
+
+                        int entryExists = (int)cmd.ExecuteScalar();
+
+                        if (entryExists > 0)
+                        {
+                            //Console.WriteLine("Entry exists.");
+                            doesExist = true;
+                        }
+                        else
+                        {
+                            //Console.WriteLine("Entry does not exist.");
+                            doesExist = false;
+                        }
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            return doesExist;
+        }
+
+        // TODO function does exactly the same as function above for aircraft types -> combine into one function!
+        // checks if record (operator) already exists in database
+        private bool checkIfOperatorExists(frmHelicoptersAddNewOperator helicoptersAddNewOperator)
+        {
+            bool doesExist = false;
+
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                    string cmdText = @"SELECT COUNT(*) FROM [tblOperators]
+                                        WHERE ([Operator] = @Operator)";
+
+                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Operator", helicoptersAddNewOperator.NewOperator);
+
+                        int entryExists = (int)cmd.ExecuteScalar();
+
+                        if (entryExists > 0)
+                        {
+                            //Console.WriteLine("Entry exists.");
+                            doesExist = true;
+                        }
+                        else
+                        {
+                            //Console.WriteLine("Entry does not exist.");
+                            doesExist = false;
+                        }
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            return doesExist;
+        }
+
         // display selected row from dgv in textboxes & comboboxes
         private void ShowValues(object sender, EventArgs e)
         {
