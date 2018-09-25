@@ -323,7 +323,7 @@
             // toolStripBtnAdd
             // 
             this.toolStripBtnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBtnAdd.Image = global::HeliStat.Properties.Resources.icons8_plus_math_24;
+            this.toolStripBtnAdd.Image = global::HeliStat.Properties.Resources.Plus;
             this.toolStripBtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnAdd.Name = "toolStripBtnAdd";
             this.toolStripBtnAdd.Size = new System.Drawing.Size(23, 22);
@@ -333,7 +333,7 @@
             // toolStripBtnUpdate
             // 
             this.toolStripBtnUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBtnUpdate.Image = global::HeliStat.Properties.Resources.icons8_restart_24;
+            this.toolStripBtnUpdate.Image = global::HeliStat.Properties.Resources.Update;
             this.toolStripBtnUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnUpdate.Name = "toolStripBtnUpdate";
             this.toolStripBtnUpdate.Size = new System.Drawing.Size(23, 22);
@@ -343,7 +343,7 @@
             // toolStripButton2
             // 
             this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = global::HeliStat.Properties.Resources.icons8_trash_32;
+            this.toolStripButton2.Image = global::HeliStat.Properties.Resources.Delete;
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
@@ -363,7 +363,7 @@
             // toolStripBtnAddYear
             // 
             this.toolStripBtnAddYear.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBtnAddYear.Image = global::HeliStat.Properties.Resources.icons8_add_new_32;
+            this.toolStripBtnAddYear.Image = global::HeliStat.Properties.Resources.New;
             this.toolStripBtnAddYear.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnAddYear.Name = "toolStripBtnAddYear";
             this.toolStripBtnAddYear.Size = new System.Drawing.Size(23, 22);
@@ -372,7 +372,7 @@
             // toolStripBtnDeleteYear
             // 
             this.toolStripBtnDeleteYear.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBtnDeleteYear.Image = global::HeliStat.Properties.Resources.icons8_reduce_32;
+            this.toolStripBtnDeleteYear.Image = global::HeliStat.Properties.Resources.Minus;
             this.toolStripBtnDeleteYear.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnDeleteYear.Name = "toolStripBtnDeleteYear";
             this.toolStripBtnDeleteYear.Size = new System.Drawing.Size(23, 22);

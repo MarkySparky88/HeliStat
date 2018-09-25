@@ -47,7 +47,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject />
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>HeliStat.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -196,6 +200,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-reduce-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\helicopter_128px_1208459_easyicon.net.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="HeliStat.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
