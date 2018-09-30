@@ -12,7 +12,7 @@ namespace HeliStat {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.5.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.8.0.0")]
     internal sealed partial class DBConnection : global::System.Configuration.ApplicationSettingsBase {
         
         private static DBConnection defaultInstance = ((DBConnection)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new DBConnection())));
@@ -30,6 +30,18 @@ namespace HeliStat {
         public string HeliStatDBConnection {
             get {
                 return ((string)(this["HeliStatDBConnection"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\Marc\\Documents\\Visu" +
+            "al Studio 2017\\Projects\\HeliStat\\HeliStat\\Data\\HeliStatDB.mdf\";Integrated Securi" +
+            "ty=True")]
+        public string HeliStatDBLocalConnection {
+            get {
+                return ((string)(this["HeliStatDBLocalConnection"]));
             }
         }
     }

@@ -16,7 +16,6 @@ namespace HeliStat
         {
             InitializeComponent();
         }
-        // TODO: Add a splash screen (loading screen) before application start (https://stackoverflow.com/questions/7955663/how-to-build-splash-screen-in-windows-forms-application)
         // TODO: Add menu strip
         // TODO: Add tool strip with icons
         // TODO: Add status strip ("Movements today" / "Helicopters in database"/ etc.)
