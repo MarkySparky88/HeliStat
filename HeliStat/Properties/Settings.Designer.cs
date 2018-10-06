@@ -22,38 +22,5 @@ namespace HeliStat.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\HeliStatDBLoc" +
-            "al.mdf;Integrated Security=True;Connect Timeout=30")]
-        public string HeliStatDBLocalConnectionString {
-            get {
-                return ((string)(this["HeliStatDBLocalConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\Marc\\Documents\\Visu" +
-            "al Studio 2017\\Projects\\HeliStat\\HeliStat\\bin\\Debug\\HeliStatDB.mdf\";Integrated S" +
-            "ecurity=True;Connect Timeout=30")]
-        public string HeliStatDBConnectionString {
-            get {
-                return ((string)(this["HeliStatDBConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=MEDION_ERAZER;Initial Catalog=HeliStatDB;Integrated Security=True")]
-        public string HeliStatDBConnectionString1 {
-            get {
-                return ((string)(this["HeliStatDBConnectionString1"]));
-            }
-        }
     }
 }

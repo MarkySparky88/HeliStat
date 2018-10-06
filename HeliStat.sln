@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeliStat", "HeliStat\HeliStat.csproj", "{06B99E60-C278-40E6-AFD7-C623EDB0554C}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{615D9739-9D24-4F2C-BF7B-AF74E270CADA}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{B859140D-397A-4531-8A0E-181F572F1451}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,8 +17,8 @@ Global
 		{06B99E60-C278-40E6-AFD7-C623EDB0554C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06B99E60-C278-40E6-AFD7-C623EDB0554C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06B99E60-C278-40E6-AFD7-C623EDB0554C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{615D9739-9D24-4F2C-BF7B-AF74E270CADA}.Debug|Any CPU.ActiveCfg = Debug
-		{615D9739-9D24-4F2C-BF7B-AF74E270CADA}.Release|Any CPU.ActiveCfg = Release
+		{B859140D-397A-4531-8A0E-181F572F1451}.Debug|Any CPU.ActiveCfg = Debug
+		{B859140D-397A-4531-8A0E-181F572F1451}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

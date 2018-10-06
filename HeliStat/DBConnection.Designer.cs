@@ -26,19 +26,8 @@ namespace HeliStat {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=HeliStatDB;Integrated Security=True")]
-        public string HeliStatDBConnection {
-            get {
-                return ((string)(this["HeliStatDBConnection"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\Marc\\Documents\\Visu" +
-            "al Studio 2017\\Projects\\HeliStat\\HeliStat\\Data\\HeliStatDB.mdf\";Integrated Securi" +
-            "ty=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Data\\HeliStat" +
+            "DB.mdf;Initial Catalog=HeliStatDB;Integrated Security=True")]
         public string HeliStatDBLocalConnection {
             get {
                 return ((string)(this["HeliStatDBLocalConnection"]));

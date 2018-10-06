@@ -8,7 +8,10 @@ namespace HeliStat
 {
     static class Program
     {
-        // Connection string to database
+        // Connection string to server database
+        //public static string ConnString = DBConnection.Default.HeliStatDBServerConnection;
+
+        // Connection string to local database
         public static string ConnString = DBConnection.Default.HeliStatDBLocalConnection;
 
         /// <summary>
