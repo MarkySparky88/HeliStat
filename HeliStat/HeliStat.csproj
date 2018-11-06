@@ -27,9 +27,10 @@
     <PublisherName>MarkySparky Productions</PublisherName>
     <SuiteName>HeliStat</SuiteName>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -53,8 +54,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>
-    </StartupObject>
+    <StartupObject>HeliStat.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>HeliStatIcon.ico</ApplicationIcon>
@@ -71,6 +71,10 @@
   <PropertyGroup>
     <SignManifests>true</SignManifests>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -86,11 +90,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBConnection.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>DBConnection.settings</DependentUpon>
-    </Compile>
     <Compile Include="Helicopters.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,10 +171,6 @@
     <EmbeddedResource Include="Statistics.resx">
       <DependentUpon>Statistics.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="DBConnection.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>DBConnection.Designer.cs</LastGenOutput>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -229,10 +224,10 @@
     <None Include="Resources\icons8-reduce-32.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\HeliStatDB.mdf">
+    <Content Include="HeliStat\HeliStatDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\HeliStatDB_log.ldf">
+    <Content Include="HeliStat\HeliStatDB_log.ldf">
       <DependentUpon>HeliStatDB.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

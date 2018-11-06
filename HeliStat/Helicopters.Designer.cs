@@ -47,10 +47,10 @@
             this.btnRemoveOperator = new System.Windows.Forms.Button();
             this.btnClearFields = new System.Windows.Forms.Button();
             this.toolStripHeli = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripBtnAdd = new System.Windows.Forms.ToolStripButton();
             this.toolStripBtnUpdate = new System.Windows.Forms.ToolStripButton();
             this.toolStripBtnRemove = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             registrationLabel = new System.Windows.Forms.Label();
             aircraftTypeLabel = new System.Windows.Forms.Label();
             noOfEngLabel = new System.Windows.Forms.Label();
@@ -244,11 +244,6 @@
             this.toolStripHeli.TabIndex = 38;
             this.toolStripHeli.Text = "toolStrip1";
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
             // toolStripBtnAdd
             // 
             this.toolStripBtnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -279,6 +274,11 @@
             this.toolStripBtnRemove.Text = "Remove Heli";
             this.toolStripBtnRemove.Click += new System.EventHandler(this.toolStripBtnRemove_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // frmHelicopters
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -307,7 +307,7 @@
             this.MaximizeBox = false;
             this.Name = "frmHelicopters";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "HeliStats v0.0.1 - Helicopters";
+            this.Text = "HeliStat - Helicopters";
             this.Load += new System.EventHandler(this.frmHelicopters_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHelicopters)).EndInit();
             this.toolStripHeli.ResumeLayout(false);

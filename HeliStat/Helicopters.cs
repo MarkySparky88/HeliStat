@@ -13,6 +13,8 @@ namespace HeliStat
 {
     public partial class frmHelicopters : Form
     {
+        string ConnString = Properties.Settings.Default.DBConnection;
+
         // constructor
         public frmHelicopters()
         {
@@ -39,7 +41,7 @@ namespace HeliStat
         {
             DataTable dataTable = new DataTable();
 
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (SqlConnection connection = new SqlConnection(ConnString))
             {
                 try
                 {
@@ -71,7 +73,7 @@ namespace HeliStat
         {
             cbxAircraftType.Items.Clear();
 
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (SqlConnection connection = new SqlConnection(ConnString))
             {
                 try
                 {
@@ -107,7 +109,7 @@ namespace HeliStat
         {
             cbxOperator.Items.Clear();
 
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (SqlConnection connection = new SqlConnection(ConnString))
             {
                 try
                 {
@@ -253,7 +255,7 @@ namespace HeliStat
         // add new aircraft type to database
         private void AddNewAircraftType(frmHelicoptersAddNewType helicoptersAddNewType)
         {
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (SqlConnection connection = new SqlConnection(ConnString))
             {
                 try
                 {
@@ -295,7 +297,7 @@ namespace HeliStat
                 return;
             }
 
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (SqlConnection connection = new SqlConnection(ConnString))
             {
                 try
                 {
@@ -326,7 +328,7 @@ namespace HeliStat
         // add new operator to database
         private void AddNewOperator(frmHelicoptersAddNewOperator helicoptersAddNewOperator)
         {
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (SqlConnection connection = new SqlConnection(ConnString))
             {
                 try
                 {
@@ -368,7 +370,7 @@ namespace HeliStat
                 return;
             }
 
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (SqlConnection connection = new SqlConnection(ConnString))
             {
                 try
                 {
@@ -401,7 +403,7 @@ namespace HeliStat
         {
             if (NoEmptyFields())
             {
-                using (SqlConnection connection = new SqlConnection(Program.ConnString))
+                using (SqlConnection connection = new SqlConnection(ConnString))
                 {
                     try
                     {
@@ -453,7 +455,7 @@ namespace HeliStat
 
             if (NoEmptyFields())
             {
-                using (SqlConnection connection = new SqlConnection(Program.ConnString))
+                using (SqlConnection connection = new SqlConnection(ConnString))
                 {
                     try
                     {
@@ -508,7 +510,7 @@ namespace HeliStat
                 return;
             }
 
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (SqlConnection connection = new SqlConnection(ConnString))
             {
                 try
                 {
@@ -546,7 +548,7 @@ namespace HeliStat
         {
             bool doesExist = false;
 
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (SqlConnection connection = new SqlConnection(ConnString))
             {
                 try
                 {
@@ -587,7 +589,7 @@ namespace HeliStat
         {
             bool doesExist = false;
 
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (SqlConnection connection = new SqlConnection(ConnString))
             {
                 try
                 {

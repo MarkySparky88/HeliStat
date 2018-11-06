@@ -418,7 +418,7 @@
             this.MaximizeBox = false;
             this.Name = "frmMovements";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "HeliStats v0.0.1 - Movements";
+            this.Text = "HeliStat - Movements";
             this.Load += new System.EventHandler(this.frmMovements_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMovements)).EndInit();
             this.toolStripMov.ResumeLayout(false);

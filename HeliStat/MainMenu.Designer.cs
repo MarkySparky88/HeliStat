@@ -78,7 +78,7 @@
             this.MinimizeBox = false;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "HeliStats v0.0.1";
+            this.Text = "HeliStat";
             this.ResumeLayout(false);
 
         }
