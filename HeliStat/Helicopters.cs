@@ -631,9 +631,9 @@ namespace HeliStat
             {
                 DataGridViewRow row = this.dgvHelicopters.SelectedRows[0];
                 tbxRegistration.Text = row.Cells["Registration"].Value.ToString();
-                cbxAircraftType.SelectedItem = row.Cells["AircraftType"].Value.ToString();
-                cbxNoOfEng.SelectedItem = row.Cells["NoOfEng"].Value.ToString();
-                cbxOperator.SelectedItem = row.Cells["Operator"].Value.ToString();
+                cbxAircraftType.Text = row.Cells["AircraftType"].Value.ToString();
+                cbxNoOfEng.Text = row.Cells["NoOfEng"].Value.ToString();
+                cbxOperator.Text = row.Cells["Operator"].Value.ToString();
             }
         }
 
