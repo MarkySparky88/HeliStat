@@ -5,13 +5,7 @@ namespace HeliStat
 {
     public partial class frmHelicoptersAddNewType : Form
     {
-        private string newAircraftType;
-
-        public string NewAircraftType
-        {
-            get { return newAircraftType; }
-        }
-
+        public string NewAircraftType { get; private set; }
         public bool DialogBoxStatus = false;
 
         public frmHelicoptersAddNewType()
@@ -24,7 +18,7 @@ namespace HeliStat
         {
             if (!String.IsNullOrEmpty(tbxAircraftType.Text))
             {
-                newAircraftType = tbxAircraftType.Text.ToString();
+                NewAircraftType = tbxAircraftType.Text.ToString();
                 return true;
             }
             else
@@ -44,7 +38,7 @@ namespace HeliStat
         // Button "Cancel"
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
             DialogBoxStatus = true;
         }
     }

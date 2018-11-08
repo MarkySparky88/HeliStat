@@ -39,26 +39,26 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_6A27BAF54DF74A5FBE98F85556834AC1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_A074805DB7E4460EA67A6EFA777BB470"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_DBDD880C32F64B9489791A077ABFA367"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_2837D26570EE4D0BA2583392EF22D30B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_533D6450D34F8F48881EA40E9450FBB3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2837D26570EE4D0BA2583392EF22D30B"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -86,6 +86,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
             }
         }
         "Release"
@@ -110,6 +118,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
             }
         }
     }
@@ -145,7 +161,7 @@
             "SourcePath" = "8:..\\SplashScreen.jpg"
             "TargetName" = "8:SplashScreen.jpg"
             "Tag" = "8:"
-            "Folder" = "8:_A65189C7E7AE40659DA2886E6DBCE1CB"
+            "Folder" = "8:_041DAF7E0A024B4B8BC6900CA36CDC7B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -165,7 +181,7 @@
             "SourcePath" = "8:..\\Banner.jpg"
             "TargetName" = "8:Banner.jpg"
             "Tag" = "8:"
-            "Folder" = "8:_A65189C7E7AE40659DA2886E6DBCE1CB"
+            "Folder" = "8:_041DAF7E0A024B4B8BC6900CA36CDC7B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -187,6 +203,11 @@
             "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
+                    "_533D6450D34F8F48881EA40E9450FBB3"
+                    {
+                    "Name" = "8:System.Net.Http.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:System.Net.Http.dll"
             "TargetName" = "8:"
@@ -206,29 +227,9 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A074805DB7E4460EA67A6EFA777BB470"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6A27BAF54DF74A5FBE98F85556834AC1"
             {
-            "SourcePath" = "8:..\\HeliStat.ico"
-            "TargetName" = "8:HeliStat.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_A65189C7E7AE40659DA2886E6DBCE1CB"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DBDD880C32F64B9489791A077ABFA367"
-            {
-            "SourcePath" = "8:..\\HeliStat\\Data\\HeliStatDB.mdf"
+            "SourcePath" = "8:..\\HeliStat\\HeliStat\\HeliStatDB.mdf"
             "TargetName" = "8:HeliStatDB.mdf"
             "Tag" = "8:"
             "Folder" = "8:_2B5E8D7C07AC4E038162DFB440B02CA3"
@@ -239,6 +240,26 @@
             "Hidden" = "11:FALSE"
             "System" = "11:FALSE"
             "Permanent" = "11:TRUE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A074805DB7E4460EA67A6EFA777BB470"
+            {
+            "SourcePath" = "8:..\\HeliStat.ico"
+            "TargetName" = "8:HeliStat.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_041DAF7E0A024B4B8BC6900CA36CDC7B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"

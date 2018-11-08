@@ -114,6 +114,12 @@
     <Compile Include="MovementsAddIcaoDes.Designer.cs">
       <DependentUpon>MovementsAddIcaoDes.cs</DependentUpon>
     </Compile>
+    <Compile Include="MovementsAddYear.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MovementsAddYear.Designer.cs">
+      <DependentUpon>MovementsAddYear.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -162,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MovementsAddIcaoDes.resx">
       <DependentUpon>MovementsAddIcaoDes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MovementsAddYear.resx">
+      <DependentUpon>MovementsAddYear.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -224,6 +233,7 @@
     <None Include="Resources\icons8-reduce-32.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Banner.jpg" />
     <Content Include="HeliStat\HeliStatDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

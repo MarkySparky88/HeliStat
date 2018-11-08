@@ -5,13 +5,7 @@ namespace HeliStat
 {
     public partial class frmHelicoptersAddNewOperator : Form
     {
-        private string newOperator;
-
-        public string NewOperator
-        {
-            get { return newOperator; }
-        }
-
+        public string NewOperator { get; private set; }
         public bool DialogBoxStatus = false;
 
         public frmHelicoptersAddNewOperator()
@@ -24,7 +18,7 @@ namespace HeliStat
         {
             if (!String.IsNullOrEmpty(tbxOperator.Text))
             {
-                newOperator = tbxOperator.Text.ToString();
+                NewOperator = tbxOperator.Text.ToString();
                 return true;
             }
             else
@@ -44,7 +38,7 @@ namespace HeliStat
         // Button "Cancel"
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
             DialogBoxStatus = true;
         }
     }

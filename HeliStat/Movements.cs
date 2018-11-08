@@ -727,11 +727,11 @@ namespace HeliStat
         {
             if (dgvMovements.SelectedRows.Count != 0)
             {
-                DataGridViewRow row = this.dgvMovements.SelectedRows[0];
+                DataGridViewRow row = dgvMovements.SelectedRows[0];
                 cbxRegistration.Text = row.Cells["Registration"].Value.ToString();
                 tbxAircraftType.Text = row.Cells["AircraftType"].Value.ToString();
                 tbxOperator.Text = row.Cells["Operator"].Value.ToString();
-                cbxTypeOfOps.Text = row.Cells["TypeOfOperation"].Value;
+                cbxTypeOfOps.Text = row.Cells["TypeOfOperation"].Value.ToString();
                 cbxArrFrom.Text = row.Cells["ArrFrom"].Value.ToString();
                 cbxDepTo.Text = row.Cells["DepTo"].Value.ToString();
             }
@@ -746,6 +746,12 @@ namespace HeliStat
             cbxTypeOfOps.Text = null;
             cbxArrFrom.Text = null;
             cbxDepTo.Text = null;
+        }
+
+        private void toolStripBtnAddYear_Click(object sender, EventArgs e)
+        {
+            frmMovementsAddYear addYear = new frmMovementsAddYear();
+            addYear.ShowDialog();
         }
     }
 }

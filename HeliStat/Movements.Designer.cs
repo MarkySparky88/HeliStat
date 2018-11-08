@@ -295,7 +295,7 @@
             // 
             // btnClearFields
             // 
-            this.btnClearFields.Location = new System.Drawing.Point(12, 418);
+            this.btnClearFields.Location = new System.Drawing.Point(12, 376);
             this.btnClearFields.Name = "btnClearFields";
             this.btnClearFields.Size = new System.Drawing.Size(237, 23);
             this.btnClearFields.TabIndex = 38;
@@ -368,6 +368,7 @@
             this.toolStripBtnAddYear.Name = "toolStripBtnAddYear";
             this.toolStripBtnAddYear.Size = new System.Drawing.Size(23, 22);
             this.toolStripBtnAddYear.Text = "Add Year";
+            this.toolStripBtnAddYear.Click += new System.EventHandler(this.toolStripBtnAddYear_Click);
             // 
             // toolStripBtnDeleteYear
             // 

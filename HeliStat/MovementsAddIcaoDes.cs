@@ -5,13 +5,7 @@ namespace HeliStat
 {
     public partial class frmMovementsAddIcaoDes : Form
     {
-        private string newIcaoDesignator;
-
-        public string NewIcaoDesignator
-        {
-            get { return newIcaoDesignator; }
-        }
-
+        public string NewIcaoDesignator { get; private set; }
         public bool DialogBoxStatus = false;
 
         public frmMovementsAddIcaoDes()
@@ -24,7 +18,7 @@ namespace HeliStat
         {
             if (!string.IsNullOrEmpty(tbxIcaoDesignator.Text) && tbxIcaoDesignator.TextLength == 4)
             {
-                newIcaoDesignator = tbxIcaoDesignator.Text.ToString();
+                NewIcaoDesignator = tbxIcaoDesignator.Text.ToString();
                 return true;
             }
             else
@@ -44,7 +38,7 @@ namespace HeliStat
         // Button "Cancel"
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
             DialogBoxStatus = true;
         }
     }
