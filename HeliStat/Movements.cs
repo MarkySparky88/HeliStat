@@ -244,6 +244,84 @@ namespace HeliStat
             DeleteMovement();
         }
 
+        // Toolstrip-Button "Add Year"
+        private void toolStripBtnAddYear_Click(object sender, EventArgs e)
+        {
+            string tableName;
+
+            frmMovementsAddYear addYear = new frmMovementsAddYear();
+
+            while (addYear.DialogBoxStatus == false)
+            {
+                if (addYear.ShowDialog() == DialogResult.OK)
+                {
+                    if (!checkIfYearExists(addYear))
+                    {
+                        tableName = addYear.NewYear;
+                        AddYear(addYear, tableName);
+                    }
+                    else
+                    {
+                        MessageBox.Show("This Year already exists.\nEnter a new Year.", "Year exists",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        addYear.DialogBoxStatus = false;
+                    }
+                }
+            }
+        }
+
+        // TODO fill combox years in toolstrip
+
+        // TODO sort this function into correct place
+        // Add year to database
+        private void AddYear(frmMovementsAddYear addYear, string tableName)
+        {
+            Console.WriteLine("Year added to database");
+            // TODO write this function..
+        }
+
+        // TODO sort this function into correct place
+        // TODO the exact same function exists for the ICAO-Designator! -> combine! Maybe it is possible to make one function and pass the table name via parameter?
+        // checks if record (Year) already exists in database
+        private bool checkIfYearExists(frmMovementsAddYear addYear)
+        {
+            bool doesExist = false;
+
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                    string cmdText = @"SELECT COUNT(*) FROM [tblYears]
+                                        WHERE ([Year] = @Year)";
+
+                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Year", addYear.NewYear);
+
+                        int entryExists = (int)cmd.ExecuteScalar();
+
+                        if (entryExists > 0)
+                        {
+                            //Console.WriteLine("Entry exists.");
+                            doesExist = true;
+                        }
+                        else
+                        {
+                            //Console.WriteLine("Entry does not exist.");
+                            doesExist = false;
+                        }
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            return doesExist;
+        }
+
         /// <summary>
         /// Functions
         /// </summary>
@@ -746,12 +824,6 @@ namespace HeliStat
             cbxTypeOfOps.Text = null;
             cbxArrFrom.Text = null;
             cbxDepTo.Text = null;
-        }
-
-        private void toolStripBtnAddYear_Click(object sender, EventArgs e)
-        {
-            frmMovementsAddYear addYear = new frmMovementsAddYear();
-            addYear.ShowDialog();
         }
     }
 }

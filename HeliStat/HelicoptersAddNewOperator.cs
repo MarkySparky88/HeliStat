@@ -16,7 +16,7 @@ namespace HeliStat
         // check user input if correct (not null or empty)
         private bool CheckUserInput()
         {
-            if (!String.IsNullOrEmpty(tbxOperator.Text))
+            if (!string.IsNullOrEmpty(tbxOperator.Text))
             {
                 NewOperator = tbxOperator.Text.ToString();
                 return true;

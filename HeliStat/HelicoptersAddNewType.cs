@@ -16,7 +16,7 @@ namespace HeliStat
         // check user input if correct (not null or empty)
         private bool CheckUserInput()
         {
-            if (!String.IsNullOrEmpty(tbxAircraftType.Text))
+            if (!string.IsNullOrEmpty(tbxAircraftType.Text))
             {
                 NewAircraftType = tbxAircraftType.Text.ToString();
                 return true;
