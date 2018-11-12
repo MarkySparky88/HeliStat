@@ -53,15 +53,15 @@
             this.cbxArrFrom = new System.Windows.Forms.ComboBox();
             this.cbxDepTo = new System.Windows.Forms.ComboBox();
             this.btnClearFields = new System.Windows.Forms.Button();
-            this.toolStripMov = new System.Windows.Forms.ToolStrip();
             this.toolStripBtnAdd = new System.Windows.Forms.ToolStripButton();
             this.toolStripBtnUpdate = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripBtnDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripCbxYear = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripBtnAddYear = new System.Windows.Forms.ToolStripButton();
             this.toolStripBtnDeleteYear = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMov = new System.Windows.Forms.ToolStrip();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMovements)).BeginInit();
             this.toolStripMov.SuspendLayout();
             this.SuspendLayout();
@@ -303,23 +303,6 @@
             this.btnClearFields.UseVisualStyleBackColor = true;
             this.btnClearFields.Click += new System.EventHandler(this.btnClearFields_Click);
             // 
-            // toolStripMov
-            // 
-            this.toolStripMov.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripBtnAdd,
-            this.toolStripBtnUpdate,
-            this.toolStripButton2,
-            this.toolStripSeparator1,
-            this.toolStripCbxYear,
-            this.toolStripBtnAddYear,
-            this.toolStripBtnDeleteYear,
-            this.toolStripSeparator2});
-            this.toolStripMov.Location = new System.Drawing.Point(0, 0);
-            this.toolStripMov.Name = "toolStripMov";
-            this.toolStripMov.Size = new System.Drawing.Size(1135, 25);
-            this.toolStripMov.TabIndex = 39;
-            this.toolStripMov.Text = "toolStrip1";
-            // 
             // toolStripBtnAdd
             // 
             this.toolStripBtnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -340,15 +323,15 @@
             this.toolStripBtnUpdate.Text = "Update Movement";
             this.toolStripBtnUpdate.Click += new System.EventHandler(this.toolStripBtnUpdate_Click);
             // 
-            // toolStripButton2
+            // toolStripBtnDelete
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = global::HeliStat.Properties.Resources.Delete;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "Delete Movement";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            this.toolStripBtnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnDelete.Image = global::HeliStat.Properties.Resources.Delete;
+            this.toolStripBtnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnDelete.Name = "toolStripBtnDelete";
+            this.toolStripBtnDelete.Size = new System.Drawing.Size(23, 22);
+            this.toolStripBtnDelete.Text = "Delete Movement";
+            this.toolStripBtnDelete.Click += new System.EventHandler(this.toolStripBtnDelete_Click);
             // 
             // toolStripSeparator1
             // 
@@ -383,6 +366,23 @@
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripMov
+            // 
+            this.toolStripMov.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripBtnAdd,
+            this.toolStripBtnUpdate,
+            this.toolStripBtnDelete,
+            this.toolStripSeparator1,
+            this.toolStripCbxYear,
+            this.toolStripBtnAddYear,
+            this.toolStripBtnDeleteYear,
+            this.toolStripSeparator2});
+            this.toolStripMov.Location = new System.Drawing.Point(0, 0);
+            this.toolStripMov.Name = "toolStripMov";
+            this.toolStripMov.Size = new System.Drawing.Size(1135, 25);
+            this.toolStripMov.TabIndex = 39;
+            this.toolStripMov.Text = "toolStrip1";
             // 
             // frmMovements
             // 
@@ -454,14 +454,14 @@
         private System.Windows.Forms.ComboBox cbxArrFrom;
         private System.Windows.Forms.ComboBox cbxDepTo;
         private System.Windows.Forms.Button btnClearFields;
-        private System.Windows.Forms.ToolStrip toolStripMov;
         private System.Windows.Forms.ToolStripButton toolStripBtnAdd;
         private System.Windows.Forms.ToolStripButton toolStripBtnUpdate;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton toolStripBtnDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripComboBox toolStripCbxYear;
         private System.Windows.Forms.ToolStripButton toolStripBtnAddYear;
         private System.Windows.Forms.ToolStripButton toolStripBtnDeleteYear;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStrip toolStripMov;
     }
 }

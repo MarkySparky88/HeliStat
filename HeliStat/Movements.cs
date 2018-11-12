@@ -19,8 +19,11 @@ namespace HeliStat
         public frmMovements()
         {
             InitializeComponent();
+            // TODO combine loading of datagridview and comboboxes upon form load?
+            // TODO bind comboboxes as well to datasource (dataset / datatable)??
             FillCbxRegistration();
             FillCbxArrDep();
+            FillToolStripCbxYear();
         }
 
         // load form
@@ -239,7 +242,7 @@ namespace HeliStat
         }
 
         // Toolstrip-Button "Delete"
-        private void toolStripButton2_Click(object sender, EventArgs e)
+        private void toolStripBtnDelete_Click(object sender, EventArgs e)
         {
             DeleteMovement();
         }
@@ -247,7 +250,7 @@ namespace HeliStat
         // Toolstrip-Button "Add Year"
         private void toolStripBtnAddYear_Click(object sender, EventArgs e)
         {
-            string tableName;
+            
 
             frmMovementsAddYear addYear = new frmMovementsAddYear();
 
@@ -257,12 +260,17 @@ namespace HeliStat
                 {
                     if (!checkIfYearExists(addYear))
                     {
-                        tableName = addYear.NewYear;
-                        AddYear(addYear, tableName);
+                        StringBuilder sbTableNameYear = new StringBuilder("tblMov");
+
+                        string tableName = sbTableNameYear.Append(addYear.NewYear).ToString();
+                        string year = addYear.NewYear;
+
+                        AddYearToCombobox(year);
+                        AddYearTableToDatabase(addYear, tableName);
                     }
                     else
                     {
-                        MessageBox.Show("This Year already exists.\nEnter a new Year.", "Year exists",
+                        MessageBox.Show("This year already exists.\nEnter a new year.", "Year exists",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         addYear.DialogBoxStatus = false;
                     }
@@ -270,14 +278,97 @@ namespace HeliStat
             }
         }
 
-        // TODO fill combox years in toolstrip
+        // TODO sort / replace this function
+        // add the year-designator to database
+        private void AddYearToCombobox(string year)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                    string cmdText = @"INSERT INTO tblYears (Year)
+                                        VALUES (@Year)";
+
+                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Year", year);
+                        cmd.ExecuteNonQuery();
+
+                        MessageBox.Show("Year has been added succesfully!", "Year added",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            // TODO is there a better / other way to reload / refresh the new added data in the combobox
+            FillToolStripCbxYear();
+        }
+
+        // TODO replace / sort this function
+        // Fill combobox year (tool strip)
+        private void FillToolStripCbxYear()
+        {
+            toolStripCbxYear.Items.Clear();
+
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                    string cmdText = @"SELECT * FROM tblYears
+                                        ORDER BY Year";
+
+                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader != null)
+                            {
+                                while (reader.Read())
+                                {
+                                    string addItem = reader.GetString(reader.GetOrdinal("Year"));
+                                    toolStripCbxYear.Items.Add(addItem);
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
 
         // TODO sort this function into correct place
-        // Add year to database
-        private void AddYear(frmMovementsAddYear addYear, string tableName)
+        // TODO check if year already exists in database (catch SqlException does it actually already...)
+        // create new table for new year
+        private void AddYearTableToDatabase(frmMovementsAddYear addYear, string tableName)
         {
-            Console.WriteLine("Year added to database");
-            // TODO write this function..
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                    string cmdText = string.Format("SELECT * INTO {0} FROM tblMov WHERE 1 = 0", tableName);
+
+                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
 
         // TODO sort this function into correct place

@@ -43,7 +43,7 @@ namespace HeliStat
             }
             else
             {
-                MessageBox.Show("Enter an operator name.", "Missing operator",
+                MessageBox.Show("Enter a year.", "Missing year",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }

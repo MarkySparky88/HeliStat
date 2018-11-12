@@ -12,14 +12,13 @@ namespace HeliStat
 {
     public partial class frmMain : Form
     {
+        // TODO: Add status strip ("Movements today" / "Helicopters in database"/ etc.)
+        // TODO: deactivate console output (Go to Project -> HeliStat Properties -> Application -> Output type -> select Windows application
+
         public frmMain()
         {
             InitializeComponent();
         }
-        // TODO: Add menu strip
-        // TODO: Add tool strip with icons
-        // TODO: Add status strip ("Movements today" / "Helicopters in database"/ etc.)
-        // TODO: deactivate console output (Go to Project -> HeliStat Properties -> Application -> Output type -> select Windows application
 
         // call "Movements" from Main form (button)
         private void btnMovements_Click(object sender, EventArgs e)
