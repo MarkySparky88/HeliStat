@@ -26,7 +26,7 @@ namespace HeliStat
             FillToolStripCbxYear();
         }
 
-        // load form
+        // Load form
         private void frmMovements_Load(object sender, EventArgs e)
         {
             dgvMovements.DataSource = FillDataGridView();
@@ -36,7 +36,7 @@ namespace HeliStat
         /// Fill boxes and views
         /// </summary>
 
-        // fill datagridview from database
+        // Fill datagridview
         private DataTable FillDataGridView()
         {
             DataTable dataTable = new DataTable();
@@ -68,8 +68,7 @@ namespace HeliStat
             return dataTable;
         }
 
-        // fill combobox registration
-        // TODO bind comboboxes to datatable?? (as well in the helicopters form..)
+        // Fill combobox registration
         public void FillCbxRegistration()
         {
             cbxRegistration.Items.Clear();
@@ -105,7 +104,7 @@ namespace HeliStat
             }
         }
 
-        // fill comboboxes "ARR from" & "DEP to"
+        // Fill comboboxes "ARR from" & "DEP to"
         private void FillCbxArrDep()
         {
             cbxArrFrom.Items.Clear();
@@ -130,6 +129,42 @@ namespace HeliStat
                                     string addItem = reader.GetString(reader.GetOrdinal("AirportCode"));
                                     cbxArrFrom.Items.Add(addItem);
                                     cbxDepTo.Items.Add(addItem);
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
+        // Fill combobox years (tool strip)
+        private void FillToolStripCbxYear()
+        {
+            toolStripCbxYear.Items.Clear();
+
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                    string cmdText = @"SELECT * FROM tblYears
+                                        ORDER BY Year";
+
+                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader != null)
+                            {
+                                while (reader.Read())
+                                {
+                                    string addItem = reader.GetString(reader.GetOrdinal("Year"));
+                                    toolStripCbxYear.Items.Add(addItem);
                                 }
                             }
                         }
@@ -168,7 +203,7 @@ namespace HeliStat
             {
                 if (addIcaoDes.ShowDialog() == DialogResult.OK && addIcaoDes.DialogBoxStatus == true)
                 {
-                    if (!checkIfDesignatorExists(addIcaoDes))
+                    if (!CheckIfDesignatorExists(addIcaoDes))
                     {
                         AddIcaoDesignator(addIcaoDes);
                     }
@@ -250,174 +285,14 @@ namespace HeliStat
         // Toolstrip-Button "Add Year"
         private void toolStripBtnAddYear_Click(object sender, EventArgs e)
         {
-            
-
-            frmMovementsAddYear addYear = new frmMovementsAddYear();
-
-            while (addYear.DialogBoxStatus == false)
-            {
-                if (addYear.ShowDialog() == DialogResult.OK)
-                {
-                    if (!checkIfYearExists(addYear))
-                    {
-                        StringBuilder sbTableNameYear = new StringBuilder("tblMov");
-
-                        string tableName = sbTableNameYear.Append(addYear.NewYear).ToString();
-                        string year = addYear.NewYear;
-
-                        AddYearToCombobox(year);
-                        AddYearTableToDatabase(addYear, tableName);
-                    }
-                    else
-                    {
-                        MessageBox.Show("This year already exists.\nEnter a new year.", "Year exists",
-                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        addYear.DialogBoxStatus = false;
-                    }
-                }
-            }
-        }
-
-        // TODO sort / replace this function
-        // add the year-designator to database
-        private void AddYearToCombobox(string year)
-        {
-            using (SqlConnection connection = new SqlConnection(ConnString))
-            {
-                try
-                {
-                    connection.Open();
-                    string cmdText = @"INSERT INTO tblYears (Year)
-                                        VALUES (@Year)";
-
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@Year", year);
-                        cmd.ExecuteNonQuery();
-
-                        MessageBox.Show("Year has been added succesfully!", "Year added",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            // TODO is there a better / other way to reload / refresh the new added data in the combobox
-            FillToolStripCbxYear();
-        }
-
-        // TODO replace / sort this function
-        // Fill combobox year (tool strip)
-        private void FillToolStripCbxYear()
-        {
-            toolStripCbxYear.Items.Clear();
-
-            using (SqlConnection connection = new SqlConnection(ConnString))
-            {
-                try
-                {
-                    connection.Open();
-                    string cmdText = @"SELECT * FROM tblYears
-                                        ORDER BY Year";
-
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
-                    {
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (reader != null)
-                            {
-                                while (reader.Read())
-                                {
-                                    string addItem = reader.GetString(reader.GetOrdinal("Year"));
-                                    toolStripCbxYear.Items.Add(addItem);
-                                }
-                            }
-                        }
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-        }
-
-        // TODO sort this function into correct place
-        // TODO check if year already exists in database (catch SqlException does it actually already...)
-        // create new table for new year
-        private void AddYearTableToDatabase(frmMovementsAddYear addYear, string tableName)
-        {
-            using (SqlConnection connection = new SqlConnection(ConnString))
-            {
-                try
-                {
-                    connection.Open();
-                    string cmdText = string.Format("SELECT * INTO {0} FROM tblMov WHERE 1 = 0", tableName);
-
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
-                    {
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-        }
-
-        // TODO sort this function into correct place
-        // TODO the exact same function exists for the ICAO-Designator! -> combine! Maybe it is possible to make one function and pass the table name via parameter?
-        // checks if record (Year) already exists in database
-        private bool checkIfYearExists(frmMovementsAddYear addYear)
-        {
-            bool doesExist = false;
-
-            using (SqlConnection connection = new SqlConnection(ConnString))
-            {
-                try
-                {
-                    connection.Open();
-                    string cmdText = @"SELECT COUNT(*) FROM [tblYears]
-                                        WHERE ([Year] = @Year)";
-
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@Year", addYear.NewYear);
-
-                        int entryExists = (int)cmd.ExecuteScalar();
-
-                        if (entryExists > 0)
-                        {
-                            //Console.WriteLine("Entry exists.");
-                            doesExist = true;
-                        }
-                        else
-                        {
-                            //Console.WriteLine("Entry does not exist.");
-                            doesExist = false;
-                        }
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            return doesExist;
+            AddYear();
         }
 
         /// <summary>
         /// Functions
         /// </summary>
 
-        // add ICAO designator to database
+        // Add ICAO designator to database
         private void AddIcaoDesignator(frmMovementsAddIcaoDes addIcaoDes)
         {
             using (SqlConnection connection = new SqlConnection(ConnString))
@@ -447,7 +322,7 @@ namespace HeliStat
             cbxDepTo.ResetText();
         }
 
-        // remove ICAO designator from database
+        // Remove ICAO designator from database
         private void RemoveIcaoDesignator()
         {
             // any item selected?
@@ -494,7 +369,48 @@ namespace HeliStat
             cbxDepTo.ResetText();
         }
 
-        // Add movement to database (without times)
+        // Check if ICAO designator exists in database
+        // TODO function does exactly the same as functions in Helicopters-class (aircraft type & operator) -> combine into one function!
+        private bool CheckIfDesignatorExists(frmMovementsAddIcaoDes addIcaoDes)
+        {
+            bool doesExist = false;
+
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                    string cmdText = @"SELECT COUNT(*) FROM [tblAirportCodes]
+                                        WHERE ([AirportCode] = @AirportCode)";
+
+                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@AirportCode", addIcaoDes.NewIcaoDesignator);
+
+                        int entryExists = (int)cmd.ExecuteScalar();
+
+                        if (entryExists > 0)
+                        {
+                            //Console.WriteLine("Entry exists.");
+                            doesExist = true;
+                        }
+                        else
+                        {
+                            //Console.WriteLine("Entry does not exist.");
+                            doesExist = false;
+                        }
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            return doesExist;
+        }
+
+        // Add movement to database
         private void AddMovement()
         {
             int noOfEng = 0;
@@ -776,9 +692,36 @@ namespace HeliStat
             dgvMovements.DataSource = FillDataGridView();
         }
 
-        // TODO function does exactly the same as functions in Helicopters-class (aircraft type & operator) -> combine into one function!
-        // checks if record (ICAO-Designator) already exists in database
-        private bool checkIfDesignatorExists(frmMovementsAddIcaoDes addIcaoDes)
+        // Add year: Open and check dialog box for user input
+        private void AddYear()
+        {
+            frmMovementsAddYear addYear = new frmMovementsAddYear();
+
+            while (addYear.DialogBoxStatus == false)
+            {
+                if (addYear.ShowDialog() == DialogResult.OK && addYear.DialogBoxStatus == true)
+                {
+                    if (!checkIfYearExists(addYear))
+                    {
+                        string year = addYear.NewYear;
+                        string tableName = CreateTableNameMovYear(addYear);
+
+                        AddYearToTblYears(year);
+                        CopyFromTblMov(addYear, tableName);
+                    }
+                    else
+                    {
+                        MessageBox.Show("This year already exists.\nEnter a new year.", "Year exists",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        addYear.DialogBoxStatus = false;
+                    }
+                }
+            }
+        }
+
+        // Checks if year already exists in database
+        // TODO the exact same function exists for the ICAO-Designator! -> combine! Maybe it is possible to make one function and pass the table name via parameter?
+        private bool checkIfYearExists(frmMovementsAddYear addYear)
         {
             bool doesExist = false;
 
@@ -787,23 +730,21 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = @"SELECT COUNT(*) FROM [tblAirportCodes]
-                                        WHERE ([AirportCode] = @AirportCode)";
+                    string cmdText = @"SELECT COUNT(*) FROM [tblYears]
+                                        WHERE ([Year] = @Year)";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
-                        cmd.Parameters.AddWithValue("@AirportCode", addIcaoDes.NewIcaoDesignator);
+                        cmd.Parameters.AddWithValue("@Year", addYear.NewYear);
 
                         int entryExists = (int)cmd.ExecuteScalar();
 
                         if (entryExists > 0)
                         {
-                            //Console.WriteLine("Entry exists.");
                             doesExist = true;
                         }
                         else
                         {
-                            //Console.WriteLine("Entry does not exist.");
                             doesExist = false;
                         }
                     }
@@ -815,6 +756,68 @@ namespace HeliStat
                 }
             }
             return doesExist;
+        }
+
+        // Create table name for movements table (year)
+        private static string CreateTableNameMovYear(frmMovementsAddYear addYear)
+        {
+            StringBuilder sbTableNameYear = new StringBuilder("tblMov");
+            string tableName = sbTableNameYear.Append(addYear.NewYear).ToString();
+            return tableName;
+        }
+
+        // Add year to database (tblYears)
+        private void AddYearToTblYears(string year)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                    string cmdText = @"INSERT INTO tblYears (Year)
+                                        VALUES (@Year)";
+
+                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Year", year);
+                        cmd.ExecuteNonQuery();
+
+                        MessageBox.Show("Year has been added succesfully!", "Year added",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            // TODO is there a better / other way to reload / refresh the new added data in the combobox
+            FillToolStripCbxYear();
+        }
+
+        // Copy from tblMov and create new table (year)
+        // TODO check if year already exists in database (catch SqlException does it actually already...)
+        private void CopyFromTblMov(frmMovementsAddYear addYear, string tableName)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                    string cmdText = string.Format("SELECT * INTO {0} FROM tblMov WHERE 1 = 0", tableName);
+
+                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
 
         // checks if no empty fields (left side of datagridview) before handling database
