@@ -20,7 +20,7 @@ namespace HeliStat
             InitializeComponent();
         }
 
-        // allows only numbers and control keys
+        // allows only numbers and control keys during user input
         private void tbxYear_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
@@ -31,29 +31,42 @@ namespace HeliStat
             }
         }
 
-        // TODO check minimum length (4) of user input
-        // TODO allow only range between 2000 and 2099
-        // check user input if correct (not null or empty)
+        // check user input
         private bool CheckUserInput()
         {
-            if (!string.IsNullOrEmpty(tbxYear.Text))
+            // textbox not null or empty and digits only
+            if (!string.IsNullOrEmpty(tbxYear.Text) && int.TryParse(tbxYear.Text, out int i))
             {
-                NewYear = tbxYear.Text.ToString();
-                return true;
+                int value = Convert.ToInt32(tbxYear.Text);
+
+                // year range between 2000 - 2099
+                if (value >= 2000 && value < 2100)
+                {
+                    NewYear = tbxYear.Text.ToString();
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Enter a year between 2000 and 2099.", "Year out of range",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return false;
+                }
             }
             else
             {
-                MessageBox.Show("Enter a year.", "Missing year",
-                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Enter 4 digits for a year (yyyy).", "Missing year",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
         }
 
+        // Button "OK"
         private void btnOK_Click(object sender, EventArgs e)
         {
             DialogBoxStatus = CheckUserInput();
         }
 
+        // Button "Cancel"
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();
