@@ -538,12 +538,12 @@ namespace HeliStat
             ClearFields();
         }
 
+        // checks if record (aircraft type) already exists in database
         // TODO tableName cannot be parameterized (see for possible workaround https://stackoverflow.com/questions/17947736/sqlparameter-does-not-allows-table-name-other-options-without-sql-injection-at)
         // oder https://stackoverflow.com/questions/23357481/how-can-i-pass-a-table-name-to-sqlcommand
         // TODO make this function usable for new aircraft type AND new operator
         // TODO parameters (tableName, helicoptersAddNewType) in function definition / title really needed?
         // TODO fuction not yet really tested, but seems to work (use console output as a help)
-        // checks if record (aircraft type) already exists in database
         private bool checkIfAircraftTypeExists(frmHelicoptersAddNewType helicoptersAddNewType)
         {
             bool doesExist = false;
@@ -583,8 +583,8 @@ namespace HeliStat
             return doesExist;
         }
 
-        // TODO function does exactly the same as function above for aircraft types -> combine into one function!
         // checks if record (operator) already exists in database
+        // TODO function does exactly the same as function above for aircraft types -> combine into one function!
         private bool checkIfOperatorExists(frmHelicoptersAddNewOperator helicoptersAddNewOperator)
         {
             bool doesExist = false;

@@ -25,7 +25,6 @@ namespace HeliStat
         {
             frmMovements movements = new frmMovements();
             movements.Show();
-            //this.Hide();
         }
 
         // call "Helicopters" from Main form (button)
@@ -33,7 +32,6 @@ namespace HeliStat
         {
             frmHelicopters helicopters = new frmHelicopters();
             helicopters.Show();
-            //this.Hide();
         }
 
         // call "Statistics" from Main form (button)
@@ -41,7 +39,6 @@ namespace HeliStat
         {
             frmStatistics statistics = new frmStatistics();
             statistics.Show();
-            //this.Hide();
         }
     }
 }
