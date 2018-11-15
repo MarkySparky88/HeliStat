@@ -252,7 +252,7 @@ namespace HeliStat
         /// Functions
         /// </summary>
 
-        // add new aircraft type to database
+        // add aircraft type
         private void AddNewAircraftType(frmHelicoptersAddNewType helicoptersAddNewType)
         {
             using (SqlConnection connection = new SqlConnection(ConnString))
@@ -325,7 +325,7 @@ namespace HeliStat
             cbxAircraftType.ResetText();
         }
 
-        // add new operator to database
+        // add operator
         private void AddNewOperator(frmHelicoptersAddNewOperator helicoptersAddNewOperator)
         {
             using (SqlConnection connection = new SqlConnection(ConnString))
@@ -398,7 +398,7 @@ namespace HeliStat
             cbxOperator.ResetText();
         }
 
-        // add heli to database
+        // add heli
         private void AddHeli()
         {
             if (NoEmptyFields())
@@ -435,13 +435,13 @@ namespace HeliStat
             ClearFields();
         }
 
-        // update selected heli in database
+        // update selected heli
         private void UpdateHeli()
         {
             // any row selected?
-            if (dgvHelicopters.SelectedRows == null)
+            if (dgvHelicopters.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Please choose a helicopter from the list to update", "No item selected",
+                MessageBox.Show("Please select a helicopter from the list to update", "No item selected",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -492,13 +492,13 @@ namespace HeliStat
             ClearFields();
         }
 
-        // remove selected heli from database
+        // remove selected heli
         private void RemoveHeli()
         {
             // any row selected?
-            if (dgvHelicopters.SelectedRows == null)
+            if (dgvHelicopters.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Please choose a helicopter from the list to delete", "No item selected",
+                MessageBox.Show("Please select a helicopter from the list to delete", "No item selected",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }

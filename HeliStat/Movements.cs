@@ -186,7 +186,6 @@ namespace HeliStat
         private void btnHelicopters_Click(object sender, EventArgs e)
         {
             frmHelicopters helicopters = new frmHelicopters();
-            //helicopters.Show();
 
             if (helicopters.ShowDialog() == DialogResult.Cancel)
             {
@@ -485,7 +484,7 @@ namespace HeliStat
         private void UpdateMovement()
         {
             // any row selected?
-            if (dgvMovements.SelectedRows == null)
+            if (dgvMovements.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Please select a movement from the list to update", "No item selected",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -544,9 +543,9 @@ namespace HeliStat
         private void DeleteMovement()
         {
             // any row selected?
-            if (dgvMovements.SelectedRows == null)
+            if (dgvMovements.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Please choose a movement from the list to delete", "No item selected",
+                MessageBox.Show("Please select a movement from the list to delete", "No item selected",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
