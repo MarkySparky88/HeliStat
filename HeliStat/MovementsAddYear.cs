@@ -34,27 +34,40 @@ namespace HeliStat
         // check user input
         private bool CheckUserInput()
         {
-            // textbox not null or empty and digits only
-            if (!string.IsNullOrEmpty(tbxYear.Text) && int.TryParse(tbxYear.Text, out int i))
+            // textbox not null or empty
+            if (!string.IsNullOrEmpty(tbxYear.Text))
             {
-                int value = Convert.ToInt32(tbxYear.Text);
+                int length = tbxYear.Text.ToString().Length;
 
-                // year range between 2000 - 2099
-                if (value >= 2000 && value < 2100)
+                // year with 4 digits
+                if (length == 4)
                 {
-                    NewYear = tbxYear.Text.ToString();
-                    return true;
+                    int value = Convert.ToInt32(tbxYear.Text);
+
+                    // year range between 2000 - 2099
+                    if (value >= 2000 && value < 2100)
+                    {
+                        NewYear = tbxYear.Text.ToString();
+                        return true;
+                    }
+                    else
+                    {
+                        
+                        MessageBox.Show("Enter a year between 2000 and 2099.", "Year out of range",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return false;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Enter a year between 2000 and 2099.", "Year out of range",
+                    MessageBox.Show("Enter a year with 4 digits (yyyy)", "Year wrong format",
                                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return false;
                 }
             }
             else
             {
-                MessageBox.Show("Enter 4 digits for a year (yyyy).", "Missing year",
+                MessageBox.Show("Please enter a year.", "Missing year",
                                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }

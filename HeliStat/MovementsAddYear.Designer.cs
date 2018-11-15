@@ -40,6 +40,7 @@
             this.tbxYear.Location = new System.Drawing.Point(13, 35);
             this.tbxYear.MaxLength = 4;
             this.tbxYear.Name = "tbxYear";
+            this.tbxYear.ShortcutsEnabled = false;
             this.tbxYear.Size = new System.Drawing.Size(261, 20);
             this.tbxYear.TabIndex = 0;
             this.tbxYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxYear_KeyPress);
