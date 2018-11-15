@@ -51,6 +51,8 @@
             this.toolStripBtnUpdate = new System.Windows.Forms.ToolStripButton();
             this.toolStripBtnRemove = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuStripHeli = new System.Windows.Forms.MenuStrip();
+            this.statusStripHeli = new System.Windows.Forms.StatusStrip();
             registrationLabel = new System.Windows.Forms.Label();
             aircraftTypeLabel = new System.Windows.Forms.Label();
             noOfEngLabel = new System.Windows.Forms.Label();
@@ -62,7 +64,7 @@
             // registrationLabel
             // 
             registrationLabel.AutoSize = true;
-            registrationLabel.Location = new System.Drawing.Point(12, 66);
+            registrationLabel.Location = new System.Drawing.Point(12, 73);
             registrationLabel.Name = "registrationLabel";
             registrationLabel.Size = new System.Drawing.Size(66, 13);
             registrationLabel.TabIndex = 16;
@@ -71,7 +73,7 @@
             // aircraftTypeLabel
             // 
             aircraftTypeLabel.AutoSize = true;
-            aircraftTypeLabel.Location = new System.Drawing.Point(12, 92);
+            aircraftTypeLabel.Location = new System.Drawing.Point(12, 99);
             aircraftTypeLabel.Name = "aircraftTypeLabel";
             aircraftTypeLabel.Size = new System.Drawing.Size(70, 13);
             aircraftTypeLabel.TabIndex = 18;
@@ -80,7 +82,7 @@
             // noOfEngLabel
             // 
             noOfEngLabel.AutoSize = true;
-            noOfEngLabel.Location = new System.Drawing.Point(12, 118);
+            noOfEngLabel.Location = new System.Drawing.Point(12, 125);
             noOfEngLabel.Name = "noOfEngLabel";
             noOfEngLabel.Size = new System.Drawing.Size(60, 13);
             noOfEngLabel.TabIndex = 20;
@@ -89,7 +91,7 @@
             // operatorLabel
             // 
             operatorLabel.AutoSize = true;
-            operatorLabel.Location = new System.Drawing.Point(12, 144);
+            operatorLabel.Location = new System.Drawing.Point(12, 151);
             operatorLabel.Name = "operatorLabel";
             operatorLabel.Size = new System.Drawing.Size(51, 13);
             operatorLabel.TabIndex = 22;
@@ -97,7 +99,7 @@
             // 
             // btnAddNewAircraftType
             // 
-            this.btnAddNewAircraftType.Location = new System.Drawing.Point(214, 87);
+            this.btnAddNewAircraftType.Location = new System.Drawing.Point(214, 94);
             this.btnAddNewAircraftType.Name = "btnAddNewAircraftType";
             this.btnAddNewAircraftType.Size = new System.Drawing.Size(23, 23);
             this.btnAddNewAircraftType.TabIndex = 12;
@@ -107,7 +109,7 @@
             // 
             // btnAddNewOperator
             // 
-            this.btnAddNewOperator.Location = new System.Drawing.Point(214, 139);
+            this.btnAddNewOperator.Location = new System.Drawing.Point(214, 146);
             this.btnAddNewOperator.Name = "btnAddNewOperator";
             this.btnAddNewOperator.Size = new System.Drawing.Size(23, 23);
             this.btnAddNewOperator.TabIndex = 13;
@@ -120,7 +122,7 @@
             this.cbxAircraftType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbxAircraftType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbxAircraftType.FormattingEnabled = true;
-            this.cbxAircraftType.Location = new System.Drawing.Point(88, 89);
+            this.cbxAircraftType.Location = new System.Drawing.Point(88, 96);
             this.cbxAircraftType.Name = "cbxAircraftType";
             this.cbxAircraftType.Size = new System.Drawing.Size(100, 21);
             this.cbxAircraftType.TabIndex = 25;
@@ -131,7 +133,7 @@
             this.cbxNoOfEng.Items.AddRange(new object[] {
             "1",
             "2"});
-            this.cbxNoOfEng.Location = new System.Drawing.Point(88, 115);
+            this.cbxNoOfEng.Location = new System.Drawing.Point(88, 122);
             this.cbxNoOfEng.Name = "cbxNoOfEng";
             this.cbxNoOfEng.Size = new System.Drawing.Size(100, 21);
             this.cbxNoOfEng.TabIndex = 26;
@@ -141,7 +143,7 @@
             this.cbxOperator.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbxOperator.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbxOperator.FormattingEnabled = true;
-            this.cbxOperator.Location = new System.Drawing.Point(88, 141);
+            this.cbxOperator.Location = new System.Drawing.Point(88, 148);
             this.cbxOperator.Name = "cbxOperator";
             this.cbxOperator.Size = new System.Drawing.Size(100, 21);
             this.cbxOperator.TabIndex = 27;
@@ -149,7 +151,7 @@
             // tbxRegistration
             // 
             this.tbxRegistration.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbxRegistration.Location = new System.Drawing.Point(88, 63);
+            this.tbxRegistration.Location = new System.Drawing.Point(88, 70);
             this.tbxRegistration.Name = "tbxRegistration";
             this.tbxRegistration.ShortcutsEnabled = false;
             this.tbxRegistration.Size = new System.Drawing.Size(100, 20);
@@ -158,7 +160,7 @@
             // 
             // btnAddHeli
             // 
-            this.btnAddHeli.Location = new System.Drawing.Point(15, 263);
+            this.btnAddHeli.Location = new System.Drawing.Point(15, 270);
             this.btnAddHeli.Name = "btnAddHeli";
             this.btnAddHeli.Size = new System.Drawing.Size(251, 23);
             this.btnAddHeli.TabIndex = 29;
@@ -172,18 +174,18 @@
             this.dgvHelicopters.AllowUserToDeleteRows = false;
             this.dgvHelicopters.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvHelicopters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvHelicopters.Location = new System.Drawing.Point(320, 46);
+            this.dgvHelicopters.Location = new System.Drawing.Point(320, 70);
             this.dgvHelicopters.MultiSelect = false;
             this.dgvHelicopters.Name = "dgvHelicopters";
             this.dgvHelicopters.ReadOnly = true;
             this.dgvHelicopters.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvHelicopters.Size = new System.Drawing.Size(516, 511);
+            this.dgvHelicopters.Size = new System.Drawing.Size(516, 463);
             this.dgvHelicopters.TabIndex = 30;
             this.dgvHelicopters.SelectionChanged += new System.EventHandler(this.ShowValues);
             // 
             // btnRemoveHeli
             // 
-            this.btnRemoveHeli.Location = new System.Drawing.Point(15, 321);
+            this.btnRemoveHeli.Location = new System.Drawing.Point(15, 328);
             this.btnRemoveHeli.Name = "btnRemoveHeli";
             this.btnRemoveHeli.Size = new System.Drawing.Size(251, 23);
             this.btnRemoveHeli.TabIndex = 31;
@@ -193,7 +195,7 @@
             // 
             // btnUpdateHeli
             // 
-            this.btnUpdateHeli.Location = new System.Drawing.Point(15, 292);
+            this.btnUpdateHeli.Location = new System.Drawing.Point(15, 299);
             this.btnUpdateHeli.Name = "btnUpdateHeli";
             this.btnUpdateHeli.Size = new System.Drawing.Size(251, 23);
             this.btnUpdateHeli.TabIndex = 34;
@@ -203,7 +205,7 @@
             // 
             // btnRemoveAircraftType
             // 
-            this.btnRemoveAircraftType.Location = new System.Drawing.Point(243, 87);
+            this.btnRemoveAircraftType.Location = new System.Drawing.Point(243, 94);
             this.btnRemoveAircraftType.Name = "btnRemoveAircraftType";
             this.btnRemoveAircraftType.Size = new System.Drawing.Size(23, 23);
             this.btnRemoveAircraftType.TabIndex = 35;
@@ -213,7 +215,7 @@
             // 
             // btnRemoveOperator
             // 
-            this.btnRemoveOperator.Location = new System.Drawing.Point(243, 139);
+            this.btnRemoveOperator.Location = new System.Drawing.Point(243, 146);
             this.btnRemoveOperator.Name = "btnRemoveOperator";
             this.btnRemoveOperator.Size = new System.Drawing.Size(23, 23);
             this.btnRemoveOperator.TabIndex = 36;
@@ -223,7 +225,7 @@
             // 
             // btnClearFields
             // 
-            this.btnClearFields.Location = new System.Drawing.Point(15, 182);
+            this.btnClearFields.Location = new System.Drawing.Point(15, 189);
             this.btnClearFields.Name = "btnClearFields";
             this.btnClearFields.Size = new System.Drawing.Size(251, 23);
             this.btnClearFields.TabIndex = 37;
@@ -238,7 +240,7 @@
             this.toolStripBtnUpdate,
             this.toolStripBtnRemove,
             this.toolStripSeparator1});
-            this.toolStripHeli.Location = new System.Drawing.Point(0, 0);
+            this.toolStripHeli.Location = new System.Drawing.Point(0, 24);
             this.toolStripHeli.Name = "toolStripHeli";
             this.toolStripHeli.Size = new System.Drawing.Size(848, 25);
             this.toolStripHeli.TabIndex = 38;
@@ -279,12 +281,30 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
+            // menuStripHeli
+            // 
+            this.menuStripHeli.Location = new System.Drawing.Point(0, 0);
+            this.menuStripHeli.Name = "menuStripHeli";
+            this.menuStripHeli.Size = new System.Drawing.Size(848, 24);
+            this.menuStripHeli.TabIndex = 39;
+            this.menuStripHeli.Text = "menuStrip1";
+            // 
+            // statusStripHeli
+            // 
+            this.statusStripHeli.Location = new System.Drawing.Point(0, 547);
+            this.statusStripHeli.Name = "statusStripHeli";
+            this.statusStripHeli.Size = new System.Drawing.Size(848, 22);
+            this.statusStripHeli.TabIndex = 40;
+            this.statusStripHeli.Text = "statusStrip1";
+            // 
             // frmHelicopters
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(848, 569);
+            this.Controls.Add(this.statusStripHeli);
             this.Controls.Add(this.toolStripHeli);
+            this.Controls.Add(this.menuStripHeli);
             this.Controls.Add(this.btnClearFields);
             this.Controls.Add(this.btnRemoveOperator);
             this.Controls.Add(this.btnRemoveAircraftType);
@@ -304,6 +324,7 @@
             this.Controls.Add(this.btnAddNewAircraftType);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStripHeli;
             this.MaximizeBox = false;
             this.Name = "frmHelicopters";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -336,5 +357,7 @@
         private System.Windows.Forms.ToolStripButton toolStripBtnUpdate;
         private System.Windows.Forms.ToolStripButton toolStripBtnRemove;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.MenuStrip menuStripHeli;
+        private System.Windows.Forms.StatusStrip statusStripHeli;
     }
 }

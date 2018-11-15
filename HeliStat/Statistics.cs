@@ -16,5 +16,10 @@ namespace HeliStat
         {
             InitializeComponent();
         }
+
+        private void frmStatistics_Load(object sender, EventArgs e)
+        {
+            // fill datagridview
+        }
     }
 }

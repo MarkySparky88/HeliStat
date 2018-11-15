@@ -317,8 +317,8 @@ namespace HeliStat
                 }
             }
             FillCbxArrDep();
-            cbxArrFrom.ResetText();
-            cbxDepTo.ResetText();
+            //cbxArrFrom.ResetText();
+            //cbxDepTo.ResetText();
         }
 
         // Remove ICAO designator from database
@@ -327,13 +327,16 @@ namespace HeliStat
             // any item selected?
             if (cbxArrFrom.SelectedItem == null)
             {
-                MessageBox.Show("Please choose an ICAO designator out of the list 'ARR from' to delete.", "No item selected",
+                MessageBox.Show("Please select an ICAO designator out of the list 'ARR from' to delete.", "No item selected",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
+            string selectedDesignator = cbxArrFrom.SelectedItem.ToString();
+            string messageBoxText = string.Format("Are you sure to delete '{0}' from the list?", selectedDesignator);
+
             // sure to delete?
-            if (MessageBox.Show("Are you sure to delete this ICAO designator?", "Confirm delete",
+            if (MessageBox.Show(messageBoxText, "Confirm delete",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 return;
@@ -432,10 +435,10 @@ namespace HeliStat
 
                             string cmdText2 = @"INSERT INTO tblMov
                                         (Registration, AircraftType, NoOfEng, Operator,
-                                        TypeOfOperation, ArrFrom, DepTo)
+                                        TypeOfOperation, ArrFrom, DepTo, Overnight)
                                         VALUES
                                         (@Registration, @AircraftType, @NoOfEng, @Operator,
-                                        @TypeOfOperation, @ArrFrom, @DepTo)";
+                                        @TypeOfOperation, @ArrFrom, @DepTo, @Overnight)";
 
                             cmd.Connection = connection;
                             cmd.CommandType = CommandType.Text;
@@ -466,6 +469,7 @@ namespace HeliStat
                             cmd.Parameters.AddWithValue("@TypeOfOperation", cbxTypeOfOps.SelectedItem.ToString());
                             cmd.Parameters.AddWithValue("@ArrFrom", cbxArrFrom.SelectedItem.ToString());
                             cmd.Parameters.AddWithValue("@DepTo", cbxDepTo.SelectedItem.ToString());
+                            cmd.Parameters.AddWithValue("@Overnight", ckbOvernight.Checked);
                             cmd.ExecuteNonQuery();
                         }
                     }
@@ -509,7 +513,7 @@ namespace HeliStat
                                         SET
                                         Registration = @registration, AircraftType = @aircraftType,
                                         Operator = @operator, TypeOfOperation = @typeOfOperation,
-                                        ArrFrom = @arrFrom, DepTo = @depTo
+                                        ArrFrom = @arrFrom, DepTo = @depTo, Overnight = @overnight
                                         WHERE
                                         ID = @ID";
 
@@ -522,6 +526,7 @@ namespace HeliStat
                             cmd.Parameters.AddWithValue("@typeOfOperation", cbxTypeOfOps.SelectedItem.ToString());
                             cmd.Parameters.AddWithValue("@arrFrom", cbxArrFrom.SelectedItem.ToString());
                             cmd.Parameters.AddWithValue("@depTo", cbxDepTo.SelectedItem.ToString());
+                            cmd.Parameters.AddWithValue("@overnight", ckbOvernight.Checked);
                             cmd.ExecuteNonQuery();
 
                             MessageBox.Show("Movement has been updated successfully!", "Movement updated",
@@ -905,6 +910,17 @@ namespace HeliStat
                 cbxTypeOfOps.Text = row.Cells["TypeOfOperation"].Value.ToString();
                 cbxArrFrom.Text = row.Cells["ArrFrom"].Value.ToString();
                 cbxDepTo.Text = row.Cells["DepTo"].Value.ToString();
+
+                // checkbox "Overnight?"
+                byte overnight = Convert.ToByte(row.Cells["Overnight"].Value);
+                if (overnight == 1)
+                {
+                    ckbOvernight.Checked = true;
+                }
+                else
+                {
+                    ckbOvernight.Checked = false;
+                }
             }
         }
 

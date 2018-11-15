@@ -285,7 +285,7 @@ namespace HeliStat
             // any item selected?
             if (cbxAircraftType.SelectedItem == null)
             {
-                MessageBox.Show("Please choose an aircraft type out of the list", "No item selected",
+                MessageBox.Show("Please select an aircraft type out of the list", "No item selected",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -358,7 +358,7 @@ namespace HeliStat
             // any item selected?
             if (cbxOperator.SelectedItem == null)
             {
-                MessageBox.Show("Please choose an operator out of the list", "No item selected",
+                MessageBox.Show("Please select an operator out of the list", "No item selected",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
