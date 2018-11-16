@@ -69,6 +69,7 @@
             // tbxOperator
             // 
             this.tbxOperator.Location = new System.Drawing.Point(13, 35);
+            this.tbxOperator.MaxLength = 50;
             this.tbxOperator.Name = "tbxOperator";
             this.tbxOperator.Size = new System.Drawing.Size(261, 20);
             this.tbxOperator.TabIndex = 0;

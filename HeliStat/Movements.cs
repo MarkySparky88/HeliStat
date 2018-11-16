@@ -415,7 +415,7 @@ namespace HeliStat
         // Add movement to database
         private void AddMovement()
         {
-            int noOfEng = 0;
+            byte noOfEng = 0;
             string registration = "";
             string aircraftType = "";
             string operatorName = "";
@@ -454,7 +454,7 @@ namespace HeliStat
                                     {
                                         registration = reader1.GetString(1);
                                         aircraftType = reader1.GetString(2);
-                                        noOfEng = reader1.GetInt32(3);
+                                        noOfEng = reader1.GetByte(3);
                                         operatorName = reader1.GetString(4);
                                     }
                                 }

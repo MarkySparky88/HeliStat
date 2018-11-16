@@ -152,6 +152,7 @@
             // 
             this.tbxRegistration.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbxRegistration.Location = new System.Drawing.Point(88, 70);
+            this.tbxRegistration.MaxLength = 7;
             this.tbxRegistration.Name = "tbxRegistration";
             this.tbxRegistration.ShortcutsEnabled = false;
             this.tbxRegistration.Size = new System.Drawing.Size(100, 20);

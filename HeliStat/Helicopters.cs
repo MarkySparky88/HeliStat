@@ -415,7 +415,7 @@ namespace HeliStat
                         {
                             cmd.Parameters.AddWithValue("@Registration", tbxRegistration.Text.ToString());
                             cmd.Parameters.AddWithValue("@AircraftType", cbxAircraftType.SelectedItem.ToString());
-                            cmd.Parameters.AddWithValue("@NoOfEng", Convert.ToInt32(cbxNoOfEng.SelectedItem));
+                            cmd.Parameters.AddWithValue("@NoOfEng", Convert.ToByte(cbxNoOfEng.SelectedItem));
                             cmd.Parameters.AddWithValue("@Operator", cbxOperator.SelectedItem.ToString());
                             cmd.ExecuteNonQuery();
 
@@ -472,7 +472,7 @@ namespace HeliStat
                             cmd.Parameters.AddWithValue("@ID", dgvHelicopters.SelectedRows[0].Cells[0].Value.ToString());
                             cmd.Parameters.AddWithValue("@registration", tbxRegistration.Text.ToString());
                             cmd.Parameters.AddWithValue("@aircraftType", cbxAircraftType.SelectedItem.ToString());
-                            cmd.Parameters.AddWithValue("@noOfEng", cbxNoOfEng.SelectedItem.ToString());
+                            cmd.Parameters.AddWithValue("@noOfEng", Convert.ToByte(cbxNoOfEng.SelectedItem));
                             cmd.Parameters.AddWithValue("@operator", cbxOperator.SelectedItem.ToString());
                             cmd.ExecuteNonQuery();
 
