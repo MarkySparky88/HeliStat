@@ -4,3 +4,4 @@ TRUNCATE TABLE tblHelicopters;
 TRUNCATE TABLE tblMov;
 TRUNCATE TABLE tblOperators;
 TRUNCATE TABLE tblYears;
+TRUNCATE TABLE tblUsers;

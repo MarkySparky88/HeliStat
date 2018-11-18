@@ -13,7 +13,7 @@ namespace HeliStat
 {
     public partial class frmHelicopters : Form
     {
-        string ConnString = Properties.Settings.Default.DBConnection;
+        string connString = Properties.Settings.Default.DBConnection;
 
         // constructor
         public frmHelicopters()
@@ -37,11 +37,13 @@ namespace HeliStat
         /// </summary>
 
         // fill datagridview from database
+        // TODO create one big class for all connections in this program
+        // TODO whole program: use "verbindungslose Klassen" (SqlDataAdapter, DataSet, DataTable, etc.) instead of live-connections?
         private DataTable FillDataGridView()
         {
             DataTable dataTable = new DataTable();
 
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -73,7 +75,7 @@ namespace HeliStat
         {
             cbxAircraftType.Items.Clear();
 
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -109,7 +111,7 @@ namespace HeliStat
         {
             cbxOperator.Items.Clear();
 
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -255,7 +257,7 @@ namespace HeliStat
         // add aircraft type
         private void AddNewAircraftType(frmHelicoptersAddNewType helicoptersAddNewType)
         {
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -297,7 +299,7 @@ namespace HeliStat
                 return;
             }
 
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -328,7 +330,7 @@ namespace HeliStat
         // add operator
         private void AddNewOperator(frmHelicoptersAddNewOperator helicoptersAddNewOperator)
         {
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -370,7 +372,7 @@ namespace HeliStat
                 return;
             }
 
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -403,7 +405,7 @@ namespace HeliStat
         {
             if (NoEmptyFields())
             {
-                using (SqlConnection connection = new SqlConnection(ConnString))
+                using (SqlConnection connection = new SqlConnection(connString))
                 {
                     try
                     {
@@ -455,7 +457,7 @@ namespace HeliStat
 
             if (NoEmptyFields())
             {
-                using (SqlConnection connection = new SqlConnection(ConnString))
+                using (SqlConnection connection = new SqlConnection(connString))
                 {
                     try
                     {
@@ -510,7 +512,7 @@ namespace HeliStat
                 return;
             }
 
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -548,7 +550,7 @@ namespace HeliStat
         {
             bool doesExist = false;
 
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -589,7 +591,7 @@ namespace HeliStat
         {
             bool doesExist = false;
 
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {

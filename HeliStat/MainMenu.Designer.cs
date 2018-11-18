@@ -32,6 +32,7 @@
             this.btnMovements = new System.Windows.Forms.Button();
             this.btnHelicopters = new System.Windows.Forms.Button();
             this.btnStatistics = new System.Windows.Forms.Button();
+            this.btnAdmin = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnMovements
@@ -64,11 +65,24 @@
             this.btnStatistics.UseVisualStyleBackColor = true;
             this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);
             // 
+            // btnAdmin
+            // 
+            this.btnAdmin.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnAdmin.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnAdmin.Location = new System.Drawing.Point(12, 246);
+            this.btnAdmin.Name = "btnAdmin";
+            this.btnAdmin.Size = new System.Drawing.Size(217, 32);
+            this.btnAdmin.TabIndex = 3;
+            this.btnAdmin.Text = "Administration";
+            this.btnAdmin.UseVisualStyleBackColor = false;
+            this.btnAdmin.Click += new System.EventHandler(this.btnAdmin_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(241, 243);
+            this.ClientSize = new System.Drawing.Size(241, 292);
+            this.Controls.Add(this.btnAdmin);
             this.Controls.Add(this.btnStatistics);
             this.Controls.Add(this.btnHelicopters);
             this.Controls.Add(this.btnMovements);
@@ -88,6 +102,7 @@
         private System.Windows.Forms.Button btnMovements;
         private System.Windows.Forms.Button btnHelicopters;
         private System.Windows.Forms.Button btnStatistics;
+        private System.Windows.Forms.Button btnAdmin;
     }
 }
 

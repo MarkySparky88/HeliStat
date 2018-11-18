@@ -13,7 +13,7 @@ namespace HeliStat
 {
     public partial class frmMovements : Form
     {
-        string ConnString = Properties.Settings.Default.DBConnection;
+        string connString = Properties.Settings.Default.DBConnection;
 
         // Constructor
         public frmMovements()
@@ -41,7 +41,7 @@ namespace HeliStat
         {
             DataTable dataTable = new DataTable();
 
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -73,7 +73,7 @@ namespace HeliStat
         {
             cbxRegistration.Items.Clear();
 
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -110,7 +110,7 @@ namespace HeliStat
             cbxArrFrom.Items.Clear();
             cbxDepTo.Items.Clear();
 
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -147,7 +147,7 @@ namespace HeliStat
         {
             toolStripCbxYear.Items.Clear();
 
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -294,7 +294,7 @@ namespace HeliStat
         // Add ICAO designator to database
         private void AddIcaoDesignator(frmMovementsAddIcaoDes addIcaoDes)
         {
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -342,7 +342,7 @@ namespace HeliStat
                 return;
             }
 
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -377,7 +377,7 @@ namespace HeliStat
         {
             bool doesExist = false;
 
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -422,7 +422,7 @@ namespace HeliStat
 
             if (NoEmptyFields())
             {
-                using (SqlConnection connection = new SqlConnection(ConnString))
+                using (SqlConnection connection = new SqlConnection(connString))
                 {
                     try
                     {
@@ -504,7 +504,7 @@ namespace HeliStat
 
             if (NoEmptyFields())
             {
-                using (SqlConnection connection = new SqlConnection(ConnString))
+                using (SqlConnection connection = new SqlConnection(connString))
                 {
                     try
                     {
@@ -562,7 +562,7 @@ namespace HeliStat
                 return;
             }
 
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -610,7 +610,7 @@ namespace HeliStat
 
             if (DateTimeNotEmpty())
             {
-                using (SqlConnection connection = new SqlConnection(ConnString))
+                using (SqlConnection connection = new SqlConnection(connString))
                 {
                     try
                     {
@@ -663,7 +663,7 @@ namespace HeliStat
 
             if (DateTimeNotEmpty())
             {
-                using (SqlConnection connection = new SqlConnection(ConnString))
+                using (SqlConnection connection = new SqlConnection(connString))
                 {
                     try
                     {
@@ -729,7 +729,7 @@ namespace HeliStat
         {
             bool doesExist = false;
 
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -773,7 +773,7 @@ namespace HeliStat
         // Add year to database (tblYears)
         private void AddYearToTblYears(string year)
         {
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -804,7 +804,7 @@ namespace HeliStat
         // TODO check if year already exists in database (catch SqlException does it actually already...)
         private void CopyFromTblMov(frmMovementsAddYear addYear, string tableName)
         {
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {
@@ -862,7 +862,7 @@ namespace HeliStat
         // shows values in textboxes "aircraft type" and "operator" of selected helicopter
         private void cbxRegistration_SelectedIndexChanged(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(ConnString))
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 try
                 {

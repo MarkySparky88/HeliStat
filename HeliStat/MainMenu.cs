@@ -1,4 +1,5 @@
-﻿using System;
+﻿// TODO delete unused namespaces (whole project)
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,25 +21,32 @@ namespace HeliStat
             InitializeComponent();
         }
 
-        // call "Movements" from Main form (button)
+        // open "Movements"
         private void btnMovements_Click(object sender, EventArgs e)
         {
             frmMovements movements = new frmMovements();
             movements.Show();
         }
 
-        // call "Helicopters" from Main form (button)
+        // open "Helicopters"
         private void btnHelicopters_Click(object sender, EventArgs e)
         {
             frmHelicopters helicopters = new frmHelicopters();
             helicopters.Show();
         }
 
-        // call "Statistics" from Main form (button)
+        // open "Statistics"
         private void btnStatistics_Click(object sender, EventArgs e)
         {
             frmStatistics statistics = new frmStatistics();
             statistics.Show();
+        }
+
+        // open "Administration Login"
+        private void btnAdmin_Click(object sender, EventArgs e)
+        {
+            frmAdminLogin adminLogin = new frmAdminLogin();
+            adminLogin.Show();
         }
     }
 }
