@@ -1,5 +1,4 @@
-﻿// TODO delete unused namespaces (whole project)
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,14 +12,24 @@ namespace HeliStat
 {
     public partial class frmMain : Form
     {
-        // TODO: Add status strip ("Movements today" / "Helicopters in database"/ etc.)
-        // TODO: deactivate console output (Go to Project -> HeliStat Properties -> Application -> Output type -> select Windows application
+        /// <summary>
+        /// TODOs whole project: 
+        /// TODO: Add status strip ("Movements today" / "Helicopters in database"/ etc.)
+        /// TODO: deactivate console output (Go to Project -> HeliStat Properties -> Application -> Output type -> select Windows application
+        /// TODO set a link to Icon8 in the info panel https://icons8.com/license/
+        /// TODO delete unused namespaces (whole project)
+        /// </summary>
 
+        // Constructor
         public frmMain()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Buttons
+        /// </summary>
+        
         // open "Movements"
         private void btnMovements_Click(object sender, EventArgs e)
         {

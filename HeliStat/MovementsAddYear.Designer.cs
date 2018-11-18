@@ -90,7 +90,7 @@
             this.MaximizeBox = false;
             this.Name = "frmMovementsAddYear";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add Year";
+            this.Text = "Add new year";
             this.ResumeLayout(false);
             this.PerformLayout();
 

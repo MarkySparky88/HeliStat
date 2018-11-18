@@ -8,10 +8,32 @@ namespace HeliStat
         public string NewAircraftType { get; private set; }
         public bool DialogBoxStatus = false;
 
+        // Constructor
         public frmHelicoptersAddNewType()
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Buttons
+        /// </summary>
+
+        // Button "OK"
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            DialogBoxStatus = CheckUserInput();
+        }
+
+        // Button "Cancel"
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+            DialogBoxStatus = true;
+        }
+
+        /// <summary>
+        /// Functions
+        /// </summary>
 
         // check user input if correct (not null or empty)
         private bool CheckUserInput()
@@ -27,19 +49,6 @@ namespace HeliStat
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
-        }
-
-        // Button "OK"
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-            DialogBoxStatus = CheckUserInput();
-        }
-
-        // Button "Cancel"
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            Close();
-            DialogBoxStatus = true;
-        }
+        }   
     }
 }

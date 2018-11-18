@@ -12,14 +12,19 @@ namespace HeliStat
 {
     public partial class frmStatistics : Form
     {
+        // Connection string
+        string connString = Properties.Settings.Default.DBConnection;
+
+        // Constructor
         public frmStatistics()
         {
             InitializeComponent();
         }
 
+        // Load form
         private void frmStatistics_Load(object sender, EventArgs e)
         {
-            // fill datagridview
+            // TODO fill datagridview
         }
     }
 }

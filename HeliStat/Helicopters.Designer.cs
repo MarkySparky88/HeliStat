@@ -121,6 +121,8 @@
             // 
             this.cbxAircraftType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbxAircraftType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbxAircraftType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxAircraftType.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbxAircraftType.FormattingEnabled = true;
             this.cbxAircraftType.Location = new System.Drawing.Point(88, 96);
             this.cbxAircraftType.Name = "cbxAircraftType";
@@ -129,6 +131,8 @@
             // 
             // cbxNoOfEng
             // 
+            this.cbxNoOfEng.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxNoOfEng.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbxNoOfEng.FormattingEnabled = true;
             this.cbxNoOfEng.Items.AddRange(new object[] {
             "1",
@@ -142,6 +146,8 @@
             // 
             this.cbxOperator.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbxOperator.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbxOperator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxOperator.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbxOperator.FormattingEnabled = true;
             this.cbxOperator.Location = new System.Drawing.Point(88, 148);
             this.cbxOperator.Name = "cbxOperator";

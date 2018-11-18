@@ -115,8 +115,8 @@
             // 
             // cbxTypeOfOps
             // 
-            this.cbxTypeOfOps.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cbxTypeOfOps.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbxTypeOfOps.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxTypeOfOps.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbxTypeOfOps.FormattingEnabled = true;
             this.cbxTypeOfOps.Items.AddRange(new object[] {
             "CIV",
@@ -208,8 +208,8 @@
             // 
             // cbxRegistration
             // 
-            this.cbxRegistration.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cbxRegistration.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbxRegistration.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxRegistration.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbxRegistration.FormattingEnabled = true;
             this.cbxRegistration.Location = new System.Drawing.Point(13, 95);
             this.cbxRegistration.Name = "cbxRegistration";
@@ -282,6 +282,8 @@
             // 
             // cbxArrFrom
             // 
+            this.cbxArrFrom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxArrFrom.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbxArrFrom.FormattingEnabled = true;
             this.cbxArrFrom.Location = new System.Drawing.Point(13, 333);
             this.cbxArrFrom.Name = "cbxArrFrom";
@@ -290,6 +292,8 @@
             // 
             // cbxDepTo
             // 
+            this.cbxDepTo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxDepTo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbxDepTo.FormattingEnabled = true;
             this.cbxDepTo.Location = new System.Drawing.Point(200, 333);
             this.cbxDepTo.Name = "cbxDepTo";
@@ -343,6 +347,7 @@
             // 
             // toolStripCbxYear
             // 
+            this.toolStripCbxYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.toolStripCbxYear.Name = "toolStripCbxYear";
             this.toolStripCbxYear.Size = new System.Drawing.Size(121, 25);
             // 

@@ -13,6 +13,7 @@ namespace HeliStat
 {
     public partial class frmMovements : Form
     {
+        // Connection string
         string connString = Properties.Settings.Default.DBConnection;
 
         // Constructor
@@ -21,6 +22,7 @@ namespace HeliStat
             InitializeComponent();
             // TODO combine loading of datagridview and comboboxes upon form load?
             // TODO bind comboboxes as well to datasource (dataset / datatable)??
+            // TODO gehört das nicht auch in die Load form function? Wie das Laden des Datagridview? (ganzes Projekt!)
             FillCbxRegistration();
             FillCbxArrDep();
             FillToolStripCbxYear();

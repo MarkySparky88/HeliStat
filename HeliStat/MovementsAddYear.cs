@@ -15,10 +15,32 @@ namespace HeliStat
         public string NewYear { get; private set; }
         public bool DialogBoxStatus = false;    // TODO is that a problem that there are several variables with the same name (DialogBoxStatus) in the project? This variable is in AddNewOperator, AddIcaoDes, etc. used as well
 
+        // Constructor
         public frmMovementsAddYear()
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Buttons
+        /// </summary>
+
+        // Button "OK"
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            DialogBoxStatus = CheckUserInput();
+        }
+
+        // Button "Cancel"
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+            DialogBoxStatus = true;
+        }
+
+        /// <summary>
+        /// Functions
+        /// </summary>
 
         // allows only numbers and control keys during user input
         private void tbxYear_KeyPress(object sender, KeyPressEventArgs e)
@@ -71,19 +93,6 @@ namespace HeliStat
                                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
-        }
-
-        // Button "OK"
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-            DialogBoxStatus = CheckUserInput();
-        }
-
-        // Button "Cancel"
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            Close();
-            DialogBoxStatus = true;
-        }
+        } 
     }
 }

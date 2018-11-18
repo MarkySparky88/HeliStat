@@ -13,6 +13,7 @@ namespace HeliStat
 {
     public partial class frmAdminLogin : Form
     {
+        // Connection string
         string connString = Properties.Settings.Default.DBConnection;
 
         // Constructor
@@ -20,6 +21,10 @@ namespace HeliStat
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Buttons
+        /// </summary>
 
         // Button "Login"
         private void btnLogin_Click(object sender, EventArgs e)
@@ -33,6 +38,10 @@ namespace HeliStat
             Close();
         }
 
+        /// <summary>
+        /// Functions
+        /// </summary>
+        
         // Start Login process
         private void Login()
         {
