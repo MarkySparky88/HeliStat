@@ -13,9 +13,6 @@ namespace HeliStat
 {
     public partial class frmHelicopters : Form
     {
-        // Connection string
-        string connString = Properties.Settings.Default.DBConnection;
-
         // constructor
         public frmHelicopters()
         {
@@ -44,7 +41,7 @@ namespace HeliStat
         {
             DataTable dataTable = new DataTable();
 
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -76,7 +73,7 @@ namespace HeliStat
         {
             cbxAircraftType.Items.Clear();
 
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -112,7 +109,7 @@ namespace HeliStat
         {
             cbxOperator.Items.Clear();
 
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -152,9 +149,9 @@ namespace HeliStat
         {
             frmHelicoptersAddNewType helicoptersAddNewType = new frmHelicoptersAddNewType();
 
-            while (helicoptersAddNewType.DialogBoxStatus == false)
+            while (helicoptersAddNewType.DialogStatus == false)
             {
-                if (helicoptersAddNewType.ShowDialog() == DialogResult.OK && helicoptersAddNewType.DialogBoxStatus == true)
+                if (helicoptersAddNewType.ShowDialog() == DialogResult.OK && helicoptersAddNewType.DialogStatus == true)
                 {
                     if (!checkIfAircraftTypeExists(helicoptersAddNewType))
                     {
@@ -164,7 +161,7 @@ namespace HeliStat
                     {
                         MessageBox.Show("This aircraft type already exists.\nEnter a new aircraft type.", "Aircraft type exists",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        helicoptersAddNewType.DialogBoxStatus = false;
+                        helicoptersAddNewType.DialogStatus = false;
                     }
                 }
             }
@@ -181,9 +178,9 @@ namespace HeliStat
         {
             frmHelicoptersAddNewOperator helicoptersAddNewOperator = new frmHelicoptersAddNewOperator();
 
-            while (helicoptersAddNewOperator.DialogBoxStatus == false)
+            while (helicoptersAddNewOperator.DialogStatus == false)
             {
-                if (helicoptersAddNewOperator.ShowDialog() == DialogResult.OK && helicoptersAddNewOperator.DialogBoxStatus == true)
+                if (helicoptersAddNewOperator.ShowDialog() == DialogResult.OK && helicoptersAddNewOperator.DialogStatus == true)
                 {
                     if (!checkIfOperatorExists(helicoptersAddNewOperator))
                     {
@@ -193,7 +190,7 @@ namespace HeliStat
                     {
                         MessageBox.Show("This operator already exists.\nEnter a new operator.", "Operator exists",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        helicoptersAddNewOperator.DialogBoxStatus = false;
+                        helicoptersAddNewOperator.DialogStatus = false;
                     }
                 }
             }
@@ -258,7 +255,7 @@ namespace HeliStat
         // add aircraft type
         private void AddNewAircraftType(frmHelicoptersAddNewType helicoptersAddNewType)
         {
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -294,13 +291,16 @@ namespace HeliStat
             }
 
             // sure to delete?
-            if (MessageBox.Show("Are you sure to delete this aircraft type?", "Confirm delete",
+            string selectedItem = cbxAircraftType.SelectedItem.ToString();
+            string messageBoxText = string.Format("Are you sure to delete '{0}' from the list?", selectedItem);
+
+            if (MessageBox.Show(messageBoxText, "Confirm delete",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 return;
             }
 
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -331,7 +331,7 @@ namespace HeliStat
         // add operator
         private void AddNewOperator(frmHelicoptersAddNewOperator helicoptersAddNewOperator)
         {
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -367,13 +367,16 @@ namespace HeliStat
             }
 
             // sure to delete?
-            if (MessageBox.Show("Are you sure to delete this operator?", "Confirm delete",
+            string selectedItem = cbxOperator.SelectedItem.ToString();
+            string messageBoxText = string.Format("Are you sure to delete '{0}' from the list?", selectedItem);
+
+            if (MessageBox.Show(messageBoxText, "Confirm delete",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 return;
             }
 
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -406,7 +409,7 @@ namespace HeliStat
         {
             if (NoEmptyFields())
             {
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(Program.ConnString))
                 {
                     try
                     {
@@ -458,7 +461,7 @@ namespace HeliStat
 
             if (NoEmptyFields())
             {
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(Program.ConnString))
                 {
                     try
                     {
@@ -513,7 +516,7 @@ namespace HeliStat
                 return;
             }
 
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -551,7 +554,7 @@ namespace HeliStat
         {
             bool doesExist = false;
 
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -592,7 +595,7 @@ namespace HeliStat
         {
             bool doesExist = false;
 
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {

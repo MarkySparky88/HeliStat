@@ -12,9 +12,6 @@ namespace HeliStat
 {
     public partial class frmStatistics : Form
     {
-        // Connection string
-        string connString = Properties.Settings.Default.DBConnection;
-
         // Constructor
         public frmStatistics()
         {

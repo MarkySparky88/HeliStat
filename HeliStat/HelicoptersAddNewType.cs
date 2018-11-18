@@ -5,8 +5,15 @@ namespace HeliStat
 {
     public partial class frmHelicoptersAddNewType : Form
     {
-        public string NewAircraftType { get; private set; }
-        public bool DialogBoxStatus = false;
+        private string newAircraftType;
+
+        public string NewAircraftType
+        {
+            get { return newAircraftType; }
+            private set { CheckUserInput(value); }
+        }
+
+        public bool DialogStatus { get; set; } = false;
 
         // Constructor
         public frmHelicoptersAddNewType()
@@ -21,33 +28,33 @@ namespace HeliStat
         // Button "OK"
         private void btnOK_Click(object sender, EventArgs e)
         {
-            DialogBoxStatus = CheckUserInput();
+            NewAircraftType = tbxAircraftType.Text.ToString();
         }
 
         // Button "Cancel"
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            DialogStatus = true;
             Close();
-            DialogBoxStatus = true;
         }
 
         /// <summary>
         /// Functions
         /// </summary>
 
-        // check user input if correct (not null or empty)
-        private bool CheckUserInput()
+        // check user input
+        private void CheckUserInput(string value)
         {
-            if (!string.IsNullOrEmpty(tbxAircraftType.Text))
+            if (!string.IsNullOrEmpty(value) && value.Length == 4)
             {
-                NewAircraftType = tbxAircraftType.Text.ToString();
-                return true;
+                newAircraftType = value;
+                DialogStatus = true;
             }
             else
             {
-                MessageBox.Show("Enter an aircraft type.", "Missing aircraft type",
+                MessageBox.Show("Enter a valid aircraft type (4-letter code).", "Invalid or missing aircraft type",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
+                DialogStatus = false;
             }
         }   
     }

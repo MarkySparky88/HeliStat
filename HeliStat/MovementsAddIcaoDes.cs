@@ -5,8 +5,15 @@ namespace HeliStat
 {
     public partial class frmMovementsAddIcaoDes : Form
     {
-        public string NewIcaoDesignator { get; private set; }
-        public bool DialogBoxStatus = false;
+        private string newIcaoDesignator;
+
+        public string NewIcaoDesignator
+        {
+            get { return newIcaoDesignator; }
+            private set { CheckUserInput(value); }
+        }
+
+        public bool DialogStatus { get; set; } = false;
 
         // Constructor
         public frmMovementsAddIcaoDes()
@@ -21,33 +28,33 @@ namespace HeliStat
         // Button "OK"
         private void btnOK_Click(object sender, EventArgs e)
         {
-            DialogBoxStatus = CheckUserInput();
+            NewIcaoDesignator = tbxIcaoDesignator.Text.ToString();
         }
 
         // Button "Cancel"
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            DialogStatus = true;
             Close();
-            DialogBoxStatus = true;
         }
 
         /// <summary>
         /// Functions
         /// </summary>
 
-        // check user input if correct (ICAO 4-letter code)
-        private bool CheckUserInput()
+        // check user input
+        private void CheckUserInput(string value)
         {
-            if (!string.IsNullOrEmpty(tbxIcaoDesignator.Text) && tbxIcaoDesignator.TextLength == 4)
+            if (!string.IsNullOrEmpty(value) && value.Length == 4)
             {
-                NewIcaoDesignator = tbxIcaoDesignator.Text.ToString();
-                return true;
+                newIcaoDesignator = value;
+                DialogStatus = true;
             }
             else
             {
                 MessageBox.Show("Enter a valid ICAO-Designator (4 characters).", "Invalid or missing ICAO-Designator",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
+                DialogStatus = false;
             }
         }
     }

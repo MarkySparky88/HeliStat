@@ -13,8 +13,7 @@ namespace HeliStat
 {
     public partial class frmAdministration : Form
     {
-        // Connection string
-        string connString = Properties.Settings.Default.DBConnection;
+        public static string ActualYear { get; set; }
 
         // Constructor
         public frmAdministration()
@@ -26,13 +25,13 @@ namespace HeliStat
         /// <summary>
         /// Fill comboboxes
         /// </summary>
-        
+
         // Fill combobox years
         private void FillCbxActualYear()
         {
             cbxActualYear.Items.Clear();
 
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -71,7 +70,7 @@ namespace HeliStat
         // Button "Set"
         private void btnSetYear_Click(object sender, EventArgs e)
         {
-            // TODO write code here..
+            SetActualYear();
         }
 
         // Button "Add new year"
@@ -86,15 +85,38 @@ namespace HeliStat
             // TODO write code here..
         }
 
+        // Button "Archive year"
+        private void btnAchriveYear_Click(object sender, EventArgs e)
+        {
+            // TODO enable button again (button properties window)
+            // TODO write code here..
+        }
+
+        // Button "Retrieve year"
+        private void btnRetrieveYear_Click(object sender, EventArgs e)
+        {
+            // TODO enable button again (button properties window)
+            // TODO write code here..
+        }
+
         // Button "Backup database"
         private void btnBackupDb_Click(object sender, EventArgs e)
         {
+            // TODO enable button again (button properties window)
+            // TODO write code here..
+        }
+
+        // Button "Restore database"
+        private void btnRestoreDb_Click(object sender, EventArgs e)
+        {
+            // TODO enable button again (button properties window)
             // TODO write code here..
         }
 
         // Button "Delete database"
         private void btnDeleteDb_Click(object sender, EventArgs e)
         {
+            // TODO enable button again (button properties window)
             // TODO write code here..
         }
 
@@ -107,9 +129,9 @@ namespace HeliStat
         {
             frmAdministrationAddYear addYear = new frmAdministrationAddYear();
 
-            while (addYear.DialogBoxStatus == false)
+            while (addYear.DialogStatus == false)
             {
-                if (addYear.ShowDialog() == DialogResult.OK && addYear.DialogBoxStatus == true)
+                if (addYear.ShowDialog() == DialogResult.OK && addYear.DialogStatus == true)
                 {
                     if (!checkIfYearExists(addYear))
                     {
@@ -123,7 +145,7 @@ namespace HeliStat
                     {
                         MessageBox.Show("This year already exists.\nEnter a new year.", "Year exists",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        addYear.DialogBoxStatus = false;
+                        addYear.DialogStatus = false;
                     }
                 }
             }
@@ -135,7 +157,7 @@ namespace HeliStat
         {
             bool doesExist = false;
 
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -179,7 +201,7 @@ namespace HeliStat
         // Add year to database (tblYears)
         private void AddYearToTblYears(string year)
         {
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -210,7 +232,7 @@ namespace HeliStat
         // TODO check if year already exists in database (catch SqlException does it actually already...)
         private void CopyFromTblMov(frmAdministrationAddYear addYear, string tableName)
         {
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -228,6 +250,16 @@ namespace HeliStat
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
+        }
+
+        // Set actual year
+        private void SetActualYear()
+        {
+            ActualYear = cbxActualYear.SelectedItem.ToString();
+
+            string messageBoxText = string.Format("Year {0} has been set as the actual year for this program.", ActualYear);
+            MessageBox.Show(messageBoxText, "Actual year set",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

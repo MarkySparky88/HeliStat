@@ -5,8 +5,15 @@ namespace HeliStat
 {
     public partial class frmHelicoptersAddNewOperator : Form
     {
-        public string NewOperator { get; private set; }
-        public bool DialogBoxStatus = false;
+        private string newOperator;
+
+        public string NewOperator
+        {
+            get { return newOperator; }
+            private set { CheckUserInput(value); }
+        }
+
+        public bool DialogStatus { get; set; } = false;
 
         // Constructor
         public frmHelicoptersAddNewOperator()
@@ -21,33 +28,33 @@ namespace HeliStat
         // Button "OK"
         private void btnOK_Click(object sender, EventArgs e)
         {
-            DialogBoxStatus = CheckUserInput();
+            NewOperator = tbxOperator.Text.ToString();
         }
 
         // Button "Cancel"
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            DialogStatus = true;
             Close();
-            DialogBoxStatus = true;
         }
 
         /// <summary>
         /// Functions
         /// </summary>
         
-        // check user input if correct (not null or empty)
-        private bool CheckUserInput()
+        // check user input
+        private void CheckUserInput(string value)
         {
-            if (!string.IsNullOrEmpty(tbxOperator.Text))
+            if (!string.IsNullOrEmpty(value))
             {
-                NewOperator = tbxOperator.Text.ToString();
-                return true;
+                newOperator = value;
+                DialogStatus = true;
             }
             else
             {
                 MessageBox.Show("Enter an operator name.", "Missing operator",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
+                DialogStatus = false;
             }
         }
     }

@@ -1,21 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HeliStat
 {
     public partial class frmMovements : Form
     {
-        // Connection string
-        string connString = Properties.Settings.Default.DBConnection;
-
         // Constructor
         public frmMovements()
         {
@@ -25,12 +16,12 @@ namespace HeliStat
             // TODO gehört das nicht auch in die Load form function? Wie das Laden des Datagridview? (ganzes Projekt!)
             FillCbxRegistration();
             FillCbxArrDep();
-            //FillToolStripCbxYear();
         }
 
         // Load form
         private void frmMovements_Load(object sender, EventArgs e)
         {
+            GetActualYear();
             dgvMovements.DataSource = FillDataGridView();
         }
 
@@ -43,7 +34,7 @@ namespace HeliStat
         {
             DataTable dataTable = new DataTable();
 
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -75,7 +66,7 @@ namespace HeliStat
         {
             cbxRegistration.Items.Clear();
 
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -112,7 +103,7 @@ namespace HeliStat
             cbxArrFrom.Items.Clear();
             cbxDepTo.Items.Clear();
 
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -144,42 +135,6 @@ namespace HeliStat
             }
         }
 
-        //// Fill combobox years (tool strip)
-        //private void FillToolStripCbxYear()
-        //{
-        //    toolStripCbxYear.Items.Clear();
-
-        //    using (SqlConnection connection = new SqlConnection(connString))
-        //    {
-        //        try
-        //        {
-        //            connection.Open();
-        //            string cmdText = @"SELECT * FROM tblYears
-        //                                ORDER BY Year";
-
-        //            using (SqlCommand cmd = new SqlCommand(cmdText, connection))
-        //            {
-        //                using (SqlDataReader reader = cmd.ExecuteReader())
-        //                {
-        //                    if (reader != null)
-        //                    {
-        //                        while (reader.Read())
-        //                        {
-        //                            string addItem = reader.GetString(reader.GetOrdinal("Year"));
-        //                            toolStripCbxYear.Items.Add(addItem);
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //        }
-        //        catch (SqlException ex)
-        //        {
-        //            MessageBox.Show("Error: " + ex.Message, "Error",
-        //                MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //        }
-        //    }
-        //}
-
         /// <summary>
         /// Buttons
         /// </summary>
@@ -200,9 +155,9 @@ namespace HeliStat
         {
             frmMovementsAddIcaoDes addIcaoDes = new frmMovementsAddIcaoDes();
 
-            while (addIcaoDes.DialogBoxStatus == false)
+            while (addIcaoDes.DialogStatus == false)
             {
-                if (addIcaoDes.ShowDialog() == DialogResult.OK && addIcaoDes.DialogBoxStatus == true)
+                if (addIcaoDes.ShowDialog() == DialogResult.OK && addIcaoDes.DialogStatus == true)
                 {
                     if (!CheckIfDesignatorExists(addIcaoDes))
                     {
@@ -212,7 +167,7 @@ namespace HeliStat
                     {
                         MessageBox.Show("This ICAO-Designator already exists.\nEnter a new ICAO-Designator.", "ICAO-Designator exists",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        addIcaoDes.DialogBoxStatus = false;
+                        addIcaoDes.DialogStatus = false;
                     }
 
                 }
@@ -296,7 +251,7 @@ namespace HeliStat
         // Add ICAO designator to database
         private void AddIcaoDesignator(frmMovementsAddIcaoDes addIcaoDes)
         {
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -327,6 +282,7 @@ namespace HeliStat
         private void RemoveIcaoDesignator()
         {
             // any item selected?
+            // TODO dieser code wird immer wieder im gleichen Stil verwendet (auch in Helicopters) -> Refactor / eine gemeinsame Klasse?
             if (cbxArrFrom.SelectedItem == null)
             {
                 MessageBox.Show("Please select an ICAO designator out of the list 'ARR from' to delete.", "No item selected",
@@ -334,17 +290,19 @@ namespace HeliStat
                 return;
             }
 
-            string selectedDesignator = cbxArrFrom.SelectedItem.ToString();
-            string messageBoxText = string.Format("Are you sure to delete '{0}' from the list?", selectedDesignator);
-
             // sure to delete?
+            // TODO dieser code wird immer wieder im gleichen Stil verwendet (auch in Helicopters) -> Refactor / eine gemeinsame Klasse?
+            string selectedItem = cbxArrFrom.SelectedItem.ToString();
+            string messageBoxText = string.Format("Are you sure to delete '{0}' from the list?", selectedItem);
+
             if (MessageBox.Show(messageBoxText, "Confirm delete",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 return;
             }
 
-            using (SqlConnection connection = new SqlConnection(connString))
+            // database access
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -367,6 +325,7 @@ namespace HeliStat
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
+            // refresh data
             // TODO how is this working in case of an error in the code above?
             FillCbxArrDep();
             cbxArrFrom.ResetText();
@@ -379,7 +338,7 @@ namespace HeliStat
         {
             bool doesExist = false;
 
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -424,7 +383,7 @@ namespace HeliStat
 
             if (NoEmptyFields())
             {
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(Program.ConnString))
                 {
                     try
                     {
@@ -506,7 +465,7 @@ namespace HeliStat
 
             if (NoEmptyFields())
             {
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(Program.ConnString))
                 {
                     try
                     {
@@ -564,7 +523,7 @@ namespace HeliStat
                 return;
             }
 
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -612,7 +571,7 @@ namespace HeliStat
 
             if (DateTimeNotEmpty())
             {
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(Program.ConnString))
                 {
                     try
                     {
@@ -665,7 +624,7 @@ namespace HeliStat
 
             if (DateTimeNotEmpty())
             {
-                using (SqlConnection connection = new SqlConnection(connString))
+                using (SqlConnection connection = new SqlConnection(Program.ConnString))
                 {
                     try
                     {
@@ -697,134 +656,6 @@ namespace HeliStat
             // TODO is there a better way to reload the new added data in the datagrid?
             dgvMovements.DataSource = FillDataGridView();
         }
-
-        //// Add year: Open and check dialog box for user input
-        //private void AddYear()
-        //{
-        //    frmAdministrationAddYear addYear = new frmAdministrationAddYear();
-
-        //    while (addYear.DialogBoxStatus == false)
-        //    {
-        //        if (addYear.ShowDialog() == DialogResult.OK && addYear.DialogBoxStatus == true)
-        //        {
-        //            if (!checkIfYearExists(addYear))
-        //            {
-        //                string year = addYear.NewYear;
-        //                string tableName = CreateTableNameMovYear(addYear);
-
-        //                AddYearToTblYears(year);
-        //                CopyFromTblMov(addYear, tableName);
-        //            }
-        //            else
-        //            {
-        //                MessageBox.Show("This year already exists.\nEnter a new year.", "Year exists",
-        //                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        //                addYear.DialogBoxStatus = false;
-        //            }
-        //        }
-        //    }
-        //}
-
-        //// Checks if year already exists in database
-        //// TODO the exact same function exists for the ICAO-Designator! -> combine! Maybe it is possible to make one function and pass the table name via parameter?
-        //private bool checkIfYearExists(frmAdministrationAddYear addYear)
-        //{
-        //    bool doesExist = false;
-
-        //    using (SqlConnection connection = new SqlConnection(connString))
-        //    {
-        //        try
-        //        {
-        //            connection.Open();
-        //            string cmdText = @"SELECT COUNT(*) FROM [tblYears]
-        //                                WHERE ([Year] = @Year)";
-
-        //            using (SqlCommand cmd = new SqlCommand(cmdText, connection))
-        //            {
-        //                cmd.Parameters.AddWithValue("@Year", addYear.NewYear);
-
-        //                int entryExists = (int)cmd.ExecuteScalar();
-
-        //                if (entryExists > 0)
-        //                {
-        //                    doesExist = true;
-        //                }
-        //                else
-        //                {
-        //                    doesExist = false;
-        //                }
-        //            }
-        //        }
-        //        catch (SqlException ex)
-        //        {
-        //            MessageBox.Show("Error: " + ex.Message, "Error",
-        //                MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //        }
-        //    }
-        //    return doesExist;
-        //}
-
-        //// Create table name for movements table (year)
-        //private static string CreateTableNameMovYear(frmAdministrationAddYear addYear)
-        //{
-        //    StringBuilder sbTableNameYear = new StringBuilder("tblMov");
-        //    string tableName = sbTableNameYear.Append(addYear.NewYear).ToString();
-        //    return tableName;
-        //}
-
-        //// Add year to database (tblYears)
-        //private void AddYearToTblYears(string year)
-        //{
-        //    using (SqlConnection connection = new SqlConnection(connString))
-        //    {
-        //        try
-        //        {
-        //            connection.Open();
-        //            string cmdText = @"INSERT INTO tblYears (Year)
-        //                                VALUES (@Year)";
-
-        //            using (SqlCommand cmd = new SqlCommand(cmdText, connection))
-        //            {
-        //                cmd.Parameters.AddWithValue("@Year", year);
-        //                cmd.ExecuteNonQuery();
-
-        //                MessageBox.Show("Year has been added succesfully!", "Year added",
-        //                MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //            }
-        //        }
-        //        catch (SqlException ex)
-        //        {
-        //            MessageBox.Show("Error: " + ex.Message, "Error",
-        //                MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //        }
-        //    }
-        //    // TODO is there a better / other way to reload / refresh the new added data in the combobox
-        //    FillToolStripCbxYear();
-        //}
-
-        //// Copy from tblMov and create new table (year)
-        //// TODO check if year already exists in database (catch SqlException does it actually already...)
-        //private void CopyFromTblMov(frmAdministrationAddYear addYear, string tableName)
-        //{
-        //    using (SqlConnection connection = new SqlConnection(connString))
-        //    {
-        //        try
-        //        {
-        //            connection.Open();
-        //            string cmdText = string.Format("SELECT * INTO {0} FROM tblMov WHERE 1 = 0", tableName);
-
-        //            using (SqlCommand cmd = new SqlCommand(cmdText, connection))
-        //            {
-        //                cmd.ExecuteNonQuery();
-        //            }
-        //        }
-        //        catch (SqlException ex)
-        //        {
-        //            MessageBox.Show("Error: " + ex.Message, "Error",
-        //                MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //        }
-        //    }
-        //}
 
         // checks if no empty fields (left side of datagridview) before handling database
         private bool NoEmptyFields()
@@ -864,7 +695,7 @@ namespace HeliStat
         // shows values in textboxes "aircraft type" and "operator" of selected helicopter
         private void cbxRegistration_SelectedIndexChanged(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
@@ -935,6 +766,13 @@ namespace HeliStat
             cbxTypeOfOps.Text = null;
             cbxArrFrom.Text = null;
             cbxDepTo.Text = null;
+        }
+
+        // get actual year
+        private void GetActualYear()
+        {
+            // TODO write code here..
+            Console.WriteLine("Actual Year: {0}", frmAdministration.ActualYear);
         }
     }
 }

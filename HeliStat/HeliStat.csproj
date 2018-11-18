@@ -169,9 +169,6 @@
     <EmbeddedResource Include="AdministrationLogin.resx">
       <DependentUpon>AdministrationLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminLogin.resx">
-      <DependentUpon>AdministrationLogin.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Helicopters.resx">
       <DependentUpon>Helicopters.cs</DependentUpon>
     </EmbeddedResource>

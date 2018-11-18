@@ -13,9 +13,6 @@ namespace HeliStat
 {
     public partial class frmAdminLogin : Form
     {
-        // Connection string
-        string connString = Properties.Settings.Default.DBConnection;
-
         // Constructor
         public frmAdminLogin()
         {
@@ -45,7 +42,7 @@ namespace HeliStat
         // Start Login process
         private void Login()
         {
-            using (SqlConnection connection = new SqlConnection(connString))
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {

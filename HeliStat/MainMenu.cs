@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HeliStat
@@ -17,7 +10,9 @@ namespace HeliStat
         /// TODO: Add status strip ("Movements today" / "Helicopters in database"/ etc.)
         /// TODO: deactivate console output (Go to Project -> HeliStat Properties -> Application -> Output type -> select Windows application
         /// TODO set a link to Icon8 in the info panel https://icons8.com/license/
-        /// TODO delete unused namespaces (whole project)
+        /// TODO delete unused namespaces (whole project) (CRTL + R, CTRL + G)
+        /// TODO Code aufräumen (Refactor!), wird gleicher Code mehrfach verwendet (Refactor / eine Funktion für alles)
+        /// TODO alle Datenbankverbindungen irgendwie zusammenfassen! (ev eigene Klasse?)
         /// </summary>
 
         // Constructor

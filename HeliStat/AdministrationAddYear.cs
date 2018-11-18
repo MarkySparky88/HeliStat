@@ -12,8 +12,15 @@ namespace HeliStat
 {
     public partial class frmAdministrationAddYear : Form
     {
-        public string NewYear { get; private set; }
-        public bool DialogBoxStatus = false;    // TODO is that a problem that there are several variables with the same name (DialogBoxStatus) in the project? This variable is in AddNewOperator, AddIcaoDes, etc. used as well
+        private string newYear;
+
+        public string NewYear
+        {
+            get { return newYear; }
+            private set { CheckUserInput(value); }
+        }
+
+        public bool DialogStatus { get; set; } = false;
 
         // Constructor
         public frmAdministrationAddYear()
@@ -28,14 +35,14 @@ namespace HeliStat
         // Button "OK"
         private void btnOK_Click(object sender, EventArgs e)
         {
-            DialogBoxStatus = CheckUserInput();
+            NewYear = tbxYear.Text.ToString();
         }
 
         // Button "Cancel"
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            DialogStatus = true;
             Close();
-            DialogBoxStatus = true;
         }
 
         /// <summary>
@@ -54,45 +61,45 @@ namespace HeliStat
         }
 
         // check user input
-        private bool CheckUserInput()
+        private void CheckUserInput(string value)
         {
             // textbox not null or empty
-            if (!string.IsNullOrEmpty(tbxYear.Text))
+            if (!string.IsNullOrEmpty(value))
             {
-                int length = tbxYear.Text.ToString().Length;
+                int length = value.Length;
 
                 // year with 4 digits
                 if (length == 4)
                 {
-                    int value = Convert.ToInt32(tbxYear.Text);
+                    int year = Convert.ToInt32(value);
 
                     // year range between 2000 - 2099
-                    if (value >= 2000 && value < 2100)
+                    if (year >= 2000 && year < 2100)
                     {
-                        NewYear = tbxYear.Text.ToString();
-                        return true;
+                        newYear = value;
+                        DialogStatus = true;
                     }
                     else
                     {
-                        
+
                         MessageBox.Show("Enter a year between 2000 and 2099.", "Year out of range",
                                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        return false;
+                        DialogStatus = false;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Enter a year with 4 digits (yyyy)", "Year wrong format",
+                    MessageBox.Show("Enter a year with 4 digits (yyyy).", "Year wrong format",
                                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return false;
+                    DialogStatus = false;
                 }
             }
             else
             {
                 MessageBox.Show("Please enter a year.", "Missing year",
                                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return false;
+                DialogStatus = false;
             }
-        } 
+        }
     }
 }

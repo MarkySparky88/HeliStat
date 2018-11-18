@@ -43,6 +43,9 @@
             this.btnBackupDb = new System.Windows.Forms.Button();
             this.btnDeleteDb = new System.Windows.Forms.Button();
             this.btnSetYear = new System.Windows.Forms.Button();
+            this.btnRestoreDb = new System.Windows.Forms.Button();
+            this.btnAchriveYear = new System.Windows.Forms.Button();
+            this.btnRetrieveYear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -65,7 +68,7 @@
             // 
             // statusStripAdmin
             // 
-            this.statusStripAdmin.Location = new System.Drawing.Point(0, 370);
+            this.statusStripAdmin.Location = new System.Drawing.Point(0, 375);
             this.statusStripAdmin.Name = "statusStripAdmin";
             this.statusStripAdmin.Size = new System.Drawing.Size(365, 22);
             this.statusStripAdmin.TabIndex = 2;
@@ -97,7 +100,7 @@
             this.cbxActualYear.FormattingEnabled = true;
             this.cbxActualYear.Location = new System.Drawing.Point(99, 103);
             this.cbxActualYear.Name = "cbxActualYear";
-            this.cbxActualYear.Size = new System.Drawing.Size(121, 21);
+            this.cbxActualYear.Size = new System.Drawing.Size(120, 21);
             this.cbxActualYear.TabIndex = 5;
             // 
             // label2
@@ -115,7 +118,7 @@
             this.btnAddYear.Name = "btnAddYear";
             this.btnAddYear.Size = new System.Drawing.Size(121, 23);
             this.btnAddYear.TabIndex = 7;
-            this.btnAddYear.Text = "Add new year";
+            this.btnAddYear.Text = "Add year";
             this.btnAddYear.UseVisualStyleBackColor = true;
             this.btnAddYear.Click += new System.EventHandler(this.btnAddYear_Click);
             // 
@@ -125,7 +128,7 @@
             this.btnDeleteYear.Name = "btnDeleteYear";
             this.btnDeleteYear.Size = new System.Drawing.Size(121, 23);
             this.btnDeleteYear.TabIndex = 8;
-            this.btnDeleteYear.Text = "Delete selected year";
+            this.btnDeleteYear.Text = "Delete year";
             this.btnDeleteYear.UseVisualStyleBackColor = true;
             this.btnDeleteYear.Click += new System.EventHandler(this.btnDeleteYear_Click);
             // 
@@ -150,7 +153,8 @@
             // 
             // btnBackupDb
             // 
-            this.btnBackupDb.Location = new System.Drawing.Point(15, 284);
+            this.btnBackupDb.Enabled = false;
+            this.btnBackupDb.Location = new System.Drawing.Point(15, 277);
             this.btnBackupDb.Name = "btnBackupDb";
             this.btnBackupDb.Size = new System.Drawing.Size(121, 23);
             this.btnBackupDb.TabIndex = 11;
@@ -160,7 +164,8 @@
             // 
             // btnDeleteDb
             // 
-            this.btnDeleteDb.Location = new System.Drawing.Point(15, 313);
+            this.btnDeleteDb.Enabled = false;
+            this.btnDeleteDb.Location = new System.Drawing.Point(15, 335);
             this.btnDeleteDb.Name = "btnDeleteDb";
             this.btnDeleteDb.Size = new System.Drawing.Size(121, 23);
             this.btnDeleteDb.TabIndex = 12;
@@ -170,7 +175,7 @@
             // 
             // btnSetYear
             // 
-            this.btnSetYear.Location = new System.Drawing.Point(226, 103);
+            this.btnSetYear.Location = new System.Drawing.Point(225, 101);
             this.btnSetYear.Name = "btnSetYear";
             this.btnSetYear.Size = new System.Drawing.Size(75, 23);
             this.btnSetYear.TabIndex = 13;
@@ -178,11 +183,47 @@
             this.btnSetYear.UseVisualStyleBackColor = true;
             this.btnSetYear.Click += new System.EventHandler(this.btnSetYear_Click);
             // 
+            // btnRestoreDb
+            // 
+            this.btnRestoreDb.Enabled = false;
+            this.btnRestoreDb.Location = new System.Drawing.Point(15, 306);
+            this.btnRestoreDb.Name = "btnRestoreDb";
+            this.btnRestoreDb.Size = new System.Drawing.Size(121, 23);
+            this.btnRestoreDb.TabIndex = 14;
+            this.btnRestoreDb.Text = "Restore database";
+            this.btnRestoreDb.UseVisualStyleBackColor = true;
+            this.btnRestoreDb.Click += new System.EventHandler(this.btnRestoreDb_Click);
+            // 
+            // btnAchriveYear
+            // 
+            this.btnAchriveYear.Enabled = false;
+            this.btnAchriveYear.Location = new System.Drawing.Point(179, 147);
+            this.btnAchriveYear.Name = "btnAchriveYear";
+            this.btnAchriveYear.Size = new System.Drawing.Size(121, 23);
+            this.btnAchriveYear.TabIndex = 15;
+            this.btnAchriveYear.Text = "Archive year";
+            this.btnAchriveYear.UseVisualStyleBackColor = true;
+            this.btnAchriveYear.Click += new System.EventHandler(this.btnAchriveYear_Click);
+            // 
+            // btnRetrieveYear
+            // 
+            this.btnRetrieveYear.Enabled = false;
+            this.btnRetrieveYear.Location = new System.Drawing.Point(179, 176);
+            this.btnRetrieveYear.Name = "btnRetrieveYear";
+            this.btnRetrieveYear.Size = new System.Drawing.Size(121, 23);
+            this.btnRetrieveYear.TabIndex = 16;
+            this.btnRetrieveYear.Text = "Retrieve year";
+            this.btnRetrieveYear.UseVisualStyleBackColor = true;
+            this.btnRetrieveYear.Click += new System.EventHandler(this.btnRetrieveYear_Click);
+            // 
             // frmAdministration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(365, 392);
+            this.ClientSize = new System.Drawing.Size(365, 397);
+            this.Controls.Add(this.btnRetrieveYear);
+            this.Controls.Add(this.btnAchriveYear);
+            this.Controls.Add(this.btnRestoreDb);
             this.Controls.Add(this.btnSetYear);
             this.Controls.Add(this.btnDeleteDb);
             this.Controls.Add(this.btnBackupDb);
@@ -228,5 +269,8 @@
         private System.Windows.Forms.Button btnBackupDb;
         private System.Windows.Forms.Button btnDeleteDb;
         private System.Windows.Forms.Button btnSetYear;
+        private System.Windows.Forms.Button btnRestoreDb;
+        private System.Windows.Forms.Button btnAchriveYear;
+        private System.Windows.Forms.Button btnRetrieveYear;
     }
 }
