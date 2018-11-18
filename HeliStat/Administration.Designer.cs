@@ -42,6 +42,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnBackupDb = new System.Windows.Forms.Button();
             this.btnDeleteDb = new System.Windows.Forms.Button();
+            this.btnSetYear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -167,11 +168,22 @@
             this.btnDeleteDb.UseVisualStyleBackColor = true;
             this.btnDeleteDb.Click += new System.EventHandler(this.btnDeleteDb_Click);
             // 
+            // btnSetYear
+            // 
+            this.btnSetYear.Location = new System.Drawing.Point(226, 103);
+            this.btnSetYear.Name = "btnSetYear";
+            this.btnSetYear.Size = new System.Drawing.Size(75, 23);
+            this.btnSetYear.TabIndex = 13;
+            this.btnSetYear.Text = "Set";
+            this.btnSetYear.UseVisualStyleBackColor = true;
+            this.btnSetYear.Click += new System.EventHandler(this.btnSetYear_Click);
+            // 
             // frmAdministration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(365, 392);
+            this.Controls.Add(this.btnSetYear);
             this.Controls.Add(this.btnDeleteDb);
             this.Controls.Add(this.btnBackupDb);
             this.Controls.Add(this.label3);
@@ -189,6 +201,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripAdmin;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmAdministration";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HeliStat - Administration";
@@ -214,5 +227,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnBackupDb;
         private System.Windows.Forms.Button btnDeleteDb;
+        private System.Windows.Forms.Button btnSetYear;
     }
 }

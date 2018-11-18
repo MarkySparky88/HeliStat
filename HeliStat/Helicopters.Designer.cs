@@ -333,6 +333,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripHeli;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmHelicopters";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HeliStat - Helicopters";

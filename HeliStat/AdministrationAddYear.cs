@@ -10,13 +10,13 @@ using System.Windows.Forms;
 
 namespace HeliStat
 {
-    public partial class frmMovementsAddYear : Form
+    public partial class frmAdministrationAddYear : Form
     {
         public string NewYear { get; private set; }
         public bool DialogBoxStatus = false;    // TODO is that a problem that there are several variables with the same name (DialogBoxStatus) in the project? This variable is in AddNewOperator, AddIcaoDes, etc. used as well
 
         // Constructor
-        public frmMovementsAddYear()
+        public frmAdministrationAddYear()
         {
             InitializeComponent();
         }

@@ -116,6 +116,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripStatistics;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmStatistics";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HeliStat - Statistics";

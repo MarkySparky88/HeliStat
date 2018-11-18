@@ -20,6 +20,7 @@ namespace HeliStat
         public frmAdministration()
         {
             InitializeComponent();
+            FillCbxActualYear();
         }
 
         /// <summary>
@@ -27,9 +28,9 @@ namespace HeliStat
         /// </summary>
         
         // Fill combobox years
-        private void FillToolStripCbxYear()
+        private void FillCbxActualYear()
         {
-            toolStripCbxYear.Items.Clear();
+            cbxActualYear.Items.Clear();
 
             using (SqlConnection connection = new SqlConnection(connString))
             {
@@ -37,7 +38,7 @@ namespace HeliStat
                 {
                     connection.Open();
                     string cmdText = @"SELECT * FROM tblYears
-                                        ORDER BY Year";
+                                        ORDER BY Year DESC";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -48,7 +49,7 @@ namespace HeliStat
                                 while (reader.Read())
                                 {
                                     string addItem = reader.GetString(reader.GetOrdinal("Year"));
-                                    toolStripCbxYear.Items.Add(addItem);
+                                    cbxActualYear.Items.Add(addItem);
                                 }
                             }
                         }
@@ -60,11 +61,18 @@ namespace HeliStat
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
+            // TODO show actual selected year in combobox
         }
 
         /// <summary>
         /// Buttons
         /// </summary>
+
+        // Button "Set"
+        private void btnSetYear_Click(object sender, EventArgs e)
+        {
+            // TODO write code here..
+        }
 
         // Button "Add new year"
         private void btnAddYear_Click(object sender, EventArgs e)
@@ -97,7 +105,7 @@ namespace HeliStat
         // Add year: Open and check dialog box for user input
         private void AddYear()
         {
-            frmMovementsAddYear addYear = new frmMovementsAddYear();
+            frmAdministrationAddYear addYear = new frmAdministrationAddYear();
 
             while (addYear.DialogBoxStatus == false)
             {
@@ -123,7 +131,7 @@ namespace HeliStat
 
         // Checks if year already exists in database
         // TODO the exact same function exists for the ICAO-Designator! -> combine! Maybe it is possible to make one function and pass the table name via parameter?
-        private bool checkIfYearExists(frmMovementsAddYear addYear)
+        private bool checkIfYearExists(frmAdministrationAddYear addYear)
         {
             bool doesExist = false;
 
@@ -161,7 +169,7 @@ namespace HeliStat
         }
 
         // Create table name for movements table (year)
-        private static string CreateTableNameMovYear(frmMovementsAddYear addYear)
+        private static string CreateTableNameMovYear(frmAdministrationAddYear addYear)
         {
             StringBuilder sbTableNameYear = new StringBuilder("tblMov");
             string tableName = sbTableNameYear.Append(addYear.NewYear).ToString();
@@ -195,12 +203,12 @@ namespace HeliStat
                 }
             }
             // TODO is there a better / other way to reload / refresh the new added data in the combobox
-            FillToolStripCbxYear();
+            FillCbxActualYear();
         }
 
         // Copy from tblMov and create new table (year)
         // TODO check if year already exists in database (catch SqlException does it actually already...)
-        private void CopyFromTblMov(frmMovementsAddYear addYear, string tableName)
+        private void CopyFromTblMov(frmAdministrationAddYear addYear, string tableName)
         {
             using (SqlConnection connection = new SqlConnection(connString))
             {

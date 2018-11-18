@@ -359,7 +359,6 @@
             this.toolStripBtnAddYear.Name = "toolStripBtnAddYear";
             this.toolStripBtnAddYear.Size = new System.Drawing.Size(23, 22);
             this.toolStripBtnAddYear.Text = "Add Year";
-            this.toolStripBtnAddYear.Click += new System.EventHandler(this.toolStripBtnAddYear_Click);
             // 
             // toolStripBtnDeleteYear
             // 
@@ -455,6 +454,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripMov;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmMovements";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HeliStat - Movements";
