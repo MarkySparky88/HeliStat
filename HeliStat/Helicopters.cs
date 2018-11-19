@@ -71,7 +71,18 @@ namespace HeliStat
         // fill combobox aircraft type
         private void FillCbxAircraftType()
         {
-            cbxAircraftType.Items.Clear();
+            // TODO test for a shared class for all database interactions (DatabaseAccess.cs)
+            //string cmdText = "SELECT * FROM tblAircraftTypes ORDER BY AircraftType";
+            //string columnOrdinal = "AircraftType";
+            //string addItem;
+
+            //cbxAircraftType.Items.Clear();
+
+            //DatabaseAccess databaseAccess = new DatabaseAccess();
+            //while (!databaseAccess.FillCombobox(cmdText, columnOrdinal, out addItem))
+            //{
+            //    cbxAircraftType.Items.Add(addItem);
+            //}
 
             using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
@@ -80,7 +91,7 @@ namespace HeliStat
                     connection.Open();
                     string cmdText = @"SELECT * FROM tblAircraftTypes
                                         ORDER BY AircraftType";
-                
+
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
                         using (SqlDataReader reader = cmd.ExecuteReader())

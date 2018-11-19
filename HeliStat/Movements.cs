@@ -22,6 +22,7 @@ namespace HeliStat
         private void frmMovements_Load(object sender, EventArgs e)
         {
             GetActualYear();
+            DisplayActualYear();
             dgvMovements.DataSource = FillDataGridView();
         }
 
@@ -236,6 +237,15 @@ namespace HeliStat
         private void toolStripBtnDelete_Click(object sender, EventArgs e)
         {
             DeleteMovement();
+        }
+
+        // Toolstrip-Button "Change Year"
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            frmAdminLogin adminLogin = new frmAdminLogin();
+            adminLogin.Show();
+
+            // TODO refresh displayed year in toolstrip "movements" when year has been changed in admin panel
         }
 
         //// Toolstrip-Button "Add Year"
@@ -772,6 +782,12 @@ namespace HeliStat
         private void GetActualYear()
         {
             string actualYear = Properties.Settings.Default.ActualYear;
+        }
+
+        // display actual year in toolstrip textbox
+        public string DisplayActualYear()
+        {
+            return toolStripTbxActualYear.Text = Properties.Settings.Default.ActualYear;
         }
     }
 }

@@ -126,6 +126,7 @@
             // 
             // btnDeleteYear
             // 
+            this.btnDeleteYear.Enabled = false;
             this.btnDeleteYear.Location = new System.Drawing.Point(15, 209);
             this.btnDeleteYear.Name = "btnDeleteYear";
             this.btnDeleteYear.Size = new System.Drawing.Size(121, 23);

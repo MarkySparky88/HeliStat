@@ -57,14 +57,14 @@
             this.toolStripBtnUpdate = new System.Windows.Forms.ToolStripButton();
             this.toolStripBtnDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripCbxYear = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripBtnAddYear = new System.Windows.Forms.ToolStripButton();
-            this.toolStripBtnDeleteYear = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMov = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripTbxActualYear = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripBtnChangeYear = new System.Windows.Forms.ToolStripButton();
             this.menuStripMov = new System.Windows.Forms.MenuStrip();
             this.statusStripMov = new System.Windows.Forms.StatusStrip();
             this.ckbOvernight = new System.Windows.Forms.CheckBox();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMovements)).BeginInit();
             this.toolStripMov.SuspendLayout();
             this.SuspendLayout();
@@ -345,35 +345,6 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripCbxYear
-            // 
-            this.toolStripCbxYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.toolStripCbxYear.Name = "toolStripCbxYear";
-            this.toolStripCbxYear.Size = new System.Drawing.Size(121, 25);
-            // 
-            // toolStripBtnAddYear
-            // 
-            this.toolStripBtnAddYear.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBtnAddYear.Image = global::HeliStat.Properties.Resources.New;
-            this.toolStripBtnAddYear.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBtnAddYear.Name = "toolStripBtnAddYear";
-            this.toolStripBtnAddYear.Size = new System.Drawing.Size(23, 22);
-            this.toolStripBtnAddYear.Text = "Add Year";
-            // 
-            // toolStripBtnDeleteYear
-            // 
-            this.toolStripBtnDeleteYear.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBtnDeleteYear.Image = global::HeliStat.Properties.Resources.Minus;
-            this.toolStripBtnDeleteYear.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBtnDeleteYear.Name = "toolStripBtnDeleteYear";
-            this.toolStripBtnDeleteYear.Size = new System.Drawing.Size(23, 22);
-            this.toolStripBtnDeleteYear.Text = "Delete Year";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
             // toolStripMov
             // 
             this.toolStripMov.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -381,15 +352,37 @@
             this.toolStripBtnUpdate,
             this.toolStripBtnDelete,
             this.toolStripSeparator1,
-            this.toolStripCbxYear,
-            this.toolStripBtnAddYear,
-            this.toolStripBtnDeleteYear,
+            this.toolStripLabel1,
+            this.toolStripTbxActualYear,
+            this.toolStripBtnChangeYear,
             this.toolStripSeparator2});
             this.toolStripMov.Location = new System.Drawing.Point(0, 24);
             this.toolStripMov.Name = "toolStripMov";
             this.toolStripMov.Size = new System.Drawing.Size(1135, 25);
             this.toolStripMov.TabIndex = 39;
             this.toolStripMov.Text = "toolStrip1";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(32, 22);
+            this.toolStripLabel1.Text = "Year:";
+            // 
+            // toolStripTbxActualYear
+            // 
+            this.toolStripTbxActualYear.Name = "toolStripTbxActualYear";
+            this.toolStripTbxActualYear.ReadOnly = true;
+            this.toolStripTbxActualYear.Size = new System.Drawing.Size(100, 25);
+            // 
+            // toolStripBtnChangeYear
+            // 
+            this.toolStripBtnChangeYear.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnChangeYear.Image = global::HeliStat.Properties.Resources.change;
+            this.toolStripBtnChangeYear.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnChangeYear.Name = "toolStripBtnChangeYear";
+            this.toolStripBtnChangeYear.Size = new System.Drawing.Size(23, 22);
+            this.toolStripBtnChangeYear.Text = "Change Year";
+            this.toolStripBtnChangeYear.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // menuStripMov
             // 
@@ -416,6 +409,11 @@
             this.ckbOvernight.TabIndex = 42;
             this.ckbOvernight.Text = "Overnight?";
             this.ckbOvernight.UseVisualStyleBackColor = true;
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // frmMovements
             // 
@@ -496,13 +494,13 @@
         private System.Windows.Forms.ToolStripButton toolStripBtnUpdate;
         private System.Windows.Forms.ToolStripButton toolStripBtnDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripComboBox toolStripCbxYear;
-        private System.Windows.Forms.ToolStripButton toolStripBtnAddYear;
-        private System.Windows.Forms.ToolStripButton toolStripBtnDeleteYear;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStrip toolStripMov;
         private System.Windows.Forms.MenuStrip menuStripMov;
         private System.Windows.Forms.StatusStrip statusStripMov;
         private System.Windows.Forms.CheckBox ckbOvernight;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripTextBox toolStripTbxActualYear;
+        private System.Windows.Forms.ToolStripButton toolStripBtnChangeYear;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

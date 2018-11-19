@@ -102,6 +102,7 @@
     <Compile Include="AdminLogin.Designer.cs">
       <DependentUpon>AdministrationLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseAccess.cs" />
     <Compile Include="Helicopters.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -262,6 +263,7 @@
     <Content Include="HeliStatIcon.ico" />
     <None Include="Resources\calendar.png" />
     <None Include="Resources\database.png" />
+    <None Include="Resources\change.png" />
     <Content Include="Resources\HeliStatIcon.ico" />
     <Content Include="Resources\SplashScreen.jpg" />
   </ItemGroup>
