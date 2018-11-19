@@ -13,7 +13,7 @@ namespace HeliStat
             private set { CheckUserInput(value); }
         }
 
-        public bool DialogStatus { get; set; } = false;
+        public bool UserInput { get; set; } = false;
 
         // Constructor
         public frmMovementsAddIcaoDes()
@@ -34,7 +34,7 @@ namespace HeliStat
         // Button "Cancel"
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            DialogStatus = true;
+            UserInput = true;
             Close();
         }
 
@@ -43,18 +43,19 @@ namespace HeliStat
         /// </summary>
 
         // check user input
+        // TODO this kind of code has been written many times for other functions / classes as well (refactor? one function / class for all?)
         private void CheckUserInput(string value)
         {
             if (!string.IsNullOrEmpty(value) && value.Length == 4)
             {
                 newIcaoDesignator = value;
-                DialogStatus = true;
+                UserInput = true;
             }
             else
             {
                 MessageBox.Show("Enter a valid ICAO-Designator (4 characters).", "Invalid or missing ICAO-Designator",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                DialogStatus = false;
+                UserInput = false;
             }
         }
     }

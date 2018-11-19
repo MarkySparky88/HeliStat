@@ -34,7 +34,7 @@
             this.statusStripAdmin = new System.Windows.Forms.StatusStrip();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbxActualYear = new System.Windows.Forms.ComboBox();
+            this.cbxYears = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnAddYear = new System.Windows.Forms.Button();
             this.btnDeleteYear = new System.Windows.Forms.Button();
@@ -46,6 +46,8 @@
             this.btnRestoreDb = new System.Windows.Forms.Button();
             this.btnAchriveYear = new System.Windows.Forms.Button();
             this.btnRetrieveYear = new System.Windows.Forms.Button();
+            this.tbxActualYear = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -68,7 +70,7 @@
             // 
             // statusStripAdmin
             // 
-            this.statusStripAdmin.Location = new System.Drawing.Point(0, 375);
+            this.statusStripAdmin.Location = new System.Drawing.Point(0, 408);
             this.statusStripAdmin.Name = "statusStripAdmin";
             this.statusStripAdmin.Size = new System.Drawing.Size(365, 22);
             this.statusStripAdmin.TabIndex = 2;
@@ -93,20 +95,20 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Calendar year management";
             // 
-            // cbxActualYear
+            // cbxYears
             // 
-            this.cbxActualYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxActualYear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbxActualYear.FormattingEnabled = true;
-            this.cbxActualYear.Location = new System.Drawing.Point(99, 103);
-            this.cbxActualYear.Name = "cbxActualYear";
-            this.cbxActualYear.Size = new System.Drawing.Size(120, 21);
-            this.cbxActualYear.TabIndex = 5;
+            this.cbxYears.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxYears.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cbxYears.FormattingEnabled = true;
+            this.cbxYears.Location = new System.Drawing.Point(99, 136);
+            this.cbxYears.Name = "cbxYears";
+            this.cbxYears.Size = new System.Drawing.Size(120, 21);
+            this.cbxYears.TabIndex = 5;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 106);
+            this.label2.Location = new System.Drawing.Point(12, 139);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 13);
             this.label2.TabIndex = 6;
@@ -114,7 +116,7 @@
             // 
             // btnAddYear
             // 
-            this.btnAddYear.Location = new System.Drawing.Point(15, 147);
+            this.btnAddYear.Location = new System.Drawing.Point(15, 180);
             this.btnAddYear.Name = "btnAddYear";
             this.btnAddYear.Size = new System.Drawing.Size(121, 23);
             this.btnAddYear.TabIndex = 7;
@@ -124,7 +126,7 @@
             // 
             // btnDeleteYear
             // 
-            this.btnDeleteYear.Location = new System.Drawing.Point(15, 176);
+            this.btnDeleteYear.Location = new System.Drawing.Point(15, 209);
             this.btnDeleteYear.Name = "btnDeleteYear";
             this.btnDeleteYear.Size = new System.Drawing.Size(121, 23);
             this.btnDeleteYear.TabIndex = 8;
@@ -135,7 +137,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::HeliStat.Properties.Resources.database;
-            this.pictureBox2.Location = new System.Drawing.Point(12, 229);
+            this.pictureBox2.Location = new System.Drawing.Point(12, 262);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(26, 26);
             this.pictureBox2.TabIndex = 9;
@@ -145,7 +147,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(44, 226);
+            this.label3.Location = new System.Drawing.Point(44, 259);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(261, 29);
             this.label3.TabIndex = 10;
@@ -154,7 +156,7 @@
             // btnBackupDb
             // 
             this.btnBackupDb.Enabled = false;
-            this.btnBackupDb.Location = new System.Drawing.Point(15, 277);
+            this.btnBackupDb.Location = new System.Drawing.Point(15, 310);
             this.btnBackupDb.Name = "btnBackupDb";
             this.btnBackupDb.Size = new System.Drawing.Size(121, 23);
             this.btnBackupDb.TabIndex = 11;
@@ -165,7 +167,7 @@
             // btnDeleteDb
             // 
             this.btnDeleteDb.Enabled = false;
-            this.btnDeleteDb.Location = new System.Drawing.Point(15, 335);
+            this.btnDeleteDb.Location = new System.Drawing.Point(15, 368);
             this.btnDeleteDb.Name = "btnDeleteDb";
             this.btnDeleteDb.Size = new System.Drawing.Size(121, 23);
             this.btnDeleteDb.TabIndex = 12;
@@ -175,7 +177,7 @@
             // 
             // btnSetYear
             // 
-            this.btnSetYear.Location = new System.Drawing.Point(225, 101);
+            this.btnSetYear.Location = new System.Drawing.Point(225, 134);
             this.btnSetYear.Name = "btnSetYear";
             this.btnSetYear.Size = new System.Drawing.Size(75, 23);
             this.btnSetYear.TabIndex = 13;
@@ -186,7 +188,7 @@
             // btnRestoreDb
             // 
             this.btnRestoreDb.Enabled = false;
-            this.btnRestoreDb.Location = new System.Drawing.Point(15, 306);
+            this.btnRestoreDb.Location = new System.Drawing.Point(15, 339);
             this.btnRestoreDb.Name = "btnRestoreDb";
             this.btnRestoreDb.Size = new System.Drawing.Size(121, 23);
             this.btnRestoreDb.TabIndex = 14;
@@ -197,7 +199,7 @@
             // btnAchriveYear
             // 
             this.btnAchriveYear.Enabled = false;
-            this.btnAchriveYear.Location = new System.Drawing.Point(179, 147);
+            this.btnAchriveYear.Location = new System.Drawing.Point(179, 180);
             this.btnAchriveYear.Name = "btnAchriveYear";
             this.btnAchriveYear.Size = new System.Drawing.Size(121, 23);
             this.btnAchriveYear.TabIndex = 15;
@@ -208,7 +210,7 @@
             // btnRetrieveYear
             // 
             this.btnRetrieveYear.Enabled = false;
-            this.btnRetrieveYear.Location = new System.Drawing.Point(179, 176);
+            this.btnRetrieveYear.Location = new System.Drawing.Point(179, 209);
             this.btnRetrieveYear.Name = "btnRetrieveYear";
             this.btnRetrieveYear.Size = new System.Drawing.Size(121, 23);
             this.btnRetrieveYear.TabIndex = 16;
@@ -216,11 +218,30 @@
             this.btnRetrieveYear.UseVisualStyleBackColor = true;
             this.btnRetrieveYear.Click += new System.EventHandler(this.btnRetrieveYear_Click);
             // 
+            // tbxActualYear
+            // 
+            this.tbxActualYear.Location = new System.Drawing.Point(99, 110);
+            this.tbxActualYear.Name = "tbxActualYear";
+            this.tbxActualYear.ReadOnly = true;
+            this.tbxActualYear.Size = new System.Drawing.Size(120, 20);
+            this.tbxActualYear.TabIndex = 17;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 113);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 13);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "Actual year:";
+            // 
             // frmAdministration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(365, 397);
+            this.ClientSize = new System.Drawing.Size(365, 430);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.tbxActualYear);
             this.Controls.Add(this.btnRetrieveYear);
             this.Controls.Add(this.btnAchriveYear);
             this.Controls.Add(this.btnRestoreDb);
@@ -232,7 +253,7 @@
             this.Controls.Add(this.btnDeleteYear);
             this.Controls.Add(this.btnAddYear);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.cbxActualYear);
+            this.Controls.Add(this.cbxYears);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.statusStripAdmin);
@@ -260,7 +281,7 @@
         private System.Windows.Forms.StatusStrip statusStripAdmin;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cbxActualYear;
+        private System.Windows.Forms.ComboBox cbxYears;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnAddYear;
         private System.Windows.Forms.Button btnDeleteYear;
@@ -272,5 +293,7 @@
         private System.Windows.Forms.Button btnRestoreDb;
         private System.Windows.Forms.Button btnAchriveYear;
         private System.Windows.Forms.Button btnRetrieveYear;
+        private System.Windows.Forms.TextBox tbxActualYear;
+        private System.Windows.Forms.Label label4;
     }
 }

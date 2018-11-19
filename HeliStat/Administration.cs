@@ -13,13 +13,14 @@ namespace HeliStat
 {
     public partial class frmAdministration : Form
     {
-        public static string ActualYear { get; set; }
+        //public static string ActualYear { get; private set; }
 
         // Constructor
         public frmAdministration()
         {
             InitializeComponent();
-            FillCbxActualYear();
+            FillCbxYears();
+            DisplayActualYear();
         }
 
         /// <summary>
@@ -27,9 +28,9 @@ namespace HeliStat
         /// </summary>
 
         // Fill combobox years
-        private void FillCbxActualYear()
+        private void FillCbxYears()
         {
-            cbxActualYear.Items.Clear();
+            cbxYears.Items.Clear();
 
             using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
@@ -48,7 +49,7 @@ namespace HeliStat
                                 while (reader.Read())
                                 {
                                     string addItem = reader.GetString(reader.GetOrdinal("Year"));
-                                    cbxActualYear.Items.Add(addItem);
+                                    cbxYears.Items.Add(addItem);
                                 }
                             }
                         }
@@ -60,7 +61,7 @@ namespace HeliStat
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            // TODO show actual selected year in combobox
+            cbxYears.SelectedItem = DisplayActualYear();
         }
 
         /// <summary>
@@ -129,9 +130,9 @@ namespace HeliStat
         {
             frmAdministrationAddYear addYear = new frmAdministrationAddYear();
 
-            while (addYear.DialogStatus == false)
+            while (addYear.UserInput == false)
             {
-                if (addYear.ShowDialog() == DialogResult.OK && addYear.DialogStatus == true)
+                if (addYear.ShowDialog() == DialogResult.OK && addYear.UserInput == true)
                 {
                     if (!checkIfYearExists(addYear))
                     {
@@ -145,7 +146,7 @@ namespace HeliStat
                     {
                         MessageBox.Show("This year already exists.\nEnter a new year.", "Year exists",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        addYear.DialogStatus = false;
+                        addYear.UserInput = false;
                     }
                 }
             }
@@ -225,7 +226,7 @@ namespace HeliStat
                 }
             }
             // TODO is there a better / other way to reload / refresh the new added data in the combobox
-            FillCbxActualYear();
+            FillCbxYears();
         }
 
         // Copy from tblMov and create new table (year)
@@ -252,14 +253,26 @@ namespace HeliStat
             }
         }
 
-        // Set actual year
+        // Set actual year and save in app settings
         private void SetActualYear()
         {
-            ActualYear = cbxActualYear.SelectedItem.ToString();
+            // set
+            string actualYear = cbxYears.SelectedItem.ToString();
+            Properties.Settings.Default.ActualYear = actualYear;
 
-            string messageBoxText = string.Format("Year {0} has been set as the actual year for this program.", ActualYear);
+            // display actual year in textbox
+            DisplayActualYear();
+
+            // message box
+            string messageBoxText = string.Format("Year {0} has been set as the actual year for this program.", actualYear);
             MessageBox.Show(messageBoxText, "Actual year set",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        // Display actual year in textbox
+        private string DisplayActualYear()
+        {
+            return tbxActualYear.Text = Properties.Settings.Default.ActualYear;
         }
     }
 }

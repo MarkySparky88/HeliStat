@@ -13,7 +13,7 @@ namespace HeliStat
             private set { CheckUserInput(value); }
         }
 
-        public bool DialogStatus { get; set; } = false;
+        public bool UserInput { get; set; } = false;
 
         // Constructor
         public frmHelicoptersAddNewOperator()
@@ -34,7 +34,7 @@ namespace HeliStat
         // Button "Cancel"
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            DialogStatus = true;
+            UserInput = true;
             Close();
         }
 
@@ -48,13 +48,13 @@ namespace HeliStat
             if (!string.IsNullOrEmpty(value))
             {
                 newOperator = value;
-                DialogStatus = true;
+                UserInput = true;
             }
             else
             {
                 MessageBox.Show("Enter an operator name.", "Missing operator",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                DialogStatus = false;
+                UserInput = false;
             }
         }
     }

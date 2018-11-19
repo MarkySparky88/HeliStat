@@ -155,9 +155,9 @@ namespace HeliStat
         {
             frmMovementsAddIcaoDes addIcaoDes = new frmMovementsAddIcaoDes();
 
-            while (addIcaoDes.DialogStatus == false)
+            while (addIcaoDes.UserInput == false)
             {
-                if (addIcaoDes.ShowDialog() == DialogResult.OK && addIcaoDes.DialogStatus == true)
+                if (addIcaoDes.ShowDialog() == DialogResult.OK && addIcaoDes.UserInput == true)
                 {
                     if (!CheckIfDesignatorExists(addIcaoDes))
                     {
@@ -167,7 +167,7 @@ namespace HeliStat
                     {
                         MessageBox.Show("This ICAO-Designator already exists.\nEnter a new ICAO-Designator.", "ICAO-Designator exists",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        addIcaoDes.DialogStatus = false;
+                        addIcaoDes.UserInput = false;
                     }
 
                 }
@@ -768,11 +768,10 @@ namespace HeliStat
             cbxDepTo.Text = null;
         }
 
-        // get actual year
+        // get actual year from settings
         private void GetActualYear()
         {
-            // TODO write code here..
-            Console.WriteLine("Actual Year: {0}", frmAdministration.ActualYear);
+            string actualYear = Properties.Settings.Default.ActualYear;
         }
     }
 }

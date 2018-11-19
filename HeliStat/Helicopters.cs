@@ -149,9 +149,9 @@ namespace HeliStat
         {
             frmHelicoptersAddNewType helicoptersAddNewType = new frmHelicoptersAddNewType();
 
-            while (helicoptersAddNewType.DialogStatus == false)
+            while (helicoptersAddNewType.UserInput == false)
             {
-                if (helicoptersAddNewType.ShowDialog() == DialogResult.OK && helicoptersAddNewType.DialogStatus == true)
+                if (helicoptersAddNewType.ShowDialog() == DialogResult.OK && helicoptersAddNewType.UserInput == true)
                 {
                     if (!checkIfAircraftTypeExists(helicoptersAddNewType))
                     {
@@ -161,7 +161,7 @@ namespace HeliStat
                     {
                         MessageBox.Show("This aircraft type already exists.\nEnter a new aircraft type.", "Aircraft type exists",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        helicoptersAddNewType.DialogStatus = false;
+                        helicoptersAddNewType.UserInput = false;
                     }
                 }
             }
@@ -178,9 +178,9 @@ namespace HeliStat
         {
             frmHelicoptersAddNewOperator helicoptersAddNewOperator = new frmHelicoptersAddNewOperator();
 
-            while (helicoptersAddNewOperator.DialogStatus == false)
+            while (helicoptersAddNewOperator.UserInput == false)
             {
-                if (helicoptersAddNewOperator.ShowDialog() == DialogResult.OK && helicoptersAddNewOperator.DialogStatus == true)
+                if (helicoptersAddNewOperator.ShowDialog() == DialogResult.OK && helicoptersAddNewOperator.UserInput == true)
                 {
                     if (!checkIfOperatorExists(helicoptersAddNewOperator))
                     {
@@ -190,7 +190,7 @@ namespace HeliStat
                     {
                         MessageBox.Show("This operator already exists.\nEnter a new operator.", "Operator exists",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        helicoptersAddNewOperator.DialogStatus = false;
+                        helicoptersAddNewOperator.UserInput = false;
                     }
                 }
             }

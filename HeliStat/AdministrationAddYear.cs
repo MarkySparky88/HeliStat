@@ -20,7 +20,7 @@ namespace HeliStat
             private set { CheckUserInput(value); }
         }
 
-        public bool DialogStatus { get; set; } = false;
+        public bool UserInput { get; set; } = false;
 
         // Constructor
         public frmAdministrationAddYear()
@@ -41,7 +41,7 @@ namespace HeliStat
         // Button "Cancel"
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            DialogStatus = true;
+            UserInput = true;
             Close();
         }
 
@@ -77,28 +77,28 @@ namespace HeliStat
                     if (year >= 2000 && year < 2100)
                     {
                         newYear = value;
-                        DialogStatus = true;
+                        UserInput = true;
                     }
                     else
                     {
 
                         MessageBox.Show("Enter a year between 2000 and 2099.", "Year out of range",
                                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        DialogStatus = false;
+                        UserInput = false;
                     }
                 }
                 else
                 {
                     MessageBox.Show("Enter a year with 4 digits (yyyy).", "Year wrong format",
                                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    DialogStatus = false;
+                    UserInput = false;
                 }
             }
             else
             {
                 MessageBox.Show("Please enter a year.", "Missing year",
                                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                DialogStatus = false;
+                UserInput = false;
             }
         }
     }

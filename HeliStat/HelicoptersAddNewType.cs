@@ -13,7 +13,7 @@ namespace HeliStat
             private set { CheckUserInput(value); }
         }
 
-        public bool DialogStatus { get; set; } = false;
+        public bool UserInput { get; set; } = false;
 
         // Constructor
         public frmHelicoptersAddNewType()
@@ -34,7 +34,7 @@ namespace HeliStat
         // Button "Cancel"
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            DialogStatus = true;
+            UserInput = true;
             Close();
         }
 
@@ -48,13 +48,13 @@ namespace HeliStat
             if (!string.IsNullOrEmpty(value) && value.Length == 4)
             {
                 newAircraftType = value;
-                DialogStatus = true;
+                UserInput = true;
             }
             else
             {
                 MessageBox.Show("Enter a valid aircraft type (4-letter code).", "Invalid or missing aircraft type",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                DialogStatus = false;
+                UserInput = false;
             }
         }   
     }
