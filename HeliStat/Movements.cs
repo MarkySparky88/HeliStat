@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text;
 using System.Windows.Forms;
 
 namespace HeliStat
@@ -23,7 +24,7 @@ namespace HeliStat
         {
             GetActualYear();
             DisplayActualYear();
-            dgvMovements.DataSource = FillDataGridView();
+            dgvMovements.DataSource = FillDataGridView(TableNameActualYear());
         }
 
         /// <summary>
@@ -31,7 +32,7 @@ namespace HeliStat
         /// </summary>
 
         // Fill datagridview
-        private DataTable FillDataGridView()
+        private DataTable FillDataGridView(string tableName)
         {
             DataTable dataTable = new DataTable();
 
@@ -40,10 +41,13 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = @"SELECT * FROM tblMov";
+                    string cmdText = string.Format("SELECT * FROM {0} WHERE Year = @Year", tableName);
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
+                        cmd.Parameters.AddWithValue("@Year", GetActualYear());
+                        cmd.ExecuteNonQuery();
+
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader != null)
@@ -184,31 +188,31 @@ namespace HeliStat
         // Button "Add"
         private void btnAddMvmt_Click(object sender, EventArgs e)
         {
-            AddMovement();
+            AddMovement(TableNameActualYear());
         }
 
         // Button "Update"
         private void btnUpdateMvmt_Click(object sender, EventArgs e)
         {
-            UpdateMovement();
+            UpdateMovement(TableNameActualYear());
         }
 
         // Button "Delete"
         private void btnDeleteMvmt_Click(object sender, EventArgs e)
         {
-            DeleteMovement();
+            DeleteMovement(TableNameActualYear());
         }
 
         // Button "Land"
         private void btnSetLand_Click(object sender, EventArgs e)
         {
-            SetLand();
+            SetLand(TableNameActualYear());
         }
 
         // Button "Take-Off"
         private void btnSetTakeOff_Click(object sender, EventArgs e)
         {
-            SetTakeOff();
+            SetTakeOff(TableNameActualYear());
         }
 
         // Button "Clear fields"
@@ -224,19 +228,19 @@ namespace HeliStat
         // Toolstrip-Button "Add"
         private void toolStripBtnAdd_Click(object sender, EventArgs e)
         {
-            AddMovement();
+            AddMovement(TableNameActualYear());
         }
 
         // Toolstrip-Button "Update"
         private void toolStripBtnUpdate_Click(object sender, EventArgs e)
         {
-            UpdateMovement();
+            UpdateMovement(TableNameActualYear());
         }
 
         // Toolstrip-Button "Delete"
         private void toolStripBtnDelete_Click(object sender, EventArgs e)
         {
-            DeleteMovement();
+            DeleteMovement(TableNameActualYear());
         }
 
         // Toolstrip-Button "Change Year"
@@ -384,7 +388,7 @@ namespace HeliStat
         }
 
         // Add movement to database
-        private void AddMovement()
+        private void AddMovement(string tableName)
         {
             byte noOfEng = 0;
             string registration = "";
@@ -404,12 +408,9 @@ namespace HeliStat
                             string cmdText1 = @"SELECT * FROM tblHelicopters
                                         WHERE Registration = @Reg";
 
-                            string cmdText2 = @"INSERT INTO tblMov
-                                        (Registration, AircraftType, NoOfEng, Operator,
-                                        TypeOfOperation, ArrFrom, DepTo, Overnight)
-                                        VALUES
-                                        (@Registration, @AircraftType, @NoOfEng, @Operator,
-                                        @TypeOfOperation, @ArrFrom, @DepTo, @Overnight)";
+                            string cmdText2 = string.Format("INSERT INTO {0}" +
+                                "(Registration, AircraftType, NoOfEng, Operator, TypeOfOperation, ArrFrom, DepTo, Overnight, Year)" +
+                                "VALUES (@Registration, @AircraftType, @NoOfEng, @Operator, @TypeOfOperation, @ArrFrom, @DepTo, @Overnight, @Year)", tableName);
 
                             cmd.Connection = connection;
                             cmd.CommandType = CommandType.Text;
@@ -441,6 +442,7 @@ namespace HeliStat
                             cmd.Parameters.AddWithValue("@ArrFrom", cbxArrFrom.SelectedItem.ToString());
                             cmd.Parameters.AddWithValue("@DepTo", cbxDepTo.SelectedItem.ToString());
                             cmd.Parameters.AddWithValue("@Overnight", ckbOvernight.Checked);
+                            cmd.Parameters.AddWithValue("@Year", GetActualYear());
                             cmd.ExecuteNonQuery();
                         }
                     }
@@ -452,11 +454,11 @@ namespace HeliStat
                 }
             }
             // TODO is there a better / other way to reload / refresh the new added data in the datagrid?
-            dgvMovements.DataSource = FillDataGridView();
+            dgvMovements.DataSource = FillDataGridView(TableNameActualYear());
         }
 
         // Update movement in database
-        private void UpdateMovement()
+        private void UpdateMovement(string tableName)
         {
             // any row selected?
             if (dgvMovements.SelectedRows.Count == 0)
@@ -480,13 +482,10 @@ namespace HeliStat
                     try
                     {
                         connection.Open();
-                        string cmdText = @"UPDATE tblMov
-                                        SET
-                                        Registration = @registration, AircraftType = @aircraftType,
-                                        Operator = @operator, TypeOfOperation = @typeOfOperation,
-                                        ArrFrom = @arrFrom, DepTo = @depTo, Overnight = @overnight
-                                        WHERE
-                                        ID = @ID";
+                        string cmdText = string.Format("UPDATE {0}" +
+                            "SET Registration = @registration, AircraftType = @aircraftType, Operator = @operator," +
+                            "TypeOfOperation = @typeOfOperation, ArrFrom = @arrFrom, DepTo = @depTo, Overnight = @overnight" +
+                            "WHERE ID = @ID", tableName);
 
                         using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                         {
@@ -512,11 +511,11 @@ namespace HeliStat
                 }
             }
             // TODO is there a better way to reload the new added data in the datagrid?
-            dgvMovements.DataSource = FillDataGridView();
+            dgvMovements.DataSource = FillDataGridView(TableNameActualYear());
         }
 
         // Delete movement in database
-        private void DeleteMovement()
+        private void DeleteMovement(string tableName)
         {
             // any row selected?
             if (dgvMovements.SelectedRows.Count == 0)
@@ -538,8 +537,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = @"DELETE FROM tblMov
-                                        WHERE ID = @ID";
+                    string cmdText = string.Format("DELETE FROM {0} WHERE ID = @ID", tableName);
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -557,12 +555,12 @@ namespace HeliStat
                 }
             }
             // TODO is there a better way to reload the new added data in the datagrid?
-            dgvMovements.DataSource = FillDataGridView();
+            dgvMovements.DataSource = FillDataGridView(TableNameActualYear());
             ClearFields();
         }
 
         // Sets landing time of movement
-        private void SetLand()
+        private void SetLand(string tableName)
         {
             // any row selected?
             if (dgvMovements.SelectedRows == null)
@@ -586,11 +584,8 @@ namespace HeliStat
                     try
                     {
                         connection.Open();
-                        string cmdText = @"UPDATE tblMov
-                                        SET
-                                        DateOfArr = @dateOfArr, ActualTimeArr = @actualTimeArr
-                                        WHERE
-                                        ID = @ID";
+                        string cmdText = string.Format("UPDATE {0} SET DateOfArr = @dateOfArr, ActualTimeArr = @actualTimeArr" +
+                            "WHERE ID = @ID", tableName);
 
                         using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                         {
@@ -611,11 +606,11 @@ namespace HeliStat
                 }
             }
             // TODO is there a better way to reload the new added data in the datagrid?
-            dgvMovements.DataSource = FillDataGridView();
+            dgvMovements.DataSource = FillDataGridView(TableNameActualYear());
         }
 
         // Sets take-off time of movement
-        private void SetTakeOff()
+        private void SetTakeOff(string tableName)
         {
             // any row selected?
             if (dgvMovements.SelectedRows == null)
@@ -639,11 +634,8 @@ namespace HeliStat
                     try
                     {
                         connection.Open();
-                        string cmdText = @"UPDATE tblMov
-                                        SET
-                                        DateOfDep = @dateOfDep, ActualTimeDep = @actualTimeDep
-                                        WHERE
-                                        ID = @ID";
+                        string cmdText = string.Format("UPDATE {0} SET DateOfDep = @dateOfDep, ActualTimeDep = @actualTimeDep" +
+                            "WHERE ID = @ID", tableName);
 
                         using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                         {
@@ -664,7 +656,7 @@ namespace HeliStat
                 }
             }
             // TODO is there a better way to reload the new added data in the datagrid?
-            dgvMovements.DataSource = FillDataGridView();
+            dgvMovements.DataSource = FillDataGridView(TableNameActualYear());
         }
 
         // checks if no empty fields (left side of datagridview) before handling database
@@ -779,15 +771,23 @@ namespace HeliStat
         }
 
         // get actual year from settings
-        private void GetActualYear()
+        private string GetActualYear()
         {
-            string actualYear = Properties.Settings.Default.ActualYear;
+            return Properties.Settings.Default.ActualYear;
         }
 
         // display actual year in toolstrip textbox
         public string DisplayActualYear()
         {
-            return toolStripTbxActualYear.Text = Properties.Settings.Default.ActualYear;
+            return toolStripTbxActualYear.Text = GetActualYear();
+        }
+
+        // creates table name to display only movements of actual year
+        private string TableNameActualYear()
+        {
+            StringBuilder sbTableNameYear = new StringBuilder("tblMov");
+            string tableName = sbTableNameYear.Append(GetActualYear()).ToString();
+            return tableName;
         }
     }
 }

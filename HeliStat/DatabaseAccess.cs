@@ -11,8 +11,10 @@ namespace HeliStat
 {
     public class DatabaseAccess
     {
+        public bool DbAccessComplete { get; private set; }
+
         // fill a combobox
-        public bool FillCombobox(string cmdText, string columnOrdinal, out string addItem)
+        public void FillCombobox(string cmdText, string columnOrdinal, out string addItem)
         {
             addItem = null;
 
@@ -40,9 +42,10 @@ namespace HeliStat
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    DbAccessComplete = true;
                 }
             }
-            return true;
+            DbAccessComplete = true;
         }
     }
 }

@@ -48,8 +48,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = @"SELECT * FROM tblUsers
-                                        WHERE Username = @Username AND Password = @Password";
+                    string cmdText = "SELECT * FROM tblUsers WHERE Username = @Username AND Password = @Password";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {

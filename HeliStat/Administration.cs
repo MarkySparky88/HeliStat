@@ -248,6 +248,8 @@ namespace HeliStat
         // Set actual year and save in app settings
         private void SetActualYear()
         {
+            // TODO catch if no year selected in combobox
+
             // set
             string actualYear = cbxYears.SelectedItem.ToString();
             Properties.Settings.Default.ActualYear = actualYear;
