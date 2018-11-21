@@ -664,7 +664,6 @@ namespace HeliStat
         {
             if (cbxRegistration != null &&
                 !string.IsNullOrWhiteSpace(tbxAircraftType.Text) && tbxAircraftType.Text.Length > 0 &&
-                !string.IsNullOrWhiteSpace(tbxOperator.Text) && tbxOperator.Text.Length > 0 &&
                 cbxTypeOfOps.SelectedItem != null &&
                 cbxArrFrom.SelectedItem != null &&
                 cbxDepTo.SelectedItem != null)
