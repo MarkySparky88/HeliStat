@@ -46,7 +46,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = @"SELECT * FROM tblHelicopters";
+                    string cmdText = "SELECT * FROM tblHelicopters";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -94,8 +94,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = @"SELECT * FROM tblAircraftTypes
-                                        ORDER BY AircraftType";
+                    string cmdText = "SELECT * FROM tblAircraftTypes ORDER BY AircraftType";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -130,8 +129,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = @"SELECT * FROM tblOperators
-                                        ORDER BY Operator";
+                    string cmdText = "SELECT * FROM tblOperators ORDER BY Operator";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -276,8 +274,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = @"INSERT INTO tblAircraftTypes (AircraftType)
-                                     VALUES (@AircraftType)";
+                    string cmdText = "INSERT INTO tblAircraftTypes (AircraftType) VALUES (@AircraftType)";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -321,8 +318,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = @"DELETE FROM tblAircraftTypes
-                                        WHERE AircraftType = @AircraftType";
+                    string cmdText = "DELETE FROM tblAircraftTypes WHERE AircraftType = @AircraftType";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -352,8 +348,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = @"INSERT INTO tblOperators (Operator)
-                                     VALUES (@Operator)";
+                    string cmdText = "INSERT INTO tblOperators (Operator) VALUES (@Operator)";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -397,8 +392,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = @"DELETE FROM tblOperators
-                                        WHERE Operator = @Operator";
+                    string cmdText = "DELETE FROM tblOperators WHERE Operator = @Operator";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -482,12 +476,10 @@ namespace HeliStat
                     try
                     {
                         connection.Open();
-                        string cmdText = @"UPDATE tblHelicopters
-                                     SET
+                        string cmdText = @"UPDATE tblHelicopters SET
                                      Registration = @registration, AircraftType = @aircraftType,
                                      NoOfEng = @noOfEng, Operator = @operator
-                                     WHERE
-                                     ID = @ID";
+                                     WHERE ID = @ID";
 
                         using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                         {
@@ -537,8 +529,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = @"DELETE FROM tblHelicopters
-                                        WHERE ID = @ID";
+                    string cmdText = "DELETE FROM tblHelicopters WHERE ID = @ID";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -575,8 +566,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = @"SELECT COUNT(*) FROM [tblAircraftTypes]
-                                        WHERE ([AircraftType] = @AircraftType)";
+                    string cmdText = "SELECT COUNT(*) FROM [tblAircraftTypes] WHERE ([AircraftType] = @AircraftType)";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -616,9 +606,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    // TODO komische Schreibweise dieser querry (Klammern korrekt gesetzt?; Gehts auch ohne Klammern?)
-                    string cmdText = @"SELECT COUNT(*) FROM [tblOperators]
-                                        WHERE ([Operator] = @Operator)";
+                    string cmdText = "SELECT COUNT(*) FROM [tblOperators] WHERE ([Operator] = @Operator)";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {

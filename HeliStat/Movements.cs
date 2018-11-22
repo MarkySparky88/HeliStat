@@ -80,8 +80,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = @"SELECT * FROM tblHelicopters
-                                        ORDER BY Registration";
+                    string cmdText = "SELECT * FROM tblHelicopters ORDER BY Registration";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -117,8 +116,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = @"SELECT * FROM tblAirportCodes
-                                        ORDER BY AirportCode";
+                    string cmdText = "SELECT * FROM tblAirportCodes ORDER BY AirportCode";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -174,7 +172,8 @@ namespace HeliStat
                     }
                     else
                     {
-                        MessageBox.Show("This ICAO-Designator already exists.\nEnter a new ICAO-Designator.", "ICAO-Designator exists",
+                        MessageBox.Show("This ICAO-Designator already exists.\nEnter a new ICAO-Designator.",
+                            "ICAO-Designator exists",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         addIcaoDes.UserInput = false;
                     }
@@ -279,10 +278,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = @"INSERT INTO tblAirportCodes
-                                     (AirportCode)
-                                     VALUES
-                                     (@AirportCode)";
+                    string cmdText = "INSERT INTO tblAirportCodes (AirportCode) VALUES (@AirportCode)";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -330,8 +326,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = @"DELETE FROM tblAirportCodes
-                                        WHERE AirportCode = @AirportCode";
+                    string cmdText = "DELETE FROM tblAirportCodes WHERE AirportCode = @AirportCode";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -366,8 +361,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = @"SELECT COUNT(*) FROM [tblAirportCodes]
-                                        WHERE ([AirportCode] = @AirportCode)";
+                    string cmdText = "SELECT COUNT(*) FROM [tblAirportCodes] WHERE ([AirportCode] = @AirportCode)";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -417,9 +411,10 @@ namespace HeliStat
                             string cmdText1 = @"SELECT * FROM tblHelicopters
                                         WHERE Registration = @Reg";
 
-                            string cmdText2 = string.Format("INSERT INTO {0}" +
-                                "(Registration, AircraftType, NoOfEng, Operator, TypeOfOperation, ArrFrom, DepTo, Overnight, Year)" +
-                                "VALUES (@Registration, @AircraftType, @NoOfEng, @Operator, @TypeOfOperation, @ArrFrom, @DepTo, @Overnight, @Year)", tableName);
+                            string cmdText2 = string.Format(@"INSERT INTO {0} (Registration, AircraftType, NoOfEng, Operator,
+                                                            TypeOfOperation, ArrFrom, DepTo, Overnight, Year)
+                                                            VALUES (@Registration, @AircraftType, @NoOfEng, @Operator,
+                                                            @TypeOfOperation, @ArrFrom, @DepTo, @Overnight, @Year)", tableName);
 
                             cmd.Connection = connection;
                             cmd.CommandType = CommandType.Text;
@@ -478,7 +473,8 @@ namespace HeliStat
             }
 
             // sure to update?
-            if (MessageBox.Show("Are you sure to update this movement?\nNote: Landing and take-off times are not affected!", "Confirm update",
+            if (MessageBox.Show("Are you sure to update this movement?\nNote: Landing and take-off times are not affected!",
+                "Confirm update",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 return;
@@ -491,10 +487,10 @@ namespace HeliStat
                     try
                     {
                         connection.Open();
-                        string cmdText = string.Format("UPDATE {0}" +
-                            "SET Registration = @registration, AircraftType = @aircraftType, Operator = @operator," +
-                            "TypeOfOperation = @typeOfOperation, ArrFrom = @arrFrom, DepTo = @depTo, Overnight = @overnight" +
-                            "WHERE ID = @ID", tableName);
+                        string cmdText = string.Format(@"UPDATE {0} SET Registration = @registration, AircraftType = @aircraftType,
+                                                        Operator = @operator, TypeOfOperation = @typeOfOperation,
+                                                        ArrFrom = @arrFrom, DepTo = @depTo, Overnight = @overnight
+                                                        WHERE ID = @ID", tableName);
 
                         using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                         {
@@ -593,8 +589,9 @@ namespace HeliStat
                     try
                     {
                         connection.Open();
-                        string cmdText = string.Format("UPDATE {0} SET DateOfArr = @dateOfArr, ActualTimeArr = @actualTimeArr" +
-                            "WHERE ID = @ID", tableName);
+                        string cmdText = string.Format(@"UPDATE {0} SET DateOfArr = @dateOfArr,
+                                                        ActualTimeArr = @actualTimeArr
+                                                        WHERE ID = @ID", tableName);
 
                         using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                         {
@@ -643,8 +640,9 @@ namespace HeliStat
                     try
                     {
                         connection.Open();
-                        string cmdText = string.Format("UPDATE {0} SET DateOfDep = @dateOfDep, ActualTimeDep = @actualTimeDep" +
-                            "WHERE ID = @ID", tableName);
+                        string cmdText = string.Format(@"UPDATE {0} SET DateOfDep = @dateOfDep,
+                                                        ActualTimeDep = @actualTimeDep
+                                                        WHERE ID = @ID", tableName);
 
                         using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                         {
@@ -711,8 +709,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = @"SELECT * FROM tblHelicopters
-                                        WHERE Registration = @Registration";
+                    string cmdText = "SELECT * FROM tblHelicopters WHERE Registration = @Registration";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {

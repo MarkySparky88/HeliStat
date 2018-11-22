@@ -29,8 +29,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = @"SELECT * FROM tblYears
-                                        ORDER BY Year DESC";
+                    string cmdText = "SELECT * FROM tblYears ORDER BY Year DESC";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -155,8 +154,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = @"SELECT COUNT(*) FROM [tblYears]
-                                        WHERE ([Year] = @Year)";
+                    string cmdText = "SELECT COUNT(*) FROM [tblYears] WHERE ([Year] = @Year)";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -199,8 +197,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = @"INSERT INTO tblYears (Year)
-                                        VALUES (@Year)";
+                    string cmdText = "INSERT INTO tblYears (Year) VALUES (@Year)";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -253,6 +250,12 @@ namespace HeliStat
         public delegate void ActualYearChangedEventHandler(object sender, EventArgs e);
         public event ActualYearChangedEventHandler ActualYearChanged;
 
+        // Event handler function
+        protected void OnActualYearChanged(EventArgs e)
+        {
+            ActualYearChanged?.Invoke(this, EventArgs.Empty);
+        }
+
         // Set actual year
         private void SetActualYear()
         {
@@ -263,8 +266,8 @@ namespace HeliStat
                 string actualYear = cbxYears.SelectedItem.ToString();
                 Properties.Settings.Default.ActualYear = actualYear;
 
-                // event handler when actual year has changed
-                ActualYearChanged(this, EventArgs.Empty);
+                // calls event handler
+                OnActualYearChanged(EventArgs.Empty);
 
                 // display actual year
                 DisplayActualYear();
