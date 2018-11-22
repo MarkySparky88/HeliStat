@@ -616,6 +616,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
+                    // TODO komische Schreibweise dieser querry (Klammern korrekt gesetzt?; Gehts auch ohne Klammern?)
                     string cmdText = @"SELECT COUNT(*) FROM [tblOperators]
                                         WHERE ([Operator] = @Operator)";
 
@@ -679,7 +680,8 @@ namespace HeliStat
         {
             if (!string.IsNullOrWhiteSpace(tbxRegistration.Text) && tbxRegistration.Text.Length > 0 &&
                 cbxAircraftType.SelectedItem != null &&
-                cbxNoOfEng.SelectedItem != null)
+                cbxNoOfEng.SelectedItem != null &&
+                cbxOperator.SelectedItem != null)
             {
                 return true;
             }

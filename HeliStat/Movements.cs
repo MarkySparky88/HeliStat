@@ -664,6 +664,7 @@ namespace HeliStat
         {
             if (cbxRegistration != null &&
                 !string.IsNullOrWhiteSpace(tbxAircraftType.Text) && tbxAircraftType.Text.Length > 0 &&
+                !string.IsNullOrWhiteSpace(tbxOperator.Text) && tbxOperator.Text.Length > 0 &&
                 cbxTypeOfOps.SelectedItem != null &&
                 cbxArrFrom.SelectedItem != null &&
                 cbxDepTo.SelectedItem != null)
@@ -714,10 +715,12 @@ namespace HeliStat
                             {
                                 while (reader.Read())
                                 {
+                                    // read & assign aircraft type
                                     string aircraftType = reader.GetString(2);
-                                    string operatorName = reader.GetString(4);
-
                                     tbxAircraftType.Text = aircraftType;
+
+                                    // read & assign operator name
+                                    string operatorName = reader.GetString(4);
                                     tbxOperator.Text = operatorName;
                                 }
                             }
