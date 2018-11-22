@@ -8,10 +8,14 @@ namespace HeliStat
 {
     public partial class frmMovements : Form
     {
+        private frmAdministration administration = new frmAdministration();
+        
         // Constructor
         public frmMovements()
         {
             InitializeComponent();
+            // TODO correct position for event delegate? In Video Kurs ist es so beschrieben, diesen im Constructor einzuhängen, aber warum? Könnte der nicht sonst wo sein?
+            administration.ActualYearChanged += Administration_ActualYearChanged;
             // TODO combine loading of datagridview and comboboxes upon form load?
             // TODO bind comboboxes as well to datasource (dataset / datatable)??
             // TODO gehört das nicht auch in die Load form function? Wie das Laden des Datagridview? (ganzes Projekt!)
@@ -24,7 +28,7 @@ namespace HeliStat
         {
             GetActualYear();
             DisplayActualYear();
-            dgvMovements.DataSource = FillDataGridView(TableNameActualYear());
+            dgvMovements.DataSource = FillDataGridView(TableNameMov());
         }
 
         /// <summary>
@@ -188,31 +192,31 @@ namespace HeliStat
         // Button "Add"
         private void btnAddMvmt_Click(object sender, EventArgs e)
         {
-            AddMovement(TableNameActualYear());
+            AddMovement(TableNameMov());
         }
 
         // Button "Update"
         private void btnUpdateMvmt_Click(object sender, EventArgs e)
         {
-            UpdateMovement(TableNameActualYear());
+            UpdateMovement(TableNameMov());
         }
 
         // Button "Delete"
         private void btnDeleteMvmt_Click(object sender, EventArgs e)
         {
-            DeleteMovement(TableNameActualYear());
+            DeleteMovement(TableNameMov());
         }
 
         // Button "Land"
         private void btnSetLand_Click(object sender, EventArgs e)
         {
-            SetLand(TableNameActualYear());
+            SetLand(TableNameMov());
         }
 
         // Button "Take-Off"
         private void btnSetTakeOff_Click(object sender, EventArgs e)
         {
-            SetTakeOff(TableNameActualYear());
+            SetTakeOff(TableNameMov());
         }
 
         // Button "Clear fields"
@@ -228,26 +232,31 @@ namespace HeliStat
         // Toolstrip-Button "Add"
         private void toolStripBtnAdd_Click(object sender, EventArgs e)
         {
-            AddMovement(TableNameActualYear());
+            AddMovement(TableNameMov());
         }
 
         // Toolstrip-Button "Update"
         private void toolStripBtnUpdate_Click(object sender, EventArgs e)
         {
-            UpdateMovement(TableNameActualYear());
+            UpdateMovement(TableNameMov());
         }
 
         // Toolstrip-Button "Delete"
         private void toolStripBtnDelete_Click(object sender, EventArgs e)
         {
-            DeleteMovement(TableNameActualYear());
+            DeleteMovement(TableNameMov());
         }
 
         // Toolstrip-Button "Change Year"
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private void toolStripBtnChangeYear_Click(object sender, EventArgs e)
         {
             frmAdminLogin adminLogin = new frmAdminLogin();
-            adminLogin.Show();
+
+            // if username & password correct, open administation panel
+            if (adminLogin.ShowDialog() == DialogResult.OK && adminLogin.LoginSuccess)
+            {
+                administration.Show();
+            }
 
             // TODO refresh displayed year in toolstrip "movements" when year has been changed in admin panel
         }
@@ -454,7 +463,7 @@ namespace HeliStat
                 }
             }
             // TODO is there a better / other way to reload / refresh the new added data in the datagrid?
-            dgvMovements.DataSource = FillDataGridView(TableNameActualYear());
+            dgvMovements.DataSource = FillDataGridView(TableNameMov());
         }
 
         // Update movement in database
@@ -511,7 +520,7 @@ namespace HeliStat
                 }
             }
             // TODO is there a better way to reload the new added data in the datagrid?
-            dgvMovements.DataSource = FillDataGridView(TableNameActualYear());
+            dgvMovements.DataSource = FillDataGridView(TableNameMov());
         }
 
         // Delete movement in database
@@ -555,7 +564,7 @@ namespace HeliStat
                 }
             }
             // TODO is there a better way to reload the new added data in the datagrid?
-            dgvMovements.DataSource = FillDataGridView(TableNameActualYear());
+            dgvMovements.DataSource = FillDataGridView(TableNameMov());
             ClearFields();
         }
 
@@ -606,7 +615,7 @@ namespace HeliStat
                 }
             }
             // TODO is there a better way to reload the new added data in the datagrid?
-            dgvMovements.DataSource = FillDataGridView(TableNameActualYear());
+            dgvMovements.DataSource = FillDataGridView(TableNameMov());
         }
 
         // Sets take-off time of movement
@@ -656,7 +665,7 @@ namespace HeliStat
                 }
             }
             // TODO is there a better way to reload the new added data in the datagrid?
-            dgvMovements.DataSource = FillDataGridView(TableNameActualYear());
+            dgvMovements.DataSource = FillDataGridView(TableNameMov());
         }
 
         // checks if no empty fields (left side of datagridview) before handling database
@@ -772,6 +781,10 @@ namespace HeliStat
             cbxDepTo.Text = null;
         }
 
+        /// <summary>
+        /// Actual year handling
+        /// </summary>
+        
         // get actual year from settings
         private string GetActualYear()
         {
@@ -779,17 +792,26 @@ namespace HeliStat
         }
 
         // display actual year in toolstrip textbox
-        public string DisplayActualYear()
+        private string DisplayActualYear()
         {
             return toolStripTbxActualYear.Text = GetActualYear();
         }
 
         // creates table name to display only movements of actual year
-        private string TableNameActualYear()
+        private string TableNameMov()
         {
-            StringBuilder sbTableNameYear = new StringBuilder("tblMov");
-            string tableName = sbTableNameYear.Append(GetActualYear()).ToString();
+            StringBuilder sb = new StringBuilder("tblMov");
+            string tableName = sb.Append(GetActualYear()).ToString();
             return tableName;
+        }
+
+        // event when actual year has changed
+        private void Administration_ActualYearChanged(object sender, EventArgs e)
+        {
+            // reload datagridview
+            // TODO is there a better way to refresh data in dgv?
+            dgvMovements.DataSource = FillDataGridView(TableNameMov());
+            DisplayActualYear();
         }
     }
 }

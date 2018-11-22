@@ -129,7 +129,7 @@ namespace HeliStat
                     if (!checkIfYearExists(addYear))
                     {
                         string year = addYear.NewYear;
-                        string tableName = CreateTableNameMovYear(addYear);
+                        string tableName = TableNameMov(addYear);
 
                         AddYearToTblYears(year);
                         CopyFromTblMov(addYear, tableName);
@@ -184,10 +184,10 @@ namespace HeliStat
         }
 
         // Create table name for movements table (year)
-        private static string CreateTableNameMovYear(frmAdministrationAddYear addYear)
+        private static string TableNameMov(frmAdministrationAddYear addYear)
         {
-            StringBuilder sbTableNameYear = new StringBuilder("tblMov");
-            string tableName = sbTableNameYear.Append(addYear.NewYear).ToString();
+            StringBuilder sb = new StringBuilder("tblMov");
+            string tableName = sb.Append(addYear.NewYear).ToString();
             return tableName;
         }
 
@@ -245,22 +245,40 @@ namespace HeliStat
             }
         }
 
-        // Set actual year and save in app settings
+        /// <summary>
+        /// Setting of actual year
+        /// </summary>
+
+        // Event handler when actual year has changed
+        public delegate void ActualYearChangedEventHandler(object sender, EventArgs e);
+        public event ActualYearChangedEventHandler ActualYearChanged;
+
+        // Set actual year
         private void SetActualYear()
         {
-            // TODO catch if no year selected in combobox
+            // catch if no year selected in combobox
+            if (cbxYears.SelectedItem != null)
+            {
+                // set actual year in app settings
+                string actualYear = cbxYears.SelectedItem.ToString();
+                Properties.Settings.Default.ActualYear = actualYear;
 
-            // set
-            string actualYear = cbxYears.SelectedItem.ToString();
-            Properties.Settings.Default.ActualYear = actualYear;
+                // event handler when actual year has changed
+                ActualYearChanged(this, EventArgs.Empty);
 
-            // display actual year in textbox
-            DisplayActualYear();
+                // display actual year
+                DisplayActualYear();
 
-            // message box
-            string messageBoxText = string.Format("Year {0} has been set as the actual year for this program.", actualYear);
-            MessageBox.Show(messageBoxText, "Actual year set",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // message box
+                string messageBoxText = string.Format("Year {0} has been set as the actual year for this program.", actualYear);
+                MessageBox.Show(messageBoxText, "Actual year set",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Please select a year from the list.", "No year selected",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         // Display actual year in textbox

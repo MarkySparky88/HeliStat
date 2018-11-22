@@ -13,6 +13,7 @@ namespace HeliStat
         /// TODO delete unused namespaces (whole project) (CRTL + R, CTRL + G)
         /// TODO Code aufräumen (Refactor!), wird gleicher Code mehrfach verwendet (Refactor / eine Funktion für alles)
         /// TODO alle Datenbankverbindungen irgendwie zusammenfassen! (ev eigene Klasse?)
+        /// TODO auskommentierte Zeilen im Code welche nicht mehr gebraucht werden, und nur zum testen gebraucht wurden, löschen
         /// </summary>
 
         // Constructor
@@ -50,7 +51,13 @@ namespace HeliStat
         private void btnAdmin_Click(object sender, EventArgs e)
         {
             frmAdminLogin adminLogin = new frmAdminLogin();
-            adminLogin.Show();
+
+            // if username & password correct, open administation panel
+            if (adminLogin.ShowDialog() == DialogResult.OK && adminLogin.LoginSuccess)
+            {
+                frmAdministration administration = new frmAdministration();
+                administration.Show();
+            }
         }
     }
 }

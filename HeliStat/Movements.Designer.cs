@@ -61,10 +61,10 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTbxActualYear = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripBtnChangeYear = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStripMov = new System.Windows.Forms.MenuStrip();
             this.statusStripMov = new System.Windows.Forms.StatusStrip();
             this.ckbOvernight = new System.Windows.Forms.CheckBox();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMovements)).BeginInit();
             this.toolStripMov.SuspendLayout();
             this.SuspendLayout();
@@ -377,12 +377,17 @@
             // toolStripBtnChangeYear
             // 
             this.toolStripBtnChangeYear.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBtnChangeYear.Image = global::HeliStat.Properties.Resources.change;
+            this.toolStripBtnChangeYear.Image = global::HeliStat.Properties.Resources.calendar;
             this.toolStripBtnChangeYear.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnChangeYear.Name = "toolStripBtnChangeYear";
             this.toolStripBtnChangeYear.Size = new System.Drawing.Size(23, 22);
             this.toolStripBtnChangeYear.Text = "Change Year";
-            this.toolStripBtnChangeYear.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.toolStripBtnChangeYear.Click += new System.EventHandler(this.toolStripBtnChangeYear_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // menuStripMov
             // 
@@ -409,11 +414,6 @@
             this.ckbOvernight.TabIndex = 42;
             this.ckbOvernight.Text = "Overnight?";
             this.ckbOvernight.UseVisualStyleBackColor = true;
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // frmMovements
             // 

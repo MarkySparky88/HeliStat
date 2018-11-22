@@ -13,6 +13,8 @@ namespace HeliStat
 {
     public partial class frmAdminLogin : Form
     {
+        public bool LoginSuccess { get; private set; }
+
         // Constructor
         public frmAdminLogin()
         {
@@ -67,6 +69,7 @@ namespace HeliStat
         }
 
         // Check username & password
+        // TODO put that function into property "LoginSuccess" under "set"?
         private void CheckUsernamePassword(SqlCommand cmd)
         {
             using (SqlDataReader reader = cmd.ExecuteReader())
@@ -81,29 +84,16 @@ namespace HeliStat
                     }
                     if (count == 1)
                     {
-                        OpenAdministration();
+                        LoginSuccess = true;
                     }
-                    //else if (count > 1)
-                    //{
-                    //    MessageBox.Show("Duplicate Username and password.\nAccess denied.", "Access denied",
-                    //        MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    //}
                     else
                     {
                         MessageBox.Show("Username and / or password not correct.\nAccess denied.", "Access denied",
                             MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        LoginSuccess = false;
                     }
                 }
             }
-        }
-
-        // Open "Administration
-        private void OpenAdministration()
-        {
-            Close();
-
-            frmAdministration administration = new frmAdministration();
-            administration.Show();
         }
     }
 }
