@@ -14,7 +14,6 @@ namespace HeliStat
         public frmMovements()
         {
             InitializeComponent();
-            timerMovements.Start();
             // TODO correct position for event delegate? In Video Kurs ist es so beschrieben, diesen im Constructor einzuhängen, aber warum? Könnte der nicht sonst wo sein?
             administration.ActualYearChanged += Administration_ActualYearChanged;
             // TODO combine loading of datagridview and comboboxes upon form load?
@@ -150,35 +149,37 @@ namespace HeliStat
         // Button "Helicopters"
         private void btnHelicopters_Click(object sender, EventArgs e)
         {
-            frmHelicopters helicopters = new frmHelicopters();
-
-            if (helicopters.ShowDialog() == DialogResult.Cancel)
+            using (frmHelicopters helicopters = new frmHelicopters())
             {
-                FillCbxRegistration();
+                if (helicopters.ShowDialog() == DialogResult.Cancel)
+                {
+                    FillCbxRegistration();
+                }
             }
         }
 
         // Button "+" (ICAO Designator)
         private void btnAddIcaoDes_Click(object sender, EventArgs e)
         {
-            frmMovementsAddIcaoDes addIcaoDes = new frmMovementsAddIcaoDes();
-
-            while (addIcaoDes.UserInput == false)
+            using (frmMovementsAddIcaoDes addIcaoDes = new frmMovementsAddIcaoDes())
             {
-                if (addIcaoDes.ShowDialog() == DialogResult.OK && addIcaoDes.UserInput == true)
+                while (addIcaoDes.UserInput == false)
                 {
-                    if (!CheckIfDesignatorExists(addIcaoDes))
+                    if (addIcaoDes.ShowDialog() == DialogResult.OK && addIcaoDes.UserInput == true)
                     {
-                        AddIcaoDesignator(addIcaoDes);
-                    }
-                    else
-                    {
-                        MessageBox.Show("This ICAO-Designator already exists.\nEnter a new ICAO-Designator.",
-                            "ICAO-Designator exists",
-                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        addIcaoDes.UserInput = false;
-                    }
+                        if (!CheckIfDesignatorExists(addIcaoDes))
+                        {
+                            AddIcaoDesignator(addIcaoDes);
+                        }
+                        else
+                        {
+                            MessageBox.Show("This ICAO-Designator already exists.\nEnter a new ICAO-Designator.",
+                                "ICAO-Designator exists",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            addIcaoDes.UserInput = false;
+                        }
 
+                    }
                 }
             }
         }
@@ -225,6 +226,12 @@ namespace HeliStat
             ClearFields();
         }
 
+        // Button "Now"
+        private void btnSetDateTimeNow_Click(object sender, EventArgs e)
+        {
+            SetDateTimeNow();
+        }
+
         /// <summary>
         /// Toolstrip
         /// </summary>
@@ -255,10 +262,8 @@ namespace HeliStat
             // if username & password correct, open administation panel
             if (adminLogin.ShowDialog() == DialogResult.OK && adminLogin.LoginSuccess)
             {
-                administration.Show();
+                administration.ShowDialog();
             }
-
-            // TODO refresh displayed year in toolstrip "movements" when year has been changed in admin panel
         }
 
         //// Toolstrip-Button "Add Year"
@@ -777,14 +782,22 @@ namespace HeliStat
             cbxTypeOfOps.Text = null;
             cbxArrFrom.Text = null;
             cbxDepTo.Text = null;
+            ckbOvernight.Checked = false;
         }
 
-        // make datetimepicker display current time
-        private void timerMovements_Tick(object sender, EventArgs e)
+        // Reset to current date & time
+        private void SetDateTimeNow()
         {
             dtpActualTime.Value = DateTime.Now;
+            dtpDateOfFlight.Value = DateTime.Now;
         }
 
+        // event when form closed
+        private void frmMovements_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // dispose form administration
+            administration.Dispose();
+        }
 
         /// <summary>
         /// Actual year handling

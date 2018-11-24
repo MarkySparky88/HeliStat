@@ -161,21 +161,22 @@ namespace HeliStat
         // Button "+" (Aircraft Type)
         private void btnAddNewAircraftType_Click(object sender, EventArgs e)
         {
-            frmHelicoptersAddNewType helicoptersAddNewType = new frmHelicoptersAddNewType();
-
-            while (helicoptersAddNewType.UserInput == false)
+            using (frmHelicoptersAddNewType helicoptersAddNewType = new frmHelicoptersAddNewType())
             {
-                if (helicoptersAddNewType.ShowDialog() == DialogResult.OK && helicoptersAddNewType.UserInput == true)
+                while (helicoptersAddNewType.UserInput == false)
                 {
-                    if (!checkIfAircraftTypeExists(helicoptersAddNewType))
+                    if (helicoptersAddNewType.ShowDialog() == DialogResult.OK && helicoptersAddNewType.UserInput == true)
                     {
-                        AddNewAircraftType(helicoptersAddNewType);
-                    }
-                    else
-                    {
-                        MessageBox.Show("This aircraft type already exists.\nEnter a new aircraft type.", "Aircraft type exists",
-                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        helicoptersAddNewType.UserInput = false;
+                        if (!checkIfAircraftTypeExists(helicoptersAddNewType))
+                        {
+                            AddNewAircraftType(helicoptersAddNewType);
+                        }
+                        else
+                        {
+                            MessageBox.Show("This aircraft type already exists.\nEnter a new aircraft type.", "Aircraft type exists",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            helicoptersAddNewType.UserInput = false;
+                        }
                     }
                 }
             }
@@ -190,21 +191,22 @@ namespace HeliStat
         // Button "+" (Operator)
         private void btnAddNewOperator_Click(object sender, EventArgs e)
         {
-            frmHelicoptersAddNewOperator helicoptersAddNewOperator = new frmHelicoptersAddNewOperator();
-
-            while (helicoptersAddNewOperator.UserInput == false)
+            using (frmHelicoptersAddNewOperator helicoptersAddNewOperator = new frmHelicoptersAddNewOperator())
             {
-                if (helicoptersAddNewOperator.ShowDialog() == DialogResult.OK && helicoptersAddNewOperator.UserInput == true)
+                while (helicoptersAddNewOperator.UserInput == false)
                 {
-                    if (!checkIfOperatorExists(helicoptersAddNewOperator))
+                    if (helicoptersAddNewOperator.ShowDialog() == DialogResult.OK && helicoptersAddNewOperator.UserInput == true)
                     {
-                        AddNewOperator(helicoptersAddNewOperator);
-                    }
-                    else
-                    {
-                        MessageBox.Show("This operator already exists.\nEnter a new operator.", "Operator exists",
-                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        helicoptersAddNewOperator.UserInput = false;
+                        if (!checkIfOperatorExists(helicoptersAddNewOperator))
+                        {
+                            AddNewOperator(helicoptersAddNewOperator);
+                        }
+                        else
+                        {
+                            MessageBox.Show("This operator already exists.\nEnter a new operator.", "Operator exists",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            helicoptersAddNewOperator.UserInput = false;
+                        }
                     }
                 }
             }

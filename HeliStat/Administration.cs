@@ -119,25 +119,26 @@ namespace HeliStat
         // Add year: Open and check dialog box for user input
         private void AddYear()
         {
-            frmAdministrationAddYear addYear = new frmAdministrationAddYear();
-
-            while (addYear.UserInput == false)
+            using (frmAdministrationAddYear addYear = new frmAdministrationAddYear())
             {
-                if (addYear.ShowDialog() == DialogResult.OK && addYear.UserInput == true)
+                while (addYear.UserInput == false)
                 {
-                    if (!checkIfYearExists(addYear))
+                    if (addYear.ShowDialog() == DialogResult.OK && addYear.UserInput == true)
                     {
-                        string year = addYear.NewYear;
-                        string tableName = TableNameMov(addYear);
+                        if (!checkIfYearExists(addYear))
+                        {
+                            string year = addYear.NewYear;
+                            string tableName = TableNameMov(addYear);
 
-                        AddYearToTblYears(year);
-                        CopyFromTblMov(addYear, tableName);
-                    }
-                    else
-                    {
-                        MessageBox.Show("This year already exists.\nEnter a new year.", "Year exists",
-                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        addYear.UserInput = false;
+                            AddYearToTblYears(year);
+                            CopyFromTblMov(addYear, tableName);
+                        }
+                        else
+                        {
+                            MessageBox.Show("This year already exists.\nEnter a new year.", "Year exists",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            addYear.UserInput = false;
+                        }
                     }
                 }
             }

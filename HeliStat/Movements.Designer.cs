@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMovements));
             this.tbxAircraftType = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -66,7 +65,7 @@
             this.menuStripMov = new System.Windows.Forms.MenuStrip();
             this.statusStripMov = new System.Windows.Forms.StatusStrip();
             this.ckbOvernight = new System.Windows.Forms.CheckBox();
-            this.timerMovements = new System.Windows.Forms.Timer(this.components);
+            this.btnSetDateTimeNow = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMovements)).BeginInit();
             this.toolStripMov.SuspendLayout();
             this.SuspendLayout();
@@ -417,16 +416,22 @@
             this.ckbOvernight.Text = "Overnight?";
             this.ckbOvernight.UseVisualStyleBackColor = true;
             // 
-            // timerMovements
+            // btnSetDateTimeNow
             // 
-            this.timerMovements.Interval = 1000;
-            this.timerMovements.Tick += new System.EventHandler(this.timerMovements_Tick);
+            this.btnSetDateTimeNow.Location = new System.Drawing.Point(724, 499);
+            this.btnSetDateTimeNow.Name = "btnSetDateTimeNow";
+            this.btnSetDateTimeNow.Size = new System.Drawing.Size(75, 23);
+            this.btnSetDateTimeNow.TabIndex = 43;
+            this.btnSetDateTimeNow.Text = "Now";
+            this.btnSetDateTimeNow.UseVisualStyleBackColor = true;
+            this.btnSetDateTimeNow.Click += new System.EventHandler(this.btnSetDateTimeNow_Click);
             // 
             // frmMovements
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1135, 600);
+            this.Controls.Add(this.btnSetDateTimeNow);
             this.Controls.Add(this.ckbOvernight);
             this.Controls.Add(this.statusStripMov);
             this.Controls.Add(this.toolStripMov);
@@ -463,6 +468,7 @@
             this.Name = "frmMovements";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HeliStat - Movements";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMovements_FormClosed);
             this.Load += new System.EventHandler(this.frmMovements_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMovements)).EndInit();
             this.toolStripMov.ResumeLayout(false);
@@ -509,6 +515,6 @@
         private System.Windows.Forms.ToolStripTextBox toolStripTbxActualYear;
         private System.Windows.Forms.ToolStripButton toolStripBtnChangeYear;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.Timer timerMovements;
+        private System.Windows.Forms.Button btnSetDateTimeNow;
     }
 }

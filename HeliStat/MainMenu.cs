@@ -29,34 +29,43 @@ namespace HeliStat
         // open "Movements"
         private void btnMovements_Click(object sender, EventArgs e)
         {
-            frmMovements movements = new frmMovements();
-            movements.Show();
+            using (frmMovements movements = new frmMovements())
+            {
+                movements.ShowDialog();
+            }
         }
 
         // open "Helicopters"
         private void btnHelicopters_Click(object sender, EventArgs e)
         {
-            frmHelicopters helicopters = new frmHelicopters();
-            helicopters.Show();
+            using (frmHelicopters helicopters = new frmHelicopters())
+            {
+                helicopters.ShowDialog();
+            }
         }
 
         // open "Statistics"
         private void btnStatistics_Click(object sender, EventArgs e)
         {
-            frmStatistics statistics = new frmStatistics();
-            statistics.Show();
+            using (frmStatistics statistics = new frmStatistics())
+            {
+                statistics.ShowDialog();
+            }
         }
 
         // open "Administration Login"
         private void btnAdmin_Click(object sender, EventArgs e)
         {
-            frmAdminLogin adminLogin = new frmAdminLogin();
-
-            // if username & password correct, open administation panel
-            if (adminLogin.ShowDialog() == DialogResult.OK && adminLogin.LoginSuccess)
+            using (frmAdminLogin adminLogin = new frmAdminLogin())
             {
-                frmAdministration administration = new frmAdministration();
-                administration.Show();
+                // if username & password correct, open administation panel
+                if (adminLogin.ShowDialog() == DialogResult.OK && adminLogin.LoginSuccess)
+                {
+                    using (frmAdministration administration = new frmAdministration())
+                    {
+                        administration.ShowDialog();
+                    }
+                }
             }
         }
     }
