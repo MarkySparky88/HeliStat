@@ -68,7 +68,7 @@ namespace HeliStat
         // Button "Add new year"
         private void btnAddYear_Click(object sender, EventArgs e)
         {
-            AddYear();
+            AddNewYear();
         }
 
         // Button "Delete selected year"
@@ -116,129 +116,18 @@ namespace HeliStat
         /// Funtions
         /// </summary>
 
-        // Add year: Open and check dialog box for user input
-        private void AddYear()
+        // Add new year
+        private void AddNewYear()
         {
             using (frmAdministrationAddYear addYear = new frmAdministrationAddYear())
             {
-                while (addYear.UserInput == false)
+                while (addYear.DialogBoxStatus == false)
                 {
-                    if (addYear.ShowDialog() == DialogResult.OK && addYear.UserInput == true)
+                    if (addYear.ShowDialog() == DialogResult.OK && addYear.DialogBoxStatus == true)
                     {
-                        if (!checkIfYearExists(addYear))
-                        {
-                            string year = addYear.NewYear;
-                            string tableName = TableNameMov(addYear);
-
-                            AddYearToTblYears(year);
-                            CopyFromTblMov(addYear, tableName);
-                        }
-                        else
-                        {
-                            MessageBox.Show("This year already exists.\nEnter a new year.", "Year exists",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            addYear.UserInput = false;
-                        }
+                        // TODO is there a better / other way to reload / refresh the new added data in the combobox
+                        FillCbxYears();
                     }
-                }
-            }
-        }
-
-        // Checks if year already exists in database
-        // TODO the exact same function exists for the ICAO-Designator! -> combine! Maybe it is possible to make one function and pass the table name via parameter?
-        private bool checkIfYearExists(frmAdministrationAddYear addYear)
-        {
-            bool doesExist = false;
-
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
-            {
-                try
-                {
-                    connection.Open();
-                    string cmdText = "SELECT COUNT(*) FROM [tblYears] WHERE ([Year] = @Year)";
-
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@Year", addYear.NewYear);
-
-                        int entryExists = (int)cmd.ExecuteScalar();
-
-                        if (entryExists > 0)
-                        {
-                            doesExist = true;
-                        }
-                        else
-                        {
-                            doesExist = false;
-                        }
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            return doesExist;
-        }
-
-        // Create table name for movements table (year)
-        private static string TableNameMov(frmAdministrationAddYear addYear)
-        {
-            StringBuilder sb = new StringBuilder("tblMov");
-            string tableName = sb.Append(addYear.NewYear).ToString();
-            return tableName;
-        }
-
-        // Add year to database (tblYears)
-        private void AddYearToTblYears(string year)
-        {
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
-            {
-                try
-                {
-                    connection.Open();
-                    string cmdText = "INSERT INTO tblYears (Year) VALUES (@Year)";
-
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@Year", year);
-                        cmd.ExecuteNonQuery();
-
-                        MessageBox.Show("Year has been added succesfully!", "Year added",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            // TODO is there a better / other way to reload / refresh the new added data in the combobox
-            FillCbxYears();
-        }
-
-        // Copy from tblMov and create new table (year)
-        // TODO check if year already exists in database (catch SqlException does it actually already...)
-        private void CopyFromTblMov(frmAdministrationAddYear addYear, string tableName)
-        {
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
-            {
-                try
-                {
-                    connection.Open();
-                    string cmdText = string.Format("SELECT * INTO {0} FROM tblMov WHERE 1 = 0", tableName);
-
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
-                    {
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }

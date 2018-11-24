@@ -227,7 +227,7 @@
             this.dgvMovements.Name = "dgvMovements";
             this.dgvMovements.ReadOnly = true;
             this.dgvMovements.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMovements.Size = new System.Drawing.Size(731, 421);
+            this.dgvMovements.Size = new System.Drawing.Size(1000, 421);
             this.dgvMovements.TabIndex = 21;
             this.dgvMovements.SelectionChanged += new System.EventHandler(this.ShowValues);
             // 
@@ -359,7 +359,7 @@
             this.toolStripSeparator2});
             this.toolStripMov.Location = new System.Drawing.Point(0, 24);
             this.toolStripMov.Name = "toolStripMov";
-            this.toolStripMov.Size = new System.Drawing.Size(1135, 25);
+            this.toolStripMov.Size = new System.Drawing.Size(1404, 25);
             this.toolStripMov.TabIndex = 39;
             this.toolStripMov.Text = "toolStrip1";
             // 
@@ -394,7 +394,7 @@
             // 
             this.menuStripMov.Location = new System.Drawing.Point(0, 0);
             this.menuStripMov.Name = "menuStripMov";
-            this.menuStripMov.Size = new System.Drawing.Size(1135, 24);
+            this.menuStripMov.Size = new System.Drawing.Size(1404, 24);
             this.menuStripMov.TabIndex = 40;
             this.menuStripMov.Text = "menuStrip1";
             // 
@@ -402,7 +402,7 @@
             // 
             this.statusStripMov.Location = new System.Drawing.Point(0, 578);
             this.statusStripMov.Name = "statusStripMov";
-            this.statusStripMov.Size = new System.Drawing.Size(1135, 22);
+            this.statusStripMov.Size = new System.Drawing.Size(1404, 22);
             this.statusStripMov.TabIndex = 41;
             this.statusStripMov.Text = "statusStrip1";
             // 
@@ -430,7 +430,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1135, 600);
+            this.ClientSize = new System.Drawing.Size(1404, 600);
             this.Controls.Add(this.btnSetDateTimeNow);
             this.Controls.Add(this.ckbOvernight);
             this.Controls.Add(this.statusStripMov);

@@ -90,6 +90,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddNew.cs" />
     <Compile Include="Administration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,17 +110,17 @@
     <Compile Include="Helicopters.Designer.cs">
       <DependentUpon>Helicopters.cs</DependentUpon>
     </Compile>
-    <Compile Include="HelicoptersAddNewOperator.cs">
+    <Compile Include="HelicoptersAddOperator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HelicoptersAddNewOperator.Designer.cs">
-      <DependentUpon>HelicoptersAddNewOperator.cs</DependentUpon>
+    <Compile Include="HelicoptersAddOperator.Designer.cs">
+      <DependentUpon>HelicoptersAddOperator.cs</DependentUpon>
     </Compile>
-    <Compile Include="HelicoptersAddNewType.cs">
+    <Compile Include="HelicoptersAddType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HelicoptersAddNewType.Designer.cs">
-      <DependentUpon>HelicoptersAddNewType.cs</DependentUpon>
+    <Compile Include="HelicoptersAddType.Designer.cs">
+      <DependentUpon>HelicoptersAddType.cs</DependentUpon>
     </Compile>
     <Compile Include="MovementsAddIcaoDes.cs">
       <SubType>Form</SubType>
@@ -167,11 +168,11 @@
     <EmbeddedResource Include="Helicopters.resx">
       <DependentUpon>Helicopters.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HelicoptersAddNewOperator.resx">
-      <DependentUpon>HelicoptersAddNewOperator.cs</DependentUpon>
+    <EmbeddedResource Include="HelicoptersAddOperator.resx">
+      <DependentUpon>HelicoptersAddOperator.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HelicoptersAddNewType.resx">
-      <DependentUpon>HelicoptersAddNewType.cs</DependentUpon>
+    <EmbeddedResource Include="HelicoptersAddType.resx">
+      <DependentUpon>HelicoptersAddType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>

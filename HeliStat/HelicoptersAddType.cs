@@ -4,13 +4,13 @@ using System.Windows.Forms;
 
 namespace HeliStat
 {
-    public partial class frmMovementsAddIcaoDes : Form
+    public partial class frmHelicoptersAddType : Form
     {
-        private string newIcaoDes;
+        private string newAircraftType;
         public bool DialogBoxStatus { get; set; } = false;
 
         // Constructor
-        public frmMovementsAddIcaoDes()
+        public frmHelicoptersAddType()
         {
             InitializeComponent();
         }
@@ -22,7 +22,7 @@ namespace HeliStat
         // Button "OK"
         private void btnOK_Click(object sender, EventArgs e)
         {
-            AddIcaoDes();
+            AddNewAircraftType();
         }
 
         // Button "Cancel"
@@ -35,29 +35,28 @@ namespace HeliStat
         /// Functions
         /// </summary>
 
-        // Add new ICAO designator
-        private void AddIcaoDes()
+        // Add new aircraft type
+        private void AddNewAircraftType()
         {
-            newIcaoDes = tbxIcaoDesignator.Text.ToString();
+            newAircraftType = tbxAircraftType.Text.ToString();
 
-            if (!CheckIfRecordExists(newIcaoDes))
+            if (!CheckIfRecordExists(newAircraftType))
             {
-                if (CheckUserInput(newIcaoDes))
+                if (CheckUserInput(newAircraftType))
                 {
-                    AddToDatabase(newIcaoDes);
+                    AddToDatabase(newAircraftType);
                 }
             }
             else
             {
-                MessageBox.Show("This ICAO location designator already exists.\nEnter a new ICAO location designator.",
-                    "ICAO location designator exists",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("This aircraft type already exists.\nEnter a new aircraft type.", "Aircraft type exists",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 DialogBoxStatus = false;
             }
         }
 
         // Check if record already exists
-        private bool CheckIfRecordExists(string newIcaoDes)
+        private bool CheckIfRecordExists(string newAircraftType)
         {
             bool recordExists = false;
 
@@ -66,11 +65,11 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = "SELECT COUNT(*) FROM [tblAirportCodes] WHERE ([AirportCode] = @AirportCode)";
+                    string cmdText = "SELECT COUNT(*) FROM [tblAircraftTypes] WHERE ([AircraftType] = @AircraftType)";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
-                        cmd.Parameters.AddWithValue("@AirportCode", newIcaoDes);
+                        cmd.Parameters.AddWithValue("@AircraftType", newAircraftType);
 
                         int i = (int)cmd.ExecuteScalar();
 
@@ -94,36 +93,35 @@ namespace HeliStat
         }
 
         // Check user input
-        private bool CheckUserInput(string newIcaoDes)
+        private bool CheckUserInput(string newAircraftType)
         {
-            if (!string.IsNullOrEmpty(newIcaoDes) && newIcaoDes.Length == 4)
+            if (!string.IsNullOrEmpty(newAircraftType) && newAircraftType.Length == 4)
             {
                 DialogBoxStatus = true;
                 return true;
             }
             else
             {
-                MessageBox.Show("Enter a valid ICAO location designator (4-letter code).",
-                    "Invalid or missing ICAO location designator",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Enter a valid aircraft type (4-letter code).", "Invalid or missing aircraft type",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 DialogBoxStatus = false;
                 return false;
             }
         }
 
-        // Add ICAO designator to database
-        private void AddToDatabase(string newIcaoDes)
+        // Add aircraft type to database
+        private void AddToDatabase(string newAircraftType)
         {
             using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
                     connection.Open();
-                    string cmdText = "INSERT INTO tblAirportCodes (AirportCode) VALUES (@AirportCode)";
+                    string cmdText = "INSERT INTO tblAircraftTypes (AircraftType) VALUES (@AircraftType)";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
-                        cmd.Parameters.AddWithValue("@AirportCode", newIcaoDes);
+                        cmd.Parameters.AddWithValue("@AircraftType", newAircraftType);
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -133,6 +131,6 @@ namespace HeliStat
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-        } 
+        }
     }
 }

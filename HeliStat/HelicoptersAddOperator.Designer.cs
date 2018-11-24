@@ -1,6 +1,6 @@
 ﻿namespace HeliStat
 {
-    partial class frmHelicoptersAddNewOperator
+    partial class frmHelicoptersAddOperator
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHelicoptersAddNewOperator));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHelicoptersAddOperator));
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -74,7 +74,7 @@
             this.tbxOperator.Size = new System.Drawing.Size(261, 20);
             this.tbxOperator.TabIndex = 0;
             // 
-            // frmHelicoptersAddNewOperator
+            // frmHelicoptersAddOperator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -87,7 +87,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmHelicoptersAddNewOperator";
+            this.Name = "frmHelicoptersAddOperator";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Operator";
             this.ResumeLayout(false);

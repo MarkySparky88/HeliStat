@@ -4,13 +4,13 @@ using System.Windows.Forms;
 
 namespace HeliStat
 {
-    public partial class frmMovementsAddIcaoDes : Form
+    public partial class frmHelicoptersAddOperator : Form
     {
-        private string newIcaoDes;
+        private string newOperator;
         public bool DialogBoxStatus { get; set; } = false;
 
         // Constructor
-        public frmMovementsAddIcaoDes()
+        public frmHelicoptersAddOperator()
         {
             InitializeComponent();
         }
@@ -22,7 +22,7 @@ namespace HeliStat
         // Button "OK"
         private void btnOK_Click(object sender, EventArgs e)
         {
-            AddIcaoDes();
+            AddNewOperator();
         }
 
         // Button "Cancel"
@@ -35,29 +35,30 @@ namespace HeliStat
         /// Functions
         /// </summary>
 
-        // Add new ICAO designator
-        private void AddIcaoDes()
+        // TODO folgende Funktionen wurden für addOperator, addType, addIcaoDes und addYear ziemlich gleich verwendet (eine Klasse für alles? z.B. "AddNew.cs")
+        
+        // Add new operator
+        private void AddNewOperator()
         {
-            newIcaoDes = tbxIcaoDesignator.Text.ToString();
+            newOperator = tbxOperator.Text.ToString();
 
-            if (!CheckIfRecordExists(newIcaoDes))
+            if (!CheckIfRecordExists(newOperator))
             {
-                if (CheckUserInput(newIcaoDes))
+                if (CheckUserInput(newOperator))
                 {
-                    AddToDatabase(newIcaoDes);
+                    AddToDatabase(newOperator);
                 }
             }
             else
             {
-                MessageBox.Show("This ICAO location designator already exists.\nEnter a new ICAO location designator.",
-                    "ICAO location designator exists",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("This operator already exists.\nEnter a new operator.", "Operator exists",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 DialogBoxStatus = false;
             }
         }
 
         // Check if record already exists
-        private bool CheckIfRecordExists(string newIcaoDes)
+        private bool CheckIfRecordExists(string newOperator)
         {
             bool recordExists = false;
 
@@ -66,11 +67,11 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = "SELECT COUNT(*) FROM [tblAirportCodes] WHERE ([AirportCode] = @AirportCode)";
+                    string cmdText = "SELECT COUNT(*) FROM [tblOperators] WHERE ([Operator] = @Operator)";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
-                        cmd.Parameters.AddWithValue("@AirportCode", newIcaoDes);
+                        cmd.Parameters.AddWithValue("@Operator", newOperator);
 
                         int i = (int)cmd.ExecuteScalar();
 
@@ -94,36 +95,35 @@ namespace HeliStat
         }
 
         // Check user input
-        private bool CheckUserInput(string newIcaoDes)
+        private bool CheckUserInput(string newOperator)
         {
-            if (!string.IsNullOrEmpty(newIcaoDes) && newIcaoDes.Length == 4)
+            if (!string.IsNullOrEmpty(newOperator))
             {
                 DialogBoxStatus = true;
                 return true;
             }
             else
             {
-                MessageBox.Show("Enter a valid ICAO location designator (4-letter code).",
-                    "Invalid or missing ICAO location designator",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Enter an operator name.", "Missing operator",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 DialogBoxStatus = false;
                 return false;
             }
         }
 
-        // Add ICAO designator to database
-        private void AddToDatabase(string newIcaoDes)
+        // Add opertor type to database
+        private void AddToDatabase(string newOperator)
         {
             using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
                 {
                     connection.Open();
-                    string cmdText = "INSERT INTO tblAirportCodes (AirportCode) VALUES (@AirportCode)";
+                    string cmdText = "INSERT INTO tblOperators (Operator) VALUES (@Operator)";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
-                        cmd.Parameters.AddWithValue("@AirportCode", newIcaoDes);
+                        cmd.Parameters.AddWithValue("@Operator", newOperator);
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -133,6 +133,6 @@ namespace HeliStat
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-        } 
+        }
     }
 }

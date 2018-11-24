@@ -13,7 +13,13 @@ namespace HeliStat
     {
         public bool DbAccessComplete { get; private set; }
 
-        // fill a combobox
+        // Constructor
+        public DatabaseAccess(/* TODO you can add parameter here.. */)
+        {
+            // TODO write constructor
+        }
+
+        // Fill a combobox
         public void FillCombobox(string cmdText, string columnOrdinal, out string addItem)
         {
             addItem = null;

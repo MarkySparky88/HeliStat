@@ -38,36 +38,38 @@ namespace HeliStat
         // Fill datagridview
         private DataTable FillDataGridView(string tableName)
         {
-            DataTable dataTable = new DataTable();
-
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (DataTable dataTable = new DataTable())
             {
-                try
+
+                using (SqlConnection connection = new SqlConnection(Program.ConnString))
                 {
-                    connection.Open();
-                    string cmdText = string.Format("SELECT * FROM {0} WHERE Year = @Year", tableName);
-
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    try
                     {
-                        cmd.Parameters.AddWithValue("@Year", GetActualYear());
-                        cmd.ExecuteNonQuery();
+                        connection.Open();
+                        string cmdText = string.Format("SELECT * FROM {0} WHERE Year = @Year", tableName);
 
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                         {
-                            if (reader != null)
+                            cmd.Parameters.AddWithValue("@Year", GetActualYear());
+                            cmd.ExecuteNonQuery();
+
+                            using (SqlDataReader reader = cmd.ExecuteReader())
                             {
-                                dataTable.Load(reader);
+                                if (reader != null)
+                                {
+                                    dataTable.Load(reader);
+                                }
                             }
                         }
                     }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                return dataTable;
             }
-            return dataTable;
         }
 
         // Fill combobox registration
@@ -80,7 +82,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = "SELECT * FROM tblHelicopters ORDER BY Registration";
+                    string cmdText = "SELECT * FROM tblHelicopters ORDER BY Registration ASC";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -116,7 +118,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = "SELECT * FROM tblAirportCodes ORDER BY AirportCode";
+                    string cmdText = "SELECT * FROM tblAirportCodes ORDER BY AirportCode ASC";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -149,39 +151,13 @@ namespace HeliStat
         // Button "Helicopters"
         private void btnHelicopters_Click(object sender, EventArgs e)
         {
-            using (frmHelicopters helicopters = new frmHelicopters())
-            {
-                if (helicopters.ShowDialog() == DialogResult.Cancel)
-                {
-                    FillCbxRegistration();
-                }
-            }
+            Helicopters();
         }
 
         // Button "+" (ICAO Designator)
         private void btnAddIcaoDes_Click(object sender, EventArgs e)
         {
-            using (frmMovementsAddIcaoDes addIcaoDes = new frmMovementsAddIcaoDes())
-            {
-                while (addIcaoDes.UserInput == false)
-                {
-                    if (addIcaoDes.ShowDialog() == DialogResult.OK && addIcaoDes.UserInput == true)
-                    {
-                        if (!CheckIfDesignatorExists(addIcaoDes))
-                        {
-                            AddIcaoDesignator(addIcaoDes);
-                        }
-                        else
-                        {
-                            MessageBox.Show("This ICAO-Designator already exists.\nEnter a new ICAO-Designator.",
-                                "ICAO-Designator exists",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            addIcaoDes.UserInput = false;
-                        }
-
-                    }
-                }
-            }
+            AddIcaoDesignator();
         }
 
         // Button "-" (ICAO Designator)
@@ -276,31 +252,31 @@ namespace HeliStat
         /// Functions
         /// </summary>
 
-        // Add ICAO designator to database
-        private void AddIcaoDesignator(frmMovementsAddIcaoDes addIcaoDes)
+        // open "Helicopters" (and refresh)
+        private void Helicopters()
         {
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (frmHelicopters helicopters = new frmHelicopters())
             {
-                try
+                if (helicopters.ShowDialog() == DialogResult.Cancel)
                 {
-                    connection.Open();
-                    string cmdText = "INSERT INTO tblAirportCodes (AirportCode) VALUES (@AirportCode)";
-
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@AirportCode", addIcaoDes.NewIcaoDesignator);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    FillCbxRegistration();
                 }
             }
-            FillCbxArrDep();
-            //cbxArrFrom.ResetText();
-            //cbxDepTo.ResetText();
+        }
+
+        // Add ICAO designator to database
+        private void AddIcaoDesignator()
+        {
+            using (frmMovementsAddIcaoDes addIcaoDes = new frmMovementsAddIcaoDes())
+            {
+                while (addIcaoDes.DialogBoxStatus == false)
+                {
+                    if (addIcaoDes.ShowDialog() == DialogResult.OK && addIcaoDes.DialogBoxStatus == true)
+                    {
+                        FillCbxArrDep();
+                    }
+                }
+            }
         }
 
         // Remove ICAO designator from database
@@ -354,46 +330,6 @@ namespace HeliStat
             FillCbxArrDep();
             cbxArrFrom.ResetText();
             cbxDepTo.ResetText();
-        }
-
-        // Check if ICAO designator exists in database
-        // TODO function does exactly the same as functions in Helicopters-class (aircraft type & operator) -> combine into one function!
-        private bool CheckIfDesignatorExists(frmMovementsAddIcaoDes addIcaoDes)
-        {
-            bool doesExist = false;
-
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
-            {
-                try
-                {
-                    connection.Open();
-                    string cmdText = "SELECT COUNT(*) FROM [tblAirportCodes] WHERE ([AirportCode] = @AirportCode)";
-
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@AirportCode", addIcaoDes.NewIcaoDesignator);
-
-                        int entryExists = (int)cmd.ExecuteScalar();
-
-                        if (entryExists > 0)
-                        {
-                            //Console.WriteLine("Entry exists.");
-                            doesExist = true;
-                        }
-                        else
-                        {
-                            //Console.WriteLine("Entry does not exist.");
-                            doesExist = false;
-                        }
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            return doesExist;
         }
 
         // Add movement to database
@@ -795,7 +731,7 @@ namespace HeliStat
         // event when form closed
         private void frmMovements_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // dispose form administration
+            // dispose administration form object
             administration.Dispose();
         }
 

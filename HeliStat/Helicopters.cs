@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HeliStat
@@ -18,6 +12,7 @@ namespace HeliStat
         {
             InitializeComponent();
             // TODO combine loading of datagridview and comboboxes upon form load?
+            // TODO bind comboboxes as well to datasource (dataset / datatable)??
             FillCbxAircraftType();
             FillCbxOperator();
         }
@@ -25,9 +20,8 @@ namespace HeliStat
         // load form
         private void frmHelicopters_Load(object sender, EventArgs e)
         {
+            //dgvHelicopters.Sort(dgvHelicopters.Columns["DateOfArr"], ListSortDirection.Ascending);
             dgvHelicopters.DataSource = FillDataGridView();
-            // TODO bind comboboxes as well to datasource (dataset / datatable)??
-            ClearFields();
         }
 
         /// <summary>
@@ -39,33 +33,34 @@ namespace HeliStat
         // TODO whole program: use "verbindungslose Klassen" (SqlDataAdapter, DataSet, DataTable, etc.) instead of live-connections?
         private DataTable FillDataGridView()
         {
-            DataTable dataTable = new DataTable();
-
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (DataTable dataTable = new DataTable())
             {
-                try
+                using (SqlConnection connection = new SqlConnection(Program.ConnString))
                 {
-                    connection.Open();
-                    string cmdText = "SELECT * FROM tblHelicopters";
-
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    try
                     {
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        connection.Open();
+                        string cmdText = "SELECT * FROM tblHelicopters";
+
+                        using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                         {
-                            if (reader != null)
+                            using (SqlDataReader reader = cmd.ExecuteReader())
                             {
-                                dataTable.Load(reader);
+                                if (reader != null)
+                                {
+                                    dataTable.Load(reader);
+                                }
                             }
                         }
                     }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                return dataTable;
             }
-            return dataTable;
         }
 
         // fill combobox aircraft type
@@ -94,7 +89,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = "SELECT * FROM tblAircraftTypes ORDER BY AircraftType";
+                    string cmdText = "SELECT * FROM tblAircraftTypes ORDER BY AircraftType ASC";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -129,7 +124,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = "SELECT * FROM tblOperators ORDER BY Operator";
+                    string cmdText = "SELECT * FROM tblOperators ORDER BY Operator ASC";
 
                     using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
@@ -161,25 +156,7 @@ namespace HeliStat
         // Button "+" (Aircraft Type)
         private void btnAddNewAircraftType_Click(object sender, EventArgs e)
         {
-            using (frmHelicoptersAddNewType helicoptersAddNewType = new frmHelicoptersAddNewType())
-            {
-                while (helicoptersAddNewType.UserInput == false)
-                {
-                    if (helicoptersAddNewType.ShowDialog() == DialogResult.OK && helicoptersAddNewType.UserInput == true)
-                    {
-                        if (!checkIfAircraftTypeExists(helicoptersAddNewType))
-                        {
-                            AddNewAircraftType(helicoptersAddNewType);
-                        }
-                        else
-                        {
-                            MessageBox.Show("This aircraft type already exists.\nEnter a new aircraft type.", "Aircraft type exists",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            helicoptersAddNewType.UserInput = false;
-                        }
-                    }
-                }
-            }
+            AddNewAircraftType();
         }
 
         // Button "-" (Aircraft type)
@@ -191,25 +168,7 @@ namespace HeliStat
         // Button "+" (Operator)
         private void btnAddNewOperator_Click(object sender, EventArgs e)
         {
-            using (frmHelicoptersAddNewOperator helicoptersAddNewOperator = new frmHelicoptersAddNewOperator())
-            {
-                while (helicoptersAddNewOperator.UserInput == false)
-                {
-                    if (helicoptersAddNewOperator.ShowDialog() == DialogResult.OK && helicoptersAddNewOperator.UserInput == true)
-                    {
-                        if (!checkIfOperatorExists(helicoptersAddNewOperator))
-                        {
-                            AddNewOperator(helicoptersAddNewOperator);
-                        }
-                        else
-                        {
-                            MessageBox.Show("This operator already exists.\nEnter a new operator.", "Operator exists",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            helicoptersAddNewOperator.UserInput = false;
-                        }
-                    }
-                }
-            }
+            AddNewOperator();
         }
 
         // Button "-" (Operator)
@@ -269,29 +228,20 @@ namespace HeliStat
         /// </summary>
 
         // add aircraft type
-        private void AddNewAircraftType(frmHelicoptersAddNewType helicoptersAddNewType)
+        private void AddNewAircraftType()
         {
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (frmHelicoptersAddType helicoptersAddType = new frmHelicoptersAddType())
             {
-                try
+                while (helicoptersAddType.DialogBoxStatus == false)
                 {
-                    connection.Open();
-                    string cmdText = "INSERT INTO tblAircraftTypes (AircraftType) VALUES (@AircraftType)";
-
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    if (helicoptersAddType.ShowDialog() == DialogResult.OK && helicoptersAddType.DialogBoxStatus == true)
                     {
-                        cmd.Parameters.AddWithValue("@AircraftType", helicoptersAddNewType.NewAircraftType);
-                        cmd.ExecuteNonQuery();
+                        // TODO better way to refresh data?
+                        FillCbxAircraftType();
+                        cbxAircraftType.ResetText();
                     }
                 }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
             }
-            FillCbxAircraftType();
-            cbxAircraftType.ResetText();
         }
 
         // remove aircraft type
@@ -343,29 +293,20 @@ namespace HeliStat
         }
 
         // add operator
-        private void AddNewOperator(frmHelicoptersAddNewOperator helicoptersAddNewOperator)
+        private void AddNewOperator()
         {
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (frmHelicoptersAddOperator helicoptersAddOperator = new frmHelicoptersAddOperator())
             {
-                try
+                while (helicoptersAddOperator.DialogBoxStatus == false)
                 {
-                    connection.Open();
-                    string cmdText = "INSERT INTO tblOperators (Operator) VALUES (@Operator)";
-
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    if (helicoptersAddOperator.ShowDialog() == DialogResult.OK && helicoptersAddOperator.DialogBoxStatus == true)
                     {
-                        cmd.Parameters.AddWithValue("@Operator", helicoptersAddNewOperator.NewOperator);
-                        cmd.ExecuteNonQuery();
+                        // TODO better way to refresh data?
+                        FillCbxOperator();
+                        cbxOperator.ResetText();
                     }
                 }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
             }
-            FillCbxOperator();
-            cbxOperator.ResetText();
         }
 
         // remove operator
@@ -551,90 +492,6 @@ namespace HeliStat
             // TODO is there a better way to reload the new added data in the datagrid?
             dgvHelicopters.DataSource = FillDataGridView();
             ClearFields();
-        }
-
-        // checks if record (aircraft type) already exists in database
-        // TODO tableName cannot be parameterized (see for possible workaround https://stackoverflow.com/questions/17947736/sqlparameter-does-not-allows-table-name-other-options-without-sql-injection-at)
-        // oder https://stackoverflow.com/questions/23357481/how-can-i-pass-a-table-name-to-sqlcommand
-        // TODO make this function usable for new aircraft type AND new operator
-        // TODO parameters (tableName, helicoptersAddNewType) in function definition / title really needed?
-        // TODO fuction not yet really tested, but seems to work (use console output as a help)
-        private bool checkIfAircraftTypeExists(frmHelicoptersAddNewType helicoptersAddNewType)
-        {
-            bool doesExist = false;
-
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
-            {
-                try
-                {
-                    connection.Open();
-                    string cmdText = "SELECT COUNT(*) FROM [tblAircraftTypes] WHERE ([AircraftType] = @AircraftType)";
-
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@AircraftType", helicoptersAddNewType.NewAircraftType);
-
-                        int entryExists = (int)cmd.ExecuteScalar();
-
-                        if (entryExists > 0)
-                        {
-                            //Console.WriteLine("Entry exists.");
-                            doesExist = true;
-                        }
-                        else
-                        {
-                            //Console.WriteLine("Entry does not exist.");
-                            doesExist = false;
-                        }
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            return doesExist;
-        }
-
-        // checks if record (operator) already exists in database
-        // TODO function does exactly the same as function above for aircraft types -> combine into one function!
-        private bool checkIfOperatorExists(frmHelicoptersAddNewOperator helicoptersAddNewOperator)
-        {
-            bool doesExist = false;
-
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
-            {
-                try
-                {
-                    connection.Open();
-                    string cmdText = "SELECT COUNT(*) FROM [tblOperators] WHERE ([Operator] = @Operator)";
-
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@Operator", helicoptersAddNewOperator.NewOperator);
-
-                        int entryExists = (int)cmd.ExecuteScalar();
-
-                        if (entryExists > 0)
-                        {
-                            //Console.WriteLine("Entry exists.");
-                            doesExist = true;
-                        }
-                        else
-                        {
-                            //Console.WriteLine("Entry does not exist.");
-                            doesExist = false;
-                        }
-                    }
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            return doesExist;
         }
 
         // display selected row from dgv in textboxes & comboboxes
