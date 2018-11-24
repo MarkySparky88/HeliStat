@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMovements));
             this.tbxAircraftType = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -65,6 +66,7 @@
             this.menuStripMov = new System.Windows.Forms.MenuStrip();
             this.statusStripMov = new System.Windows.Forms.StatusStrip();
             this.ckbOvernight = new System.Windows.Forms.CheckBox();
+            this.timerMovements = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMovements)).BeginInit();
             this.toolStripMov.SuspendLayout();
             this.SuspendLayout();
@@ -415,6 +417,11 @@
             this.ckbOvernight.Text = "Overnight?";
             this.ckbOvernight.UseVisualStyleBackColor = true;
             // 
+            // timerMovements
+            // 
+            this.timerMovements.Interval = 1000;
+            this.timerMovements.Tick += new System.EventHandler(this.timerMovements_Tick);
+            // 
             // frmMovements
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -502,5 +509,6 @@
         private System.Windows.Forms.ToolStripTextBox toolStripTbxActualYear;
         private System.Windows.Forms.ToolStripButton toolStripBtnChangeYear;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.Timer timerMovements;
     }
 }

@@ -14,6 +14,7 @@ namespace HeliStat
         public frmMovements()
         {
             InitializeComponent();
+            timerMovements.Start();
             // TODO correct position for event delegate? In Video Kurs ist es so beschrieben, diesen im Constructor einzuhängen, aber warum? Könnte der nicht sonst wo sein?
             administration.ActualYearChanged += Administration_ActualYearChanged;
             // TODO combine loading of datagridview and comboboxes upon form load?
@@ -778,10 +779,17 @@ namespace HeliStat
             cbxDepTo.Text = null;
         }
 
+        // make datetimepicker display current time
+        private void timerMovements_Tick(object sender, EventArgs e)
+        {
+            dtpActualTime.Value = DateTime.Now;
+        }
+
+
         /// <summary>
         /// Actual year handling
         /// </summary>
-        
+
         // get actual year from settings
         private string GetActualYear()
         {
