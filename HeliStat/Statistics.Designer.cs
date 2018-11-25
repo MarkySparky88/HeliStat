@@ -39,9 +39,9 @@
             this.cbxYears = new System.Windows.Forms.ComboBox();
             this.ckbFilterDay = new System.Windows.Forms.CheckBox();
             this.grbFilterDay = new System.Windows.Forms.GroupBox();
-            this.grbYear = new System.Windows.Forms.GroupBox();
-            this.btnSetFilter = new System.Windows.Forms.Button();
             this.btnSetToday = new System.Windows.Forms.Button();
+            this.btnSetFilter = new System.Windows.Forms.Button();
+            this.grbYear = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStatistics)).BeginInit();
             this.grbFilterDay.SuspendLayout();
             this.grbYear.SuspendLayout();
@@ -118,6 +118,7 @@
             this.cbxYears.Name = "cbxYears";
             this.cbxYears.Size = new System.Drawing.Size(121, 21);
             this.cbxYears.TabIndex = 8;
+            this.cbxYears.SelectedIndexChanged += new System.EventHandler(this.cbxYears_SelectedIndexChanged);
             // 
             // ckbFilterDay
             // 
@@ -142,6 +143,28 @@
             this.grbFilterDay.TabStop = false;
             this.grbFilterDay.Text = "Filter day (of ARR)";
             // 
+            // btnSetToday
+            // 
+            this.btnSetToday.Enabled = false;
+            this.btnSetToday.Location = new System.Drawing.Point(185, 17);
+            this.btnSetToday.Name = "btnSetToday";
+            this.btnSetToday.Size = new System.Drawing.Size(75, 23);
+            this.btnSetToday.TabIndex = 11;
+            this.btnSetToday.Text = "Today";
+            this.btnSetToday.UseVisualStyleBackColor = true;
+            this.btnSetToday.Click += new System.EventHandler(this.btnSetToday_Click);
+            // 
+            // btnSetFilter
+            // 
+            this.btnSetFilter.Enabled = false;
+            this.btnSetFilter.Location = new System.Drawing.Point(104, 17);
+            this.btnSetFilter.Name = "btnSetFilter";
+            this.btnSetFilter.Size = new System.Drawing.Size(75, 23);
+            this.btnSetFilter.TabIndex = 10;
+            this.btnSetFilter.Text = "Set";
+            this.btnSetFilter.UseVisualStyleBackColor = true;
+            this.btnSetFilter.Click += new System.EventHandler(this.btnSetFilter_Click);
+            // 
             // grbYear
             // 
             this.grbYear.Controls.Add(this.cbxYears);
@@ -151,26 +174,6 @@
             this.grbYear.TabIndex = 11;
             this.grbYear.TabStop = false;
             this.grbYear.Text = "Set year";
-            // 
-            // btnSetFilter
-            // 
-            this.btnSetFilter.Location = new System.Drawing.Point(104, 17);
-            this.btnSetFilter.Name = "btnSetFilter";
-            this.btnSetFilter.Size = new System.Drawing.Size(75, 23);
-            this.btnSetFilter.TabIndex = 10;
-            this.btnSetFilter.Text = "Set";
-            this.btnSetFilter.UseVisualStyleBackColor = true;
-            this.btnSetFilter.Click += new System.EventHandler(this.btnSetFilter_Click);
-            // 
-            // btnSetToday
-            // 
-            this.btnSetToday.Location = new System.Drawing.Point(185, 17);
-            this.btnSetToday.Name = "btnSetToday";
-            this.btnSetToday.Size = new System.Drawing.Size(75, 23);
-            this.btnSetToday.TabIndex = 11;
-            this.btnSetToday.Text = "Today";
-            this.btnSetToday.UseVisualStyleBackColor = true;
-            this.btnSetToday.Click += new System.EventHandler(this.btnSetToday_Click);
             // 
             // frmStatistics
             // 

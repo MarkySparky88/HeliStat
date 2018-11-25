@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HeliStat
@@ -33,6 +28,7 @@ namespace HeliStat
         // Fill datagridview (year only)
         // TODO such functions used often in other classes (= make own class for that)
         // TODO DataTable really needed when working anyway all the time with data direct from the database?
+        // TODO nochmals recherchieren ob das wirklich best practice ist um datagridview zu füllen?
         private DataTable FillDataGridView(string tableName, string selectedYear)
         {
             using (DataTable dataTable = new DataTable())
@@ -121,42 +117,68 @@ namespace HeliStat
             SetDateToday();
         }
 
-        /// <summary>
-        /// Functions
-        /// </summary>
-
-        // Enable or disable day filter
+        // Checkbox filter
         private void ckbFilterDay_CheckedChanged(object sender, EventArgs e)
         {
             if (ckbFilterDay.Checked)
             {
-                dtpDay.Enabled = true;
+                EnableFilter();
             }
             else
             {
-                dtpDay.Enabled = false;
-                dgvStatistics.DataSource = FillDataGridView(TableNameMov(), GetSelectedYear());
+                DisableFilter();
             }
         }
 
-        // Filter day (of ARR)
+        /// <summary>
+        /// Functions
+        /// </summary>
+
+        // Update datagridview when year changed
+        private void cbxYears_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // TODO is ther another best practice to reload / refresh datagridview?
+            dgvStatistics.DataSource = FillDataGridView(TableNameMov(), GetSelectedYear());
+        }
+
+        // Enable filter function
+        private void EnableFilter()
+        {
+            dtpDay.Enabled = true;
+            btnSetFilter.Enabled = true;
+            btnSetToday.Enabled = true;
+        }
+
+        // Disable filter function
+        private void DisableFilter()
+        {
+            dtpDay.Enabled = false;
+            btnSetFilter.Enabled = false;
+            btnSetToday.Enabled = false;
+            dgvStatistics.DataSource = FillDataGridView(TableNameMov(), GetSelectedYear());
+        }
+
+        // Filter selected day (of ARR)
         private void FilterDay()
         {
-            ////dgvStatistics.DataSource = FillDataGridViewFilterAct(TableNameMov(), GetSelectedYear(), GetSelectedDate());
-            //DataView dataView = new DataView(FillDataGridView(TableNameMov(), GetSelectedYear()));
-            //dataView.RowFilter = "Date = #22/11/2018#";
+            const string filter = "DateOfArr = '{0}'";
+            ((DataTable)dgvStatistics.DataSource).DefaultView.RowFilter = string.Format(filter, GetSelectedDate());
         }
 
         // Reset date picker to today
         private void SetDateToday()
         {
             dtpDay.Value = DateTime.Now;
+            FilterDay();
         }
 
-        // Get selected date
-        private DateTime GetSelectedDate()
+        // Get (build) selected date
+        private string GetSelectedDate()
         {
-            return dtpDay.Value;
+            string dd = dtpDay.Value.Day.ToString();
+            string mm = dtpDay.Value.Month.ToString();
+            string selectedDate = string.Format("{0}.{1}.{2}", dd, mm, GetSelectedYear());
+            return selectedDate;
         }
 
         // Get selected year
@@ -169,20 +191,20 @@ namespace HeliStat
         /// Actual year handling
         /// </summary>
 
-        // get actual year from settings
+        // Get actual year from settings
         // TODO following functions (GetActualYear, DisplayActualYear) used as well in Movements (own class?)
         private string GetActualYear()
         {
             return Properties.Settings.Default.ActualYear;
         }
 
-        // display actual year in toolstrip textbox
+        // Display actual year in toolstrip textbox
         private string DisplayActualYear()
         {
             return cbxYears.Text = GetActualYear();
         }
 
-        // creates table name to display only movements of selected year
+        // Creates table name to display only movements of selected year
         private string TableNameMov()
         {
             StringBuilder sb = new StringBuilder("tblMov");
