@@ -40,7 +40,6 @@ namespace HeliStat
         {
             using (DataTable dataTable = new DataTable())
             {
-
                 using (SqlConnection connection = new SqlConnection(Program.ConnString))
                 {
                     try

@@ -32,11 +32,19 @@
             this.toolStripStatistics = new System.Windows.Forms.ToolStrip();
             this.menuStripStatistics = new System.Windows.Forms.MenuStrip();
             this.statusStripStatistics = new System.Windows.Forms.StatusStrip();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dgvStatistics = new System.Windows.Forms.DataGridView();
+            this.btnExcelExport = new System.Windows.Forms.Button();
+            this.dtpDay = new System.Windows.Forms.DateTimePicker();
+            this.btnSend = new System.Windows.Forms.Button();
+            this.cbxYears = new System.Windows.Forms.ComboBox();
+            this.ckbFilterDay = new System.Windows.Forms.CheckBox();
+            this.grbFilterDay = new System.Windows.Forms.GroupBox();
+            this.grbYear = new System.Windows.Forms.GroupBox();
+            this.btnSetFilter = new System.Windows.Forms.Button();
+            this.btnSetToday = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStatistics)).BeginInit();
+            this.grbFilterDay.SuspendLayout();
+            this.grbYear.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripStatistics
@@ -63,52 +71,117 @@
             this.statusStripStatistics.TabIndex = 2;
             this.statusStripStatistics.Text = "statusStrip1";
             // 
-            // dataGridView1
+            // dgvStatistics
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 95);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(890, 431);
-            this.dataGridView1.TabIndex = 3;
+            this.dgvStatistics.AllowUserToAddRows = false;
+            this.dgvStatistics.AllowUserToDeleteRows = false;
+            this.dgvStatistics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStatistics.Location = new System.Drawing.Point(12, 107);
+            this.dgvStatistics.Name = "dgvStatistics";
+            this.dgvStatistics.ReadOnly = true;
+            this.dgvStatistics.Size = new System.Drawing.Size(890, 404);
+            this.dgvStatistics.TabIndex = 3;
             // 
-            // button1
+            // btnExcelExport
             // 
-            this.button1.Location = new System.Drawing.Point(13, 533);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnExcelExport.Location = new System.Drawing.Point(12, 532);
+            this.btnExcelExport.Name = "btnExcelExport";
+            this.btnExcelExport.Size = new System.Drawing.Size(75, 23);
+            this.btnExcelExport.TabIndex = 4;
+            this.btnExcelExport.Text = "Export";
+            this.btnExcelExport.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // dtpDay
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 53);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 5;
+            this.dtpDay.CustomFormat = "dd.MM";
+            this.dtpDay.Enabled = false;
+            this.dtpDay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDay.Location = new System.Drawing.Point(27, 19);
+            this.dtpDay.Name = "dtpDay";
+            this.dtpDay.ShowUpDown = true;
+            this.dtpDay.Size = new System.Drawing.Size(71, 20);
+            this.dtpDay.TabIndex = 6;
             // 
-            // dateTimePicker1
+            // btnSend
             // 
-            this.dateTimePicker1.CustomFormat = "dd.MM";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(140, 53);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 6;
+            this.btnSend.Location = new System.Drawing.Point(94, 532);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(75, 23);
+            this.btnSend.TabIndex = 7;
+            this.btnSend.Text = "Send";
+            this.btnSend.UseVisualStyleBackColor = true;
+            // 
+            // cbxYears
+            // 
+            this.cbxYears.FormattingEnabled = true;
+            this.cbxYears.Location = new System.Drawing.Point(6, 19);
+            this.cbxYears.Name = "cbxYears";
+            this.cbxYears.Size = new System.Drawing.Size(121, 21);
+            this.cbxYears.TabIndex = 8;
+            // 
+            // ckbFilterDay
+            // 
+            this.ckbFilterDay.AutoSize = true;
+            this.ckbFilterDay.Location = new System.Drawing.Point(6, 22);
+            this.ckbFilterDay.Name = "ckbFilterDay";
+            this.ckbFilterDay.Size = new System.Drawing.Size(15, 14);
+            this.ckbFilterDay.TabIndex = 9;
+            this.ckbFilterDay.UseVisualStyleBackColor = true;
+            this.ckbFilterDay.CheckedChanged += new System.EventHandler(this.ckbFilterDay_CheckedChanged);
+            // 
+            // grbFilterDay
+            // 
+            this.grbFilterDay.Controls.Add(this.btnSetToday);
+            this.grbFilterDay.Controls.Add(this.btnSetFilter);
+            this.grbFilterDay.Controls.Add(this.dtpDay);
+            this.grbFilterDay.Controls.Add(this.ckbFilterDay);
+            this.grbFilterDay.Location = new System.Drawing.Point(153, 53);
+            this.grbFilterDay.Name = "grbFilterDay";
+            this.grbFilterDay.Size = new System.Drawing.Size(269, 48);
+            this.grbFilterDay.TabIndex = 10;
+            this.grbFilterDay.TabStop = false;
+            this.grbFilterDay.Text = "Filter day (of ARR)";
+            // 
+            // grbYear
+            // 
+            this.grbYear.Controls.Add(this.cbxYears);
+            this.grbYear.Location = new System.Drawing.Point(12, 53);
+            this.grbYear.Name = "grbYear";
+            this.grbYear.Size = new System.Drawing.Size(135, 48);
+            this.grbYear.TabIndex = 11;
+            this.grbYear.TabStop = false;
+            this.grbYear.Text = "Set year";
+            // 
+            // btnSetFilter
+            // 
+            this.btnSetFilter.Location = new System.Drawing.Point(104, 17);
+            this.btnSetFilter.Name = "btnSetFilter";
+            this.btnSetFilter.Size = new System.Drawing.Size(75, 23);
+            this.btnSetFilter.TabIndex = 10;
+            this.btnSetFilter.Text = "Set";
+            this.btnSetFilter.UseVisualStyleBackColor = true;
+            this.btnSetFilter.Click += new System.EventHandler(this.btnSetFilter_Click);
+            // 
+            // btnSetToday
+            // 
+            this.btnSetToday.Location = new System.Drawing.Point(185, 17);
+            this.btnSetToday.Name = "btnSetToday";
+            this.btnSetToday.Size = new System.Drawing.Size(75, 23);
+            this.btnSetToday.TabIndex = 11;
+            this.btnSetToday.Text = "Today";
+            this.btnSetToday.UseVisualStyleBackColor = true;
+            this.btnSetToday.Click += new System.EventHandler(this.btnSetToday_Click);
             // 
             // frmStatistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 600);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.grbYear);
+            this.Controls.Add(this.grbFilterDay);
+            this.Controls.Add(this.btnSend);
+            this.Controls.Add(this.btnExcelExport);
+            this.Controls.Add(this.dgvStatistics);
             this.Controls.Add(this.statusStripStatistics);
             this.Controls.Add(this.toolStripStatistics);
             this.Controls.Add(this.menuStripStatistics);
@@ -121,7 +194,10 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HeliStat - Statistics";
             this.Load += new System.EventHandler(this.frmStatistics_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStatistics)).EndInit();
+            this.grbFilterDay.ResumeLayout(false);
+            this.grbFilterDay.PerformLayout();
+            this.grbYear.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,9 +208,15 @@
         private System.Windows.Forms.ToolStrip toolStripStatistics;
         private System.Windows.Forms.MenuStrip menuStripStatistics;
         private System.Windows.Forms.StatusStrip statusStripStatistics;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DataGridView dgvStatistics;
+        private System.Windows.Forms.Button btnExcelExport;
+        private System.Windows.Forms.DateTimePicker dtpDay;
+        private System.Windows.Forms.Button btnSend;
+        private System.Windows.Forms.ComboBox cbxYears;
+        private System.Windows.Forms.CheckBox ckbFilterDay;
+        private System.Windows.Forms.GroupBox grbFilterDay;
+        private System.Windows.Forms.GroupBox grbYear;
+        private System.Windows.Forms.Button btnSetToday;
+        private System.Windows.Forms.Button btnSetFilter;
     }
 }

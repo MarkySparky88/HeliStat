@@ -179,7 +179,7 @@ namespace HeliStat
         }
 
         // Create table name for movements table (year)
-        private static string TableNameMov(string newYear)
+        private string TableNameMov(string newYear)
         {
             StringBuilder sb = new StringBuilder("tblMov");
             string tableName = sb.Append(newYear).ToString();
