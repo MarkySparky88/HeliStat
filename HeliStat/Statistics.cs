@@ -1,13 +1,17 @@
-﻿using System;
+﻿using Excel = Microsoft.Office.Interop.Excel;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using System.Windows.Forms;
+using ClosedXML.Excel;
 
 namespace HeliStat
 {
     public partial class frmStatistics : Form
     {
+        // TODO je nachdem, welche Art von Excel export verwendet wurde entweder Microsoft Referenzen oder closedXML deinstallieren
+        
         // Constructor
         public frmStatistics()
         {
@@ -130,6 +134,14 @@ namespace HeliStat
             }
         }
 
+        // Button "Export"
+        private void btnExcelExport_Click(object sender, EventArgs e)
+        {
+            //ExcelExport1();
+            //ExcelExport2();
+            ExcelExport3();
+        }
+
         /// <summary>
         /// Functions
         /// </summary>
@@ -211,6 +223,62 @@ namespace HeliStat
             string selectedYear = cbxYears.SelectedItem.ToString();
             string tableName = sb.Append(selectedYear).ToString();
             return tableName;
+        }
+
+        // Excel export (Microsoft Office reference)
+        // acc. to https://www.youtube.com/watch?v=YfcasWYaIzo&list=PL3WjWQ4vgGF-N4gf0wK8SR_J6upbM_TJI&index=29&t=201s
+        private void ExcelExport1()
+        {
+            // TODO need "using"?
+            Excel.Application application = new Excel.Application();
+            Excel.Workbook workbook = application.Workbooks.Add(Type.Missing);
+            Excel.Worksheet worksheet = null;
+
+            // opens excel
+            //application.Visible = true;
+
+            worksheet = workbook.Sheets["Tabelle1"];
+            worksheet = workbook.ActiveSheet;
+            worksheet.Name = "CustomerDetail";
+
+            for (int i = 1; i < dgvStatistics.Columns.Count + 1; i++)
+            {
+                worksheet.Cells[i, 1] = dgvStatistics.Columns[i - 1].HeaderText;
+            }
+
+            for (int i = 0; i < dgvStatistics.Rows.Count; i++)
+            {
+                for (int j = 0; j < dgvStatistics.Columns.Count; j++)
+                {
+                    worksheet.Cells[i + 2, j + 1] = dgvStatistics.Rows[i].Cells[j].Value.ToString();
+                }
+            }
+
+            // TODO need "using"?
+            var saveFileDialog = new SaveFileDialog();
+            saveFileDialog.FileName = "output";
+            saveFileDialog.DefaultExt = ".xlsx";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                workbook.SaveAs(saveFileDialog.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+            }
+            application.Quit();
+        }
+
+        // Excel export (closedXML)
+        private void ExcelExport2()
+        {
+            XLWorkbook workbook = new XLWorkbook();
+            DataTable dataTable = FillDataGridView(TableNameMov(), GetSelectedYear());
+            workbook.Worksheets.Add(dataTable, "Statistics");
+        }
+
+        private void ExcelExport3()
+        {
+            DataTable dataTable;
+            dataTable = FillDataGridView(TableNameMov(), GetSelectedYear());
+            dataTable.ExportToExcel();
+            dataTable.Dispose();
         }
     }
 }

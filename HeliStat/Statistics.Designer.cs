@@ -90,6 +90,7 @@
             this.btnExcelExport.TabIndex = 4;
             this.btnExcelExport.Text = "Export";
             this.btnExcelExport.UseVisualStyleBackColor = true;
+            this.btnExcelExport.Click += new System.EventHandler(this.btnExcelExport_Click);
             // 
             // dtpDay
             // 
