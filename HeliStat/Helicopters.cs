@@ -20,7 +20,6 @@ namespace HeliStat
         // load form
         private void frmHelicopters_Load(object sender, EventArgs e)
         {
-            //dgvHelicopters.Sort(dgvHelicopters.Columns["DateOfArr"], ListSortDirection.Ascending);
             dgvHelicopters.DataSource = FillDataGridView();
         }
 
@@ -388,10 +387,10 @@ namespace HeliStat
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
+                // TODO is there a better / other way to reload / refresh the new added data in the datagrid?
+                dgvHelicopters.DataSource = FillDataGridView();
+                ClearFields();
             }
-            // TODO is there a better / other way to reload / refresh the new added data in the datagrid?
-            dgvHelicopters.DataSource = FillDataGridView();
-            ClearFields();
         }
 
         // update selected heli
@@ -443,10 +442,10 @@ namespace HeliStat
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
+                // TODO is there a better way to reload the new added data in the datagrid?
+                dgvHelicopters.DataSource = FillDataGridView();
+                ClearFields();
             }
-            // TODO is there a better way to reload the new added data in the datagrid?
-            dgvHelicopters.DataSource = FillDataGridView();
-            ClearFields();
         }
 
         // remove selected heli

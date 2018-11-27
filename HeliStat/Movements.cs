@@ -397,9 +397,9 @@ namespace HeliStat
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
+                // TODO is there a better / other way to reload / refresh the new added data in the datagrid?
+                dgvMovements.DataSource = FillDataGridView(TableNameMov());
             }
-            // TODO is there a better / other way to reload / refresh the new added data in the datagrid?
-            dgvMovements.DataSource = FillDataGridView(TableNameMov());
         }
 
         // Update movement in database
@@ -455,9 +455,9 @@ namespace HeliStat
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
+                // TODO is there a better way to reload the new added data in the datagrid?
+                dgvMovements.DataSource = FillDataGridView(TableNameMov());
             }
-            // TODO is there a better way to reload the new added data in the datagrid?
-            dgvMovements.DataSource = FillDataGridView(TableNameMov());
         }
 
         // Delete movement in database
