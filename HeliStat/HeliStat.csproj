@@ -142,11 +142,6 @@
     <Compile Include="HelicoptersAddType.Designer.cs">
       <DependentUpon>HelicoptersAddType.cs</DependentUpon>
     </Compile>
-    <Compile Include="HeliStatDBDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HeliStatDBDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="MovementsAddIcaoDes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -219,17 +214,6 @@
     <EmbeddedResource Include="Statistics.resx">
       <DependentUpon>Statistics.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="HeliStatDBDataSet.xsc">
-      <DependentUpon>HeliStatDBDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="HeliStatDBDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>HeliStatDBDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="HeliStatDBDataSet.xss">
-      <DependentUpon>HeliStatDBDataSet.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

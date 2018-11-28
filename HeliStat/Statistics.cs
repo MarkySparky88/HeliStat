@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using System.Windows.Forms;
-using ClosedXML.Excel;
+//using ClosedXML.Excel;
 
 namespace HeliStat
 {
@@ -137,9 +137,10 @@ namespace HeliStat
         // Button "Export"
         private void btnExcelExport_Click(object sender, EventArgs e)
         {
-            //ExcelExport1();
+            // TODO delete unused functions
+            ExcelExport1();
             //ExcelExport2();
-            ExcelExport3();
+            //ExcelExport3();
         }
 
         /// <summary>
@@ -229,23 +230,24 @@ namespace HeliStat
         // acc. to https://www.youtube.com/watch?v=YfcasWYaIzo&list=PL3WjWQ4vgGF-N4gf0wK8SR_J6upbM_TJI&index=29&t=201s
         private void ExcelExport1()
         {
+            // create application, workbook and worksheet
             // TODO need "using"?
             Excel.Application application = new Excel.Application();
             Excel.Workbook workbook = application.Workbooks.Add(Type.Missing);
             Excel.Worksheet worksheet = null;
-
-            // opens excel
-            //application.Visible = true;
-
             worksheet = workbook.Sheets["Tabelle1"];
             worksheet = workbook.ActiveSheet;
-            worksheet.Name = "CustomerDetail";
+            // TODO change worksheet name..
+            worksheet.Name = "Statistics";
 
+            // fill with data from dgv
+            // columns
             for (int i = 1; i < dgvStatistics.Columns.Count + 1; i++)
             {
-                worksheet.Cells[i, 1] = dgvStatistics.Columns[i - 1].HeaderText;
+                worksheet.Cells[1, i] = dgvStatistics.Columns[i - 1].HeaderText;
             }
 
+            // rows
             for (int i = 0; i < dgvStatistics.Rows.Count; i++)
             {
                 for (int j = 0; j < dgvStatistics.Columns.Count; j++)
@@ -254,31 +256,47 @@ namespace HeliStat
                 }
             }
 
-            // TODO need "using"?
-            var saveFileDialog = new SaveFileDialog();
-            saveFileDialog.FileName = "output";
-            saveFileDialog.DefaultExt = ".xlsx";
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            // save file
+            // TODO double warning when overwritting file
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
-                workbook.SaveAs(saveFileDialog.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                try
+                {
+                    // TODO create filename according year of exported data
+                    saveFileDialog.Title = "HeliStat - Export statistics";
+                    saveFileDialog.FileName = "Statistics_DavosTWR_Movements201x";
+                    saveFileDialog.DefaultExt = ".xlsx";
+                    saveFileDialog.Filter = "Excel-Arbeitsmappe|*.xlsx";
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        workbook.SaveAs(saveFileDialog.FileName);
+                    }
+                    application.Quit();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
-            application.Quit();
         }
 
-        // Excel export (closedXML)
-        private void ExcelExport2()
-        {
-            XLWorkbook workbook = new XLWorkbook();
-            DataTable dataTable = FillDataGridView(TableNameMov(), GetSelectedYear());
-            workbook.Worksheets.Add(dataTable, "Statistics");
-        }
+        //// Excel export (closedXML)
+        //private void ExcelExport2()
+        //{
+        //    XLWorkbook workbook = new XLWorkbook();
+        //    DataTable dataTable = FillDataGridView(TableNameMov(), GetSelectedYear());
+        //    workbook.Worksheets.Add(dataTable, "Statistics");
+        //}
 
-        private void ExcelExport3()
-        {
-            DataTable dataTable;
-            dataTable = FillDataGridView(TableNameMov(), GetSelectedYear());
-            dataTable.ExportToExcel();
-            dataTable.Dispose();
-        }
+        //// Excel export (extension method dataTable class)
+        //private void ExcelExport3()
+        //{
+        //    DataTable dataTable;
+        //    dataTable = FillDataGridView(TableNameMov(), GetSelectedYear());
+        //    dataTable.ExportToExcel();
+        //    dataTable.Dispose();
+        //}
     }
 }
