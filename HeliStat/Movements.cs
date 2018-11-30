@@ -14,8 +14,14 @@ namespace HeliStat
         public frmMovements()
         {
             InitializeComponent();
+
             // TODO correct position for event delegate? In Video Kurs ist es so beschrieben, diesen im Constructor einzuhängen, aber warum? Könnte der nicht sonst wo sein?
             administration.ActualYearChanged += Administration_ActualYearChanged;
+
+            dtpDayFilter.Value = DateTime.Now;
+            GetActualYear();
+            DisplayActualYear();
+
             // TODO combine loading of datagridview and comboboxes upon form load?
             // TODO bind comboboxes as well to datasource (dataset / datatable)??
             // TODO gehört das nicht auch in die Load form function? Wie das Laden des Datagridview? (ganzes Projekt!)
@@ -26,8 +32,6 @@ namespace HeliStat
         // Load form
         private void frmMovements_Load(object sender, EventArgs e)
         {
-            GetActualYear();
-            DisplayActualYear();
             dgvMovements.DataSource = FillDataGridView(TableNameMov());
         }
 
@@ -761,10 +765,48 @@ namespace HeliStat
         // event when actual year has changed
         private void Administration_ActualYearChanged(object sender, EventArgs e)
         {
-            // reload datagridview
             // TODO is there a better way to refresh data in dgv?
             dgvMovements.DataSource = FillDataGridView(TableNameMov());
             DisplayActualYear();
+        }
+
+        /// <summary>
+        /// Filter date
+        /// </summary>
+
+        // Date or checkbox of filter changed (event)
+        private void dtpDay_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpDayFilter.Checked)
+            {
+                FilterDay(GetSelectedDate());
+            }
+            else
+            {
+                DisableFilter();
+            }
+        }
+
+        // Disable filter function
+        private void DisableFilter()
+        {
+            ((DataTable)dgvMovements.DataSource).DefaultView.RowFilter = string.Empty;
+        }
+
+        // Filter selected day (of ARR)
+        private void FilterDay(string selectedDate)
+        {
+            const string filter = "DateOfArr = '{0}'";
+            ((DataTable)dgvMovements.DataSource).DefaultView.RowFilter = string.Format(filter, selectedDate);
+        }
+
+        // Get (build) selected date
+        private string GetSelectedDate()
+        {
+            string dd = dtpDayFilter.Value.Day.ToString();
+            string mm = dtpDayFilter.Value.Month.ToString();
+            string selectedDate = string.Format("{0}.{1}.{2}", dd, mm, GetActualYear());
+            return selectedDate;
         }
     }
 }

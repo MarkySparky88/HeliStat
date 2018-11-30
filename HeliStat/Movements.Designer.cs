@@ -66,8 +66,11 @@
             this.statusStripMov = new System.Windows.Forms.StatusStrip();
             this.ckbOvernight = new System.Windows.Forms.CheckBox();
             this.btnSetDateTimeNow = new System.Windows.Forms.Button();
+            this.grbFilterDay = new System.Windows.Forms.GroupBox();
+            this.dtpDayFilter = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMovements)).BeginInit();
             this.toolStripMov.SuspendLayout();
+            this.grbFilterDay.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbxAircraftType
@@ -180,7 +183,7 @@
             // 
             this.dtpDateOfFlight.CustomFormat = "dd.MM.yyyy";
             this.dtpDateOfFlight.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDateOfFlight.Location = new System.Drawing.Point(392, 500);
+            this.dtpDateOfFlight.Location = new System.Drawing.Point(392, 526);
             this.dtpDateOfFlight.Name = "dtpDateOfFlight";
             this.dtpDateOfFlight.Size = new System.Drawing.Size(160, 20);
             this.dtpDateOfFlight.TabIndex = 6;
@@ -188,7 +191,7 @@
             // btnSetLand
             // 
             this.btnSetLand.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnSetLand.Location = new System.Drawing.Point(392, 527);
+            this.btnSetLand.Location = new System.Drawing.Point(392, 553);
             this.btnSetLand.Name = "btnSetLand";
             this.btnSetLand.Size = new System.Drawing.Size(75, 23);
             this.btnSetLand.TabIndex = 9;
@@ -199,7 +202,7 @@
             // btnSetTakeOff
             // 
             this.btnSetTakeOff.BackColor = System.Drawing.Color.IndianRed;
-            this.btnSetTakeOff.Location = new System.Drawing.Point(473, 527);
+            this.btnSetTakeOff.Location = new System.Drawing.Point(473, 553);
             this.btnSetTakeOff.Name = "btnSetTakeOff";
             this.btnSetTakeOff.Size = new System.Drawing.Size(75, 23);
             this.btnSetTakeOff.TabIndex = 11;
@@ -222,12 +225,12 @@
             // 
             this.dgvMovements.AllowUserToAddRows = false;
             this.dgvMovements.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMovements.Location = new System.Drawing.Point(392, 73);
+            this.dgvMovements.Location = new System.Drawing.Point(392, 93);
             this.dgvMovements.MultiSelect = false;
             this.dgvMovements.Name = "dgvMovements";
             this.dgvMovements.ReadOnly = true;
             this.dgvMovements.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMovements.Size = new System.Drawing.Size(1000, 421);
+            this.dgvMovements.Size = new System.Drawing.Size(1000, 427);
             this.dgvMovements.TabIndex = 21;
             this.dgvMovements.SelectionChanged += new System.EventHandler(this.ShowValues);
             // 
@@ -255,7 +258,7 @@
             // 
             this.dtpActualTime.CustomFormat = "HH:mm LT";
             this.dtpActualTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpActualTime.Location = new System.Drawing.Point(558, 500);
+            this.dtpActualTime.Location = new System.Drawing.Point(558, 526);
             this.dtpActualTime.Name = "dtpActualTime";
             this.dtpActualTime.ShowUpDown = true;
             this.dtpActualTime.Size = new System.Drawing.Size(160, 20);
@@ -400,7 +403,7 @@
             // 
             // statusStripMov
             // 
-            this.statusStripMov.Location = new System.Drawing.Point(0, 578);
+            this.statusStripMov.Location = new System.Drawing.Point(0, 594);
             this.statusStripMov.Name = "statusStripMov";
             this.statusStripMov.Size = new System.Drawing.Size(1404, 22);
             this.statusStripMov.TabIndex = 41;
@@ -418,7 +421,7 @@
             // 
             // btnSetDateTimeNow
             // 
-            this.btnSetDateTimeNow.Location = new System.Drawing.Point(724, 499);
+            this.btnSetDateTimeNow.Location = new System.Drawing.Point(724, 525);
             this.btnSetDateTimeNow.Name = "btnSetDateTimeNow";
             this.btnSetDateTimeNow.Size = new System.Drawing.Size(75, 23);
             this.btnSetDateTimeNow.TabIndex = 43;
@@ -426,11 +429,34 @@
             this.btnSetDateTimeNow.UseVisualStyleBackColor = true;
             this.btnSetDateTimeNow.Click += new System.EventHandler(this.btnSetDateTimeNow_Click);
             // 
+            // grbFilterDay
+            // 
+            this.grbFilterDay.Controls.Add(this.dtpDayFilter);
+            this.grbFilterDay.Location = new System.Drawing.Point(392, 38);
+            this.grbFilterDay.Name = "grbFilterDay";
+            this.grbFilterDay.Size = new System.Drawing.Size(108, 48);
+            this.grbFilterDay.TabIndex = 44;
+            this.grbFilterDay.TabStop = false;
+            this.grbFilterDay.Text = "Filter day (of ARR)";
+            // 
+            // dtpDayFilter
+            // 
+            this.dtpDayFilter.CustomFormat = "dd.MM";
+            this.dtpDayFilter.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDayFilter.Location = new System.Drawing.Point(6, 19);
+            this.dtpDayFilter.Name = "dtpDayFilter";
+            this.dtpDayFilter.ShowCheckBox = true;
+            this.dtpDayFilter.ShowUpDown = true;
+            this.dtpDayFilter.Size = new System.Drawing.Size(90, 20);
+            this.dtpDayFilter.TabIndex = 6;
+            this.dtpDayFilter.ValueChanged += new System.EventHandler(this.dtpDay_ValueChanged);
+            // 
             // frmMovements
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1404, 600);
+            this.ClientSize = new System.Drawing.Size(1404, 616);
+            this.Controls.Add(this.grbFilterDay);
             this.Controls.Add(this.btnSetDateTimeNow);
             this.Controls.Add(this.ckbOvernight);
             this.Controls.Add(this.statusStripMov);
@@ -473,6 +499,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvMovements)).EndInit();
             this.toolStripMov.ResumeLayout(false);
             this.toolStripMov.PerformLayout();
+            this.grbFilterDay.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -516,5 +543,7 @@
         private System.Windows.Forms.ToolStripButton toolStripBtnChangeYear;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.Button btnSetDateTimeNow;
+        private System.Windows.Forms.GroupBox grbFilterDay;
+        private System.Windows.Forms.DateTimePicker dtpDayFilter;
     }
 }
