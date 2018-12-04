@@ -37,14 +37,12 @@
             this.dtpDay = new System.Windows.Forms.DateTimePicker();
             this.btnSend = new System.Windows.Forms.Button();
             this.cbxYears = new System.Windows.Forms.ComboBox();
-            this.ckbFilterDay = new System.Windows.Forms.CheckBox();
             this.grbFilterDay = new System.Windows.Forms.GroupBox();
             this.btnSetToday = new System.Windows.Forms.Button();
-            this.btnSetFilter = new System.Windows.Forms.Button();
-            this.grbYear = new System.Windows.Forms.GroupBox();
+            this.grbSelectYear = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStatistics)).BeginInit();
             this.grbFilterDay.SuspendLayout();
-            this.grbYear.SuspendLayout();
+            this.grbSelectYear.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripStatistics
@@ -97,8 +95,9 @@
             this.dtpDay.CustomFormat = "dd.MM";
             this.dtpDay.Enabled = false;
             this.dtpDay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDay.Location = new System.Drawing.Point(27, 19);
+            this.dtpDay.Location = new System.Drawing.Point(6, 20);
             this.dtpDay.Name = "dtpDay";
+            this.dtpDay.ShowCheckBox = true;
             this.dtpDay.ShowUpDown = true;
             this.dtpDay.Size = new System.Drawing.Size(71, 20);
             this.dtpDay.TabIndex = 6;
@@ -121,25 +120,13 @@
             this.cbxYears.TabIndex = 8;
             this.cbxYears.SelectedIndexChanged += new System.EventHandler(this.cbxYears_SelectedIndexChanged);
             // 
-            // ckbFilterDay
-            // 
-            this.ckbFilterDay.AutoSize = true;
-            this.ckbFilterDay.Location = new System.Drawing.Point(6, 22);
-            this.ckbFilterDay.Name = "ckbFilterDay";
-            this.ckbFilterDay.Size = new System.Drawing.Size(15, 14);
-            this.ckbFilterDay.TabIndex = 9;
-            this.ckbFilterDay.UseVisualStyleBackColor = true;
-            this.ckbFilterDay.CheckedChanged += new System.EventHandler(this.ckbFilterDay_CheckedChanged);
-            // 
             // grbFilterDay
             // 
             this.grbFilterDay.Controls.Add(this.btnSetToday);
-            this.grbFilterDay.Controls.Add(this.btnSetFilter);
             this.grbFilterDay.Controls.Add(this.dtpDay);
-            this.grbFilterDay.Controls.Add(this.ckbFilterDay);
             this.grbFilterDay.Location = new System.Drawing.Point(153, 53);
             this.grbFilterDay.Name = "grbFilterDay";
-            this.grbFilterDay.Size = new System.Drawing.Size(269, 48);
+            this.grbFilterDay.Size = new System.Drawing.Size(166, 48);
             this.grbFilterDay.TabIndex = 10;
             this.grbFilterDay.TabStop = false;
             this.grbFilterDay.Text = "Filter day (of ARR)";
@@ -147,7 +134,7 @@
             // btnSetToday
             // 
             this.btnSetToday.Enabled = false;
-            this.btnSetToday.Location = new System.Drawing.Point(185, 17);
+            this.btnSetToday.Location = new System.Drawing.Point(83, 19);
             this.btnSetToday.Name = "btnSetToday";
             this.btnSetToday.Size = new System.Drawing.Size(75, 23);
             this.btnSetToday.TabIndex = 11;
@@ -155,33 +142,22 @@
             this.btnSetToday.UseVisualStyleBackColor = true;
             this.btnSetToday.Click += new System.EventHandler(this.btnSetToday_Click);
             // 
-            // btnSetFilter
+            // grbSelectYear
             // 
-            this.btnSetFilter.Enabled = false;
-            this.btnSetFilter.Location = new System.Drawing.Point(104, 17);
-            this.btnSetFilter.Name = "btnSetFilter";
-            this.btnSetFilter.Size = new System.Drawing.Size(75, 23);
-            this.btnSetFilter.TabIndex = 10;
-            this.btnSetFilter.Text = "Set";
-            this.btnSetFilter.UseVisualStyleBackColor = true;
-            this.btnSetFilter.Click += new System.EventHandler(this.btnSetFilter_Click);
-            // 
-            // grbYear
-            // 
-            this.grbYear.Controls.Add(this.cbxYears);
-            this.grbYear.Location = new System.Drawing.Point(12, 53);
-            this.grbYear.Name = "grbYear";
-            this.grbYear.Size = new System.Drawing.Size(135, 48);
-            this.grbYear.TabIndex = 11;
-            this.grbYear.TabStop = false;
-            this.grbYear.Text = "Set year";
+            this.grbSelectYear.Controls.Add(this.cbxYears);
+            this.grbSelectYear.Location = new System.Drawing.Point(12, 53);
+            this.grbSelectYear.Name = "grbSelectYear";
+            this.grbSelectYear.Size = new System.Drawing.Size(135, 48);
+            this.grbSelectYear.TabIndex = 11;
+            this.grbSelectYear.TabStop = false;
+            this.grbSelectYear.Text = "Select year";
             // 
             // frmStatistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 600);
-            this.Controls.Add(this.grbYear);
+            this.Controls.Add(this.grbSelectYear);
             this.Controls.Add(this.grbFilterDay);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.btnExcelExport);
@@ -197,11 +173,9 @@
             this.Name = "frmStatistics";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HeliStat - Statistics";
-            this.Load += new System.EventHandler(this.frmStatistics_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvStatistics)).EndInit();
             this.grbFilterDay.ResumeLayout(false);
-            this.grbFilterDay.PerformLayout();
-            this.grbYear.ResumeLayout(false);
+            this.grbSelectYear.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,10 +191,8 @@
         private System.Windows.Forms.DateTimePicker dtpDay;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.ComboBox cbxYears;
-        private System.Windows.Forms.CheckBox ckbFilterDay;
         private System.Windows.Forms.GroupBox grbFilterDay;
-        private System.Windows.Forms.GroupBox grbYear;
+        private System.Windows.Forms.GroupBox grbSelectYear;
         private System.Windows.Forms.Button btnSetToday;
-        private System.Windows.Forms.Button btnSetFilter;
     }
 }

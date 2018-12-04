@@ -1,4 +1,5 @@
-﻿//using Excel = Microsoft.Office.Interop.Excel;
+﻿// TODO je nachdem, welche Art von Excel export verwendet wurde entweder Microsoft Referenzen oder closedXML deinstallieren und usings löschen
+//using Excel = Microsoft.Office.Interop.Excel;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -10,25 +11,19 @@ namespace HeliStat
 {
     public partial class frmStatistics : Form
     {
-        // TODO je nachdem, welche Art von Excel export verwendet wurde entweder Microsoft Referenzen oder closedXML deinstallieren
-        
         // Constructor
         public frmStatistics()
         {
             InitializeComponent();
-        }
-
-        // Load form
-        private void frmStatistics_Load(object sender, EventArgs e)
-        {
-            // Fill datagridview
-            // TODO need bindingsource?
-            dgvStatistics.DataSource = FillDataGridView(TableNameMov(), GetSelectedYear());
 
             // Fill comboboxes
             // TODO combine loading of datagridview and comboboxes upon form load?
             // TODO bind comboboxes as well to datasource (dataset / datatable)??
             FillCbxYears();
+
+            // Fill datagridview
+            // TODO need bindingsource?
+            dgvStatistics.DataSource = FillDataGridView(TableNameMov(), GetSelectedYear());
         }
 
         /// <summary>
@@ -130,7 +125,7 @@ namespace HeliStat
         // Checkbox filter
         private void ckbFilterDay_CheckedChanged(object sender, EventArgs e)
         {
-            if (ckbFilterDay.Checked)
+            if (dtpDay.Checked)
             {
                 EnableFilter();
             }
@@ -164,7 +159,6 @@ namespace HeliStat
         private void EnableFilter()
         {
             dtpDay.Enabled = true;
-            btnSetFilter.Enabled = true;
             btnSetToday.Enabled = true;
         }
 
@@ -172,7 +166,6 @@ namespace HeliStat
         private void DisableFilter()
         {
             dtpDay.Enabled = false;
-            btnSetFilter.Enabled = false;
             btnSetToday.Enabled = false;
             dgvStatistics.DataSource = FillDataGridView(TableNameMov(), GetSelectedYear());
         }

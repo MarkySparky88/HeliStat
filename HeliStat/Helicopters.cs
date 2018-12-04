@@ -11,20 +11,16 @@ namespace HeliStat
         public frmHelicopters()
         {
             InitializeComponent();
-        }
-
-        // load form
-        private void frmHelicopters_Load(object sender, EventArgs e)
-        {
-            // Fill datagridview
-            // TODO need bindingsource?
-            dgvHelicopters.DataSource = FillDataGridView();
 
             // Fill comboboxes
             // TODO combine loading of datagridview and comboboxes upon form load?
             // TODO bind comboboxes as well to datasource (dataset / datatable)??
             FillCbxAircraftType();
             FillCbxOperator();
+
+            // Fill datagridview
+            // TODO need bindingsource?
+            dgvHelicopters.DataSource = FillDataGridView();
         }
 
         /// <summary>

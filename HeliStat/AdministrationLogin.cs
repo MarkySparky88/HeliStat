@@ -19,11 +19,8 @@ namespace HeliStat
         public frmAdminLogin()
         {
             InitializeComponent();
-        }
 
-        // Form load
-        private void frmAdminLogin_Load(object sender, EventArgs e)
-        {
+            // Preset text for username
             PresetTbxUsername("admin");
         }
 

@@ -495,7 +495,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HeliStat - Movements";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMovements_FormClosed);
-            this.Load += new System.EventHandler(this.frmMovements_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMovements)).EndInit();
             this.toolStripMov.ResumeLayout(false);
             this.toolStripMov.PerformLayout();

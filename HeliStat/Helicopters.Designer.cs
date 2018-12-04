@@ -338,7 +338,6 @@
             this.Name = "frmHelicopters";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HeliStat - Helicopters";
-            this.Load += new System.EventHandler(this.frmHelicopters_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHelicopters)).EndInit();
             this.toolStripHeli.ResumeLayout(false);
             this.toolStripHeli.PerformLayout();

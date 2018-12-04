@@ -10,12 +10,8 @@ namespace HeliStat
         // Constructor
         public frmAdministration()
         {
-            InitializeComponent();   
-        }
+            InitializeComponent();
 
-        // Form load
-        private void frmAdministration_Load(object sender, EventArgs e)
-        {
             // Fill comboboxes
             // TODO bind comboboxes as well to datasource (dataset / datatable)??
             FillCbxYears();

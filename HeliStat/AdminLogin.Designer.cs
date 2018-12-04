@@ -113,7 +113,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HeliStat - Login";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.frmAdminLogin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
