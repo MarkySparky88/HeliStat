@@ -19,7 +19,12 @@ namespace HeliStat
         public frmAdminLogin()
         {
             InitializeComponent();
-            tbxUsername.Text = "admin";
+        }
+
+        // Form load
+        private void frmAdminLogin_Load(object sender, EventArgs e)
+        {
+            PresetTbxUsername("admin");
         }
 
         /// <summary>
@@ -94,6 +99,12 @@ namespace HeliStat
                     }
                 }
             }
+        }
+
+        // Preset text for username
+        private void PresetTbxUsername(string username)
+        {
+            tbxUsername.Text = username;
         }
     }
 }

@@ -16,13 +16,19 @@ namespace HeliStat
         public frmStatistics()
         {
             InitializeComponent();
-            FillCbxYears();
         }
 
         // Load form
         private void frmStatistics_Load(object sender, EventArgs e)
         {
+            // Fill datagridview
+            // TODO need bindingsource?
             dgvStatistics.DataSource = FillDataGridView(TableNameMov(), GetSelectedYear());
+
+            // Fill comboboxes
+            // TODO combine loading of datagridview and comboboxes upon form load?
+            // TODO bind comboboxes as well to datasource (dataset / datatable)??
+            FillCbxYears();
         }
 
         /// <summary>
