@@ -31,8 +31,7 @@ namespace HeliStat
             dgvMovements.DataSource = FillDataGridView(TableNameMov());
 
             // Filter
-            dtpDayFilter.Value = DateTime.Now;
-            FilterDay(GetSelectedDate());
+            InitializeFilter();
         }
 
         /// <summary>
@@ -255,7 +254,7 @@ namespace HeliStat
         /// Functions
         /// </summary>
 
-        // open "Helicopters" (and refresh)
+        // Open "Helicopters" (and refresh)
         private void Helicopters()
         {
             using (frmHelicopters helicopters = new frmHelicopters())
@@ -611,7 +610,7 @@ namespace HeliStat
             dgvMovements.DataSource = FillDataGridView(TableNameMov());
         }
 
-        // checks if no empty fields (left side of datagridview) before handling database
+        // Checks if no empty fields (left side of datagridview) before handling database
         private bool NoEmptyFields()
         {
             if (cbxRegistration != null &&
@@ -631,7 +630,7 @@ namespace HeliStat
             }
         }
 
-        // checks if DateTimePickers ("DateOfFlight" & "ActualTime") are not empty
+        // Checks if DateTimePickers ("DateOfFlight" & "ActualTime") are not empty
         private bool DateTimeNotEmpty()
         {
             if (dtpDateOfFlight.Value != null && dtpActualTime.Value != null)
@@ -646,7 +645,7 @@ namespace HeliStat
             }
         }
 
-        // shows values in textboxes "aircraft type" and "operator" of selected helicopter
+        // Shows values in textboxes "aircraft type" and "operator" of selected helicopter
         private void cbxRegistration_SelectedIndexChanged(object sender, EventArgs e)
         {
             using (SqlConnection connection = new SqlConnection(Program.ConnString))
@@ -686,7 +685,7 @@ namespace HeliStat
             }
         }
 
-        // display selected row from dgv in textboxes & comboboxes
+        // Display selected row from dgv in textboxes & comboboxes
         private void ShowValues(object sender, EventArgs e)
         {
             if (dgvMovements.SelectedRows.Count != 0)
@@ -712,7 +711,7 @@ namespace HeliStat
             }
         }
 
-        // clears all fields
+        // Clears all fields
         private void ClearFields()
         {
             cbxRegistration.Text = null;
@@ -731,7 +730,7 @@ namespace HeliStat
             dtpDateOfFlight.Value = DateTime.Now;
         }
 
-        // event when form closed
+        // Event when form closed
         private void frmMovements_FormClosed(object sender, FormClosedEventArgs e)
         {
             // dispose administration form object
@@ -742,19 +741,19 @@ namespace HeliStat
         /// Actual year handling
         /// </summary>
 
-        // get actual year from settings
+        // Get actual year from settings
         private string GetActualYear()
         {
             return Properties.Settings.Default.ActualYear;
         }
 
-        // display actual year in toolstrip textbox
+        // Display actual year in toolstrip textbox
         private string DisplayActualYear()
         {
             return toolStripTbxActualYear.Text = GetActualYear();
         }
 
-        // creates table name to display only movements of actual year
+        // Creates table name to display only movements of actual year
         private string TableNameMov()
         {
             StringBuilder sb = new StringBuilder("tblMov");
@@ -762,7 +761,7 @@ namespace HeliStat
             return tableName;
         }
 
-        // event when actual year has changed
+        // Event when actual year has changed
         private void Administration_ActualYearChanged(object sender, EventArgs e)
         {
             // TODO is there a better way to refresh data in dgv?
@@ -771,19 +770,38 @@ namespace HeliStat
         }
 
         /// <summary>
-        /// Filter date
+        /// Filter function
         /// </summary>
 
-        // Date or checkbox of filter changed (event)
+        // Initialize filter
+        private void InitializeFilter()
+        {
+            dtpDayFilter.Value = DateTime.Now;
+            dtpDayFilter.Checked = false;
+        }
+
+        // Filter, date or checkbox changed
         private void dtpDay_ValueChanged(object sender, EventArgs e)
         {
             if (dtpDayFilter.Checked)
             {
-                FilterDay(GetSelectedDate());
+                EnableFilter();
             }
             else
             {
                 DisableFilter();
+            }
+        }
+
+        // Enable filter function
+        private void EnableFilter()
+        {
+            FilterDay(GetSelectedDate());
+
+            // when no record selected, clear all fields
+            if (dgvMovements.SelectedRows.Count == 0)
+            {
+                ClearFields();
             }
         }
 

@@ -441,6 +441,7 @@
             // 
             // dtpDayFilter
             // 
+            this.dtpDayFilter.Checked = false;
             this.dtpDayFilter.CustomFormat = "dd.MM";
             this.dtpDayFilter.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDayFilter.Location = new System.Drawing.Point(6, 19);
