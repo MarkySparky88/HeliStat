@@ -67,6 +67,7 @@
             this.ckbOvernight = new System.Windows.Forms.CheckBox();
             this.btnSetDateTimeNow = new System.Windows.Forms.Button();
             this.grbFilterDay = new System.Windows.Forms.GroupBox();
+            this.btnSetToday = new System.Windows.Forms.Button();
             this.dtpDayFilter = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMovements)).BeginInit();
             this.toolStripMov.SuspendLayout();
@@ -431,26 +432,37 @@
             // 
             // grbFilterDay
             // 
+            this.grbFilterDay.Controls.Add(this.btnSetToday);
             this.grbFilterDay.Controls.Add(this.dtpDayFilter);
-            this.grbFilterDay.Location = new System.Drawing.Point(392, 38);
+            this.grbFilterDay.Location = new System.Drawing.Point(392, 39);
             this.grbFilterDay.Name = "grbFilterDay";
-            this.grbFilterDay.Size = new System.Drawing.Size(108, 48);
-            this.grbFilterDay.TabIndex = 44;
+            this.grbFilterDay.Size = new System.Drawing.Size(166, 48);
+            this.grbFilterDay.TabIndex = 45;
             this.grbFilterDay.TabStop = false;
             this.grbFilterDay.Text = "Filter day (of ARR)";
+            // 
+            // btnSetToday
+            // 
+            this.btnSetToday.Location = new System.Drawing.Point(83, 19);
+            this.btnSetToday.Name = "btnSetToday";
+            this.btnSetToday.Size = new System.Drawing.Size(75, 23);
+            this.btnSetToday.TabIndex = 11;
+            this.btnSetToday.Text = "Today";
+            this.btnSetToday.UseVisualStyleBackColor = true;
+            this.btnSetToday.Click += new System.EventHandler(this.btnSetToday_Click);
             // 
             // dtpDayFilter
             // 
             this.dtpDayFilter.Checked = false;
             this.dtpDayFilter.CustomFormat = "dd.MM";
             this.dtpDayFilter.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDayFilter.Location = new System.Drawing.Point(6, 19);
+            this.dtpDayFilter.Location = new System.Drawing.Point(6, 20);
             this.dtpDayFilter.Name = "dtpDayFilter";
             this.dtpDayFilter.ShowCheckBox = true;
             this.dtpDayFilter.ShowUpDown = true;
-            this.dtpDayFilter.Size = new System.Drawing.Size(90, 20);
+            this.dtpDayFilter.Size = new System.Drawing.Size(71, 20);
             this.dtpDayFilter.TabIndex = 6;
-            this.dtpDayFilter.ValueChanged += new System.EventHandler(this.dtpDay_ValueChanged);
+            this.dtpDayFilter.ValueChanged += new System.EventHandler(this.dtpDayFilter_ValueChanged);
             // 
             // frmMovements
             // 
@@ -544,6 +556,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.Button btnSetDateTimeNow;
         private System.Windows.Forms.GroupBox grbFilterDay;
+        private System.Windows.Forms.Button btnSetToday;
         private System.Windows.Forms.DateTimePicker dtpDayFilter;
     }
 }

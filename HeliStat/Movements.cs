@@ -29,9 +29,6 @@ namespace HeliStat
             // Fill datagridview
             // TODO need a bindingsource?
             dgvMovements.DataSource = FillDataGridView(TableNameMov());
-
-            // Filter
-            InitializeFilter();
         }
 
         /// <summary>
@@ -208,6 +205,12 @@ namespace HeliStat
         private void btnSetDateTimeNow_Click(object sender, EventArgs e)
         {
             SetDateTimeNow();
+        }
+
+        // Button "Today"
+        private void btnSetToday_Click(object sender, EventArgs e)
+        {
+            SetDateToday();
         }
 
         /// <summary>
@@ -773,15 +776,8 @@ namespace HeliStat
         /// Filter function
         /// </summary>
 
-        // Initialize filter
-        private void InitializeFilter()
-        {
-            dtpDayFilter.Value = DateTime.Now;
-            dtpDayFilter.Checked = false;
-        }
-
         // Filter, date or checkbox changed
-        private void dtpDay_ValueChanged(object sender, EventArgs e)
+        private void dtpDayFilter_ValueChanged(object sender, EventArgs e)
         {
             if (dtpDayFilter.Checked)
             {
@@ -825,6 +821,12 @@ namespace HeliStat
             string mm = dtpDayFilter.Value.Month.ToString();
             string selectedDate = string.Format("{0}.{1}.{2}", dd, mm, GetActualYear());
             return selectedDate;
+        }
+
+        // Set date today for filter
+        private void SetDateToday()
+        {
+            dtpDayFilter.Value = DateTime.Now;
         }
     }
 }

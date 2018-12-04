@@ -20,6 +20,7 @@ namespace HeliStat
             // TODO combine loading of datagridview and comboboxes upon form load?
             // TODO bind comboboxes as well to datasource (dataset / datatable)??
             FillCbxYears();
+            DisplayActualYear();
 
             // Fill datagridview
             // TODO need bindingsource?
@@ -103,36 +104,16 @@ namespace HeliStat
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            DisplayActualYear();
         }
 
         /// <summary>
         /// Buttons
         /// </summary>
-        
-        // Button "Set" (Filter)
-        private void btnSetFilter_Click(object sender, EventArgs e)
-        {
-            FilterDay();
-        }
 
         // Button "Today"
         private void btnSetToday_Click(object sender, EventArgs e)
         {
             SetDateToday();
-        }
-
-        // Checkbox filter
-        private void ckbFilterDay_CheckedChanged(object sender, EventArgs e)
-        {
-            if (dtpDay.Checked)
-            {
-                EnableFilter();
-            }
-            else
-            {
-                DisableFilter();
-            }
         }
 
         // Button "Export"
@@ -155,50 +136,6 @@ namespace HeliStat
             dgvStatistics.DataSource = FillDataGridView(TableNameMov(), GetSelectedYear());
         }
 
-        // Enable filter function
-        private void EnableFilter()
-        {
-            dtpDay.Enabled = true;
-            btnSetToday.Enabled = true;
-        }
-
-        // Disable filter function
-        private void DisableFilter()
-        {
-            dtpDay.Enabled = false;
-            btnSetToday.Enabled = false;
-            dgvStatistics.DataSource = FillDataGridView(TableNameMov(), GetSelectedYear());
-        }
-
-        // Filter selected day (of ARR)
-        private void FilterDay()
-        {
-            const string filter = "DateOfArr = '{0}'";
-            ((DataTable)dgvStatistics.DataSource).DefaultView.RowFilter = string.Format(filter, GetSelectedDate());
-        }
-
-        // Reset date picker to today
-        private void SetDateToday()
-        {
-            dtpDay.Value = DateTime.Now;
-            FilterDay();
-        }
-
-        // Get (build) selected date
-        private string GetSelectedDate()
-        {
-            string dd = dtpDay.Value.Day.ToString();
-            string mm = dtpDay.Value.Month.ToString();
-            string selectedDate = string.Format("{0}.{1}.{2}", dd, mm, GetSelectedYear());
-            return selectedDate;
-        }
-
-        // Get selected year
-        private string GetSelectedYear()
-        {
-            return cbxYears.SelectedItem.ToString();
-        }
-
         /// <summary>
         /// Actual year handling
         /// </summary>
@@ -216,7 +153,7 @@ namespace HeliStat
             return cbxYears.Text = GetActualYear();
         }
 
-        // Creates table name to display only movements of selected year
+        // Creates table name according selected year
         private string TableNameMov()
         {
             StringBuilder sb = new StringBuilder("tblMov");
@@ -224,6 +161,67 @@ namespace HeliStat
             string tableName = sb.Append(selectedYear).ToString();
             return tableName;
         }
+
+        /// <summary>
+        /// Filter functions
+        /// </summary>
+
+        // Filter, date or checkbox changed
+        private void dtpDayFilter_ValueChanged_1(object sender, EventArgs e)
+        {
+            if (dtpDayFilter.Checked)
+            {
+                EnableFilter();
+            }
+            else
+            {
+                DisableFilter();
+            }
+        }
+
+        // Enable filter function
+        private void EnableFilter()
+        {
+            FilterDay(GetSelectedDate());
+        }
+
+        // Disable filter function
+        private void DisableFilter()
+        {
+            ((DataTable)dgvStatistics.DataSource).DefaultView.RowFilter = string.Empty;
+        }
+
+        // Filter selected day (of ARR)
+        private void FilterDay(string selectedDate)
+        {
+            const string filter = "DateOfArr = '{0}'";
+            ((DataTable)dgvStatistics.DataSource).DefaultView.RowFilter = string.Format(filter, selectedDate);
+        }
+
+        // Get (build) selected date
+        private string GetSelectedDate()
+        {
+            string dd = dtpDayFilter.Value.Day.ToString();
+            string mm = dtpDayFilter.Value.Month.ToString();
+            string selectedDate = string.Format("{0}.{1}.{2}", dd, mm, GetSelectedYear());
+            return selectedDate;
+        }
+
+        // Get selected year
+        private string GetSelectedYear()
+        {
+            return cbxYears.SelectedItem.ToString();
+        }
+
+        // Set date today for filter
+        private void SetDateToday()
+        {
+            dtpDayFilter.Value = DateTime.Now;
+        }
+
+        /// <summary>
+        /// Export functions
+        /// </summary>
 
         //// Excel export (Microsoft Office reference)
         //// acc. to https://www.youtube.com/watch?v=YfcasWYaIzo&list=PL3WjWQ4vgGF-N4gf0wK8SR_J6upbM_TJI&index=29&t=201s
@@ -285,7 +283,7 @@ namespace HeliStat
         // Wiki: https://github.com/ClosedXML/ClosedXML/wiki
         private void ExcelExport2()
         {
-            //TODO add using for datatable or dispose?
+            //TODO use "using" for datatable or dispose it seperately?
             DataTable dataTable = FillDataGridView(TableNameMov(), GetSelectedYear());
 
             using (var wb = new XLWorkbook())

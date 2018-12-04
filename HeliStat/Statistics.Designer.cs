@@ -34,7 +34,7 @@
             this.statusStripStatistics = new System.Windows.Forms.StatusStrip();
             this.dgvStatistics = new System.Windows.Forms.DataGridView();
             this.btnExcelExport = new System.Windows.Forms.Button();
-            this.dtpDay = new System.Windows.Forms.DateTimePicker();
+            this.dtpDayFilter = new System.Windows.Forms.DateTimePicker();
             this.btnSend = new System.Windows.Forms.Button();
             this.cbxYears = new System.Windows.Forms.ComboBox();
             this.grbFilterDay = new System.Windows.Forms.GroupBox();
@@ -90,20 +90,22 @@
             this.btnExcelExport.UseVisualStyleBackColor = true;
             this.btnExcelExport.Click += new System.EventHandler(this.btnExcelExport_Click);
             // 
-            // dtpDay
+            // dtpDayFilter
             // 
-            this.dtpDay.CustomFormat = "dd.MM";
-            this.dtpDay.Enabled = false;
-            this.dtpDay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDay.Location = new System.Drawing.Point(6, 20);
-            this.dtpDay.Name = "dtpDay";
-            this.dtpDay.ShowCheckBox = true;
-            this.dtpDay.ShowUpDown = true;
-            this.dtpDay.Size = new System.Drawing.Size(71, 20);
-            this.dtpDay.TabIndex = 6;
+            this.dtpDayFilter.Checked = false;
+            this.dtpDayFilter.CustomFormat = "dd.MM";
+            this.dtpDayFilter.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDayFilter.Location = new System.Drawing.Point(6, 20);
+            this.dtpDayFilter.Name = "dtpDayFilter";
+            this.dtpDayFilter.ShowCheckBox = true;
+            this.dtpDayFilter.ShowUpDown = true;
+            this.dtpDayFilter.Size = new System.Drawing.Size(71, 20);
+            this.dtpDayFilter.TabIndex = 6;
+            this.dtpDayFilter.ValueChanged += new System.EventHandler(this.dtpDayFilter_ValueChanged_1);
             // 
             // btnSend
             // 
+            this.btnSend.Enabled = false;
             this.btnSend.Location = new System.Drawing.Point(94, 532);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(75, 23);
@@ -123,7 +125,7 @@
             // grbFilterDay
             // 
             this.grbFilterDay.Controls.Add(this.btnSetToday);
-            this.grbFilterDay.Controls.Add(this.dtpDay);
+            this.grbFilterDay.Controls.Add(this.dtpDayFilter);
             this.grbFilterDay.Location = new System.Drawing.Point(153, 53);
             this.grbFilterDay.Name = "grbFilterDay";
             this.grbFilterDay.Size = new System.Drawing.Size(166, 48);
@@ -133,7 +135,6 @@
             // 
             // btnSetToday
             // 
-            this.btnSetToday.Enabled = false;
             this.btnSetToday.Location = new System.Drawing.Point(83, 19);
             this.btnSetToday.Name = "btnSetToday";
             this.btnSetToday.Size = new System.Drawing.Size(75, 23);
@@ -188,7 +189,7 @@
         private System.Windows.Forms.StatusStrip statusStripStatistics;
         private System.Windows.Forms.DataGridView dgvStatistics;
         private System.Windows.Forms.Button btnExcelExport;
-        private System.Windows.Forms.DateTimePicker dtpDay;
+        private System.Windows.Forms.DateTimePicker dtpDayFilter;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.ComboBox cbxYears;
         private System.Windows.Forms.GroupBox grbFilterDay;
