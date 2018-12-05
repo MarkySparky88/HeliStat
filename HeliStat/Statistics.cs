@@ -182,7 +182,7 @@ namespace HeliStat
         // Enable filter function
         private void EnableFilter()
         {
-            FilterDay(GetSelectedDate());
+            FilterDay();
         }
 
         // Disable filter function
@@ -192,19 +192,10 @@ namespace HeliStat
         }
 
         // Filter selected day (of ARR)
-        private void FilterDay(string selectedDate)
+        private void FilterDay()
         {
             const string filter = "DateOfArr = '{0}'";
-            ((DataTable)dgvStatistics.DataSource).DefaultView.RowFilter = string.Format(filter, selectedDate);
-        }
-
-        // Get (build) selected date
-        private string GetSelectedDate()
-        {
-            string dd = dtpDayFilter.Value.Day.ToString();
-            string mm = dtpDayFilter.Value.Month.ToString();
-            string selectedDate = string.Format("{0}.{1}.{2}", dd, mm, GetSelectedYear());
-            return selectedDate;
+            ((DataTable)dgvStatistics.DataSource).DefaultView.RowFilter = string.Format(filter, dtpDayFilter.Value.Date.ToString());
         }
 
         // Get selected year
@@ -279,21 +270,8 @@ namespace HeliStat
         //    }
         //}
 
-        // Excel export (closedXML)
-        // Wiki: https://github.com/ClosedXML/ClosedXML/wiki
-        private void ExcelExport2()
-        {
-            //TODO use "using" for datatable or dispose it seperately?
-            DataTable dataTable = FillDataGridView(TableNameMov(), GetSelectedYear());
-
-            using (var wb = new XLWorkbook())
-            {
-                wb.Worksheets.Add(dataTable, "Movements");
-                wb.SaveAs("Movements.xlsx");
-            }
-        }
-
         //// Excel export (extension method dataTable class)
+        //// Acc. to https://stackoverflow.com/questions/8207869/how-to-export-datatable-to-excel (3rd answer)
         //private void ExcelExport3()
         //{
         //    DataTable dataTable;
@@ -301,5 +279,111 @@ namespace HeliStat
         //    dataTable.ExportToExcel();
         //    dataTable.Dispose();
         //}
+
+        
+        // Excel export (closedXML)
+        // Wiki: https://github.com/ClosedXML/ClosedXML/wiki
+        private void ExcelExport2()
+        {
+            // TODO use "using" for dataset / datatable or dispose it seperately?
+            DataSet dataSet = GetDataSetExport();
+            
+
+            using (var wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dataSet);
+                wb.SaveAs("Movements.xlsx");
+            }
+
+            Console.WriteLine("Excel file created!");
+        }
+
+        // Get DataSet
+        private DataSet GetDataSetExport()
+        {
+            using (DataSet dataSet = new DataSet())
+            {
+                dataSet.Tables.Add(GetDataTableDay(TableNameMov(), dtpDayFilter.Value.Date));
+                dataSet.Tables.Add(GetDataTableYear(TableNameMov(), GetSelectedYear()));
+                return dataSet;
+            }
+        }
+
+        // Get DataTable for selected date
+        private DataTable GetDataTableDay(string tableName, DateTime selectedDate)
+        {
+            using (DataTable dataTable = new DataTable())
+            {
+                dataTable.TableName = "Day";
+
+                using (SqlConnection connection = new SqlConnection(Program.ConnString))
+                {
+                    try
+                    {
+                        connection.Open();
+                        string cmdText = string.Format("SELECT * FROM {0} WHERE DateOfArr = @DateOfArr", tableName);
+
+                        using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                        {
+                            cmd.Parameters.AddWithValue("@DateOfArr", selectedDate);
+                            cmd.ExecuteNonQuery();
+
+                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                if (reader != null)
+                                {
+                                    dataTable.Load(reader);
+                                }
+                            }
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                return dataTable;
+            }
+        }
+
+        // Get DataTable of selected year
+        // TODO kann man diese Daten ohne Datenzugriff holen? Z.B. mit Funktion oben kombinieren (year), da holten wir ja die Daten schon
+        private DataTable GetDataTableYear(string tableName, string selectedYear)
+        {
+            using (DataTable dataTable = new DataTable())
+            {
+                dataTable.TableName = "Year";
+
+                using (SqlConnection connection = new SqlConnection(Program.ConnString))
+                {
+                    try
+                    {
+                        connection.Open();
+                        string cmdText = string.Format("SELECT * FROM {0} WHERE Year = @Year", tableName);
+
+                        using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                        {
+                            cmd.Parameters.AddWithValue("@Year", selectedYear);
+                            cmd.ExecuteNonQuery();
+
+                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                if (reader != null)
+                                {
+                                    dataTable.Load(reader);
+                                }
+                            }
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                return dataTable;
+            }
+        }
     }
 }

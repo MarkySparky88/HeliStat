@@ -8,8 +8,9 @@ namespace HeliStat
 {
     public partial class frmMovements : Form
     {
+        // TODO ist this object disposed somewhere?
         private frmAdministration administration = new frmAdministration();
-        
+
         // Constructor
         public frmMovements()
         {
