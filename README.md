@@ -10,3 +10,6 @@ bills to the operator).
 A function to export all the statistics (per year or day) into an Excel file is one of the main features of this tool.
 
 It is my first software project so far and not very professional as I am only a hobby programmer :)
+I do all the work in my leisure time and I am teaching C# myself. This was a good project to test my new skills.
+
+Project is still work in progress and not (or will never be..) finished..
