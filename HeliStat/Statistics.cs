@@ -385,5 +385,35 @@ namespace HeliStat
                 return dataTable;
             }
         }
+
+        // Get datatable for statistics overview (total movements each day)
+        // TODO still wip
+        private DataTable GetDataTableTotalStatistic()
+        {
+            using (DataTable dataTable = new DataTable())
+            {
+                // Columns
+                dataTable.Columns.Add("Date");
+                dataTable.Columns.Add("Dep 1 Eng");
+                dataTable.Columns.Add("Dep 2 Eng");
+                dataTable.Columns.Add("Dep Total");
+                dataTable.Columns.Add("Arr 1 Eng");
+                dataTable.Columns.Add("Arr 2 Eng");
+                dataTable.Columns.Add("Arr Total");
+                dataTable.Columns.Add("Overnight");
+                dataTable.Columns.Add("Movements");
+
+                // Rows
+                // TODO add content
+                dataTable.Rows.Add();
+                dataTable.Rows.Add();
+                dataTable.Rows.Add();
+                dataTable.Rows.Add();
+                dataTable.Rows.Add();
+                dataTable.Rows.Add();
+
+                return dataTable;   
+            }
+        }
     }
 }
