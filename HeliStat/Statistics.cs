@@ -1,16 +1,21 @@
 ﻿// TODO je nachdem, welche Art von Excel export verwendet wurde entweder Microsoft Referenzen oder closedXML deinstallieren und usings löschen
 //using Excel = Microsoft.Office.Interop.Excel;
+using ClosedXML.Excel;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using System.Windows.Forms;
-using ClosedXML.Excel;
 
 namespace HeliStat
 {
     public partial class frmStatistics : Form
     {
+        // TODO dispose this datatable at the end?
+        DataTable dataTableExport = new DataTable();
+        //SqlDataAdapter dataAdapter = new SqlDataAdapter();
+        
         // Constructor
         public frmStatistics()
         {
@@ -414,6 +419,28 @@ namespace HeliStat
 
                 return dataTable;   
             }
+        }
+
+        private void GetDates()
+        {
+            List<DateTime> dates = new List<DateTime>();
+            dataTableExport = GetDataTableYear(TableNameMov(), GetSelectedYear());
+            // TODO dataAdapter needed?
+            //dataAdapter.Fill(dataTableExport);
+
+            foreach (DataRow row in dataTableExport.Rows)
+            {
+                dates.Add((DateTime)row["DateOfArr"]);
+            }
+            foreach (DateTime date in dates)
+            {
+                Console.WriteLine(dates[0]);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            GetDates();
         }
     }
 }
