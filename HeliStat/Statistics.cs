@@ -12,10 +12,6 @@ namespace HeliStat
 {
     public partial class frmStatistics : Form
     {
-        // TODO dispose this datatable at the end?
-        DataTable dataTableExport = new DataTable();
-        //SqlDataAdapter dataAdapter = new SqlDataAdapter();
-        
         // Constructor
         public frmStatistics()
         {
@@ -38,7 +34,6 @@ namespace HeliStat
 
         // Fill datagridview (year only)
         // TODO such functions used often in other classes (= make own class for that)
-        // TODO DataTable really needed when working anyway all the time with data direct from the database?
         // TODO nochmals recherchieren ob das wirklich best practice ist um datagridview zu füllen?
         private DataTable FillDataGridView(string tableName, string selectedYear)
         {
@@ -219,73 +214,15 @@ namespace HeliStat
         /// Export functions
         /// </summary>
 
-        //// Excel export (Microsoft Office reference)
-        //// acc. to https://www.youtube.com/watch?v=YfcasWYaIzo&list=PL3WjWQ4vgGF-N4gf0wK8SR_J6upbM_TJI&index=29&t=201s
-        //private void ExcelExport1()
-        //{
-        //    // create application, workbook and worksheet
-        //    // TODO need "using"?
-        //    Excel.Application application = new Excel.Application();
-        //    Excel.Workbook workbook = application.Workbooks.Add(Type.Missing);
-        //    Excel.Worksheet worksheet = null;
-        //    worksheet = workbook.Sheets["Tabelle1"];
-        //    worksheet = workbook.ActiveSheet;
-        //    // TODO change worksheet name..
-        //    worksheet.Name = "Statistics";
+        /// Other solutions available under:
+        /// Var1 (Microsoft Office namespace): https://www.youtube.com/watch?v=YfcasWYaIzo&list=PL3WjWQ4vgGF-N4gf0wK8SR_J6upbM_TJI&index=29&t=201s
+        /// Var2 (Forum 3rd answer, class extension method) https://stackoverflow.com/questions/8207869/how-to-export-datatable-to-excel
 
-        //    // fill with data from dgv
-        //    // columns
-        //    for (int i = 1; i < dgvStatistics.Columns.Count + 1; i++)
-        //    {
-        //        worksheet.Cells[1, i] = dgvStatistics.Columns[i - 1].HeaderText;
-        //    }
+        // TODO dispose this datatable at the end?
+        // TODO shift this field to the beginning of this class when really needed
+        DataTable dataTableExport = new DataTable();
+        //SqlDataAdapter dataAdapter = new SqlDataAdapter();
 
-        //    // rows
-        //    for (int i = 0; i < dgvStatistics.Rows.Count; i++)
-        //    {
-        //        for (int j = 0; j < dgvStatistics.Columns.Count; j++)
-        //        {
-        //            worksheet.Cells[i + 2, j + 1] = dgvStatistics.Rows[i].Cells[j].Value.ToString();
-        //        }
-        //    }
-
-        //    // save file
-        //    // TODO double warning when overwritting file
-        //    using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-        //    {
-        //        try
-        //        {
-        //            // TODO create filename according year of exported data
-        //            saveFileDialog.Title = "HeliStat - Export statistics";
-        //            saveFileDialog.FileName = "Statistics_DavosTWR_Movements201x";
-        //            saveFileDialog.DefaultExt = ".xlsx";
-        //            saveFileDialog.Filter = "Excel-Arbeitsmappe|*.xlsx";
-
-        //            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-        //            {
-        //                workbook.SaveAs(saveFileDialog.FileName);
-        //            }
-        //            application.Quit();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show("Error: " + ex.Message, "Error",
-        //                MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //        }
-        //    }
-        //}
-
-        //// Excel export (extension method dataTable class)
-        //// Acc. to https://stackoverflow.com/questions/8207869/how-to-export-datatable-to-excel (3rd answer)
-        //private void ExcelExport3()
-        //{
-        //    DataTable dataTable;
-        //    dataTable = FillDataGridView(TableNameMov(), GetSelectedYear());
-        //    dataTable.ExportToExcel();
-        //    dataTable.Dispose();
-        //}
-
-        
         // Excel export (closedXML)
         // Wiki: https://github.com/ClosedXML/ClosedXML/wiki
         private void ExcelExport2()
@@ -315,6 +252,8 @@ namespace HeliStat
         }
 
         // Get DataTable for selected date
+        // TODO kann man diese Daten ohne Datenzugriff holen? Z.B. mit Funktion unten kombinieren (year), da holten wir ja die Daten schon
+        // TODO pro Tag an welchem je ein Movement erfasst wurde ein Worksheet in Excel erstellen, nicht nur aktuell ausgewählter Tag
         private DataTable GetDataTableDay(string tableName, DateTime selectedDate)
         {
             using (DataTable dataTable = new DataTable())
@@ -353,7 +292,6 @@ namespace HeliStat
         }
 
         // Get DataTable of selected year
-        // TODO kann man diese Daten ohne Datenzugriff holen? Z.B. mit Funktion oben kombinieren (year), da holten wir ja die Daten schon
         private DataTable GetDataTableYear(string tableName, string selectedYear)
         {
             using (DataTable dataTable = new DataTable())
@@ -428,14 +366,18 @@ namespace HeliStat
             // TODO dataAdapter needed?
             //dataAdapter.Fill(dataTableExport);
 
-            foreach (DataRow row in dataTableExport.Rows)
-            {
-                dates.Add((DateTime)row["DateOfArr"]);
-            }
-            foreach (DateTime date in dates)
-            {
-                Console.WriteLine(dates[0]);
-            }
+            DataView view = new DataView(dataTableExport);
+            DataTable distinctDates = view.ToTable(true, "DateOfArr");
+
+
+            //foreach (DataRow row in dataTableExport.Rows)
+            //{
+            //    dates.Add((DateTime)row["DateOfArr"]);
+            //}
+            //foreach (DateTime date in dates)
+            //{
+            //    Console.WriteLine(dates);
+            //}
         }
 
         private void button1_Click(object sender, EventArgs e)
