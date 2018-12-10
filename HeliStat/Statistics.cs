@@ -119,10 +119,7 @@ namespace HeliStat
         // Button "Export"
         private void btnExcelExport_Click(object sender, EventArgs e)
         {
-            // TODO delete unused functions
-            //ExcelExport1();
-            ExcelExport2();
-            //ExcelExport3();
+            ExcelExport();
         }
 
         /// <summary>
@@ -218,86 +215,47 @@ namespace HeliStat
         /// Var1 (Microsoft Office namespace): https://www.youtube.com/watch?v=YfcasWYaIzo&list=PL3WjWQ4vgGF-N4gf0wK8SR_J6upbM_TJI&index=29&t=201s
         /// Var2 (Forum 3rd answer, class extension method) https://stackoverflow.com/questions/8207869/how-to-export-datatable-to-excel
 
-        // TODO dispose this datatable at the end?
-        // TODO shift this field to the beginning of this class when really needed
-        DataTable dataTableExport = new DataTable();
-        //SqlDataAdapter dataAdapter = new SqlDataAdapter();
-
         // Excel export (closedXML)
-        // Wiki: https://github.com/ClosedXML/ClosedXML/wiki
-        private void ExcelExport2()
+        private void ExcelExport()
         {
-            // TODO use "using" for dataset / datatable or dispose it seperately?
-            DataSet dataSet = GetDataSetExport();
-            
+            // TODO dispose this datatable at the end?
+            DataTable dataTableExcelExport = new DataTable();
+            // TODO a dataAdapter needed to work with unconnected data?
+            //SqlDataAdapter dataAdapter = new SqlDataAdapter();
 
+            // TODO use "using" for dataset / datatable or dispose it seperately?
+            DataSet dataSet = GetDataSetForExport();
+
+            // Fill datatable form database
+            dataTableExcelExport = GetDataTableForExport(TableNameMov(), GetSelectedYear());
+
+            GetDistinctDates(dataTableExcelExport);
+
+            // create workbook and worksheets
             using (var wb = new XLWorkbook())
             {
                 wb.Worksheets.Add(dataSet);
                 wb.SaveAs("Movements.xlsx");
             }
-
-            Console.WriteLine("Excel file created!");
         }
 
-        // Get DataSet
-        private DataSet GetDataSetExport()
+        // Get DataSet for excel export from different DataTables
+        private DataSet GetDataSetForExport()
         {
             using (DataSet dataSet = new DataSet())
             {
-                dataSet.Tables.Add(GetDataTableDay(TableNameMov(), dtpDayFilter.Value.Date));
-                dataSet.Tables.Add(GetDataTableYear(TableNameMov(), GetSelectedYear()));
+                // TODO pro Tag an welchem je ein Movement erfasst wurde ein Worksheet in Excel erstellen, nicht nur aktuell ausgewählter Tag
+                dataSet.Tables.Add(GetDataTablePerDay(TableNameMov(), dtpDayFilter.Value.Date));
+                dataSet.Tables.Add(GetDataTablePerYear(TableNameMov(), GetSelectedYear()));
                 return dataSet;
             }
         }
 
-        // Get DataTable for selected date
-        // TODO kann man diese Daten ohne Datenzugriff holen? Z.B. mit Funktion unten kombinieren (year), da holten wir ja die Daten schon
-        // TODO pro Tag an welchem je ein Movement erfasst wurde ein Worksheet in Excel erstellen, nicht nur aktuell ausgewählter Tag
-        private DataTable GetDataTableDay(string tableName, DateTime selectedDate)
+        // Get data for excel export (from database)
+        private DataTable GetDataTableForExport(string tableName, string selectedYear)
         {
             using (DataTable dataTable = new DataTable())
             {
-                dataTable.TableName = "Day";
-
-                using (SqlConnection connection = new SqlConnection(Program.ConnString))
-                {
-                    try
-                    {
-                        connection.Open();
-                        string cmdText = string.Format("SELECT * FROM {0} WHERE DateOfArr = @DateOfArr", tableName);
-
-                        using (SqlCommand cmd = new SqlCommand(cmdText, connection))
-                        {
-                            cmd.Parameters.AddWithValue("@DateOfArr", selectedDate);
-                            cmd.ExecuteNonQuery();
-
-                            using (SqlDataReader reader = cmd.ExecuteReader())
-                            {
-                                if (reader != null)
-                                {
-                                    dataTable.Load(reader);
-                                }
-                            }
-                        }
-                    }
-                    catch (SqlException ex)
-                    {
-                        MessageBox.Show("Error: " + ex.Message, "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-                return dataTable;
-            }
-        }
-
-        // Get DataTable of selected year
-        private DataTable GetDataTableYear(string tableName, string selectedYear)
-        {
-            using (DataTable dataTable = new DataTable())
-            {
-                dataTable.TableName = "Year";
-
                 using (SqlConnection connection = new SqlConnection(Program.ConnString))
                 {
                     try
@@ -329,8 +287,33 @@ namespace HeliStat
             }
         }
 
-        // Get datatable for statistics overview (total movements each day)
-        // TODO still wip
+        // Get data for selected date (connectionless)
+        private DataTable GetDataTablePerDay(string tableName, DateTime selectedDate)
+        {
+            using (DataTable dataTable = new DataTable())
+            {
+                dataTable.TableName = "Day xx.xx";
+
+                // TODO write function for connectionless dataTable
+
+                return dataTable;
+            }
+        }
+
+        // Get data for selected year (connectionless)
+        private DataTable GetDataTablePerYear(string tableName, string selectedYear)
+        {
+            using (DataTable dataTable = new DataTable())
+            {
+                dataTable.TableName = "Year";
+
+                // TODO write function for connectionless dataTable
+
+                return dataTable;
+            }
+        }
+
+        // Get data for total statistic overview (connectionless)
         private DataTable GetDataTableTotalStatistic()
         {
             using (DataTable dataTable = new DataTable())
@@ -350,39 +333,23 @@ namespace HeliStat
                 // TODO add content
                 dataTable.Rows.Add();
                 dataTable.Rows.Add();
-                dataTable.Rows.Add();
-                dataTable.Rows.Add();
-                dataTable.Rows.Add();
-                dataTable.Rows.Add();
+                // TODO wip...
 
                 return dataTable;   
             }
         }
 
-        private void GetDates()
+        // Get all distinct dates of selected year, with at least 1 movement
+        private DataTable GetDistinctDates(DataTable dataTable)
         {
             List<DateTime> dates = new List<DateTime>();
-            dataTableExport = GetDataTableYear(TableNameMov(), GetSelectedYear());
-            // TODO dataAdapter needed?
-            //dataAdapter.Fill(dataTableExport);
-
-            DataView view = new DataView(dataTableExport);
+            DataView view = new DataView(dataTable);
             DataTable distinctDates = view.ToTable(true, "DateOfArr");
 
+            // TODO wip...
 
-            //foreach (DataRow row in dataTableExport.Rows)
-            //{
-            //    dates.Add((DateTime)row["DateOfArr"]);
-            //}
-            //foreach (DateTime date in dates)
-            //{
-            //    Console.WriteLine(dates);
-            //}
-        }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            GetDates();
+            return distinctDates;
         }
     }
 }

@@ -40,7 +40,6 @@
             this.grbFilterDay = new System.Windows.Forms.GroupBox();
             this.btnSetToday = new System.Windows.Forms.Button();
             this.grbSelectYear = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStatistics)).BeginInit();
             this.grbFilterDay.SuspendLayout();
             this.grbSelectYear.SuspendLayout();
@@ -154,22 +153,11 @@
             this.grbSelectYear.TabStop = false;
             this.grbSelectYear.Text = "Select year";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(243, 532);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Test";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // frmStatistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 600);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.grbSelectYear);
             this.Controls.Add(this.grbFilterDay);
             this.Controls.Add(this.btnSend);
@@ -207,6 +195,5 @@
         private System.Windows.Forms.GroupBox grbFilterDay;
         private System.Windows.Forms.GroupBox grbSelectYear;
         private System.Windows.Forms.Button btnSetToday;
-        private System.Windows.Forms.Button button1;
     }
 }
