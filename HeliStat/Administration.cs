@@ -17,10 +17,7 @@ namespace HeliStat
             DisplayActualYear();
         }
 
-        /// <summary>
-        /// Fill comboboxes
-        /// </summary>
-
+        #region Fill boxes and views
         // Fill combobox years
         private void FillCbxYears()
         {
@@ -56,11 +53,9 @@ namespace HeliStat
             }
             cbxYears.SelectedItem = DisplayActualYear();
         }
+        #endregion
 
-        /// <summary>
-        /// Buttons
-        /// </summary>
-
+        #region Buttons
         // Button "Set"
         private void btnSetYear_Click(object sender, EventArgs e)
         {
@@ -113,11 +108,9 @@ namespace HeliStat
             // TODO enable button again (button properties window)
             // TODO write code here..
         }
+        #endregion
 
-        /// <summary>
-        /// Funtions
-        /// </summary>
-
+        #region Functions
         // Add new year
         private void AddNewYear()
         {
@@ -133,11 +126,9 @@ namespace HeliStat
                 }
             }
         }
+        #endregion
 
-        /// <summary>
-        /// Setting of actual year
-        /// </summary>
-
+        #region Functions (actual year)
         // Event handler when actual year has changed
         public delegate void ActualYearChangedEventHandler(object sender, EventArgs e);
         public event ActualYearChangedEventHandler ActualYearChanged;
@@ -181,5 +172,6 @@ namespace HeliStat
         {
             return tbxActualYear.Text = Properties.Settings.Default.ActualYear;
         }
+        #endregion
     }
 }

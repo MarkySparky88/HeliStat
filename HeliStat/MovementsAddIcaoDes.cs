@@ -15,10 +15,7 @@ namespace HeliStat
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Buttons
-        /// </summary>
-
+        #region Buttons
         // Button "OK"
         private void btnOK_Click(object sender, EventArgs e)
         {
@@ -30,11 +27,9 @@ namespace HeliStat
         {
             DialogBoxStatus = true;
         }
+        #endregion
 
-        /// <summary>
-        /// Functions
-        /// </summary>
-
+        #region Functions
         // Add new ICAO designator
         private void AddIcaoDes()
         {
@@ -133,6 +128,7 @@ namespace HeliStat
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-        } 
+        }
+        #endregion
     }
 }

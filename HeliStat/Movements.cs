@@ -32,10 +32,7 @@ namespace HeliStat
             dgvMovements.DataSource = FillDataGridView(TableNameMov());
         }
 
-        /// <summary>
-        /// Fill boxes and views
-        /// </summary>
-
+        #region Fill boxes and views
         // Fill datagridview
         private DataTable FillDataGridView(string tableName)
         {
@@ -143,11 +140,9 @@ namespace HeliStat
                 }
             }
         }
+        #endregion
 
-        /// <summary>
-        /// Buttons
-        /// </summary>
-
+        #region Buttons
         // Button "Helicopters"
         private void btnHelicopters_Click(object sender, EventArgs e)
         {
@@ -213,11 +208,9 @@ namespace HeliStat
         {
             SetDateToday();
         }
+        #endregion
 
-        /// <summary>
-        /// Toolstrip
-        /// </summary>
-
+        #region Toolstrip
         // Toolstrip-Button "Add"
         private void toolStripBtnAdd_Click(object sender, EventArgs e)
         {
@@ -247,17 +240,9 @@ namespace HeliStat
                 administration.ShowDialog();
             }
         }
+        #endregion
 
-        //// Toolstrip-Button "Add Year"
-        //private void toolStripBtnAddYear_Click(object sender, EventArgs e)
-        //{
-        //    AddYear();
-        //}
-
-        /// <summary>
-        /// Functions
-        /// </summary>
-
+        #region Functions
         // Open "Helicopters" (and refresh)
         private void Helicopters()
         {
@@ -740,11 +725,9 @@ namespace HeliStat
             // dispose administration form object
             administration.Dispose();
         }
+        #endregion
 
-        /// <summary>
-        /// Actual year handling
-        /// </summary>
-
+        #region Functions (actual year)
         // Get actual year from settings
         private string GetActualYear()
         {
@@ -772,11 +755,9 @@ namespace HeliStat
             dgvMovements.DataSource = FillDataGridView(TableNameMov());
             DisplayActualYear();
         }
+        #endregion
 
-        /// <summary>
-        /// Filter function
-        /// </summary>
-
+        #region Functions (filter)
         // Filter, date or checkbox changed
         private void dtpDayFilter_ValueChanged(object sender, EventArgs e)
         {
@@ -829,5 +810,6 @@ namespace HeliStat
         {
             dtpDayFilter.Value = DateTime.Now;
         }
+        #endregion
     }
 }

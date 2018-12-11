@@ -23,10 +23,7 @@ namespace HeliStat
             dgvHelicopters.DataSource = FillDataGridView();
         }
 
-        /// <summary>
-        /// Fill boxes and views
-        /// </summary>
-
+        #region Fill boxes and views
         // fill datagridview from database
         // TODO create one big class for all connections in this program
         // TODO whole program: use "verbindungslose Klassen" (SqlDataAdapter, DataSet, DataTable, etc.) instead of live-connections?
@@ -147,11 +144,9 @@ namespace HeliStat
                 }
             }
         }
+        #endregion
 
-        /// <summary>
-        /// Buttons
-        /// </summary>
-
+        #region Buttons
         // Button "+" (Aircraft Type)
         private void btnAddNewAircraftType_Click(object sender, EventArgs e)
         {
@@ -199,11 +194,9 @@ namespace HeliStat
         {
             UpdateHeli();
         }
+        #endregion
 
-        /// <summary>
-        /// Toolstrip
-        /// </summary>
-
+        #region Toolstrip
         // Toolstrip-Button "Add"
         private void toolStripBtnAdd_Click(object sender, EventArgs e)
         {
@@ -221,11 +214,9 @@ namespace HeliStat
         {
             RemoveHeli();
         }
+        #endregion
 
-        /// <summary>
-        /// Functions
-        /// </summary>
-
+        #region Functions
         // add aircraft type
         private void AddNewAircraftType()
         {
@@ -538,5 +529,6 @@ namespace HeliStat
                 return false;
             }
         }
+        #endregion
     }
 }

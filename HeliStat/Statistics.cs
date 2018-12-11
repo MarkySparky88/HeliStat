@@ -1,6 +1,4 @@
-﻿// TODO je nachdem, welche Art von Excel export verwendet wurde entweder Microsoft Referenzen oder closedXML deinstallieren und usings löschen
-//using Excel = Microsoft.Office.Interop.Excel;
-using ClosedXML.Excel;
+﻿using ClosedXML.Excel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -28,10 +26,7 @@ namespace HeliStat
             dgvStatistics.DataSource = FillDataGridView(TableNameMov(), GetSelectedYear());
         }
 
-        /// <summary>
-        /// Fill boxes and views
-        /// </summary>
-
+        #region Fill boxes and views
         // Fill datagridview (year only)
         // TODO such functions used often in other classes (= make own class for that)
         // TODO nochmals recherchieren ob das wirklich best practice ist um datagridview zu füllen?
@@ -105,11 +100,9 @@ namespace HeliStat
                 }
             }
         }
+        #endregion
 
-        /// <summary>
-        /// Buttons
-        /// </summary>
-
+        #region Buttons
         // Button "Today"
         private void btnSetToday_Click(object sender, EventArgs e)
         {
@@ -121,22 +114,18 @@ namespace HeliStat
         {
             ExcelExport();
         }
+        #endregion
 
-        /// <summary>
-        /// Functions
-        /// </summary>
-
+        #region Functions
         // Update datagridview when year changed
         private void cbxYears_SelectedIndexChanged(object sender, EventArgs e)
         {
             // TODO is ther another best practice to reload / refresh datagridview?
             dgvStatistics.DataSource = FillDataGridView(TableNameMov(), GetSelectedYear());
         }
+        #endregion
 
-        /// <summary>
-        /// Actual year handling
-        /// </summary>
-
+        #region Functions (actual year)
         // Get actual year from settings
         // TODO following functions (GetActualYear, DisplayActualYear) used as well in Movements (own class?)
         private string GetActualYear()
@@ -158,11 +147,9 @@ namespace HeliStat
             string tableName = sb.Append(selectedYear).ToString();
             return tableName;
         }
+        #endregion
 
-        /// <summary>
-        /// Filter functions
-        /// </summary>
-
+        #region Functions (filter)
         // Filter, date or checkbox changed
         private void dtpDayFilter_ValueChanged_1(object sender, EventArgs e)
         {
@@ -206,11 +193,9 @@ namespace HeliStat
         {
             dtpDayFilter.Value = DateTime.Now;
         }
+        #endregion
 
-        /// <summary>
-        /// Export functions
-        /// </summary>
-
+        #region Functions (Excel export)
         /// Other solutions available under:
         /// Var1 (Microsoft Office namespace): https://www.youtube.com/watch?v=YfcasWYaIzo&list=PL3WjWQ4vgGF-N4gf0wK8SR_J6upbM_TJI&index=29&t=201s
         /// Var2 (Forum 3rd answer, class extension method) https://stackoverflow.com/questions/8207869/how-to-export-datatable-to-excel
@@ -351,5 +336,6 @@ namespace HeliStat
 
             return distinctDates;
         }
+        #endregion
     }
 }

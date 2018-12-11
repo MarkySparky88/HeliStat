@@ -22,10 +22,7 @@ namespace HeliStat
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Buttons
-        /// </summary>
-        
+        #region Buttons
         // open "Movements"
         private void btnMovements_Click(object sender, EventArgs e)
         {
@@ -68,5 +65,6 @@ namespace HeliStat
                 }
             }
         }
+        #endregion
     }
 }

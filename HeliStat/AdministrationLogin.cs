@@ -24,10 +24,7 @@ namespace HeliStat
             PresetTbxUsername("admin");
         }
 
-        /// <summary>
-        /// Buttons
-        /// </summary>
-
+        #region Buttons
         // Button "Login"
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -39,11 +36,9 @@ namespace HeliStat
         {
             Close();
         }
+        #endregion
 
-        /// <summary>
-        /// Functions
-        /// </summary>
-        
+        #region Functions
         // Start Login process
         private void Login()
         {
@@ -103,5 +98,6 @@ namespace HeliStat
         {
             tbxUsername.Text = username;
         }
+        #endregion
     }
 }
