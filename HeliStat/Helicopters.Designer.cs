@@ -136,8 +136,7 @@
             this.cbxNoOfEng.FormattingEnabled = true;
             this.cbxNoOfEng.Items.AddRange(new object[] {
             "1",
-            "2",
-            "3"});
+            "2"});
             this.cbxNoOfEng.Location = new System.Drawing.Point(88, 122);
             this.cbxNoOfEng.Name = "cbxNoOfEng";
             this.cbxNoOfEng.Size = new System.Drawing.Size(100, 21);

@@ -236,6 +236,7 @@
             this.dgvMovements.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMovements.Size = new System.Drawing.Size(1147, 427);
             this.dgvMovements.TabIndex = 21;
+            //this.dgvMovements.DataSourceChanged += new System.EventHandler(this.dgvMovements_DataSourceChanged);
             this.dgvMovements.SelectionChanged += new System.EventHandler(this.ShowValues);
             // 
             // btnRmvIcaoDes
