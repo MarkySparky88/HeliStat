@@ -7,7 +7,7 @@ namespace HeliStat
 {
     public partial class frmHelicopters : Form
     {
-        // constructor
+        // Constructor
         public frmHelicopters()
         {
             InitializeComponent();
@@ -24,7 +24,7 @@ namespace HeliStat
         }
 
         #region Fill boxes and views
-        // fill datagridview from database
+        // Fill datagridview from database
         // TODO create one big class for all connections in this program
         // TODO whole program: use "verbindungslose Klassen" (SqlDataAdapter, DataSet, DataTable, etc.) instead of live-connections?
         private DataTable FillDataGridView()
@@ -59,7 +59,7 @@ namespace HeliStat
             }
         }
 
-        // fill combobox aircraft type
+        // Fill combobox aircraft type
         private void FillCbxAircraftType()
         {
             //// TODO test for a shared class for all database interactions (DatabaseAccess.cs)
@@ -110,7 +110,7 @@ namespace HeliStat
             }
         }
    
-        // fill combobox operator
+        // Fill combobox operator
         private void FillCbxOperator()
         {
             cbxOperator.Items.Clear();
@@ -217,7 +217,7 @@ namespace HeliStat
         #endregion
 
         #region Functions
-        // add aircraft type
+        // Add aircraft type
         private void AddNewAircraftType()
         {
             using (frmHelicoptersAddType helicoptersAddType = new frmHelicoptersAddType())
@@ -234,7 +234,7 @@ namespace HeliStat
             }
         }
 
-        // remove aircraft type
+        // Remove aircraft type
         private void RemoveAircraftType()
         {
             // any item selected?
@@ -282,7 +282,7 @@ namespace HeliStat
             cbxAircraftType.ResetText();
         }
 
-        // add operator
+        // Add operator
         private void AddNewOperator()
         {
             using (frmHelicoptersAddOperator helicoptersAddOperator = new frmHelicoptersAddOperator())
@@ -299,7 +299,7 @@ namespace HeliStat
             }
         }
 
-        // remove operator
+        // Remove operator
         private void RemoveOperator()
         {
             // any item selected?
@@ -347,7 +347,7 @@ namespace HeliStat
             cbxOperator.ResetText();
         }
 
-        // add heli
+        // Add heli
         private void AddHeli()
         {
             if (NoEmptyFields())
@@ -384,7 +384,7 @@ namespace HeliStat
             }
         }
 
-        // update selected heli
+        // Update selected heli
         private void UpdateHeli()
         {
             // any row selected?
@@ -439,7 +439,7 @@ namespace HeliStat
             }
         }
 
-        // remove selected heli
+        // Remove selected heli
         private void RemoveHeli()
         {
             // any row selected?
@@ -484,20 +484,7 @@ namespace HeliStat
             ClearFields();
         }
 
-        // display selected row from dgv in textboxes & comboboxes
-        private void ShowValues(object sender, EventArgs e)
-        {
-            if (dgvHelicopters.SelectedRows.Count != 0)
-            {
-                DataGridViewRow row = dgvHelicopters.SelectedRows[0];
-                tbxRegistration.Text = row.Cells["Registration"].Value.ToString();
-                cbxAircraftType.Text = row.Cells["AircraftType"].Value.ToString();
-                cbxNoOfEng.Text = row.Cells["NoOfEng"].Value.ToString();
-                cbxOperator.Text = row.Cells["Operator"].Value.ToString();
-            }
-        }
-
-        // clears all fields
+        // Clears all fields
         private void ClearFields()
         {
             tbxRegistration.Text = null;
@@ -506,13 +493,7 @@ namespace HeliStat
             cbxOperator.Text = null;
         }
 
-        // alphabetical characters only (tbx registration)
-        private void tbxRegistration_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !(char.IsLetterOrDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back);
-        }
-
-        // checks if no empty fields before handling database
+        // Checks if no empty fields before handling database
         private bool NoEmptyFields()
         {
             if (!string.IsNullOrWhiteSpace(tbxRegistration.Text) && tbxRegistration.Text.Length > 0 &&
@@ -528,6 +509,34 @@ namespace HeliStat
                                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
+        }
+        #endregion
+
+        #region Events
+        // Display selected row from dgv in textboxes & comboboxes
+        private void ShowValues(object sender, EventArgs e)
+        {
+            if (dgvHelicopters.SelectedRows.Count != 0)
+            {
+                DataGridViewRow row = dgvHelicopters.SelectedRows[0];
+                tbxRegistration.Text = row.Cells["Registration"].Value.ToString();
+                cbxAircraftType.Text = row.Cells["AircraftType"].Value.ToString();
+                cbxNoOfEng.Text = row.Cells["NoOfEng"].Value.ToString();
+                cbxOperator.Text = row.Cells["Operator"].Value.ToString();
+            }
+        }
+
+        // Alphabetical characters only (tbx registration)
+        private void tbxRegistration_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(char.IsLetterOrDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+        }
+
+        // When datasource of datagridview changes
+        private void dgvHelicopters_DataSourceChanged(object sender, EventArgs e)
+        {
+            // set last column (Operator) AutoSizeMode to fill
+            dgvHelicopters.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
         #endregion
     }

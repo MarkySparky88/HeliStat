@@ -23,8 +23,34 @@ namespace HeliStat
         }
 
         #region Buttons
-        // open "Movements"
+        // Button "Movements"
         private void btnMovements_Click(object sender, EventArgs e)
+        {
+            OpenMovements();
+        }
+
+        // Button "Helicopters"
+        private void btnHelicopters_Click(object sender, EventArgs e)
+        {
+            OpenHelicopters();
+        }
+
+        // Button "Statistics"
+        private void btnStatistics_Click(object sender, EventArgs e)
+        {
+            OpenStatistics();
+        }
+
+        // Button "Administration"
+        private void btnAdmin_Click(object sender, EventArgs e)
+        {
+            OpenAdminLogin();
+        }
+        #endregion
+
+        #region Functions
+        // Open "Movements"
+        private static void OpenMovements()
         {
             using (frmMovements movements = new frmMovements())
             {
@@ -32,8 +58,8 @@ namespace HeliStat
             }
         }
 
-        // open "Helicopters"
-        private void btnHelicopters_Click(object sender, EventArgs e)
+        // Open "Helicopters"
+        private static void OpenHelicopters()
         {
             using (frmHelicopters helicopters = new frmHelicopters())
             {
@@ -41,8 +67,8 @@ namespace HeliStat
             }
         }
 
-        // open "Statistics"
-        private void btnStatistics_Click(object sender, EventArgs e)
+        // Open "Statistics"
+        private static void OpenStatistics()
         {
             using (frmStatistics statistics = new frmStatistics())
             {
@@ -50,8 +76,8 @@ namespace HeliStat
             }
         }
 
-        // open "Administration Login"
-        private void btnAdmin_Click(object sender, EventArgs e)
+        // Open "Administration Login"
+        private static void OpenAdminLogin()
         {
             using (frmAdminLogin adminLogin = new frmAdminLogin())
             {

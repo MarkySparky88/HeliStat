@@ -634,6 +634,112 @@ namespace HeliStat
             }
         }
 
+        // Clears all fields
+        private void ClearFields()
+        {
+            cbxRegistration.Text = null;
+            tbxAircraftType.Text = null;
+            tbxOperator.Text = null;
+            cbxTypeOfOps.Text = null;
+            cbxArrFrom.Text = null;
+            cbxDepTo.Text = null;
+            ckbOvernight.Checked = false;
+        }
+
+        // Reset to current date & time
+        private void SetDateTimeNow()
+        {
+            dtpActualTime.Value = DateTime.Now;
+            dtpDateOfFlight.Value = DateTime.Now;
+        }
+        #endregion
+
+        #region Functions (actual year)
+        // Actual year has changed
+        private void Administration_ActualYearChanged(object sender, EventArgs e)
+        {
+            // TODO is there a better way to refresh data in dgv?
+            dgvMovements.DataSource = FillDataGridView(TableNameMov());
+            DisplayActualYear();
+        }
+
+        // Get actual year from settings
+        private string GetActualYear()
+        {
+            return Properties.Settings.Default.ActualYear;
+        }
+
+        // Display actual year in toolstrip textbox
+        private string DisplayActualYear()
+        {
+            return toolStripTbxActualYear.Text = GetActualYear();
+        }
+
+        // Creates table name to display only movements of actual year
+        private string TableNameMov()
+        {
+            StringBuilder sb = new StringBuilder("tblMov");
+            string tableName = sb.Append(GetActualYear()).ToString();
+            return tableName;
+        }
+        #endregion
+
+        #region Functions (filter)
+        // Filter, date or checkbox changed
+        private void dtpDayFilter_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpDayFilter.Checked)
+            {
+                EnableFilter();
+            }
+            else
+            {
+                DisableFilter();
+            }
+        }
+
+        // Enable filter function
+        private void EnableFilter()
+        {
+            FilterDay(GetSelectedDate());
+
+            // when no record selected, clear all fields
+            if (dgvMovements.SelectedRows.Count == 0)
+            {
+                ClearFields();
+            }
+        }
+
+        // Disable filter function
+        private void DisableFilter()
+        {
+            ((DataTable)dgvMovements.DataSource).DefaultView.RowFilter = string.Empty;
+        }
+
+        // Filter selected day (of ARR)
+        private void FilterDay(string selectedDate)
+        {
+            const string filter = "DateOfArr = '{0}'";
+            ((DataTable)dgvMovements.DataSource).DefaultView.RowFilter = string.Format(filter, selectedDate);
+        }
+
+        // Get (build) selected date
+        private string GetSelectedDate()
+        {
+            string dd = dtpDayFilter.Value.Day.ToString();
+            string mm = dtpDayFilter.Value.Month.ToString();
+            string selectedDate = string.Format("{0}.{1}.{2}", dd, mm, GetActualYear());
+            return selectedDate;
+        }
+
+        // Set date today for filter
+        private void SetDateToday()
+        {
+            dtpDayFilter.Value = DateTime.Now;
+        }
+        #endregion
+
+        #region Events
         // Shows values in textboxes "aircraft type" and "operator" of selected helicopter
         private void cbxRegistration_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -700,115 +806,10 @@ namespace HeliStat
             }
         }
 
-        // Clears all fields
-        private void ClearFields()
-        {
-            cbxRegistration.Text = null;
-            tbxAircraftType.Text = null;
-            tbxOperator.Text = null;
-            cbxTypeOfOps.Text = null;
-            cbxArrFrom.Text = null;
-            cbxDepTo.Text = null;
-            ckbOvernight.Checked = false;
-        }
-
-        // Reset to current date & time
-        private void SetDateTimeNow()
-        {
-            dtpActualTime.Value = DateTime.Now;
-            dtpDateOfFlight.Value = DateTime.Now;
-        }
-
-        // Event when form closed
+        // Form closed
         private void frmMovements_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // dispose administration form object
             administration.Dispose();
-        }
-        #endregion
-
-        #region Functions (actual year)
-        // Get actual year from settings
-        private string GetActualYear()
-        {
-            return Properties.Settings.Default.ActualYear;
-        }
-
-        // Display actual year in toolstrip textbox
-        private string DisplayActualYear()
-        {
-            return toolStripTbxActualYear.Text = GetActualYear();
-        }
-
-        // Creates table name to display only movements of actual year
-        private string TableNameMov()
-        {
-            StringBuilder sb = new StringBuilder("tblMov");
-            string tableName = sb.Append(GetActualYear()).ToString();
-            return tableName;
-        }
-
-        // Event when actual year has changed
-        private void Administration_ActualYearChanged(object sender, EventArgs e)
-        {
-            // TODO is there a better way to refresh data in dgv?
-            dgvMovements.DataSource = FillDataGridView(TableNameMov());
-            DisplayActualYear();
-        }
-        #endregion
-
-        #region Functions (filter)
-        // Filter, date or checkbox changed
-        private void dtpDayFilter_ValueChanged(object sender, EventArgs e)
-        {
-            if (dtpDayFilter.Checked)
-            {
-                EnableFilter();
-            }
-            else
-            {
-                DisableFilter();
-            }
-        }
-
-        // Enable filter function
-        private void EnableFilter()
-        {
-            FilterDay(GetSelectedDate());
-
-            // when no record selected, clear all fields
-            if (dgvMovements.SelectedRows.Count == 0)
-            {
-                ClearFields();
-            }
-        }
-
-        // Disable filter function
-        private void DisableFilter()
-        {
-            ((DataTable)dgvMovements.DataSource).DefaultView.RowFilter = string.Empty;
-        }
-
-        // Filter selected day (of ARR)
-        private void FilterDay(string selectedDate)
-        {
-            const string filter = "DateOfArr = '{0}'";
-            ((DataTable)dgvMovements.DataSource).DefaultView.RowFilter = string.Format(filter, selectedDate);
-        }
-
-        // Get (build) selected date
-        private string GetSelectedDate()
-        {
-            string dd = dtpDayFilter.Value.Day.ToString();
-            string mm = dtpDayFilter.Value.Month.ToString();
-            string selectedDate = string.Format("{0}.{1}.{2}", dd, mm, GetActualYear());
-            return selectedDate;
-        }
-
-        // Set date today for filter
-        private void SetDateToday()
-        {
-            dtpDayFilter.Value = DateTime.Now;
         }
         #endregion
     }

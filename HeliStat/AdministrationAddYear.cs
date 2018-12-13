@@ -31,17 +31,6 @@ namespace HeliStat
         #endregion
 
         #region Functions
-        // Allows only numbers and control keys during user input
-        private void tbxYear_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char ch = e.KeyChar;
-
-            if (!char.IsDigit(ch) && !char.IsControl(ch))
-            {
-                e.Handled = true;
-            }
-        }
-
         // Add new year
         private void AddNewYear()
         {
@@ -201,6 +190,19 @@ namespace HeliStat
                     MessageBox.Show("Error: " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+            }
+        }
+        #endregion
+
+        #region Events
+        // Allows only numbers and control keys during user input
+        private void tbxYear_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+
+            if (!char.IsDigit(ch) && !char.IsControl(ch))
+            {
+                e.Handled = true;
             }
         }
         #endregion

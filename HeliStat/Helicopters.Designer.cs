@@ -180,7 +180,8 @@
             // 
             this.dgvHelicopters.AllowUserToAddRows = false;
             this.dgvHelicopters.AllowUserToDeleteRows = false;
-            this.dgvHelicopters.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvHelicopters.AllowUserToResizeRows = false;
+            this.dgvHelicopters.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvHelicopters.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHelicopters.Location = new System.Drawing.Point(320, 70);
             this.dgvHelicopters.MultiSelect = false;
@@ -189,6 +190,7 @@
             this.dgvHelicopters.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvHelicopters.Size = new System.Drawing.Size(516, 463);
             this.dgvHelicopters.TabIndex = 30;
+            this.dgvHelicopters.DataSourceChanged += new System.EventHandler(this.dgvHelicopters_DataSourceChanged);
             this.dgvHelicopters.SelectionChanged += new System.EventHandler(this.ShowValues);
             // 
             // btnRemoveHeli

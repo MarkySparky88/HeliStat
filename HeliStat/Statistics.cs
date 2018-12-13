@@ -1,6 +1,5 @@
 ﻿using ClosedXML.Excel;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
@@ -117,12 +116,7 @@ namespace HeliStat
         #endregion
 
         #region Functions
-        // Update datagridview when year changed
-        private void cbxYears_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // TODO is ther another best practice to reload / refresh datagridview?
-            dgvStatistics.DataSource = FillDataGridView(TableNameMov(), GetSelectedYear());
-        }
+        // none
         #endregion
 
         #region Functions (actual year)
@@ -310,6 +304,15 @@ namespace HeliStat
 
                 return dataTable;   
             }
+        }
+        #endregion
+
+        #region Events
+        // Update datagridview when year changed
+        private void cbxYears_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // TODO is ther another best practice to reload / refresh datagridview?
+            dgvStatistics.DataSource = FillDataGridView(TableNameMov(), GetSelectedYear());
         }
         #endregion
     }
