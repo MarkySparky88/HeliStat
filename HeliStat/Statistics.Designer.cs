@@ -49,7 +49,7 @@
             // 
             this.toolStripStatistics.Location = new System.Drawing.Point(0, 24);
             this.toolStripStatistics.Name = "toolStripStatistics";
-            this.toolStripStatistics.Size = new System.Drawing.Size(1171, 25);
+            this.toolStripStatistics.Size = new System.Drawing.Size(1075, 25);
             this.toolStripStatistics.TabIndex = 0;
             this.toolStripStatistics.Text = "toolStrip1";
             // 
@@ -57,7 +57,7 @@
             // 
             this.menuStripStatistics.Location = new System.Drawing.Point(0, 0);
             this.menuStripStatistics.Name = "menuStripStatistics";
-            this.menuStripStatistics.Size = new System.Drawing.Size(1171, 24);
+            this.menuStripStatistics.Size = new System.Drawing.Size(1075, 24);
             this.menuStripStatistics.TabIndex = 1;
             this.menuStripStatistics.Text = "menuStrip1";
             // 
@@ -65,7 +65,7 @@
             // 
             this.statusStripStatistics.Location = new System.Drawing.Point(0, 578);
             this.statusStripStatistics.Name = "statusStripStatistics";
-            this.statusStripStatistics.Size = new System.Drawing.Size(1171, 22);
+            this.statusStripStatistics.Size = new System.Drawing.Size(1075, 22);
             this.statusStripStatistics.TabIndex = 2;
             this.statusStripStatistics.Text = "statusStrip1";
             // 
@@ -79,7 +79,7 @@
             this.dgvStatistics.Location = new System.Drawing.Point(12, 107);
             this.dgvStatistics.Name = "dgvStatistics";
             this.dgvStatistics.ReadOnly = true;
-            this.dgvStatistics.Size = new System.Drawing.Size(1147, 404);
+            this.dgvStatistics.Size = new System.Drawing.Size(1051, 404);
             this.dgvStatistics.TabIndex = 3;
             // 
             // btnExcelExport
@@ -159,7 +159,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1171, 600);
+            this.ClientSize = new System.Drawing.Size(1075, 600);
             this.Controls.Add(this.grbSelectYear);
             this.Controls.Add(this.grbFilterDay);
             this.Controls.Add(this.btnSend);

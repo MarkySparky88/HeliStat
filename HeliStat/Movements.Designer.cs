@@ -234,9 +234,8 @@
             this.dgvMovements.Name = "dgvMovements";
             this.dgvMovements.ReadOnly = true;
             this.dgvMovements.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMovements.Size = new System.Drawing.Size(1147, 427);
+            this.dgvMovements.Size = new System.Drawing.Size(1054, 427);
             this.dgvMovements.TabIndex = 21;
-            //this.dgvMovements.DataSourceChanged += new System.EventHandler(this.dgvMovements_DataSourceChanged);
             this.dgvMovements.SelectionChanged += new System.EventHandler(this.ShowValues);
             // 
             // btnRmvIcaoDes
@@ -367,7 +366,7 @@
             this.toolStripSeparator2});
             this.toolStripMov.Location = new System.Drawing.Point(0, 24);
             this.toolStripMov.Name = "toolStripMov";
-            this.toolStripMov.Size = new System.Drawing.Size(1551, 25);
+            this.toolStripMov.Size = new System.Drawing.Size(1458, 25);
             this.toolStripMov.TabIndex = 39;
             this.toolStripMov.Text = "toolStrip1";
             // 
@@ -402,7 +401,7 @@
             // 
             this.menuStripMov.Location = new System.Drawing.Point(0, 0);
             this.menuStripMov.Name = "menuStripMov";
-            this.menuStripMov.Size = new System.Drawing.Size(1551, 24);
+            this.menuStripMov.Size = new System.Drawing.Size(1458, 24);
             this.menuStripMov.TabIndex = 40;
             this.menuStripMov.Text = "menuStrip1";
             // 
@@ -410,7 +409,7 @@
             // 
             this.statusStripMov.Location = new System.Drawing.Point(0, 594);
             this.statusStripMov.Name = "statusStripMov";
-            this.statusStripMov.Size = new System.Drawing.Size(1551, 22);
+            this.statusStripMov.Size = new System.Drawing.Size(1458, 22);
             this.statusStripMov.TabIndex = 41;
             this.statusStripMov.Text = "statusStrip1";
             // 
@@ -472,7 +471,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1551, 616);
+            this.ClientSize = new System.Drawing.Size(1458, 616);
             this.Controls.Add(this.grbFilterDay);
             this.Controls.Add(this.btnSetDateTimeNow);
             this.Controls.Add(this.ckbOvernight);

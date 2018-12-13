@@ -23,6 +23,7 @@ namespace HeliStat
             // Fill datagridview
             // TODO need bindingsource?
             dgvStatistics.DataSource = FillDataGridView(TableNameMov(), GetSelectedYear());
+            CustomHeaderText();
         }
 
         #region Fill boxes and views
@@ -62,6 +63,25 @@ namespace HeliStat
                 }
                 return dataTable;
             }
+        }
+
+        // Custom column header text for dgv
+        private void CustomHeaderText()
+        {
+            dgvStatistics.Columns[0].HeaderText = "ID";
+            dgvStatistics.Columns[1].HeaderText = "Registration";
+            dgvStatistics.Columns[2].HeaderText = "Aircraft type";
+            dgvStatistics.Columns[3].HeaderText = "No. eng.";
+            dgvStatistics.Columns[4].HeaderText = "Operator";
+            dgvStatistics.Columns[5].HeaderText = "Type Ops";
+            dgvStatistics.Columns[6].HeaderText = "ARR from";
+            dgvStatistics.Columns[7].HeaderText = "DEP to";
+            dgvStatistics.Columns[8].HeaderText = "Overnight";
+            dgvStatistics.Columns[9].HeaderText = "Year";
+            dgvStatistics.Columns[10].HeaderText = "Date of ARR";
+            dgvStatistics.Columns[11].HeaderText = "ATA";
+            dgvStatistics.Columns[12].HeaderText = "Date of DEP";
+            dgvStatistics.Columns[13].HeaderText = "ATD";
         }
 
         // Fill combobox years

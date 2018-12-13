@@ -30,6 +30,7 @@ namespace HeliStat
             // Fill datagridview
             // TODO need a bindingsource?
             dgvMovements.DataSource = FillDataGridView(TableNameMov());
+            CustomHeaderText();
         }
 
         #region Fill boxes and views
@@ -67,6 +68,25 @@ namespace HeliStat
                 }
                 return dataTable;
             }
+        }
+
+        // Custom column header text for dgv
+        private void CustomHeaderText()
+        {
+            dgvMovements.Columns[0].HeaderText = "ID";
+            dgvMovements.Columns[1].HeaderText = "Registration";
+            dgvMovements.Columns[2].HeaderText = "Aircraft type";
+            dgvMovements.Columns[3].HeaderText = "No. eng.";
+            dgvMovements.Columns[4].HeaderText = "Operator";
+            dgvMovements.Columns[5].HeaderText = "Type Ops";
+            dgvMovements.Columns[6].HeaderText = "ARR from";
+            dgvMovements.Columns[7].HeaderText = "DEP to";
+            dgvMovements.Columns[8].HeaderText = "Overnight";
+            dgvMovements.Columns[9].HeaderText = "Year";
+            dgvMovements.Columns[10].HeaderText = "Date of ARR";
+            dgvMovements.Columns[11].HeaderText = "ATA";
+            dgvMovements.Columns[12].HeaderText = "Date of DEP";
+            dgvMovements.Columns[13].HeaderText = "ATD";
         }
 
         // Fill combobox registration

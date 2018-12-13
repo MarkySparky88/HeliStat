@@ -21,6 +21,7 @@ namespace HeliStat
             // Fill datagridview
             // TODO need bindingsource?
             dgvHelicopters.DataSource = FillDataGridView();
+            CustomHeaderText();
         }
 
         #region Fill boxes and views
@@ -57,6 +58,16 @@ namespace HeliStat
                 }
                 return dataTable;
             }
+        }
+
+        // Custom column header text for dgv
+        private void CustomHeaderText()
+        {
+            dgvHelicopters.Columns[0].HeaderText = "ID";
+            dgvHelicopters.Columns[1].HeaderText = "Registration";
+            dgvHelicopters.Columns[2].HeaderText = "Aircraft type";
+            dgvHelicopters.Columns[3].HeaderText = "No. eng.";
+            dgvHelicopters.Columns[4].HeaderText = "Operator";
         }
 
         // Fill combobox aircraft type
