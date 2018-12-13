@@ -200,19 +200,11 @@ namespace HeliStat
         /// Var1 (Microsoft Office namespace): https://www.youtube.com/watch?v=YfcasWYaIzo&list=PL3WjWQ4vgGF-N4gf0wK8SR_J6upbM_TJI&index=29&t=201s
         /// Var2 (Forum 3rd answer, class extension method) https://stackoverflow.com/questions/8207869/how-to-export-datatable-to-excel
 
-        // TODO dispose this datatable at the end?
-        // TODO shift this field to correct possition
-        // TODO need to work with SqlDataAdapter to work with connectionless data? Some examples on stackoverflow use SqlDataAdapter
-        DataTable dtForExcelExport = new DataTable();
-
         // Excel export (closedXML)
         private void ExcelExport()
         {
             // TODO use "using" for dataset / datatable or dispose it seperately?
             DataSet dataSet = GetDataSetForExport();
-
-            // Fill datatable form database
-            dtForExcelExport = GetDataFromDatabase(TableNameMov(), GetSelectedYear());
 
             // Create workbook and worksheets
             using (var wb = new XLWorkbook())
@@ -227,9 +219,7 @@ namespace HeliStat
         {
             using (DataSet dataSet = new DataSet())
             {
-                // TODO pro Tag an welchem je ein Movement erfasst wurde ein Worksheet in Excel erstellen, nicht nur aktuell ausgewählter Tag
-                //dataSet.Tables.Add(GetDataTablePerDay(TableNameMov(), dtpDayFilter.Value.Date));
-                dataSet.Tables.Add(GetDataTablePerYear(dtForExcelExport));
+                dataSet.Tables.Add(GetDataFromDatabase(TableNameMov(), GetSelectedYear()));
                 return dataSet;
             }
         }
@@ -271,7 +261,7 @@ namespace HeliStat
         }
 
         // Get data for selected date (connectionless)
-        private DataTable GetDataTablePerDay(DataTable dtForExcelExport)
+        private DataTable GetDataTablePerDay()
         {
             using (DataTable dtPerDay = new DataTable())
             {
@@ -284,22 +274,16 @@ namespace HeliStat
         }
 
         // Get data for selected year (connectionless)
-        private DataTable GetDataTablePerYear(DataTable dtForExcelExport)
+        private DataTable GetDataTablePerYear()
         {
-            DataTable dtPerYear = new DataTable();
-            dtPerYear.TableName = "Year";
-            dtPerYear = dtForExcelExport;
-            return dtPerYear;
+            using (DataTable dtPerYear = new DataTable())
+            {
+                dtPerYear.TableName = "Year";
 
-            //using (DataTable dtPerYear = new DataTable())
-            //{
-            //    dtPerYear.TableName = "Year";
-            //    dtPerYear = dtForExcelExport;
+                // TODO write function for connectionless dataTable
 
-            //    // TODO write function for connectionless dataTable
-
-            //    return dtPerYear;
-            //}
+                return dtPerYear;
+            }
         }
 
         // Get data for total statistic overview (connectionless)
@@ -326,16 +310,6 @@ namespace HeliStat
 
                 return dataTable;   
             }
-        }
-
-        // Get all distinct dates of selected year, with at least 1 movement
-        private void GetDistinctDates(DataTable dataTable)
-        {
-            //List<DateTime> dates = new List<DateTime>();
-            //DataView view = new DataView(dataTable);
-            //DataTable distinctDates = view.ToTable(true, "DateOfArr");
-
-            // TODO wip...
         }
         #endregion
     }
