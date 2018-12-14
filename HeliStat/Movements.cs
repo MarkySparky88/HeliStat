@@ -30,6 +30,7 @@ namespace HeliStat
             // Fill datagridview
             // TODO need a bindingsource?
             dgvMovements.DataSource = FillDataGridView(TableNameMov());
+            dgvMovements.Columns["Year"].Visible = false;
             CustomHeaderText();
         }
 

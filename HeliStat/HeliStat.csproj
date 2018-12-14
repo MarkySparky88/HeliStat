@@ -320,7 +320,6 @@
     <None Include="Resources\icons8-reduce-32.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Banner.jpg" />
     <Content Include="HeliStat\HeliStatDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
