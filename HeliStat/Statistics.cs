@@ -218,15 +218,33 @@ namespace HeliStat
         // Excel export (closedXML)
         private void ExcelExport()
         {
-            // TODO use "using" for dataset / datatable or dispose it seperately?
-            DataSet dataSet = GetDataSetForExport();
-
-            // Create workbook and worksheets
-            using (var wb = new XLWorkbook())
+            using (DataSet dataSet = GetDataSetForExport())
             {
-                wb.Worksheets.Add(dataSet);
-                wb.SaveAs("Movements.xlsx");
+                // Create workbook and worksheets
+                using (var wb = new XLWorkbook())
+                {
+                    wb.Worksheets.Add(dataSet);
+                    SaveExcelFile(wb);
+                }
             }
+        }
+
+        // Save file dialog
+        private static void SaveExcelFile(XLWorkbook wb)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Excel-Workbook (*.xlsx)|*.xlsx",
+                Title = "Export statistics to Excel file"
+            };
+
+            saveFileDialog.ShowDialog();
+
+            if (!string.IsNullOrWhiteSpace(saveFileDialog.FileName))
+            {
+                wb.SaveAs(saveFileDialog.FileName);
+            }
+            saveFileDialog.Dispose();
         }
 
         // Get DataSet for excel export from different DataTables
