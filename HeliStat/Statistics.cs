@@ -23,8 +23,7 @@ namespace HeliStat
             // Fill datagridview
             // TODO need bindingsource?
             dgvStatistics.DataSource = FillDataGridView(TableNameMov(), GetSelectedYear());
-            dgvStatistics.Columns["Year"].Visible = false;
-            CustomHeaderText();
+            DataGridViewVisualSettings();
         }
 
         #region Fill boxes and views
@@ -64,6 +63,15 @@ namespace HeliStat
                 }
                 return dataTable;
             }
+        }
+
+        // Datagridview visual settings
+        private void DataGridViewVisualSettings()
+        {
+            dgvStatistics.Columns["Year"].Visible = false;
+            dgvStatistics.Columns["ActualTimeArr"].DefaultCellStyle.Format = @"hh\:mm";
+            dgvStatistics.Columns["ActualTimeDep"].DefaultCellStyle.Format = @"hh\:mm";
+            CustomHeaderText();
         }
 
         // Custom column header text for dgv

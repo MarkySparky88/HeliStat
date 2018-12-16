@@ -30,8 +30,7 @@ namespace HeliStat
             // Fill datagridview
             // TODO need a bindingsource?
             dgvMovements.DataSource = FillDataGridView(TableNameMov());
-            dgvMovements.Columns["Year"].Visible = false;
-            CustomHeaderText();
+            DataGridViewVisualSettings();
         }
 
         #region Fill boxes and views
@@ -69,6 +68,15 @@ namespace HeliStat
                 }
                 return dataTable;
             }
+        }
+
+        // Datagridview visual settings
+        private void DataGridViewVisualSettings()
+        {
+            dgvMovements.Columns["Year"].Visible = false;
+            dgvMovements.Columns["ActualTimeArr"].DefaultCellStyle.Format = @"hh\:mm";
+            dgvMovements.Columns["ActualTimeDep"].DefaultCellStyle.Format = @"hh\:mm";
+            CustomHeaderText();
         }
 
         // Custom column header text for dgv
@@ -519,6 +527,7 @@ namespace HeliStat
         }
 
         // Sets landing time of movement
+        // TODO functions set landing time and set departure time quite similar, one function with overloads?
         private void SetLand(string tableName)
         {
             // any row selected?
