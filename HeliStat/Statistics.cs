@@ -232,18 +232,21 @@ namespace HeliStat
                 using (var wb = new XLWorkbook())
                 {
                     wb.Worksheets.Add(dataSet);
-                    SaveExcelFile(wb);
+                    SaveExcelFile(wb, GetSelectedYear());
                 }
             }
         }
 
         // Save file dialog
-        private static void SaveExcelFile(XLWorkbook wb)
+        private static void SaveExcelFile(XLWorkbook wb, string selectedYear)
         {
+            string fileName = string.Format("WEF {0} Statistics", selectedYear);
+
             SaveFileDialog saveFileDialog = new SaveFileDialog
             {
-                Filter = "Excel-Workbook (*.xlsx)|*.xlsx",
-                Title = "Export statistics to Excel file"
+                Title = "Export statistics to Excel file",
+                FileName = fileName,
+                Filter = "Excel-Workbook (*.xlsx)|*.xlsx"
             };
 
             saveFileDialog.ShowDialog();
