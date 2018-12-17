@@ -343,37 +343,51 @@ namespace HeliStat
         // Add heli
         private void AddHeli()
         {
-            if (NoEmptyFields())
+            string newRegistration = tbxRegistration.Text.ToString();
+
+            // Check if heli exists
+            if (!CheckIfHeliExists(newRegistration))
             {
-                using (SqlConnection connection = new SqlConnection(Program.ConnString))
+                // Check if no empty fields
+                if (NoEmptyFields())
                 {
-                    try
+                    // Database access
+                    using (SqlConnection connection = new SqlConnection(Program.ConnString))
                     {
-                        connection.Open();
-                        string cmdText = @"INSERT INTO tblHelicopters (Registration, AircraftType, NoOfEng, Operator)
+                        try
+                        {
+                            connection.Open();
+                            string cmdText = @"INSERT INTO tblHelicopters (Registration, AircraftType, NoOfEng, Operator)
                                         VALUES (@Registration, @AircraftType, @NoOfEng, @Operator)";
 
-                        using (SqlCommand cmd = new SqlCommand(cmdText, connection))
-                        {
-                            cmd.Parameters.AddWithValue("@Registration", tbxRegistration.Text.ToString());
-                            cmd.Parameters.AddWithValue("@AircraftType", cbxAircraftType.SelectedItem.ToString());
-                            cmd.Parameters.AddWithValue("@NoOfEng", Convert.ToByte(cbxNoOfEng.SelectedItem));
-                            cmd.Parameters.AddWithValue("@Operator", cbxOperator.SelectedItem.ToString());
-                            cmd.ExecuteNonQuery();
+                            using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                            {
+                                cmd.Parameters.AddWithValue("@Registration", tbxRegistration.Text.ToString());
+                                cmd.Parameters.AddWithValue("@AircraftType", cbxAircraftType.SelectedItem.ToString());
+                                cmd.Parameters.AddWithValue("@NoOfEng", Convert.ToByte(cbxNoOfEng.SelectedItem));
+                                cmd.Parameters.AddWithValue("@Operator", cbxOperator.SelectedItem.ToString());
+                                cmd.ExecuteNonQuery();
 
-                            MessageBox.Show("Heli has been added successfully!", "Helicopter added",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Heli has been added successfully!", "Helicopter added",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                        catch (SqlException ex)
+                        {
+                            MessageBox.Show("Error: " + ex.Message, "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
-                    catch (SqlException ex)
-                    {
-                        MessageBox.Show("Error: " + ex.Message, "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
+                    // Refresh data
+                    // TODO is there a better / other way to reload / refresh the new added data in the datagrid? (whole project! maybe work with BindingSource or DataSource class?)
+                    dgvHelicopters.DataSource = FillDataGridView();
+                    ClearFields();
                 }
-                // TODO is there a better / other way to reload / refresh the new added data in the datagrid? (whole project! maybe work with BindingSource or DataSource class?)
-                dgvHelicopters.DataSource = FillDataGridView();
-                ClearFields();
+            }
+            else
+            {
+                MessageBox.Show("This helicopter already exists.\nEnter a new helicopter.", "Helicopter exists",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -395,8 +409,10 @@ namespace HeliStat
                 return;
             }
 
+            // check if no empty fields
             if (NoEmptyFields())
             {
+                // database access
                 using (SqlConnection connection = new SqlConnection(Program.ConnString))
                 {
                     try
@@ -426,6 +442,7 @@ namespace HeliStat
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
+                // refresh data
                 // TODO is there a better way to reload the new added data in the datagrid?
                 dgvHelicopters.DataSource = FillDataGridView();
                 ClearFields();
@@ -475,6 +492,45 @@ namespace HeliStat
             // TODO is there a better way to reload the new added data in the datagrid?
             dgvHelicopters.DataSource = FillDataGridView();
             ClearFields();
+        }
+
+        // Check if heli already exists
+        // TODO this function already used for new operator, aircraft type and ICAO designator (own class for all?)
+        // TODO kann man diese Abfragen (gilt auch für new operator / aircraft type / ICAO designator) nicht ohne Datenzugriff lösen? Z.B. mittels DataTable?
+        private bool CheckIfHeliExists(string registration)
+        {
+            bool recordExists = false;
+
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                    string cmdText = "SELECT COUNT(*) FROM [tblHelicopters] WHERE ([Registration] = @Registration)";
+
+                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Registration", registration);
+
+                        int i = (int)cmd.ExecuteScalar();
+
+                        if (i > 0)
+                        {
+                            recordExists = true;
+                        }
+                        else
+                        {
+                            recordExists = false;
+                        }
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                return recordExists;
+            }
         }
 
         // Clears all fields
