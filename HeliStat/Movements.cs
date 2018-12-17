@@ -346,7 +346,7 @@ namespace HeliStat
                 }
             }
             // refresh data
-            // TODO how is this working in case of an error in the code above?
+            // TODO refactor? own method for refresh data?
             FillCbxArrDep();
             cbxArrFrom.ResetText();
             cbxDepTo.ResetText();

@@ -105,7 +105,6 @@ namespace HeliStat
                     // year range between 2000 - 2099
                     if (year >= 2000 && year < 2100)
                     {
-                        //this.newYear = newYear;
                         DialogBoxStatus = true;
                         return true;
                     }

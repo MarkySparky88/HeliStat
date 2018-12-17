@@ -73,22 +73,6 @@ namespace HeliStat
         // Fill combobox aircraft type
         private void FillCbxAircraftType()
         {
-            //// TODO test for a shared class for all database interactions (DatabaseAccess.cs)
-            //string cmdText = "SELECT * FROM tblAircraftTypes ORDER BY AircraftType";
-            //string columnOrdinal = "AircraftType";
-            //string addItem;
-            //string[] items = new string[99];
-
-            //cbxAircraftType.Items.Clear();
-
-            //DatabaseAccess databaseAccess = new DatabaseAccess();
-            //while (!databaseAccess.DbAccessComplete)
-            //{
-            //    databaseAccess.FillCombobox(cmdText, columnOrdinal, out addItem);
-            //    cbxAircraftType.Items.Add(addItem);
-            //}
-
-
             cbxAircraftType.Items.Clear();
 
             using (SqlConnection connection = new SqlConnection(Program.ConnString))
@@ -288,7 +272,6 @@ namespace HeliStat
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            // TODO how is this working in case of an error in the code above?
             FillCbxAircraftType();
             cbxAircraftType.ResetText();
         }
@@ -353,7 +336,6 @@ namespace HeliStat
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            // TODO how is this working in case of an error in the code above?
             FillCbxOperator();
             cbxOperator.ResetText();
         }
@@ -389,7 +371,7 @@ namespace HeliStat
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
-                // TODO is there a better / other way to reload / refresh the new added data in the datagrid?
+                // TODO is there a better / other way to reload / refresh the new added data in the datagrid? (whole project! maybe work with BindingSource or DataSource class?)
                 dgvHelicopters.DataSource = FillDataGridView();
                 ClearFields();
             }

@@ -77,35 +77,30 @@ namespace HeliStat
         // Button "Archive year"
         private void btnAchriveYear_Click(object sender, EventArgs e)
         {
-            // TODO enable button again (button properties window)
             // TODO write code here..
         }
 
         // Button "Retrieve year"
         private void btnRetrieveYear_Click(object sender, EventArgs e)
         {
-            // TODO enable button again (button properties window)
             // TODO write code here..
         }
 
         // Button "Backup database"
         private void btnBackupDb_Click(object sender, EventArgs e)
         {
-            // TODO enable button again (button properties window)
             // TODO write code here..
         }
 
         // Button "Restore database"
         private void btnRestoreDb_Click(object sender, EventArgs e)
         {
-            // TODO enable button again (button properties window)
             // TODO write code here..
         }
 
         // Button "Delete database"
         private void btnDeleteDb_Click(object sender, EventArgs e)
         {
-            // TODO enable button again (button properties window)
             // TODO write code here..
         }
         #endregion
