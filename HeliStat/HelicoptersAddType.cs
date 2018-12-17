@@ -35,8 +35,10 @@ namespace HeliStat
         {
             newAircraftType = tbxAircraftType.Text.ToString();
 
+            // Check if aircraft type exists
             if (!CheckIfRecordExists(newAircraftType))
             {
+                // Check if user input correct
                 if (CheckUserInput(newAircraftType))
                 {
                     AddToDatabase(newAircraftType);

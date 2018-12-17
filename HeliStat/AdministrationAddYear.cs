@@ -36,8 +36,10 @@ namespace HeliStat
         {
             newYear = tbxYear.Text.ToString();
 
+            // Check if year exists
             if (!CheckIfRecordExists(newYear))
             {
+                // Check if user input correct
                 if (CheckUserInput(newYear))
                 {
                     AddToDatabase(newYear);
@@ -92,17 +94,17 @@ namespace HeliStat
         // Check user input
         private bool CheckUserInput(string newYear)
         {
-            // textbox not null or empty
+            // Textbox not null or empty
             if (!string.IsNullOrEmpty(newYear))
             {
                 int length = newYear.Length;
 
-                // year with 4 digits
+                // Year has 4 digits
                 if (length == 4)
                 {
                     int year = Convert.ToInt32(newYear);
 
-                    // year range between 2000 - 2099
+                    // Year range between 2000 - 2099
                     if (year >= 2000 && year < 2100)
                     {
                         DialogBoxStatus = true;

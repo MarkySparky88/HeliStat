@@ -137,20 +137,20 @@ namespace HeliStat
         // Set actual year
         private void SetActualYear()
         {
-            // catch if no year selected in combobox
+            // Check if a year is selected
             if (cbxYears.SelectedItem != null)
             {
-                // set actual year in app settings
+                // Set actual year in app settings
                 string actualYear = cbxYears.SelectedItem.ToString();
                 Properties.Settings.Default.ActualYear = actualYear;
 
-                // calls event handler
+                // Call event handler
                 OnActualYearChanged(EventArgs.Empty);
 
-                // display actual year
+                // Display actual year
                 DisplayActualYear();
 
-                // message box
+                // Confirmation message
                 string messageBoxText = string.Format("Year {0} has been set as the actual year for this program.", actualYear);
                 MessageBox.Show(messageBoxText, "Actual year set",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);

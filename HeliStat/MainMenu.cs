@@ -81,7 +81,7 @@ namespace HeliStat
         {
             using (frmAdminLogin adminLogin = new frmAdminLogin())
             {
-                // if username & password correct, open administation panel
+                // Open admin panel, if username & password correct
                 if (adminLogin.ShowDialog() == DialogResult.OK && adminLogin.LoginSuccess)
                 {
                     using (frmAdministration administration = new frmAdministration())

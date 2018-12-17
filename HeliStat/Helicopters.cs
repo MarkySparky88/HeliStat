@@ -232,7 +232,7 @@ namespace HeliStat
         // Remove aircraft type
         private void RemoveAircraftType()
         {
-            // any item selected?
+            // Any item selected?
             if (cbxAircraftType.SelectedItem == null)
             {
                 MessageBox.Show("Please select an aircraft type out of the list", "No item selected",
@@ -240,7 +240,7 @@ namespace HeliStat
                 return;
             }
 
-            // sure to delete?
+            // Sure to delete?
             string selectedItem = cbxAircraftType.SelectedItem.ToString();
             string messageBoxText = string.Format("Are you sure to delete '{0}' from the list?", selectedItem);
 
@@ -250,6 +250,7 @@ namespace HeliStat
                 return;
             }
 
+            // Database access
             using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
@@ -272,6 +273,7 @@ namespace HeliStat
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
+            // Refresh data
             FillCbxAircraftType();
             cbxAircraftType.ResetText();
         }
@@ -296,7 +298,7 @@ namespace HeliStat
         // Remove operator
         private void RemoveOperator()
         {
-            // any item selected?
+            // Any item selected?
             if (cbxOperator.SelectedItem == null)
             {
                 MessageBox.Show("Please select an operator out of the list", "No item selected",
@@ -304,7 +306,7 @@ namespace HeliStat
                 return;
             }
 
-            // sure to delete?
+            // Sure to delete?
             string selectedItem = cbxOperator.SelectedItem.ToString();
             string messageBoxText = string.Format("Are you sure to delete '{0}' from the list?", selectedItem);
 
@@ -314,6 +316,7 @@ namespace HeliStat
                 return;
             }
 
+            // Database access
             using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
@@ -336,6 +339,7 @@ namespace HeliStat
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
+            // Refresh data
             FillCbxOperator();
             cbxOperator.ResetText();
         }
@@ -348,10 +352,9 @@ namespace HeliStat
             // Check if heli exists
             if (!CheckIfHeliExists(newRegistration))
             {
-                // Check if no empty fields
+                // Database access
                 if (NoEmptyFields())
                 {
-                    // Database access
                     using (SqlConnection connection = new SqlConnection(Program.ConnString))
                     {
                         try
@@ -394,7 +397,7 @@ namespace HeliStat
         // Update selected heli
         private void UpdateHeli()
         {
-            // any row selected?
+            // Any row selected?
             if (dgvHelicopters.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Please select a helicopter from the list to update", "No item selected",
@@ -402,17 +405,16 @@ namespace HeliStat
                 return;
             }
 
-            // sure to update?
+            // Sure to update?
             if (MessageBox.Show("Are you sure to update this helicopter?", "Confirm update",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 return;
             }
 
-            // check if no empty fields
+            // Database access
             if (NoEmptyFields())
             {
-                // database access
                 using (SqlConnection connection = new SqlConnection(Program.ConnString))
                 {
                     try
@@ -442,7 +444,7 @@ namespace HeliStat
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
-                // refresh data
+                // Refresh data
                 // TODO is there a better way to reload the new added data in the datagrid?
                 dgvHelicopters.DataSource = FillDataGridView();
                 ClearFields();
@@ -452,7 +454,7 @@ namespace HeliStat
         // Remove selected heli
         private void RemoveHeli()
         {
-            // any row selected?
+            // Any row selected?
             if (dgvHelicopters.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Please select a helicopter from the list to delete", "No item selected",
@@ -460,13 +462,14 @@ namespace HeliStat
                 return;
             }
 
-            // sure to delete?
+            // Sure to delete?
             if (MessageBox.Show("Are you sure to delete this helicopter?", "Confirm delete",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 return;
             }
 
+            // Database access
             using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
@@ -489,6 +492,7 @@ namespace HeliStat
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
+            // Refresh data
             // TODO is there a better way to reload the new added data in the datagrid?
             dgvHelicopters.DataSource = FillDataGridView();
             ClearFields();
@@ -584,8 +588,7 @@ namespace HeliStat
         // When datasource of datagridview changes
         private void dgvHelicopters_DataSourceChanged(object sender, EventArgs e)
         {
-            // set last column (Operator) AutoSizeMode to fill
-            dgvHelicopters.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvHelicopters.Columns["Operator"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
         #endregion
     }

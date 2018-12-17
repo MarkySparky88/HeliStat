@@ -255,6 +255,7 @@ namespace HeliStat
             {
                 wb.SaveAs(saveFileDialog.FileName);
             }
+
             saveFileDialog.Dispose();
         }
 

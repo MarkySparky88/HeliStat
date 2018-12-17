@@ -35,8 +35,10 @@ namespace HeliStat
         {
             newIcaoDes = tbxIcaoDesignator.Text.ToString();
 
+            // Check if designator exists
             if (!CheckIfRecordExists(newIcaoDes))
             {
+                // Check if user input correct
                 if (CheckUserInput(newIcaoDes))
                 {
                     AddToDatabase(newIcaoDes);

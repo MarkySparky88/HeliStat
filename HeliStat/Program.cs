@@ -13,8 +13,8 @@ namespace HeliStat
         [STAThread]
         static void Main()
         {
-            // TODO activate upon release!
             // Database location in user app data folder
+            // TODO activate upon release!
             //AppDomain.CurrentDomain.SetData("DataDirectory", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
 
             // Connection string

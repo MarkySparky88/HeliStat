@@ -37,8 +37,10 @@ namespace HeliStat
         {
             newOperator = tbxOperator.Text.ToString();
 
+            // Check if operator exists
             if (!CheckIfRecordExists(newOperator))
             {
+                // Check if user input correct
                 if (CheckUserInput(newOperator))
                 {
                     AddToDatabase(newOperator);

@@ -263,7 +263,7 @@ namespace HeliStat
         {
             frmAdminLogin adminLogin = new frmAdminLogin();
 
-            // if username & password correct, open administation panel
+            // Open admin panel, if username & password correct
             if (adminLogin.ShowDialog() == DialogResult.OK && adminLogin.LoginSuccess)
             {
                 administration.ShowDialog();
@@ -272,7 +272,7 @@ namespace HeliStat
         #endregion
 
         #region Functions
-        // Open "Helicopters" (and refresh)
+        // Open "Helicopters" and refresh registration combobox
         private void Helicopters()
         {
             using (frmHelicopters helicopters = new frmHelicopters())
@@ -302,7 +302,7 @@ namespace HeliStat
         // Remove ICAO designator from database
         private void RemoveIcaoDesignator()
         {
-            // any item selected?
+            // Any item selected?
             // TODO dieser code wird immer wieder im gleichen Stil verwendet (auch in Helicopters) -> Refactor / eine gemeinsame Klasse?
             if (cbxArrFrom.SelectedItem == null)
             {
@@ -311,7 +311,7 @@ namespace HeliStat
                 return;
             }
 
-            // sure to delete?
+            // Sure to delete?
             // TODO dieser code wird immer wieder im gleichen Stil verwendet (auch in Helicopters) -> Refactor / eine gemeinsame Klasse?
             string selectedItem = cbxArrFrom.SelectedItem.ToString();
             string messageBoxText = string.Format("Are you sure to delete '{0}' from the list?", selectedItem);
@@ -322,7 +322,7 @@ namespace HeliStat
                 return;
             }
 
-            // database access
+            // Database access
             using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
@@ -345,21 +345,24 @@ namespace HeliStat
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            // refresh data
-            // TODO refactor? own method for refresh data?
+            // Refresh data
+            // TODO refactor? own method for refresh data? (whole project!)
             FillCbxArrDep();
             cbxArrFrom.ResetText();
             cbxDepTo.ResetText();
         }
 
         // Add movement to database
+        // TODO huge method! Refactor!
         private void AddMovement(string tableName)
         {
+            // Pre-set values
             byte noOfEng = 0;
             string registration = "";
             string aircraftType = "";
             string operatorName = "";
 
+            // Database access
             if (NoEmptyFields())
             {
                 using (SqlConnection connection = new SqlConnection(Program.ConnString))
@@ -382,7 +385,7 @@ namespace HeliStat
                             cmd.CommandType = CommandType.Text;
                             cmd.CommandText = cmdText1;
 
-                            // first query (get helicopter data)
+                            // First query (get helicopter data)
                             cmd.Parameters.AddWithValue("@Reg", cbxRegistration.SelectedItem.ToString());
                             using (SqlDataReader reader1 = cmd.ExecuteReader())
                             {
@@ -398,7 +401,7 @@ namespace HeliStat
                                 }
                             }
 
-                            // second query (write movement into table)
+                            // Second query (write movement into table)
                             cmd.CommandText = cmdText2;
                             cmd.Parameters.AddWithValue("@Registration", registration);
                             cmd.Parameters.AddWithValue("@AircraftType", aircraftType);
@@ -418,6 +421,7 @@ namespace HeliStat
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
+                // Refresh data
                 // TODO is there a better / other way to reload / refresh the new added data in the datagrid?
                 dgvMovements.DataSource = FillDataGridView(TableNameMov());
             }
@@ -426,7 +430,7 @@ namespace HeliStat
         // Update movement in database
         private void UpdateMovement(string tableName)
         {
-            // any row selected?
+            // Any row selected?
             if (dgvMovements.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Please select a movement from the list to update", "No item selected",
@@ -434,7 +438,7 @@ namespace HeliStat
                 return;
             }
 
-            // sure to update?
+            // Sure to update?
             if (MessageBox.Show("Are you sure to update this movement?\nNote: Landing and take-off times are not affected!",
                 "Confirm update",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
@@ -442,6 +446,7 @@ namespace HeliStat
                 return;
             }
 
+            // Database access
             if (NoEmptyFields())
             {
                 using (SqlConnection connection = new SqlConnection(Program.ConnString))
@@ -476,6 +481,7 @@ namespace HeliStat
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
+                // Refresh data
                 // TODO is there a better way to reload the new added data in the datagrid?
                 dgvMovements.DataSource = FillDataGridView(TableNameMov());
             }
@@ -484,7 +490,7 @@ namespace HeliStat
         // Delete movement in database
         private void DeleteMovement(string tableName)
         {
-            // any row selected?
+            // Any row selected?
             if (dgvMovements.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Please select a movement from the list to delete", "No item selected",
@@ -492,13 +498,14 @@ namespace HeliStat
                 return;
             }
 
-            // sure to delete?
+            // Sure to delete?
             if (MessageBox.Show("Are you sure to delete this movement?", "Confirm delete",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 return;
             }
 
+            // Database access
             using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
@@ -521,6 +528,7 @@ namespace HeliStat
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
+            // Refresh data
             // TODO is there a better way to reload the new added data in the datagrid?
             dgvMovements.DataSource = FillDataGridView(TableNameMov());
             ClearFields();
@@ -530,7 +538,7 @@ namespace HeliStat
         // TODO functions set landing time and set departure time quite similar, one function with overloads?
         private void SetLand(string tableName)
         {
-            // any row selected?
+            // Any row selected?
             if (dgvMovements.SelectedRows == null)
             {
                 MessageBox.Show("Please select a movement from the list", "No item selected",
@@ -538,13 +546,14 @@ namespace HeliStat
                 return;
             }
 
-            // sure to update?
+            // Sure to update?
             if (MessageBox.Show("Are you sure to update this movement with the landing time & date?", "Confirm update",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 return;
             }
 
+            // Database access
             if (DateTimeNotEmpty())
             {
                 using (SqlConnection connection = new SqlConnection(Program.ConnString))
@@ -574,6 +583,7 @@ namespace HeliStat
                     }
                 }
             }
+            // Refresh data
             // TODO is there a better way to reload the new added data in the datagrid?
             dgvMovements.DataSource = FillDataGridView(TableNameMov());
         }
@@ -581,7 +591,7 @@ namespace HeliStat
         // Sets take-off time of movement
         private void SetTakeOff(string tableName)
         {
-            // any row selected?
+            // Any row selected?
             if (dgvMovements.SelectedRows == null)
             {
                 MessageBox.Show("Please select a movement from the list", "No item selected",
@@ -589,13 +599,14 @@ namespace HeliStat
                 return;
             }
 
-            // sure to update?
+            // Sure to update?
             if (MessageBox.Show("Are you sure to update this movement with the take-off time & date?", "Confirm update",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 return;
             }
 
+            // Database access
             if (DateTimeNotEmpty())
             {
                 using (SqlConnection connection = new SqlConnection(Program.ConnString))
@@ -625,11 +636,12 @@ namespace HeliStat
                     }
                 }
             }
+            // Refresh data
             // TODO is there a better way to reload the new added data in the datagrid?
             dgvMovements.DataSource = FillDataGridView(TableNameMov());
         }
 
-        // Checks if no empty fields (left side of datagridview) before handling database
+        // Checks if no empty fields (left side of datagridview)
         private bool NoEmptyFields()
         {
             if (cbxRegistration != null &&
@@ -676,7 +688,7 @@ namespace HeliStat
             ckbOvernight.Checked = false;
         }
 
-        // Reset to current date & time
+        // Reset dtp to current date & time
         private void SetDateTimeNow()
         {
             dtpActualTime.Value = DateTime.Now;
@@ -733,7 +745,7 @@ namespace HeliStat
         {
             FilterDay(GetSelectedDate());
 
-            // when no record selected, clear all fields
+            // When no record selected
             if (dgvMovements.SelectedRows.Count == 0)
             {
                 ClearFields();
@@ -753,7 +765,7 @@ namespace HeliStat
             ((DataTable)dgvMovements.DataSource).DefaultView.RowFilter = string.Format(filter, selectedDate);
         }
 
-        // Get (build) selected date
+        // Get selected date
         private string GetSelectedDate()
         {
             string dd = dtpDayFilter.Value.Day.ToString();
@@ -790,11 +802,11 @@ namespace HeliStat
                             {
                                 while (reader.Read())
                                 {
-                                    // read & assign aircraft type
+                                    // Aircraft type
                                     string aircraftType = reader.GetString(2);
                                     tbxAircraftType.Text = aircraftType;
 
-                                    // read & assign operator name
+                                    // Operator
                                     string operatorName = reader.GetString(4);
                                     tbxOperator.Text = operatorName;
                                 }
@@ -823,7 +835,7 @@ namespace HeliStat
                 cbxArrFrom.Text = row.Cells["ArrFrom"].Value.ToString();
                 cbxDepTo.Text = row.Cells["DepTo"].Value.ToString();
 
-                // checkbox "Overnight?"
+                // Checkbox "Overnight?"
                 byte overnight = Convert.ToByte(row.Cells["Overnight"].Value);
                 if (overnight == 1)
                 {

@@ -12,8 +12,6 @@ namespace HeliStat
         public frmAdminLogin()
         {
             InitializeComponent();
-
-            // Preset text for username
             PresetTbxUsername("admin");
         }
 
@@ -32,7 +30,7 @@ namespace HeliStat
         #endregion
 
         #region Functions
-        // Start Login process
+        // Start login process
         private void Login()
         {
             using (SqlConnection connection = new SqlConnection(Program.ConnString))
