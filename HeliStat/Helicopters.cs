@@ -7,13 +7,7 @@ namespace HeliStat
 {
     public partial class frmHelicopters : Form
     {
-        private string newHeli;
-
-        public string NewHeli
-        {
-            get { return newHeli; }
-            set { newHeli = value; }
-        }
+        public string NewHeli { get; private set; }
 
         // Constructor
         public frmHelicopters()
@@ -259,6 +253,15 @@ namespace HeliStat
             }
 
             // Database access
+            RemoveAircraftTypeDatabaseAccess();
+
+            // Refresh data
+            RemoveAircraftTypeRefreshData();
+        }
+
+        // Remove aircraft type: Database access
+        private void RemoveAircraftTypeDatabaseAccess()
+        {
             using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
@@ -281,7 +284,11 @@ namespace HeliStat
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            // Refresh data
+        }
+
+        // Remove aircraft type: Refresh data
+        private void RemoveAircraftTypeRefreshData()
+        {
             FillCbxAircraftType();
             cbxAircraftType.ResetText();
         }
@@ -325,6 +332,15 @@ namespace HeliStat
             }
 
             // Database access
+            RemoveOperatorDatabaseAccess();
+
+            // Refresh data
+            RemoveOperatorRefreshData();
+        }
+
+        // Remove operator: Database access
+        private void RemoveOperatorDatabaseAccess()
+        {
             using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
@@ -347,7 +363,11 @@ namespace HeliStat
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            // Refresh data
+        }
+
+        // Remove operator: Refresh data
+        private void RemoveOperatorRefreshData()
+        {
             FillCbxOperator();
             cbxOperator.ResetText();
         }
@@ -365,15 +385,15 @@ namespace HeliStat
                     // Database access
                     AddHeliDatabaseAccess(registration);
 
-                    // Make new heli accessible for movements form (via public property at top of code)
-                    newHeli = registration;
-
                     // Refresh data
                     // TODO is there a better / other way to reload / refresh the new added data in the datagrid? (whole project! maybe work with BindingSource or DataSource class?)
                     dgvHelicopters.DataSource = FillDataGridView();
 
-                    // Select row in dgv of helic which has just been created
+                    // Select row in dgv of heli which has just been created
                     AddHeliSelectCreatedRow(registration);
+
+                    // Make new heli accessible for movements form (via public property at top of code)
+                    NewHeli = registration;
                 }
             }
             else
@@ -427,7 +447,7 @@ namespace HeliStat
             }
         }
 
-        // Update selected heli
+        // Update heli
         private void UpdateHeli()
         {
             // Any row selected?
@@ -448,43 +468,56 @@ namespace HeliStat
             // Database access
             if (NoEmptyFields())
             {
-                using (SqlConnection connection = new SqlConnection(Program.ConnString))
+                UpdateHeliDatabaseAccess();
+
+                // Refresh data
+                // TODO is there a better way to reload the new added data in the datagrid?
+                UpdateHeliRefreshData();
+            }
+        }
+
+        // Update heli: Database access
+        private void UpdateHeliDatabaseAccess()
+        {
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            {
+                try
                 {
-                    try
-                    {
-                        connection.Open();
-                        string cmdText = @"UPDATE tblHelicopters SET
+                    connection.Open();
+                    string cmdText = @"UPDATE tblHelicopters SET
                                      Registration = @registration, AircraftType = @aircraftType,
                                      NoOfEng = @noOfEng, Operator = @operator
                                      WHERE ID = @ID";
 
-                        using (SqlCommand cmd = new SqlCommand(cmdText, connection))
-                        {
-                            cmd.Parameters.AddWithValue("@ID", dgvHelicopters.SelectedRows[0].Cells[0].Value.ToString());
-                            cmd.Parameters.AddWithValue("@registration", tbxRegistration.Text.ToString());
-                            cmd.Parameters.AddWithValue("@aircraftType", cbxAircraftType.SelectedItem.ToString());
-                            cmd.Parameters.AddWithValue("@noOfEng", Convert.ToByte(cbxNoOfEng.SelectedItem));
-                            cmd.Parameters.AddWithValue("@operator", cbxOperator.SelectedItem.ToString());
-                            cmd.ExecuteNonQuery();
-
-                            MessageBox.Show("Heli has been updated successfully!", "Helicopter updated",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    }
-                    catch (SqlException ex)
+                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
-                        MessageBox.Show("Error: " + ex.Message, "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        cmd.Parameters.AddWithValue("@ID", dgvHelicopters.SelectedRows[0].Cells[0].Value.ToString());
+                        cmd.Parameters.AddWithValue("@registration", tbxRegistration.Text.ToString());
+                        cmd.Parameters.AddWithValue("@aircraftType", cbxAircraftType.SelectedItem.ToString());
+                        cmd.Parameters.AddWithValue("@noOfEng", Convert.ToByte(cbxNoOfEng.SelectedItem));
+                        cmd.Parameters.AddWithValue("@operator", cbxOperator.SelectedItem.ToString());
+                        cmd.ExecuteNonQuery();
+
+                        MessageBox.Show("Heli has been updated successfully!", "Helicopter updated",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-                // Refresh data
-                // TODO is there a better way to reload the new added data in the datagrid?
-                dgvHelicopters.DataSource = FillDataGridView();
-                ClearFields();
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
 
-        // Remove selected heli
+        // Update heli: Refresh data
+        private void UpdateHeliRefreshData()
+        {
+            dgvHelicopters.DataSource = FillDataGridView();
+            ClearFields();
+        }
+
+        // Remove heli
         private void RemoveHeli()
         {
             // Any row selected?
@@ -503,6 +536,16 @@ namespace HeliStat
             }
 
             // Database access
+            RemoveHeliDatabaseAccess();
+
+            // Refresh data
+            // TODO is there a better way to reload the new added data in the datagrid?
+            RemoveHeliRefreshData();
+        }
+
+        // Remove heli: Database access
+        private void RemoveHeliDatabaseAccess()
+        {
             using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
@@ -525,8 +568,11 @@ namespace HeliStat
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            // Refresh data
-            // TODO is there a better way to reload the new added data in the datagrid?
+        }
+
+        // Remove heli: Refresh data
+        private void RemoveHeliRefreshData()
+        {
             dgvHelicopters.DataSource = FillDataGridView();
             ClearFields();
         }

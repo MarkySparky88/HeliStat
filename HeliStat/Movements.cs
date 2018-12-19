@@ -285,7 +285,7 @@ namespace HeliStat
             }
         }
 
-        // Add ICAO designator to database
+        // Add ICAO designator
         private void AddIcaoDesignator()
         {
             using (frmMovementsAddIcaoDes addIcaoDes = new frmMovementsAddIcaoDes())
@@ -300,7 +300,7 @@ namespace HeliStat
             }
         }
 
-        // Remove ICAO designator from database
+        // Remove ICAO designator
         private void RemoveIcaoDesignator()
         {
             // Any item selected?
@@ -324,6 +324,16 @@ namespace HeliStat
             }
 
             // Database access
+            RemoveIcaoDesignatorDatabaseAccess();
+
+            // Refresh data
+            // TODO is there a better way to refresh data? own method for refresh data? (whole project!)
+            RemoveIcaoDesignatorRefreshData();
+        }
+        
+        // Remove ICAO designator: Database access
+        private void RemoveIcaoDesignatorDatabaseAccess()
+        {
             using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
@@ -346,15 +356,17 @@ namespace HeliStat
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            // Refresh data
-            // TODO refactor? own method for refresh data? (whole project!)
+        }
+
+        // Remove ICAO designator: Refresh data
+        private void RemoveIcaoDesignatorRefreshData()
+        {
             FillCbxArrDep();
             cbxArrFrom.ResetText();
             cbxDepTo.ResetText();
         }
 
-        // Add movement to database
-        // TODO huge method! Refactor!
+        // Add movement
         private void AddMovement(string tableName)
         {
             // Pre-set values
@@ -363,72 +375,79 @@ namespace HeliStat
             string aircraftType = "";
             string operatorName = "";
 
-            // Database access
             if (NoEmptyFields())
             {
-                using (SqlConnection connection = new SqlConnection(Program.ConnString))
-                {
-                    try
-                    {
-                        connection.Open();
+                // Database access
+                AddMovementDatabaseAccess(tableName, ref noOfEng, ref registration, ref aircraftType, ref operatorName);
 
-                        using (SqlCommand cmd = new SqlCommand())
-                        {
-                            string cmdText1 = @"SELECT * FROM tblHelicopters
-                                        WHERE Registration = @Reg";
-
-                            string cmdText2 = string.Format(@"INSERT INTO {0} (Registration, AircraftType, NoOfEng, Operator,
-                                                            TypeOfOperation, ArrFrom, DepTo, Overnight, Year)
-                                                            VALUES (@Registration, @AircraftType, @NoOfEng, @Operator,
-                                                            @TypeOfOperation, @ArrFrom, @DepTo, @Overnight, @Year)", tableName);
-
-                            cmd.Connection = connection;
-                            cmd.CommandType = CommandType.Text;
-                            cmd.CommandText = cmdText1;
-
-                            // First query (get helicopter data)
-                            cmd.Parameters.AddWithValue("@Reg", cbxRegistration.SelectedItem.ToString());
-                            using (SqlDataReader reader1 = cmd.ExecuteReader())
-                            {
-                                if (reader1 != null)
-                                {
-                                    while (reader1.Read())
-                                    {
-                                        registration = reader1.GetString(1);
-                                        aircraftType = reader1.GetString(2);
-                                        noOfEng = reader1.GetByte(3);
-                                        operatorName = reader1.GetString(4);
-                                    }
-                                }
-                            }
-
-                            // Second query (write movement into table)
-                            cmd.CommandText = cmdText2;
-                            cmd.Parameters.AddWithValue("@Registration", registration);
-                            cmd.Parameters.AddWithValue("@AircraftType", aircraftType);
-                            cmd.Parameters.AddWithValue("@NoOfEng", noOfEng);
-                            cmd.Parameters.AddWithValue("@Operator", operatorName);
-                            cmd.Parameters.AddWithValue("@TypeOfOperation", cbxTypeOfOps.SelectedItem.ToString());
-                            cmd.Parameters.AddWithValue("@ArrFrom", cbxArrFrom.SelectedItem.ToString());
-                            cmd.Parameters.AddWithValue("@DepTo", cbxDepTo.SelectedItem.ToString());
-                            cmd.Parameters.AddWithValue("@Overnight", ckbOvernight.Checked);
-                            cmd.Parameters.AddWithValue("@Year", GetActualYear());
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-                    catch (SqlException ex)
-                    {
-                        MessageBox.Show("Error: " + ex.Message, "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
                 // Refresh data
                 // TODO is there a better / other way to reload / refresh the new added data in the datagrid?
                 dgvMovements.DataSource = FillDataGridView(TableNameMov());
             }
         }
 
-        // Update movement in database
+        // Add movement: Database access
+        private void AddMovementDatabaseAccess(string tableName, ref byte noOfEng, ref string registration, ref string aircraftType, ref string operatorName)
+        {
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    using (SqlCommand cmd = new SqlCommand())
+                    {
+                        string cmdText1 = @"SELECT * FROM tblHelicopters
+                                        WHERE Registration = @Reg";
+
+                        string cmdText2 = string.Format(@"INSERT INTO {0} (Registration, AircraftType, NoOfEng, Operator,
+                                                            TypeOfOperation, ArrFrom, DepTo, Overnight, Year)
+                                                            VALUES (@Registration, @AircraftType, @NoOfEng, @Operator,
+                                                            @TypeOfOperation, @ArrFrom, @DepTo, @Overnight, @Year)", tableName);
+
+                        cmd.Connection = connection;
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = cmdText1;
+
+                        // First query (get helicopter data)
+                        cmd.Parameters.AddWithValue("@Reg", cbxRegistration.SelectedItem.ToString());
+                        using (SqlDataReader reader1 = cmd.ExecuteReader())
+                        {
+                            if (reader1 != null)
+                            {
+                                while (reader1.Read())
+                                {
+                                    registration = reader1.GetString(1);
+                                    aircraftType = reader1.GetString(2);
+                                    noOfEng = reader1.GetByte(3);
+                                    operatorName = reader1.GetString(4);
+                                }
+                            }
+                        }
+
+                        // Second query (write movement into table)
+                        cmd.CommandText = cmdText2;
+                        cmd.Parameters.AddWithValue("@Registration", registration);
+                        cmd.Parameters.AddWithValue("@AircraftType", aircraftType);
+                        cmd.Parameters.AddWithValue("@NoOfEng", noOfEng);
+                        cmd.Parameters.AddWithValue("@Operator", operatorName);
+                        cmd.Parameters.AddWithValue("@TypeOfOperation", cbxTypeOfOps.SelectedItem.ToString());
+                        cmd.Parameters.AddWithValue("@ArrFrom", cbxArrFrom.SelectedItem.ToString());
+                        cmd.Parameters.AddWithValue("@DepTo", cbxDepTo.SelectedItem.ToString());
+                        cmd.Parameters.AddWithValue("@Overnight", ckbOvernight.Checked);
+                        cmd.Parameters.AddWithValue("@Year", GetActualYear());
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
+        // Update movement
         private void UpdateMovement(string tableName)
         {
             // Any row selected?
@@ -447,48 +466,55 @@ namespace HeliStat
                 return;
             }
 
-            // Database access
             if (NoEmptyFields())
             {
-                using (SqlConnection connection = new SqlConnection(Program.ConnString))
-                {
-                    try
-                    {
-                        connection.Open();
-                        string cmdText = string.Format(@"UPDATE {0} SET Registration = @registration, AircraftType = @aircraftType,
-                                                        Operator = @operator, TypeOfOperation = @typeOfOperation,
-                                                        ArrFrom = @arrFrom, DepTo = @depTo, Overnight = @overnight
-                                                        WHERE ID = @ID", tableName);
+                // Database access
+                UpdateMovementDatabaseAccess(tableName);
 
-                        using (SqlCommand cmd = new SqlCommand(cmdText, connection))
-                        {
-                            cmd.Parameters.AddWithValue("@ID", dgvMovements.SelectedRows[0].Cells[0].Value.ToString());
-                            cmd.Parameters.AddWithValue("@registration", cbxRegistration.SelectedItem.ToString());
-                            cmd.Parameters.AddWithValue("@aircraftType", tbxAircraftType.Text.ToString());
-                            cmd.Parameters.AddWithValue("@operator", tbxOperator.Text.ToString());
-                            cmd.Parameters.AddWithValue("@typeOfOperation", cbxTypeOfOps.SelectedItem.ToString());
-                            cmd.Parameters.AddWithValue("@arrFrom", cbxArrFrom.SelectedItem.ToString());
-                            cmd.Parameters.AddWithValue("@depTo", cbxDepTo.SelectedItem.ToString());
-                            cmd.Parameters.AddWithValue("@overnight", ckbOvernight.Checked);
-                            cmd.ExecuteNonQuery();
-
-                            MessageBox.Show("Movement has been updated successfully!", "Movement updated",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    }
-                    catch (SqlException ex)
-                    {
-                        MessageBox.Show("Error: " + ex.Message, "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
                 // Refresh data
                 // TODO is there a better way to reload the new added data in the datagrid?
                 dgvMovements.DataSource = FillDataGridView(TableNameMov());
             }
         }
 
-        // Delete movement in database
+        // Update movement: Database access
+        private void UpdateMovementDatabaseAccess(string tableName)
+        {
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                    string cmdText = string.Format(@"UPDATE {0} SET Registration = @registration, AircraftType = @aircraftType,
+                                                        Operator = @operator, TypeOfOperation = @typeOfOperation,
+                                                        ArrFrom = @arrFrom, DepTo = @depTo, Overnight = @overnight
+                                                        WHERE ID = @ID", tableName);
+
+                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@ID", dgvMovements.SelectedRows[0].Cells[0].Value.ToString());
+                        cmd.Parameters.AddWithValue("@registration", cbxRegistration.SelectedItem.ToString());
+                        cmd.Parameters.AddWithValue("@aircraftType", tbxAircraftType.Text.ToString());
+                        cmd.Parameters.AddWithValue("@operator", tbxOperator.Text.ToString());
+                        cmd.Parameters.AddWithValue("@typeOfOperation", cbxTypeOfOps.SelectedItem.ToString());
+                        cmd.Parameters.AddWithValue("@arrFrom", cbxArrFrom.SelectedItem.ToString());
+                        cmd.Parameters.AddWithValue("@depTo", cbxDepTo.SelectedItem.ToString());
+                        cmd.Parameters.AddWithValue("@overnight", ckbOvernight.Checked);
+                        cmd.ExecuteNonQuery();
+
+                        MessageBox.Show("Movement has been updated successfully!", "Movement updated",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
+        // Delete movement
         private void DeleteMovement(string tableName)
         {
             // Any row selected?
@@ -507,6 +533,16 @@ namespace HeliStat
             }
 
             // Database access
+            DeleteMovementDatabaseAccess(tableName);
+
+            // Refresh data
+            // TODO is there a better way to reload the new added data in the datagrid?
+            DeleteMovementRefreshData();
+        }
+
+        // Delete movement: Database access
+        private void DeleteMovementDatabaseAccess(string tableName)
+        {
             using (SqlConnection connection = new SqlConnection(Program.ConnString))
             {
                 try
@@ -529,13 +565,16 @@ namespace HeliStat
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            // Refresh data
-            // TODO is there a better way to reload the new added data in the datagrid?
+        }
+        
+        // Delete movement: Refresh data
+        private void DeleteMovementRefreshData()
+        {
             dgvMovements.DataSource = FillDataGridView(TableNameMov());
             ClearFields();
         }
 
-        // Sets landing time of movement
+        // Sets landing time
         // TODO functions set landing time and set departure time quite similar, one function with overloads?
         private void SetLand(string tableName)
         {
@@ -554,42 +593,48 @@ namespace HeliStat
                 return;
             }
 
-            // Database access
             if (DateTimeNotEmpty())
             {
-                using (SqlConnection connection = new SqlConnection(Program.ConnString))
-                {
-                    try
-                    {
-                        connection.Open();
-                        string cmdText = string.Format(@"UPDATE {0} SET DateOfArr = @dateOfArr,
-                                                        ActualTimeArr = @actualTimeArr
-                                                        WHERE ID = @ID", tableName);
-
-                        using (SqlCommand cmd = new SqlCommand(cmdText, connection))
-                        {
-                            cmd.Parameters.AddWithValue("@ID", dgvMovements.SelectedRows[0].Cells[0].Value.ToString());
-                            cmd.Parameters.AddWithValue("@dateOfArr", dtpDateOfFlight.Value);
-                            cmd.Parameters.AddWithValue("@actualTimeArr", dtpActualTime.Value.ToString("HH:mm"));
-                            cmd.ExecuteNonQuery();
-
-                            MessageBox.Show("Landing time & date has been updated successfully!", "Landing time updated",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    }
-                    catch (SqlException ex)
-                    {
-                        MessageBox.Show("Error: " + ex.Message, "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
+                SetLandDatabaseAccess(tableName);
             }
+
             // Refresh data
             // TODO is there a better way to reload the new added data in the datagrid?
             dgvMovements.DataSource = FillDataGridView(TableNameMov());
         }
 
-        // Sets take-off time of movement
+        // Set landing time: Database access
+        private void SetLandDatabaseAccess(string tableName)
+        {
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                    string cmdText = string.Format(@"UPDATE {0} SET DateOfArr = @dateOfArr,
+                                                        ActualTimeArr = @actualTimeArr
+                                                        WHERE ID = @ID", tableName);
+
+                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@ID", dgvMovements.SelectedRows[0].Cells[0].Value.ToString());
+                        cmd.Parameters.AddWithValue("@dateOfArr", dtpDateOfFlight.Value);
+                        cmd.Parameters.AddWithValue("@actualTimeArr", dtpActualTime.Value.ToString("HH:mm"));
+                        cmd.ExecuteNonQuery();
+
+                        MessageBox.Show("Landing time & date has been updated successfully!", "Landing time updated",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
+        // Set take-off time
         private void SetTakeOff(string tableName)
         {
             // Any row selected?
@@ -607,39 +652,46 @@ namespace HeliStat
                 return;
             }
 
-            // Database access
             if (DateTimeNotEmpty())
             {
-                using (SqlConnection connection = new SqlConnection(Program.ConnString))
+                // Database access
+                SetTakeOffDatabaseAccess(tableName);
+
+                // Refresh data
+                // TODO is there a better way to reload the new added data in the datagrid?
+                dgvMovements.DataSource = FillDataGridView(TableNameMov());
+            }
+        }
+
+        // Set take-off time: Database access
+        private void SetTakeOffDatabaseAccess(string tableName)
+        {
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            {
+                try
                 {
-                    try
-                    {
-                        connection.Open();
-                        string cmdText = string.Format(@"UPDATE {0} SET DateOfDep = @dateOfDep,
+                    connection.Open();
+                    string cmdText = string.Format(@"UPDATE {0} SET DateOfDep = @dateOfDep,
                                                         ActualTimeDep = @actualTimeDep
                                                         WHERE ID = @ID", tableName);
 
-                        using (SqlCommand cmd = new SqlCommand(cmdText, connection))
-                        {
-                            cmd.Parameters.AddWithValue("@ID", dgvMovements.SelectedRows[0].Cells[0].Value.ToString());
-                            cmd.Parameters.AddWithValue("@dateOfDep", dtpDateOfFlight.Value);
-                            cmd.Parameters.AddWithValue("@actualTimeDep", dtpActualTime.Value.ToString("HH:mm"));
-                            cmd.ExecuteNonQuery();
-
-                            MessageBox.Show("Take-off time & date has been updated successfully!", "Landing time updated",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    }
-                    catch (SqlException ex)
+                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                     {
-                        MessageBox.Show("Error: " + ex.Message, "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        cmd.Parameters.AddWithValue("@ID", dgvMovements.SelectedRows[0].Cells[0].Value.ToString());
+                        cmd.Parameters.AddWithValue("@dateOfDep", dtpDateOfFlight.Value);
+                        cmd.Parameters.AddWithValue("@actualTimeDep", dtpActualTime.Value.ToString("HH:mm"));
+                        cmd.ExecuteNonQuery();
+
+                        MessageBox.Show("Take-off time & date has been updated successfully!", "Landing time updated",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
-            // Refresh data
-            // TODO is there a better way to reload the new added data in the datagrid?
-            dgvMovements.DataSource = FillDataGridView(TableNameMov());
         }
 
         // Checks if no empty fields (left side of datagridview)
