@@ -7,6 +7,14 @@ namespace HeliStat
 {
     public partial class frmHelicopters : Form
     {
+        private string newHeli;
+
+        public string NewHeli
+        {
+            get { return newHeli; }
+            set { newHeli = value; }
+        }
+
         // Constructor
         public frmHelicopters()
         {
@@ -347,50 +355,75 @@ namespace HeliStat
         // Add heli
         private void AddHeli()
         {
-            string newRegistration = tbxRegistration.Text.ToString();
+            string registration = tbxRegistration.Text.ToString();
 
             // Check if heli exists
-            if (!CheckIfHeliExists(newRegistration))
+            if (!CheckIfHeliExists(registration))
             {
-                // Database access
                 if (NoEmptyFields())
                 {
-                    using (SqlConnection connection = new SqlConnection(Program.ConnString))
-                    {
-                        try
-                        {
-                            connection.Open();
-                            string cmdText = @"INSERT INTO tblHelicopters (Registration, AircraftType, NoOfEng, Operator)
-                                        VALUES (@Registration, @AircraftType, @NoOfEng, @Operator)";
+                    // Database access
+                    AddHeliDatabaseAccess(registration);
 
-                            using (SqlCommand cmd = new SqlCommand(cmdText, connection))
-                            {
-                                cmd.Parameters.AddWithValue("@Registration", tbxRegistration.Text.ToString());
-                                cmd.Parameters.AddWithValue("@AircraftType", cbxAircraftType.SelectedItem.ToString());
-                                cmd.Parameters.AddWithValue("@NoOfEng", Convert.ToByte(cbxNoOfEng.SelectedItem));
-                                cmd.Parameters.AddWithValue("@Operator", cbxOperator.SelectedItem.ToString());
-                                cmd.ExecuteNonQuery();
+                    // Make new heli accessible for movements form (via public property at top of code)
+                    newHeli = registration;
 
-                                MessageBox.Show("Heli has been added successfully!", "Helicopter added",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                        }
-                        catch (SqlException ex)
-                        {
-                            MessageBox.Show("Error: " + ex.Message, "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
                     // Refresh data
                     // TODO is there a better / other way to reload / refresh the new added data in the datagrid? (whole project! maybe work with BindingSource or DataSource class?)
                     dgvHelicopters.DataSource = FillDataGridView();
-                    ClearFields();
+
+                    // Select row in dgv of helic which has just been created
+                    AddHeliSelectCreatedRow(registration);
                 }
             }
             else
             {
                 MessageBox.Show("This helicopter already exists.\nEnter a new helicopter.", "Helicopter exists",
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        // Add heli: Database access
+        private void AddHeliDatabaseAccess(string registration)
+        {
+            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                    string cmdText = @"INSERT INTO tblHelicopters (Registration, AircraftType, NoOfEng, Operator)
+                                        VALUES (@Registration, @AircraftType, @NoOfEng, @Operator)";
+
+                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Registration", registration);
+                        cmd.Parameters.AddWithValue("@AircraftType", cbxAircraftType.SelectedItem.ToString());
+                        cmd.Parameters.AddWithValue("@NoOfEng", Convert.ToByte(cbxNoOfEng.SelectedItem));
+                        cmd.Parameters.AddWithValue("@Operator", cbxOperator.SelectedItem.ToString());
+                        cmd.ExecuteNonQuery();
+
+                        MessageBox.Show("Heli has been added successfully!", "Helicopter added",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
+        // Add heli: Select row in dgv of heli which has just been created
+        private void AddHeliSelectCreatedRow(string registration)
+        {
+            foreach (DataGridViewRow row in dgvHelicopters.Rows)
+            {
+                if (row.Cells[1].Value.ToString().Equals(registration))
+                {
+                    row.Selected = true;
+                    break;
+                }
             }
         }
 

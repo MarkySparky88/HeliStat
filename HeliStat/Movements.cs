@@ -280,6 +280,7 @@ namespace HeliStat
                 if (helicopters.ShowDialog() == DialogResult.Cancel)
                 {
                     FillCbxRegistration();
+                    cbxRegistration.SelectedItem = helicopters.NewHeli;
                 }
             }
         }
