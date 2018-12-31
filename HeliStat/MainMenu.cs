@@ -14,6 +14,7 @@ namespace HeliStat
         /// TODO Code aufräumen (Refactor!), wird gleicher Code mehrfach verwendet (Refactor / eine Funktion für alles)
         /// TODO alle Datenbankverbindungen irgendwie zusammenfassen! (ev eigene Klasse?)
         /// TODO auskommentierte Zeilen im Code welche nicht mehr gebraucht werden, und nur zum testen gebraucht wurden, löschen
+        /// TODO link auf wix toolset, falls verwendet
         /// </summary>
 
         // Constructor
