@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"><?define HeliStat_TargetDir=$(var.HeliStat.TargetDir)?>
-	<Product Id="*" Name="HeliStat" Language="1033" Version="1.0.0.0" Manufacturer="MarkySparky Productions" UpgradeCode="77b5af5b-566c-432a-aec5-b811a22f3811">
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define HeliStat_TargetDir=$(var.HeliStat.TargetDir)?>
+	<Product Id="*" Name="HeliStat" Language="1033" Version="1.0.0.0" Manufacturer="MarkySparky Productions" UpgradeCode="46fa7c11-9ee7-4fc4-a4bd-0fe8d868dca9">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
 		<MediaTemplate />
 
-		<Feature Id="ProductFeature" Title="Setup_HeliStat" Level="1">
+		<Feature Id="ProductFeature" Title="HeliStat" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
 			<ComponentGroupRef Id="HeliStat_files" />
 			<ComponentGroupRef Id="Resources_files" />
@@ -16,7 +16,7 @@
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			<Directory Id="ProgramFilesFolder">
-				<Directory Id="INSTALLFOLDER" Name="Setup_HeliStat">
+				<Directory Id="INSTALLFOLDER" Name="HeliStat">
 				  <Directory Id="HeliStat" Name="HeliStat" />
 				  <Directory Id="Resources" Name="Resources" />
 				</Directory>
@@ -30,35 +30,35 @@
 			<!-- <Component Id="ProductComponent"> -->
 				<!-- TODO: Insert files, registry keys, and other resources here. -->
 			<!-- </Component> -->
-			<Component Id="HeliStatIcon.ico" Guid="b465f005-d893-4062-89c9-b397aaad4490">
+			<!--<Component Id="HeliStatIcon.ico" Guid="96268009-4a60-41b9-9233-ff6560f695db">
 			  <File Id="HeliStatIcon.ico" Name="HeliStatIcon.ico" Source="$(var.HeliStat_TargetDir)HeliStatIcon.ico" />
-			</Component>
-			<Component Id="HeliStat.exe" Guid="19322e4f-e15f-4c92-af3f-f0af6cf056cf">
+			</Component>-->
+			<Component Id="HeliStat.exe" Guid="458fda5c-211c-4f40-a00e-d79c5ac68769">
 			  <File Id="HeliStat.exe" Name="HeliStat.exe" Source="$(var.HeliStat_TargetDir)HeliStat.exe" />
 			</Component>
-			<Component Id="HeliStat.exe.config" Guid="dcac2555-e148-4eba-a435-92ead84ca5b6">
+			<Component Id="HeliStat.exe.config" Guid="13ea840d-5977-4442-9b73-fe1f885a39aa">
 			  <File Id="HeliStat.exe.config" Name="HeliStat.exe.config" Source="$(var.HeliStat_TargetDir)HeliStat.exe.config" />
 			</Component>
-			<Component Id="ClosedXML.dll" Guid="365e6ffd-f6aa-4c5b-97e6-2a7d4d6c5e54">
+			<Component Id="ClosedXML.dll" Guid="91c24a45-c76f-4ecf-b132-f6ad4ef18e93">
 			  <File Id="ClosedXML.dll" Name="ClosedXML.dll" Source="$(var.HeliStat_TargetDir)ClosedXML.dll" />
 			</Component>
-			<Component Id="DocumentFormat.OpenXml.dll" Guid="75721a18-4bee-477c-b581-19dfdf6e3d74">
+			<Component Id="DocumentFormat.OpenXml.dll" Guid="201f3b5c-1100-4d12-b9b3-fa1e649038e1">
 			  <File Id="DocumentFormat.OpenXml.dll" Name="DocumentFormat.OpenXml.dll" Source="$(var.HeliStat_TargetDir)DocumentFormat.OpenXml.dll" />
 			</Component>
-			<Component Id="ExcelNumberFormat.dll" Guid="e16611a8-4490-400e-aa48-711d595f2ed0">
+			<Component Id="ExcelNumberFormat.dll" Guid="cc5a96cf-f151-4019-ac0b-aff6c38d1b76">
 			  <File Id="ExcelNumberFormat.dll" Name="ExcelNumberFormat.dll" Source="$(var.HeliStat_TargetDir)ExcelNumberFormat.dll" />
 			</Component>
-			<Component Id="FastMember.Signed.dll" Guid="1092b8b0-a33c-48d1-8131-bea4dad5f480">
+			<Component Id="FastMember.Signed.dll" Guid="f2d157f6-cccb-4f68-a3b2-577a0ab282a1">
 			  <File Id="FastMember.Signed.dll" Name="FastMember.Signed.dll" Source="$(var.HeliStat_TargetDir)FastMember.Signed.dll" />
 			</Component>
 		</ComponentGroup>
 	</Fragment>
 	<Fragment>
 	  <ComponentGroup Id="HeliStat_files" Directory="HeliStat">
-	    <Component Id="HeliStat_HeliStatDB.mdf" Guid="a2a180b9-3167-42c7-9c96-7e7a54baa106">
+	    <Component Id="HeliStat_HeliStatDB.mdf" Guid="f56c93bf-3ebc-43a8-b7ad-3e7bc0613566">
 	      <File Id="HeliStat_HeliStatDB.mdf" Name="HeliStatDB.mdf" Source="$(var.HeliStat_TargetDir)HeliStat\HeliStatDB.mdf" />
 	    </Component>
-	    <Component Id="HeliStat_HeliStatDB_log.ldf" Guid="3e080321-b910-4c24-844c-229d93dbfc53">
+	    <Component Id="HeliStat_HeliStatDB_log.ldf" Guid="7578a423-cff2-48df-a2ab-bed1712e4a85">
 	      <File Id="HeliStat_HeliStatDB_log.ldf" Name="HeliStatDB_log.ldf" Source="$(var.HeliStat_TargetDir)HeliStat\HeliStatDB_log.ldf" />
 	    </Component>
 	  </ComponentGroup>
@@ -66,12 +66,12 @@
 
   <Fragment>
     <ComponentGroup Id="Resources_files" Directory="Resources">
-      <Component Id="Resources_HeliStatIcon.ico" Guid="d46c482f-1187-42e5-bb2e-5b4a60b04f43">
+      <!--<Component Id="Resources_HeliStatIcon.ico" Guid="1e069538-b539-4f61-ba12-ed1c44f33008">
         <File Id="Resources_HeliStatIcon.ico" Name="HeliStatIcon.ico" Source="$(var.HeliStat_TargetDir)Resources\HeliStatIcon.ico" />
-      </Component>
-      <Component Id="Resources_SplashScreen.jpg" Guid="be914194-8ee3-4f18-9857-baf48eb37b07">
+      </Component>-->
+      <!--<Component Id="Resources_SplashScreen.jpg" Guid="35fc693b-5bfa-4f4a-bdd9-a949514ae6f9">
         <File Id="Resources_SplashScreen.jpg" Name="SplashScreen.jpg" Source="$(var.HeliStat_TargetDir)Resources\SplashScreen.jpg" />
-      </Component>
+      </Component>-->
     </ComponentGroup>
   </Fragment>
 </Wix>
