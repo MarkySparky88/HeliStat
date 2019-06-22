@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{06B99E60-C278-40E6-AFD7-C623EDB0554C}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>HeliStat</RootNamespace>
     <AssemblyName>HeliStat</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>

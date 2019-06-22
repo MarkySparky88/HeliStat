@@ -73,6 +73,7 @@
             this.statusStripAdmin.Location = new System.Drawing.Point(0, 408);
             this.statusStripAdmin.Name = "statusStripAdmin";
             this.statusStripAdmin.Size = new System.Drawing.Size(365, 22);
+            this.statusStripAdmin.SizingGrip = false;
             this.statusStripAdmin.TabIndex = 2;
             this.statusStripAdmin.Text = "statusStrip1";
             // 

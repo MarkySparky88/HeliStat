@@ -76,6 +76,9 @@
             // 
             // tbxAircraftType
             // 
+            this.tbxAircraftType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxAircraftType.HideSelection = false;
             this.tbxAircraftType.Location = new System.Drawing.Point(13, 155);
             this.tbxAircraftType.Name = "tbxAircraftType";
@@ -85,6 +88,9 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 73);
             this.label1.Name = "label1";
@@ -94,6 +100,9 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(13, 136);
             this.label2.Name = "label2";
@@ -103,6 +112,9 @@
             // 
             // tbxOperator
             // 
+            this.tbxOperator.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxOperator.Location = new System.Drawing.Point(13, 215);
             this.tbxOperator.Name = "tbxOperator";
             this.tbxOperator.ReadOnly = true;
@@ -111,6 +123,9 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(13, 196);
             this.label3.Name = "label3";
@@ -120,6 +135,9 @@
             // 
             // cbxTypeOfOps
             // 
+            this.cbxTypeOfOps.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxTypeOfOps.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxTypeOfOps.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbxTypeOfOps.FormattingEnabled = true;
@@ -135,6 +153,9 @@
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(13, 256);
             this.label4.Name = "label4";
@@ -144,6 +165,9 @@
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(13, 316);
             this.label5.Name = "label5";
@@ -153,6 +177,9 @@
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(200, 316);
             this.label6.Name = "label6";
@@ -162,6 +189,9 @@
             // 
             // btnAddIcaoDes
             // 
+            this.btnAddIcaoDes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddIcaoDes.Location = new System.Drawing.Point(13, 368);
             this.btnAddIcaoDes.Name = "btnAddIcaoDes";
             this.btnAddIcaoDes.Size = new System.Drawing.Size(23, 23);
@@ -172,6 +202,9 @@
             // 
             // btnHelicopters
             // 
+            this.btnHelicopters.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnHelicopters.Location = new System.Drawing.Point(200, 93);
             this.btnHelicopters.Name = "btnHelicopters";
             this.btnHelicopters.Size = new System.Drawing.Size(75, 23);
@@ -182,6 +215,9 @@
             // 
             // dtpDateOfFlight
             // 
+            this.dtpDateOfFlight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpDateOfFlight.CustomFormat = "dd.MM.yyyy";
             this.dtpDateOfFlight.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDateOfFlight.Location = new System.Drawing.Point(392, 526);
@@ -191,6 +227,9 @@
             // 
             // btnSetLand
             // 
+            this.btnSetLand.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSetLand.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnSetLand.Location = new System.Drawing.Point(392, 553);
             this.btnSetLand.Name = "btnSetLand";
@@ -202,6 +241,9 @@
             // 
             // btnSetTakeOff
             // 
+            this.btnSetTakeOff.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSetTakeOff.BackColor = System.Drawing.Color.IndianRed;
             this.btnSetTakeOff.Location = new System.Drawing.Point(473, 553);
             this.btnSetTakeOff.Name = "btnSetTakeOff";
@@ -213,6 +255,9 @@
             // 
             // cbxRegistration
             // 
+            this.cbxRegistration.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxRegistration.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxRegistration.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbxRegistration.FormattingEnabled = true;
@@ -227,6 +272,9 @@
             this.dgvMovements.AllowUserToAddRows = false;
             this.dgvMovements.AllowUserToDeleteRows = false;
             this.dgvMovements.AllowUserToResizeRows = false;
+            this.dgvMovements.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvMovements.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvMovements.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMovements.Location = new System.Drawing.Point(392, 93);
@@ -240,6 +288,9 @@
             // 
             // btnRmvIcaoDes
             // 
+            this.btnRmvIcaoDes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRmvIcaoDes.Location = new System.Drawing.Point(42, 368);
             this.btnRmvIcaoDes.Name = "btnRmvIcaoDes";
             this.btnRmvIcaoDes.Size = new System.Drawing.Size(23, 23);
@@ -250,6 +301,9 @@
             // 
             // btnDeleteMvmt
             // 
+            this.btnDeleteMvmt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDeleteMvmt.Location = new System.Drawing.Point(174, 497);
             this.btnDeleteMvmt.Name = "btnDeleteMvmt";
             this.btnDeleteMvmt.Size = new System.Drawing.Size(75, 23);
@@ -260,6 +314,9 @@
             // 
             // dtpActualTime
             // 
+            this.dtpActualTime.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpActualTime.CustomFormat = "HH:mm LT";
             this.dtpActualTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpActualTime.Location = new System.Drawing.Point(558, 526);
@@ -270,6 +327,9 @@
             // 
             // btnAddMvmt
             // 
+            this.btnAddMvmt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddMvmt.Location = new System.Drawing.Point(12, 497);
             this.btnAddMvmt.Name = "btnAddMvmt";
             this.btnAddMvmt.Size = new System.Drawing.Size(75, 23);
@@ -280,6 +340,9 @@
             // 
             // btnUpdateMvmt
             // 
+            this.btnUpdateMvmt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUpdateMvmt.Location = new System.Drawing.Point(93, 497);
             this.btnUpdateMvmt.Name = "btnUpdateMvmt";
             this.btnUpdateMvmt.Size = new System.Drawing.Size(75, 23);
@@ -290,6 +353,9 @@
             // 
             // cbxArrFrom
             // 
+            this.cbxArrFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxArrFrom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxArrFrom.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbxArrFrom.FormattingEnabled = true;
@@ -300,6 +366,9 @@
             // 
             // cbxDepTo
             // 
+            this.cbxDepTo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxDepTo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxDepTo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbxDepTo.FormattingEnabled = true;
@@ -310,6 +379,9 @@
             // 
             // btnClearFields
             // 
+            this.btnClearFields.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClearFields.Location = new System.Drawing.Point(12, 455);
             this.btnClearFields.Name = "btnClearFields";
             this.btnClearFields.Size = new System.Drawing.Size(237, 23);
@@ -410,11 +482,15 @@
             this.statusStripMov.Location = new System.Drawing.Point(0, 594);
             this.statusStripMov.Name = "statusStripMov";
             this.statusStripMov.Size = new System.Drawing.Size(1404, 22);
+            this.statusStripMov.SizingGrip = false;
             this.statusStripMov.TabIndex = 41;
             this.statusStripMov.Text = "statusStrip1";
             // 
             // ckbOvernight
             // 
+            this.ckbOvernight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ckbOvernight.AutoSize = true;
             this.ckbOvernight.Location = new System.Drawing.Point(13, 406);
             this.ckbOvernight.Name = "ckbOvernight";
@@ -425,6 +501,9 @@
             // 
             // btnSetDateTimeNow
             // 
+            this.btnSetDateTimeNow.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSetDateTimeNow.Location = new System.Drawing.Point(724, 525);
             this.btnSetDateTimeNow.Name = "btnSetDateTimeNow";
             this.btnSetDateTimeNow.Size = new System.Drawing.Size(75, 23);
@@ -435,6 +514,9 @@
             // 
             // grbFilterDay
             // 
+            this.grbFilterDay.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grbFilterDay.Controls.Add(this.btnSetToday);
             this.grbFilterDay.Controls.Add(this.dtpDayFilter);
             this.grbFilterDay.Location = new System.Drawing.Point(392, 39);
@@ -471,6 +553,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1404, 616);
             this.Controls.Add(this.grbFilterDay);
             this.Controls.Add(this.btnSetDateTimeNow);
@@ -502,10 +586,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbxAircraftType);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripMov;
-            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMovements";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

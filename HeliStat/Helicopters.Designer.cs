@@ -303,6 +303,7 @@
             this.statusStripHeli.Location = new System.Drawing.Point(0, 547);
             this.statusStripHeli.Name = "statusStripHeli";
             this.statusStripHeli.Size = new System.Drawing.Size(848, 22);
+            this.statusStripHeli.SizingGrip = false;
             this.statusStripHeli.TabIndex = 40;
             this.statusStripHeli.Text = "statusStrip1";
             // 
