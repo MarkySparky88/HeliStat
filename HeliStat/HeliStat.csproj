@@ -14,6 +14,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
     <PublishUrl>C:\Users\Marc\Desktop\HeliStat\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -62,7 +63,7 @@
     <ApplicationIcon>HeliStatIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>475899C7D371068D71C263C5FC8A2F744603AEBC</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>96A8DA556F53E8288E9ECF68C3CF9923BC240862</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>HeliStat_TemporaryKey.pfx</ManifestKeyFile>
@@ -240,6 +241,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Helicopters.resx">
       <DependentUpon>Helicopters.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="HelicoptersAddOperator.resx">
       <DependentUpon>HelicoptersAddOperator.cs</DependentUpon>
@@ -336,6 +338,13 @@
     <None Include="Resources\icons8-reduce-32.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="db\HeliStatDB.accdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="HeliStatIcon.ico" />
+    <None Include="Resources\calendar.png" />
+    <None Include="Resources\database.png" />
+    <None Include="Resources\change.png" />
     <Content Include="HeliStat\HeliStatDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -343,10 +352,6 @@
       <DependentUpon>HeliStatDB.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="HeliStatIcon.ico" />
-    <None Include="Resources\calendar.png" />
-    <None Include="Resources\database.png" />
-    <None Include="Resources\change.png" />
     <Content Include="Resources\HeliStatIcon.ico" />
     <Content Include="Resources\SplashScreen.jpg" />
   </ItemGroup>

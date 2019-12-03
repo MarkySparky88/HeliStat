@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("MarkySparky Productions")]
 [assembly: AssemblyProduct("HeliStat")]
-[assembly: AssemblyCopyright("Copyright © 2018 - MarkySparky Productions, Switzerland.")]
+[assembly: AssemblyCopyright("Copyright © 2019 - MarkySparky Productions, Switzerland.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
