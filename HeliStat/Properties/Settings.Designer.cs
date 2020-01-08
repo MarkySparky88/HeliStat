@@ -23,17 +23,6 @@ namespace HeliStat.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|HeliStat\\HeliS" +
-            "tatDB.mdf;Integrated Security=True")]
-        public string DBConnection {
-            get {
-                return ((string)(this["DBConnection"]));
-            }
-        }
-        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("2018")]
@@ -51,9 +40,9 @@ namespace HeliStat.Properties {
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\\db\\HeliStat_db1.acc" +
             "db")]
-        public string HeliStat_db1_ConnectionString {
+        public string DBConnection {
             get {
-                return ((string)(this["HeliStat_db1_ConnectionString"]));
+                return ((string)(this["DBConnection"]));
             }
         }
     }

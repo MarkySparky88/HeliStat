@@ -5685,7 +5685,7 @@ namespace HeliStat.HeliStat_db1DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::HeliStat.Properties.Settings.Default.HeliStat_db1_ConnectionString;
+            this._connection.ConnectionString = global::HeliStat.Properties.Settings.Default.DBConnection;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5995,7 +5995,7 @@ namespace HeliStat.HeliStat_db1DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::HeliStat.Properties.Settings.Default.HeliStat_db1_ConnectionString;
+            this._connection.ConnectionString = global::HeliStat.Properties.Settings.Default.DBConnection;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6325,7 +6325,7 @@ namespace HeliStat.HeliStat_db1DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::HeliStat.Properties.Settings.Default.HeliStat_db1_ConnectionString;
+            this._connection.ConnectionString = global::HeliStat.Properties.Settings.Default.DBConnection;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6778,7 +6778,7 @@ namespace HeliStat.HeliStat_db1DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::HeliStat.Properties.Settings.Default.HeliStat_db1_ConnectionString;
+            this._connection.ConnectionString = global::HeliStat.Properties.Settings.Default.DBConnection;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7484,7 +7484,7 @@ namespace HeliStat.HeliStat_db1DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::HeliStat.Properties.Settings.Default.HeliStat_db1_ConnectionString;
+            this._connection.ConnectionString = global::HeliStat.Properties.Settings.Default.DBConnection;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8190,7 +8190,7 @@ namespace HeliStat.HeliStat_db1DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::HeliStat.Properties.Settings.Default.HeliStat_db1_ConnectionString;
+            this._connection.ConnectionString = global::HeliStat.Properties.Settings.Default.DBConnection;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8811,7 +8811,7 @@ namespace HeliStat.HeliStat_db1DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::HeliStat.Properties.Settings.Default.HeliStat_db1_ConnectionString;
+            this._connection.ConnectionString = global::HeliStat.Properties.Settings.Default.DBConnection;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9129,7 +9129,7 @@ namespace HeliStat.HeliStat_db1DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::HeliStat.Properties.Settings.Default.HeliStat_db1_ConnectionString;
+            this._connection.ConnectionString = global::HeliStat.Properties.Settings.Default.DBConnection;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9465,7 +9465,7 @@ namespace HeliStat.HeliStat_db1DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::HeliStat.Properties.Settings.Default.HeliStat_db1_ConnectionString;
+            this._connection.ConnectionString = global::HeliStat.Properties.Settings.Default.DBConnection;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

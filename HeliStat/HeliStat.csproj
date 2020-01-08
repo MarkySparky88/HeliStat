@@ -63,7 +63,7 @@
     <ApplicationIcon>HeliStatIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>96A8DA556F53E8288E9ECF68C3CF9923BC240862</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>DAB33B725BB3FC01ACBBDD7AB81547579413E09F</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>HeliStat_TemporaryKey.pfx</ManifestKeyFile>
@@ -77,6 +77,9 @@
   <PropertyGroup />
   <PropertyGroup>
     <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClosedXML, Version=0.94.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -227,6 +230,9 @@
     <Compile Include="HelicoptersAddType.Designer.cs">
       <DependentUpon>HelicoptersAddType.cs</DependentUpon>
     </Compile>
+    <Compile Include="HeliStat_db1DataSet.cs">
+      <DependentUpon>HeliStat_db1DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="HeliStat_db1DataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -317,6 +323,7 @@
     <None Include="HeliStat_db1DataSet.xss">
       <DependentUpon>HeliStat_db1DataSet.xsd</DependentUpon>
     </None>
+    <None Include="HeliStat_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -4,12 +4,12 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="HeliStat_db1_ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="HeliStat_db1_ConnectionString (Settings)" PropertyReference="ApplicationSettings.HeliStat.Properties.Settings.GlobalReference.Default.HeliStat_db1_ConnectionString" Provider="System.Data.OleDb" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="DBConnection" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="DBConnection (Settings)" PropertyReference="ApplicationSettings.HeliStat.Properties.Settings.GlobalReference.Default.DBConnection" Provider="System.Data.OleDb" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblAircraftTypesTableAdapter" GeneratorDataComponentClassName="tblAircraftTypesTableAdapter" Name="tblAircraftTypes" UserDataComponentName="tblAircraftTypesTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="HeliStat_db1_ConnectionString (Settings)" DbObjectName="tblAircraftTypes" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DBConnection (Settings)" DbObjectName="tblAircraftTypes" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `tblAircraftTypes` WHERE ((`ID` = ?) AND ((? = 1 AND `AircraftType` IS NULL) OR (`AircraftType` = ?)))</CommandText>
@@ -55,7 +55,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblAirportCodesTableAdapter" GeneratorDataComponentClassName="tblAirportCodesTableAdapter" Name="tblAirportCodes" UserDataComponentName="tblAirportCodesTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="HeliStat_db1_ConnectionString (Settings)" DbObjectName="tblAirportCodes" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DBConnection (Settings)" DbObjectName="tblAirportCodes" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `tblAirportCodes` WHERE ((`ID` = ?) AND ((? = 1 AND `AirportCode` IS NULL) OR (`AirportCode` = ?)))</CommandText>
@@ -101,7 +101,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblHelicoptersTableAdapter" GeneratorDataComponentClassName="tblHelicoptersTableAdapter" Name="tblHelicopters" UserDataComponentName="tblHelicoptersTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="HeliStat_db1_ConnectionString (Settings)" DbObjectName="tblHelicopters" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DBConnection (Settings)" DbObjectName="tblHelicopters" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `tblHelicopters` WHERE ((`ID` = ?) AND ((? = 1 AND `Registration` IS NULL) OR (`Registration` = ?)) AND ((? = 1 AND `AircraftType` IS NULL) OR (`AircraftType` = ?)) AND ((? = 1 AND `NoOfEng` IS NULL) OR (`NoOfEng` = ?)) AND ((? = 1 AND `Operator` IS NULL) OR (`Operator` = ?)))</CommandText>
@@ -168,7 +168,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblMovTableAdapter" GeneratorDataComponentClassName="tblMovTableAdapter" Name="tblMov" UserDataComponentName="tblMovTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="HeliStat_db1_ConnectionString (Settings)" DbObjectName="tblMov" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DBConnection (Settings)" DbObjectName="tblMov" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `tblMov` WHERE ((`ID` = ?) AND ((? = 1 AND `Registration` IS NULL) OR (`Registration` = ?)) AND ((? = 1 AND `AircraftType` IS NULL) OR (`AircraftType` = ?)) AND ((? = 1 AND `NoOfEng` IS NULL) OR (`NoOfEng` = ?)) AND ((? = 1 AND `Operator` IS NULL) OR (`Operator` = ?)) AND ((? = 1 AND `TypeOfOperation` IS NULL) OR (`TypeOfOperation` = ?)) AND ((? = 1 AND `ArrFrom` IS NULL) OR (`ArrFrom` = ?)) AND ((? = 1 AND `DepTo` IS NULL) OR (`DepTo` = ?)) AND ((? = 1 AND `Overnight` IS NULL) OR (`Overnight` = ?)) AND ((? = 1 AND `Year_` IS NULL) OR (`Year_` = ?)) AND ((? = 1 AND `DateOfArr` IS NULL) OR (`DateOfArr` = ?)) AND ((? = 1 AND `ActualTimeArr` IS NULL) OR (`ActualTimeArr` = ?)) AND ((? = 1 AND `DateOfDep` IS NULL) OR (`DateOfDep` = ?)) AND ((? = 1 AND `ActualTimeDep` IS NULL) OR (`ActualTimeDep` = ?)))</CommandText>
@@ -298,7 +298,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblMov2017TableAdapter" GeneratorDataComponentClassName="tblMov2017TableAdapter" Name="tblMov2017" UserDataComponentName="tblMov2017TableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="HeliStat_db1_ConnectionString (Settings)" DbObjectName="tblMov2017" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DBConnection (Settings)" DbObjectName="tblMov2017" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `tblMov2017` WHERE ((`ID` = ?) AND ((? = 1 AND `Registration` IS NULL) OR (`Registration` = ?)) AND ((? = 1 AND `AircraftType` IS NULL) OR (`AircraftType` = ?)) AND ((? = 1 AND `NoOfEng` IS NULL) OR (`NoOfEng` = ?)) AND ((? = 1 AND `Operator` IS NULL) OR (`Operator` = ?)) AND ((? = 1 AND `TypeOfOperation` IS NULL) OR (`TypeOfOperation` = ?)) AND ((? = 1 AND `ArrFrom` IS NULL) OR (`ArrFrom` = ?)) AND ((? = 1 AND `DepTo` IS NULL) OR (`DepTo` = ?)) AND ((? = 1 AND `Overnight` IS NULL) OR (`Overnight` = ?)) AND ((? = 1 AND `Year_` IS NULL) OR (`Year_` = ?)) AND ((? = 1 AND `DateOfArr` IS NULL) OR (`DateOfArr` = ?)) AND ((? = 1 AND `ActualTimeArr` IS NULL) OR (`ActualTimeArr` = ?)) AND ((? = 1 AND `DateOfDep` IS NULL) OR (`DateOfDep` = ?)) AND ((? = 1 AND `ActualTimeDep` IS NULL) OR (`ActualTimeDep` = ?)))</CommandText>
@@ -428,7 +428,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblMov2018TableAdapter" GeneratorDataComponentClassName="tblMov2018TableAdapter" Name="tblMov2018" UserDataComponentName="tblMov2018TableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="HeliStat_db1_ConnectionString (Settings)" DbObjectName="tblMov2018" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DBConnection (Settings)" DbObjectName="tblMov2018" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `tblMov2018` WHERE ((`ID` = ?) AND ((? = 1 AND `Registration` IS NULL) OR (`Registration` = ?)) AND ((? = 1 AND `AircraftType` IS NULL) OR (`AircraftType` = ?)) AND ((? = 1 AND `NoOfEng` IS NULL) OR (`NoOfEng` = ?)) AND ((? = 1 AND `Operator` IS NULL) OR (`Operator` = ?)) AND ((? = 1 AND `TypeOfOperation` IS NULL) OR (`TypeOfOperation` = ?)) AND ((? = 1 AND `ArrFrom` IS NULL) OR (`ArrFrom` = ?)) AND ((? = 1 AND `DepTo` IS NULL) OR (`DepTo` = ?)) AND ((? = 1 AND `Overnight` IS NULL) OR (`Overnight` = ?)) AND ((? = 1 AND `Year_` IS NULL) OR (`Year_` = ?)) AND ((? = 1 AND `DateOfArr` IS NULL) OR (`DateOfArr` = ?)) AND ((? = 1 AND `ActualTimeArr` IS NULL) OR (`ActualTimeArr` = ?)) AND ((? = 1 AND `DateOfDep` IS NULL) OR (`DateOfDep` = ?)) AND ((? = 1 AND `ActualTimeDep` IS NULL) OR (`ActualTimeDep` = ?)))</CommandText>
@@ -558,7 +558,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblOperatorsTableAdapter" GeneratorDataComponentClassName="tblOperatorsTableAdapter" Name="tblOperators" UserDataComponentName="tblOperatorsTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="HeliStat_db1_ConnectionString (Settings)" DbObjectName="tblOperators" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DBConnection (Settings)" DbObjectName="tblOperators" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `tblOperators` WHERE ((`ID` = ?) AND ((? = 1 AND `Operator` IS NULL) OR (`Operator` = ?)))</CommandText>
@@ -604,7 +604,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblUsersTableAdapter" GeneratorDataComponentClassName="tblUsersTableAdapter" Name="tblUsers" UserDataComponentName="tblUsersTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="HeliStat_db1_ConnectionString (Settings)" DbObjectName="tblUsers" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DBConnection (Settings)" DbObjectName="tblUsers" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `tblUsers` WHERE ((`ID` = ?) AND ((? = 1 AND `Username` IS NULL) OR (`Username` = ?)) AND ((? = 1 AND `Password` IS NULL) OR (`Password` = ?)))</CommandText>
@@ -657,7 +657,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblYearsTableAdapter" GeneratorDataComponentClassName="tblYearsTableAdapter" Name="tblYears" UserDataComponentName="tblYearsTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="HeliStat_db1_ConnectionString (Settings)" DbObjectName="tblYears" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DBConnection (Settings)" DbObjectName="tblYears" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `tblYears` WHERE ((`ID` = ?) AND ((? = 1 AND `Year_` IS NULL) OR (`Year_` = ?)))</CommandText>
@@ -709,7 +709,7 @@
   <xs:element name="HeliStat_db1DataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="HeliStat_db1DataSet" msprop:Generator_UserDSName="HeliStat_db1DataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="tblAircraftTypes" msprop:Generator_TableClassName="tblAircraftTypesDataTable" msprop:Generator_TableVarName="tabletblAircraftTypes" msprop:Generator_TablePropName="tblAircraftTypes" msprop:Generator_RowDeletingName="tblAircraftTypesRowDeleting" msprop:Generator_RowChangingName="tblAircraftTypesRowChanging" msprop:Generator_RowEvHandlerName="tblAircraftTypesRowChangeEventHandler" msprop:Generator_RowDeletedName="tblAircraftTypesRowDeleted" msprop:Generator_UserTableName="tblAircraftTypes" msprop:Generator_RowChangedName="tblAircraftTypesRowChanged" msprop:Generator_RowEvArgName="tblAircraftTypesRowChangeEvent" msprop:Generator_RowClassName="tblAircraftTypesRow">
+        <xs:element name="tblAircraftTypes" msprop:Generator_TableClassName="tblAircraftTypesDataTable" msprop:Generator_TableVarName="tabletblAircraftTypes" msprop:Generator_RowChangedName="tblAircraftTypesRowChanged" msprop:Generator_TablePropName="tblAircraftTypes" msprop:Generator_RowDeletingName="tblAircraftTypesRowDeleting" msprop:Generator_RowChangingName="tblAircraftTypesRowChanging" msprop:Generator_RowEvHandlerName="tblAircraftTypesRowChangeEventHandler" msprop:Generator_RowDeletedName="tblAircraftTypesRowDeleted" msprop:Generator_RowClassName="tblAircraftTypesRow" msprop:Generator_UserTableName="tblAircraftTypes" msprop:Generator_RowEvArgName="tblAircraftTypesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -723,7 +723,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tblAirportCodes" msprop:Generator_TableClassName="tblAirportCodesDataTable" msprop:Generator_TableVarName="tabletblAirportCodes" msprop:Generator_TablePropName="tblAirportCodes" msprop:Generator_RowDeletingName="tblAirportCodesRowDeleting" msprop:Generator_RowChangingName="tblAirportCodesRowChanging" msprop:Generator_RowEvHandlerName="tblAirportCodesRowChangeEventHandler" msprop:Generator_RowDeletedName="tblAirportCodesRowDeleted" msprop:Generator_UserTableName="tblAirportCodes" msprop:Generator_RowChangedName="tblAirportCodesRowChanged" msprop:Generator_RowEvArgName="tblAirportCodesRowChangeEvent" msprop:Generator_RowClassName="tblAirportCodesRow">
+        <xs:element name="tblAirportCodes" msprop:Generator_TableClassName="tblAirportCodesDataTable" msprop:Generator_TableVarName="tabletblAirportCodes" msprop:Generator_RowChangedName="tblAirportCodesRowChanged" msprop:Generator_TablePropName="tblAirportCodes" msprop:Generator_RowDeletingName="tblAirportCodesRowDeleting" msprop:Generator_RowChangingName="tblAirportCodesRowChanging" msprop:Generator_RowEvHandlerName="tblAirportCodesRowChangeEventHandler" msprop:Generator_RowDeletedName="tblAirportCodesRowDeleted" msprop:Generator_RowClassName="tblAirportCodesRow" msprop:Generator_UserTableName="tblAirportCodes" msprop:Generator_RowEvArgName="tblAirportCodesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -737,7 +737,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tblHelicopters" msprop:Generator_TableClassName="tblHelicoptersDataTable" msprop:Generator_TableVarName="tabletblHelicopters" msprop:Generator_TablePropName="tblHelicopters" msprop:Generator_RowDeletingName="tblHelicoptersRowDeleting" msprop:Generator_RowChangingName="tblHelicoptersRowChanging" msprop:Generator_RowEvHandlerName="tblHelicoptersRowChangeEventHandler" msprop:Generator_RowDeletedName="tblHelicoptersRowDeleted" msprop:Generator_UserTableName="tblHelicopters" msprop:Generator_RowChangedName="tblHelicoptersRowChanged" msprop:Generator_RowEvArgName="tblHelicoptersRowChangeEvent" msprop:Generator_RowClassName="tblHelicoptersRow">
+        <xs:element name="tblHelicopters" msprop:Generator_TableClassName="tblHelicoptersDataTable" msprop:Generator_TableVarName="tabletblHelicopters" msprop:Generator_RowChangedName="tblHelicoptersRowChanged" msprop:Generator_TablePropName="tblHelicopters" msprop:Generator_RowDeletingName="tblHelicoptersRowDeleting" msprop:Generator_RowChangingName="tblHelicoptersRowChanging" msprop:Generator_RowEvHandlerName="tblHelicoptersRowChangeEventHandler" msprop:Generator_RowDeletedName="tblHelicoptersRowDeleted" msprop:Generator_RowClassName="tblHelicoptersRow" msprop:Generator_UserTableName="tblHelicopters" msprop:Generator_RowEvArgName="tblHelicoptersRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -766,69 +766,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tblMov" msprop:Generator_TableClassName="tblMovDataTable" msprop:Generator_TableVarName="tabletblMov" msprop:Generator_TablePropName="tblMov" msprop:Generator_RowDeletingName="tblMovRowDeleting" msprop:Generator_RowChangingName="tblMovRowChanging" msprop:Generator_RowEvHandlerName="tblMovRowChangeEventHandler" msprop:Generator_RowDeletedName="tblMovRowDeleted" msprop:Generator_UserTableName="tblMov" msprop:Generator_RowChangedName="tblMovRowChanged" msprop:Generator_RowEvArgName="tblMovRowChangeEvent" msprop:Generator_RowClassName="tblMovRow">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
-              <xs:element name="Registration" msprop:Generator_ColumnVarNameInTable="columnRegistration" msprop:Generator_ColumnPropNameInRow="Registration" msprop:Generator_ColumnPropNameInTable="RegistrationColumn" msprop:Generator_UserColumnName="Registration" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="7" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="AircraftType" msprop:Generator_ColumnVarNameInTable="columnAircraftType" msprop:Generator_ColumnPropNameInRow="AircraftType" msprop:Generator_ColumnPropNameInTable="AircraftTypeColumn" msprop:Generator_UserColumnName="AircraftType" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="4" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="NoOfEng" msprop:Generator_ColumnVarNameInTable="columnNoOfEng" msprop:Generator_ColumnPropNameInRow="NoOfEng" msprop:Generator_ColumnPropNameInTable="NoOfEngColumn" msprop:Generator_UserColumnName="NoOfEng" type="xs:int" minOccurs="0" />
-              <xs:element name="Operator" msprop:Generator_ColumnVarNameInTable="columnOperator" msprop:Generator_ColumnPropNameInRow="Operator" msprop:Generator_ColumnPropNameInTable="OperatorColumn" msprop:Generator_UserColumnName="Operator" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="TypeOfOperation" msprop:Generator_ColumnVarNameInTable="columnTypeOfOperation" msprop:Generator_ColumnPropNameInRow="TypeOfOperation" msprop:Generator_ColumnPropNameInTable="TypeOfOperationColumn" msprop:Generator_UserColumnName="TypeOfOperation" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="10" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="ArrFrom" msprop:Generator_ColumnVarNameInTable="columnArrFrom" msprop:Generator_ColumnPropNameInRow="ArrFrom" msprop:Generator_ColumnPropNameInTable="ArrFromColumn" msprop:Generator_UserColumnName="ArrFrom" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="4" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="DepTo" msprop:Generator_ColumnVarNameInTable="columnDepTo" msprop:Generator_ColumnPropNameInRow="DepTo" msprop:Generator_ColumnPropNameInTable="DepToColumn" msprop:Generator_UserColumnName="DepTo" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="4" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="Overnight" msprop:Generator_ColumnVarNameInTable="columnOvernight" msprop:Generator_ColumnPropNameInRow="Overnight" msprop:Generator_ColumnPropNameInTable="OvernightColumn" msprop:Generator_UserColumnName="Overnight" type="xs:boolean" minOccurs="0" />
-              <xs:element name="Year_" msprop:Generator_ColumnVarNameInTable="columnYear_" msprop:Generator_ColumnPropNameInRow="Year_" msprop:Generator_ColumnPropNameInTable="Year_Column" msprop:Generator_UserColumnName="Year_" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="4" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="DateOfArr" msprop:Generator_ColumnVarNameInTable="columnDateOfArr" msprop:Generator_ColumnPropNameInRow="DateOfArr" msprop:Generator_ColumnPropNameInTable="DateOfArrColumn" msprop:Generator_UserColumnName="DateOfArr" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="ActualTimeArr" msprop:Generator_ColumnVarNameInTable="columnActualTimeArr" msprop:Generator_ColumnPropNameInRow="ActualTimeArr" msprop:Generator_ColumnPropNameInTable="ActualTimeArrColumn" msprop:Generator_UserColumnName="ActualTimeArr" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="DateOfDep" msprop:Generator_ColumnVarNameInTable="columnDateOfDep" msprop:Generator_ColumnPropNameInRow="DateOfDep" msprop:Generator_ColumnPropNameInTable="DateOfDepColumn" msprop:Generator_UserColumnName="DateOfDep" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="ActualTimeDep" msprop:Generator_ColumnVarNameInTable="columnActualTimeDep" msprop:Generator_ColumnPropNameInRow="ActualTimeDep" msprop:Generator_ColumnPropNameInTable="ActualTimeDepColumn" msprop:Generator_UserColumnName="ActualTimeDep" type="xs:dateTime" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="tblMov2017" msprop:Generator_TableClassName="tblMov2017DataTable" msprop:Generator_TableVarName="tabletblMov2017" msprop:Generator_TablePropName="tblMov2017" msprop:Generator_RowDeletingName="tblMov2017RowDeleting" msprop:Generator_RowChangingName="tblMov2017RowChanging" msprop:Generator_RowEvHandlerName="tblMov2017RowChangeEventHandler" msprop:Generator_RowDeletedName="tblMov2017RowDeleted" msprop:Generator_UserTableName="tblMov2017" msprop:Generator_RowChangedName="tblMov2017RowChanged" msprop:Generator_RowEvArgName="tblMov2017RowChangeEvent" msprop:Generator_RowClassName="tblMov2017Row">
+        <xs:element name="tblMov" msprop:Generator_TableClassName="tblMovDataTable" msprop:Generator_TableVarName="tabletblMov" msprop:Generator_RowChangedName="tblMovRowChanged" msprop:Generator_TablePropName="tblMov" msprop:Generator_RowDeletingName="tblMovRowDeleting" msprop:Generator_RowChangingName="tblMovRowChanging" msprop:Generator_RowEvHandlerName="tblMovRowChangeEventHandler" msprop:Generator_RowDeletedName="tblMovRowDeleted" msprop:Generator_RowClassName="tblMovRow" msprop:Generator_UserTableName="tblMov" msprop:Generator_RowEvArgName="tblMovRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -890,7 +828,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tblMov2018" msprop:Generator_TableClassName="tblMov2018DataTable" msprop:Generator_TableVarName="tabletblMov2018" msprop:Generator_TablePropName="tblMov2018" msprop:Generator_RowDeletingName="tblMov2018RowDeleting" msprop:Generator_RowChangingName="tblMov2018RowChanging" msprop:Generator_RowEvHandlerName="tblMov2018RowChangeEventHandler" msprop:Generator_RowDeletedName="tblMov2018RowDeleted" msprop:Generator_UserTableName="tblMov2018" msprop:Generator_RowChangedName="tblMov2018RowChanged" msprop:Generator_RowEvArgName="tblMov2018RowChangeEvent" msprop:Generator_RowClassName="tblMov2018Row">
+        <xs:element name="tblMov2017" msprop:Generator_TableClassName="tblMov2017DataTable" msprop:Generator_TableVarName="tabletblMov2017" msprop:Generator_RowChangedName="tblMov2017RowChanged" msprop:Generator_TablePropName="tblMov2017" msprop:Generator_RowDeletingName="tblMov2017RowDeleting" msprop:Generator_RowChangingName="tblMov2017RowChanging" msprop:Generator_RowEvHandlerName="tblMov2017RowChangeEventHandler" msprop:Generator_RowDeletedName="tblMov2017RowDeleted" msprop:Generator_RowClassName="tblMov2017Row" msprop:Generator_UserTableName="tblMov2017" msprop:Generator_RowEvArgName="tblMov2017RowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -952,7 +890,69 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tblOperators" msprop:Generator_TableClassName="tblOperatorsDataTable" msprop:Generator_TableVarName="tabletblOperators" msprop:Generator_TablePropName="tblOperators" msprop:Generator_RowDeletingName="tblOperatorsRowDeleting" msprop:Generator_RowChangingName="tblOperatorsRowChanging" msprop:Generator_RowEvHandlerName="tblOperatorsRowChangeEventHandler" msprop:Generator_RowDeletedName="tblOperatorsRowDeleted" msprop:Generator_UserTableName="tblOperators" msprop:Generator_RowChangedName="tblOperatorsRowChanged" msprop:Generator_RowEvArgName="tblOperatorsRowChangeEvent" msprop:Generator_RowClassName="tblOperatorsRow">
+        <xs:element name="tblMov2018" msprop:Generator_TableClassName="tblMov2018DataTable" msprop:Generator_TableVarName="tabletblMov2018" msprop:Generator_RowChangedName="tblMov2018RowChanged" msprop:Generator_TablePropName="tblMov2018" msprop:Generator_RowDeletingName="tblMov2018RowDeleting" msprop:Generator_RowChangingName="tblMov2018RowChanging" msprop:Generator_RowEvHandlerName="tblMov2018RowChangeEventHandler" msprop:Generator_RowDeletedName="tblMov2018RowDeleted" msprop:Generator_RowClassName="tblMov2018Row" msprop:Generator_UserTableName="tblMov2018" msprop:Generator_RowEvArgName="tblMov2018RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name="Registration" msprop:Generator_ColumnVarNameInTable="columnRegistration" msprop:Generator_ColumnPropNameInRow="Registration" msprop:Generator_ColumnPropNameInTable="RegistrationColumn" msprop:Generator_UserColumnName="Registration" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="7" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AircraftType" msprop:Generator_ColumnVarNameInTable="columnAircraftType" msprop:Generator_ColumnPropNameInRow="AircraftType" msprop:Generator_ColumnPropNameInTable="AircraftTypeColumn" msprop:Generator_UserColumnName="AircraftType" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NoOfEng" msprop:Generator_ColumnVarNameInTable="columnNoOfEng" msprop:Generator_ColumnPropNameInRow="NoOfEng" msprop:Generator_ColumnPropNameInTable="NoOfEngColumn" msprop:Generator_UserColumnName="NoOfEng" type="xs:int" minOccurs="0" />
+              <xs:element name="Operator" msprop:Generator_ColumnVarNameInTable="columnOperator" msprop:Generator_ColumnPropNameInRow="Operator" msprop:Generator_ColumnPropNameInTable="OperatorColumn" msprop:Generator_UserColumnName="Operator" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TypeOfOperation" msprop:Generator_ColumnVarNameInTable="columnTypeOfOperation" msprop:Generator_ColumnPropNameInRow="TypeOfOperation" msprop:Generator_ColumnPropNameInTable="TypeOfOperationColumn" msprop:Generator_UserColumnName="TypeOfOperation" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ArrFrom" msprop:Generator_ColumnVarNameInTable="columnArrFrom" msprop:Generator_ColumnPropNameInRow="ArrFrom" msprop:Generator_ColumnPropNameInTable="ArrFromColumn" msprop:Generator_UserColumnName="ArrFrom" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DepTo" msprop:Generator_ColumnVarNameInTable="columnDepTo" msprop:Generator_ColumnPropNameInRow="DepTo" msprop:Generator_ColumnPropNameInTable="DepToColumn" msprop:Generator_UserColumnName="DepTo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Overnight" msprop:Generator_ColumnVarNameInTable="columnOvernight" msprop:Generator_ColumnPropNameInRow="Overnight" msprop:Generator_ColumnPropNameInTable="OvernightColumn" msprop:Generator_UserColumnName="Overnight" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Year_" msprop:Generator_ColumnVarNameInTable="columnYear_" msprop:Generator_ColumnPropNameInRow="Year_" msprop:Generator_ColumnPropNameInTable="Year_Column" msprop:Generator_UserColumnName="Year_" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DateOfArr" msprop:Generator_ColumnVarNameInTable="columnDateOfArr" msprop:Generator_ColumnPropNameInRow="DateOfArr" msprop:Generator_ColumnPropNameInTable="DateOfArrColumn" msprop:Generator_UserColumnName="DateOfArr" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ActualTimeArr" msprop:Generator_ColumnVarNameInTable="columnActualTimeArr" msprop:Generator_ColumnPropNameInRow="ActualTimeArr" msprop:Generator_ColumnPropNameInTable="ActualTimeArrColumn" msprop:Generator_UserColumnName="ActualTimeArr" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DateOfDep" msprop:Generator_ColumnVarNameInTable="columnDateOfDep" msprop:Generator_ColumnPropNameInRow="DateOfDep" msprop:Generator_ColumnPropNameInTable="DateOfDepColumn" msprop:Generator_UserColumnName="DateOfDep" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ActualTimeDep" msprop:Generator_ColumnVarNameInTable="columnActualTimeDep" msprop:Generator_ColumnPropNameInRow="ActualTimeDep" msprop:Generator_ColumnPropNameInTable="ActualTimeDepColumn" msprop:Generator_UserColumnName="ActualTimeDep" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblOperators" msprop:Generator_TableClassName="tblOperatorsDataTable" msprop:Generator_TableVarName="tabletblOperators" msprop:Generator_RowChangedName="tblOperatorsRowChanged" msprop:Generator_TablePropName="tblOperators" msprop:Generator_RowDeletingName="tblOperatorsRowDeleting" msprop:Generator_RowChangingName="tblOperatorsRowChanging" msprop:Generator_RowEvHandlerName="tblOperatorsRowChangeEventHandler" msprop:Generator_RowDeletedName="tblOperatorsRowDeleted" msprop:Generator_RowClassName="tblOperatorsRow" msprop:Generator_UserTableName="tblOperators" msprop:Generator_RowEvArgName="tblOperatorsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -966,7 +966,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tblUsers" msprop:Generator_TableClassName="tblUsersDataTable" msprop:Generator_TableVarName="tabletblUsers" msprop:Generator_TablePropName="tblUsers" msprop:Generator_RowDeletingName="tblUsersRowDeleting" msprop:Generator_RowChangingName="tblUsersRowChanging" msprop:Generator_RowEvHandlerName="tblUsersRowChangeEventHandler" msprop:Generator_RowDeletedName="tblUsersRowDeleted" msprop:Generator_UserTableName="tblUsers" msprop:Generator_RowChangedName="tblUsersRowChanged" msprop:Generator_RowEvArgName="tblUsersRowChangeEvent" msprop:Generator_RowClassName="tblUsersRow">
+        <xs:element name="tblUsers" msprop:Generator_TableClassName="tblUsersDataTable" msprop:Generator_TableVarName="tabletblUsers" msprop:Generator_RowChangedName="tblUsersRowChanged" msprop:Generator_TablePropName="tblUsers" msprop:Generator_RowDeletingName="tblUsersRowDeleting" msprop:Generator_RowChangingName="tblUsersRowChanging" msprop:Generator_RowEvHandlerName="tblUsersRowChangeEventHandler" msprop:Generator_RowDeletedName="tblUsersRowDeleted" msprop:Generator_RowClassName="tblUsersRow" msprop:Generator_UserTableName="tblUsers" msprop:Generator_RowEvArgName="tblUsersRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -987,7 +987,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tblYears" msprop:Generator_TableClassName="tblYearsDataTable" msprop:Generator_TableVarName="tabletblYears" msprop:Generator_TablePropName="tblYears" msprop:Generator_RowDeletingName="tblYearsRowDeleting" msprop:Generator_RowChangingName="tblYearsRowChanging" msprop:Generator_RowEvHandlerName="tblYearsRowChangeEventHandler" msprop:Generator_RowDeletedName="tblYearsRowDeleted" msprop:Generator_UserTableName="tblYears" msprop:Generator_RowChangedName="tblYearsRowChanged" msprop:Generator_RowEvArgName="tblYearsRowChangeEvent" msprop:Generator_RowClassName="tblYearsRow">
+        <xs:element name="tblYears" msprop:Generator_TableClassName="tblYearsDataTable" msprop:Generator_TableVarName="tabletblYears" msprop:Generator_RowChangedName="tblYearsRowChanged" msprop:Generator_TablePropName="tblYears" msprop:Generator_RowDeletingName="tblYearsRowDeleting" msprop:Generator_RowChangingName="tblYearsRowChanging" msprop:Generator_RowEvHandlerName="tblYearsRowChangeEventHandler" msprop:Generator_RowDeletedName="tblYearsRowDeleted" msprop:Generator_RowClassName="tblYearsRow" msprop:Generator_UserTableName="tblYears" msprop:Generator_RowEvArgName="tblYearsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
