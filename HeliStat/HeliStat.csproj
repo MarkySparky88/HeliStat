@@ -230,14 +230,6 @@
     <Compile Include="HelicoptersAddType.Designer.cs">
       <DependentUpon>HelicoptersAddType.cs</DependentUpon>
     </Compile>
-    <Compile Include="HeliStat_db1DataSet.cs">
-      <DependentUpon>HeliStat_db1DataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="HeliStat_db1DataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HeliStat_db1DataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="MovementsAddIcaoDes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -312,17 +304,6 @@
     <EmbeddedResource Include="Statistics.resx">
       <DependentUpon>Statistics.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="HeliStat_db1DataSet.xsc">
-      <DependentUpon>HeliStat_db1DataSet.xsd</DependentUpon>
-    </None>
-    <None Include="HeliStat_db1DataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>HeliStat_db1DataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="HeliStat_db1DataSet.xss">
-      <DependentUpon>HeliStat_db1DataSet.xsd</DependentUpon>
-    </None>
     <None Include="HeliStat_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
