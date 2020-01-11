@@ -39,11 +39,11 @@ namespace HeliStat
                     try
                     {
                         connection.Open();
-                        string cmdText = string.Format("SELECT * FROM {0} WHERE Year = @Year", tableName);
+                        string cmdText = string.Format("SELECT * FROM {0} WHERE Year_ = @Year_", tableName);
 
                         using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                         {
-                            cmd.Parameters.AddWithValue("@Year", selectedYear);
+                            cmd.Parameters.AddWithValue("@Year_", selectedYear);
                             cmd.ExecuteNonQuery();
 
                             using (OleDbDataReader reader = cmd.ExecuteReader())
@@ -68,7 +68,7 @@ namespace HeliStat
         // Datagridview visual settings
         private void DataGridViewVisualSettings()
         {
-            dgvStatistics.Columns["Year"].Visible = false;
+            dgvStatistics.Columns["Year_"].Visible = false;
             dgvStatistics.Columns["ActualTimeArr"].DefaultCellStyle.Format = @"hh\:mm";
             dgvStatistics.Columns["ActualTimeDep"].DefaultCellStyle.Format = @"hh\:mm";
             CustomHeaderText();
@@ -104,7 +104,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = "SELECT * FROM tblYears ORDER BY Year DESC";
+                    string cmdText = "SELECT * FROM tblYears ORDER BY Year_ DESC";
 
                     using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
@@ -114,7 +114,7 @@ namespace HeliStat
                             {
                                 while (reader.Read())
                                 {
-                                    string addItem = reader.GetString(reader.GetOrdinal("Year"));
+                                    string addItem = reader.GetString(reader.GetOrdinal("Year_"));
                                     cbxYears.Items.Add(addItem);
                                 }
                             }
@@ -279,11 +279,11 @@ namespace HeliStat
                     try
                     {
                         connection.Open();
-                        string cmdText = string.Format("SELECT * FROM {0} WHERE Year = @Year", tableName);
+                        string cmdText = string.Format("SELECT * FROM {0} WHERE Year_ = @Year_", tableName);
 
                         using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                         {
-                            cmd.Parameters.AddWithValue("@Year", selectedYear);
+                            cmd.Parameters.AddWithValue("@Year_", selectedYear);
                             cmd.ExecuteNonQuery();
 
                             using (OleDbDataReader reader = cmd.ExecuteReader())

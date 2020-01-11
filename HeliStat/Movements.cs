@@ -44,11 +44,11 @@ namespace HeliStat
                     try
                     {
                         connection.Open();
-                        string cmdText = string.Format("SELECT * FROM {0} WHERE Year = @Year", tableName);
+                        string cmdText = string.Format("SELECT * FROM {0} WHERE Year_ = @Year_", tableName);
 
                         using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                         {
-                            cmd.Parameters.AddWithValue("@Year", GetActualYear());
+                            cmd.Parameters.AddWithValue("@Year_", GetActualYear());
                             cmd.ExecuteNonQuery();
 
                             using (OleDbDataReader reader = cmd.ExecuteReader())
@@ -73,7 +73,7 @@ namespace HeliStat
         // Datagridview visual settings
         private void DataGridViewVisualSettings()
         {
-            dgvMovements.Columns["Year"].Visible = false;
+            dgvMovements.Columns["Year_"].Visible = false;
             dgvMovements.Columns["ActualTimeArr"].DefaultCellStyle.Format = @"hh\:mm";
             dgvMovements.Columns["ActualTimeDep"].DefaultCellStyle.Format = @"hh\:mm";
             CustomHeaderText();
@@ -401,9 +401,9 @@ namespace HeliStat
                                         WHERE Registration = @Reg";
 
                         string cmdText2 = string.Format(@"INSERT INTO {0} (Registration, AircraftType, NoOfEng, Operator,
-                                                            TypeOfOperation, ArrFrom, DepTo, Overnight, Year)
+                                                            TypeOfOperation, ArrFrom, DepTo, Overnight, Year_)
                                                             VALUES (@Registration, @AircraftType, @NoOfEng, @Operator,
-                                                            @TypeOfOperation, @ArrFrom, @DepTo, @Overnight, @Year)", tableName);
+                                                            @TypeOfOperation, @ArrFrom, @DepTo, @Overnight, @Year_)", tableName);
 
                         cmd.Connection = connection;
                         cmd.CommandType = CommandType.Text;
@@ -435,7 +435,7 @@ namespace HeliStat
                         cmd.Parameters.AddWithValue("@ArrFrom", cbxArrFrom.SelectedItem.ToString());
                         cmd.Parameters.AddWithValue("@DepTo", cbxDepTo.SelectedItem.ToString());
                         cmd.Parameters.AddWithValue("@Overnight", ckbOvernight.Checked);
-                        cmd.Parameters.AddWithValue("@Year", GetActualYear());
+                        cmd.Parameters.AddWithValue("@Year_", GetActualYear());
                         cmd.ExecuteNonQuery();
                     }
                 }

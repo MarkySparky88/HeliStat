@@ -28,7 +28,7 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = "SELECT * FROM tblYears ORDER BY Year DESC";
+                    string cmdText = "SELECT * FROM tblYears ORDER BY Year_ DESC";
 
                     using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
@@ -38,7 +38,7 @@ namespace HeliStat
                             {
                                 while (reader.Read())
                                 {
-                                    string addItem = reader.GetString(reader.GetOrdinal("Year"));
+                                    string addItem = reader.GetString(reader.GetOrdinal("Year_"));
                                     cbxYears.Items.Add(addItem);
                                 }
                             }

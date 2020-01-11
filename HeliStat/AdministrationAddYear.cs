@@ -64,11 +64,11 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = "SELECT COUNT(*) FROM [tblYears] WHERE ([Year] = @Year)";
+                    string cmdText = "SELECT COUNT(*) FROM [tblYears] WHERE ([Year_] = @Year_)";
 
                     using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
-                        cmd.Parameters.AddWithValue("@Year", newYear);
+                        cmd.Parameters.AddWithValue("@Year_", newYear);
 
                         int i = (int)cmd.ExecuteScalar();
 
@@ -144,11 +144,11 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-                    string cmdText = "INSERT INTO tblYears (Year) VALUES (@Year)";
+                    string cmdText = "INSERT INTO tblYears (Year_) VALUES (@Year_)";
 
                     using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
-                        cmd.Parameters.AddWithValue("@Year", newYear);
+                        cmd.Parameters.AddWithValue("@Year_", newYear);
                         cmd.ExecuteNonQuery();
 
                         MessageBox.Show("Year has been added succesfully!", "Year added",
