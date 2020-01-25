@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeliStat", "HeliStat\HeliStat.csproj", "{06B99E60-C278-40E6-AFD7-C623EDB0554C}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{55A1AEAB-FC6E-4051-AB03-B02AB4665AF1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{06B99E60-C278-40E6-AFD7-C623EDB0554C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{06B99E60-C278-40E6-AFD7-C623EDB0554C}.Release|x86.ActiveCfg = Release|Any CPU
 		{06B99E60-C278-40E6-AFD7-C623EDB0554C}.Release|x86.Build.0 = Release|Any CPU
+		{55A1AEAB-FC6E-4051-AB03-B02AB4665AF1}.Debug|Any CPU.ActiveCfg = Debug
+		{55A1AEAB-FC6E-4051-AB03-B02AB4665AF1}.Debug|x86.ActiveCfg = Debug
+		{55A1AEAB-FC6E-4051-AB03-B02AB4665AF1}.Release|Any CPU.ActiveCfg = Release
+		{55A1AEAB-FC6E-4051-AB03-B02AB4665AF1}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
