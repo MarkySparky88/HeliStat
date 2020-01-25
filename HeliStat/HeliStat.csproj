@@ -350,7 +350,7 @@
     <None Include="Resources\icons8-reduce-32.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="db\HeliStat_db1.accdb">
+    <Content Include="HeliStat\db\HeliStat_db1.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="HeliStatIcon.ico" />
