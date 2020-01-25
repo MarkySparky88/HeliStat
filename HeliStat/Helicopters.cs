@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient;
+using System.Data.OleDb;
 using System.Windows.Forms;
 
 namespace HeliStat
@@ -34,16 +34,16 @@ namespace HeliStat
         {
             using (DataTable dataTable = new DataTable())
             {
-                using (SqlConnection connection = new SqlConnection(Program.ConnString))
+                using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
                 {
                     try
                     {
                         connection.Open();
                         string cmdText = "SELECT * FROM tblHelicopters";
 
-                        using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                        using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                         {
-                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            using (OleDbDataReader reader = cmd.ExecuteReader())
                             {
                                 if (reader != null)
                                 {
@@ -52,7 +52,7 @@ namespace HeliStat
                             }
                         }
                     }
-                    catch (SqlException ex)
+                    catch (OleDbException ex)
                     {
                         MessageBox.Show("Error: " + ex.Message, "Error",
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -77,16 +77,16 @@ namespace HeliStat
         {
             cbxAircraftType.Items.Clear();
 
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
             {
                 try
                 {
                     connection.Open();
                     string cmdText = "SELECT * FROM tblAircraftTypes ORDER BY AircraftType ASC";
 
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        using (OleDbDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader != null)
                             {
@@ -99,7 +99,7 @@ namespace HeliStat
                         }
                     }
                 }
-                catch (SqlException ex)
+                catch (OleDbException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -112,16 +112,16 @@ namespace HeliStat
         {
             cbxOperator.Items.Clear();
 
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
             {
                 try
                 {
                     connection.Open();
                     string cmdText = "SELECT * FROM tblOperators ORDER BY Operator ASC";
 
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        using (OleDbDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader != null)
                             {
@@ -134,7 +134,7 @@ namespace HeliStat
                         }
                     }
                 }
-                catch (SqlException ex)
+                catch (OleDbException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -262,14 +262,14 @@ namespace HeliStat
         // Remove aircraft type: Database access
         private void RemoveAircraftTypeDatabaseAccess()
         {
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
             {
                 try
                 {
                     connection.Open();
                     string cmdText = "DELETE FROM tblAircraftTypes WHERE AircraftType = @AircraftType";
 
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
                         cmd.Parameters.AddWithValue("@AircraftType", cbxAircraftType.SelectedItem.ToString());
                         cmd.ExecuteNonQuery();
@@ -278,7 +278,7 @@ namespace HeliStat
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-                catch (SqlException ex)
+                catch (OleDbException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -341,14 +341,14 @@ namespace HeliStat
         // Remove operator: Database access
         private void RemoveOperatorDatabaseAccess()
         {
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
             {
                 try
                 {
                     connection.Open();
                     string cmdText = "DELETE FROM tblOperators WHERE Operator = @Operator";
 
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
                         cmd.Parameters.AddWithValue("@Operator", cbxOperator.SelectedItem.ToString());
                         cmd.ExecuteNonQuery();
@@ -357,7 +357,7 @@ namespace HeliStat
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-                catch (SqlException ex)
+                catch (OleDbException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -406,7 +406,7 @@ namespace HeliStat
         // Add heli: Database access
         private void AddHeliDatabaseAccess(string registration)
         {
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
             {
                 try
                 {
@@ -414,7 +414,7 @@ namespace HeliStat
                     string cmdText = @"INSERT INTO tblHelicopters (Registration, AircraftType, NoOfEng, Operator)
                                         VALUES (@Registration, @AircraftType, @NoOfEng, @Operator)";
 
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
                         cmd.Parameters.AddWithValue("@Registration", registration);
                         cmd.Parameters.AddWithValue("@AircraftType", cbxAircraftType.SelectedItem.ToString());
@@ -426,7 +426,7 @@ namespace HeliStat
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-                catch (SqlException ex)
+                catch (OleDbException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -479,7 +479,7 @@ namespace HeliStat
         // Update heli: Database access
         private void UpdateHeliDatabaseAccess()
         {
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
             {
                 try
                 {
@@ -489,7 +489,7 @@ namespace HeliStat
                                      NoOfEng = @noOfEng, Operator = @operator
                                      WHERE ID = @ID";
 
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
                         cmd.Parameters.AddWithValue("@ID", dgvHelicopters.SelectedRows[0].Cells[0].Value.ToString());
                         cmd.Parameters.AddWithValue("@registration", tbxRegistration.Text.ToString());
@@ -502,7 +502,7 @@ namespace HeliStat
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-                catch (SqlException ex)
+                catch (OleDbException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -546,14 +546,14 @@ namespace HeliStat
         // Remove heli: Database access
         private void RemoveHeliDatabaseAccess()
         {
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
             {
                 try
                 {
                     connection.Open();
                     string cmdText = "DELETE FROM tblHelicopters WHERE ID = @ID";
 
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
                         cmd.Parameters.AddWithValue("@ID", dgvHelicopters.SelectedRows[0].Cells[0].Value.ToString());
                         cmd.ExecuteNonQuery();
@@ -562,7 +562,7 @@ namespace HeliStat
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-                catch (SqlException ex)
+                catch (OleDbException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -584,14 +584,14 @@ namespace HeliStat
         {
             bool recordExists = false;
 
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
             {
                 try
                 {
                     connection.Open();
                     string cmdText = "SELECT COUNT(*) FROM [tblHelicopters] WHERE ([Registration] = @Registration)";
 
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
                         cmd.Parameters.AddWithValue("@Registration", registration);
 
@@ -607,7 +607,7 @@ namespace HeliStat
                         }
                     }
                 }
-                catch (SqlException ex)
+                catch (OleDbException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);

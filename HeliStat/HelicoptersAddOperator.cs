@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Data.SqlClient;
+using System.Data.OleDb;
 using System.Windows.Forms;
 
 namespace HeliStat
@@ -59,14 +59,14 @@ namespace HeliStat
         {
             bool recordExists = false;
 
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
             {
                 try
                 {
                     connection.Open();
                     string cmdText = "SELECT COUNT(*) FROM [tblOperators] WHERE ([Operator] = @Operator)";
 
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
                         cmd.Parameters.AddWithValue("@Operator", newOperator);
 
@@ -82,7 +82,7 @@ namespace HeliStat
                         }
                     }
                 }
-                catch (SqlException ex)
+                catch (OleDbException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -111,20 +111,20 @@ namespace HeliStat
         // Add opertor type to database
         private void AddToDatabase(string newOperator)
         {
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
             {
                 try
                 {
                     connection.Open();
                     string cmdText = "INSERT INTO tblOperators (Operator) VALUES (@Operator)";
 
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
                         cmd.Parameters.AddWithValue("@Operator", newOperator);
                         cmd.ExecuteNonQuery();
                     }
                 }
-                catch (SqlException ex)
+                catch (OleDbException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.OleDb;
 using System.Windows.Forms;
 
 namespace HeliStat
@@ -24,15 +18,15 @@ namespace HeliStat
         {
             addItem = null;
 
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
             {
                 try
                 {
                     connection.Open();
 
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        using (OleDbDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader != null)
                             {
@@ -44,7 +38,7 @@ namespace HeliStat
                         }
                     }
                 }
-                catch (SqlException ex)
+                catch (OleDbException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);

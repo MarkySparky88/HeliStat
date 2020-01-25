@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Data.SqlClient;
+using System.Data.OleDb;
 using System.Text;
 using System.Windows.Forms;
 
@@ -59,16 +59,16 @@ namespace HeliStat
         {
             bool recordExists = false;
 
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
             {
                 try
                 {
                     connection.Open();
-                    string cmdText = "SELECT COUNT(*) FROM [tblYears] WHERE ([Year] = @Year)";
+                    string cmdText = "SELECT COUNT(*) FROM [tblYears] WHERE ([Year_] = @Year_)";
 
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
-                        cmd.Parameters.AddWithValue("@Year", newYear);
+                        cmd.Parameters.AddWithValue("@Year_", newYear);
 
                         int i = (int)cmd.ExecuteScalar();
 
@@ -82,7 +82,7 @@ namespace HeliStat
                         }
                     }
                 }
-                catch (SqlException ex)
+                catch (OleDbException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -139,23 +139,23 @@ namespace HeliStat
         // Add year to database
         private void AddToDatabase(string newYear)
         {
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
             {
                 try
                 {
                     connection.Open();
-                    string cmdText = "INSERT INTO tblYears (Year) VALUES (@Year)";
+                    string cmdText = "INSERT INTO tblYears (Year_) VALUES (@Year_)";
 
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
-                        cmd.Parameters.AddWithValue("@Year", newYear);
+                        cmd.Parameters.AddWithValue("@Year_", newYear);
                         cmd.ExecuteNonQuery();
 
                         MessageBox.Show("Year has been added succesfully!", "Year added",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-                catch (SqlException ex)
+                catch (OleDbException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -174,19 +174,19 @@ namespace HeliStat
         // Copy from tblMov and create new table (year)
         private void CopyFromTblMov(string tableName)
         {
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
             {
                 try
                 {
                     connection.Open();
                     string cmdText = string.Format("SELECT * INTO {0} FROM tblMov WHERE 1 = 0", tableName);
 
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
                         cmd.ExecuteNonQuery();
                     }
                 }
-                catch (SqlException ex)
+                catch (OleDbException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);

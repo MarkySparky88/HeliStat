@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Data.SqlClient;
+using System.Data.OleDb;
 using System.Windows.Forms;
 
 namespace HeliStat
@@ -33,14 +33,14 @@ namespace HeliStat
         // Start login process
         private void Login()
         {
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
             {
                 try
                 {
                     connection.Open();
                     string cmdText = "SELECT * FROM tblUsers WHERE Username = @Username AND Password = @Password";
 
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
                         cmd.Parameters.AddWithValue("@Username", tbxUsername.Text.ToString());
                         cmd.Parameters.AddWithValue("@Password", tbxPassword.Text.ToString());
@@ -48,7 +48,7 @@ namespace HeliStat
                         CheckUsernamePassword(cmd);
                     }
                 }
-                catch (SqlException ex)
+                catch (OleDbException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -58,9 +58,9 @@ namespace HeliStat
 
         // Check username & password
         // TODO put that function into property "LoginSuccess" under "set"?
-        private void CheckUsernamePassword(SqlCommand cmd)
+        private void CheckUsernamePassword(OleDbCommand cmd)
         {
-            using (SqlDataReader reader = cmd.ExecuteReader())
+            using (OleDbDataReader reader = cmd.ExecuteReader())
             {
                 if (reader != null)
                 {

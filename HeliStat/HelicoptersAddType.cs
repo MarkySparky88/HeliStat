@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Data.SqlClient;
+using System.Data.OleDb;
 using System.Windows.Forms;
 
 namespace HeliStat
@@ -57,14 +57,14 @@ namespace HeliStat
         {
             bool recordExists = false;
 
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
             {
                 try
                 {
                     connection.Open();
                     string cmdText = "SELECT COUNT(*) FROM [tblAircraftTypes] WHERE ([AircraftType] = @AircraftType)";
 
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
                         cmd.Parameters.AddWithValue("@AircraftType", newAircraftType);
 
@@ -80,7 +80,7 @@ namespace HeliStat
                         }
                     }
                 }
-                catch (SqlException ex)
+                catch (OleDbException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -109,20 +109,20 @@ namespace HeliStat
         // Add aircraft type to database
         private void AddToDatabase(string newAircraftType)
         {
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
             {
                 try
                 {
                     connection.Open();
                     string cmdText = "INSERT INTO tblAircraftTypes (AircraftType) VALUES (@AircraftType)";
 
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
                         cmd.Parameters.AddWithValue("@AircraftType", newAircraftType);
                         cmd.ExecuteNonQuery();
                     }
                 }
-                catch (SqlException ex)
+                catch (OleDbException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);

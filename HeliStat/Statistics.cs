@@ -1,7 +1,7 @@
 ﻿using ClosedXML.Excel;
 using System;
 using System.Data;
-using System.Data.SqlClient;
+using System.Data.OleDb;
 using System.Text;
 using System.Windows.Forms;
 
@@ -34,19 +34,19 @@ namespace HeliStat
         {
             using (DataTable dataTable = new DataTable())
             {
-                using (SqlConnection connection = new SqlConnection(Program.ConnString))
+                using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
                 {
                     try
                     {
                         connection.Open();
-                        string cmdText = string.Format("SELECT * FROM {0} WHERE Year = @Year", tableName);
+                        string cmdText = string.Format("SELECT * FROM {0} WHERE Year_ = @Year_", tableName);
 
-                        using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                        using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                         {
-                            cmd.Parameters.AddWithValue("@Year", selectedYear);
+                            cmd.Parameters.AddWithValue("@Year_", selectedYear);
                             cmd.ExecuteNonQuery();
 
-                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            using (OleDbDataReader reader = cmd.ExecuteReader())
                             {
                                 if (reader != null)
                                 {
@@ -55,7 +55,7 @@ namespace HeliStat
                             }
                         }
                     }
-                    catch (SqlException ex)
+                    catch (OleDbException ex)
                     {
                         MessageBox.Show("Error: " + ex.Message, "Error",
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -68,7 +68,7 @@ namespace HeliStat
         // Datagridview visual settings
         private void DataGridViewVisualSettings()
         {
-            dgvStatistics.Columns["Year"].Visible = false;
+            dgvStatistics.Columns["Year_"].Visible = false;
             dgvStatistics.Columns["ActualTimeArr"].DefaultCellStyle.Format = @"hh\:mm";
             dgvStatistics.Columns["ActualTimeDep"].DefaultCellStyle.Format = @"hh\:mm";
             CustomHeaderText();
@@ -99,29 +99,29 @@ namespace HeliStat
         {
             cbxYears.Items.Clear();
 
-            using (SqlConnection connection = new SqlConnection(Program.ConnString))
+            using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
             {
                 try
                 {
                     connection.Open();
-                    string cmdText = "SELECT * FROM tblYears ORDER BY Year DESC";
+                    string cmdText = "SELECT * FROM tblYears ORDER BY Year_ DESC";
 
-                    using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                    using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        using (OleDbDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader != null)
                             {
                                 while (reader.Read())
                                 {
-                                    string addItem = reader.GetString(reader.GetOrdinal("Year"));
+                                    string addItem = reader.GetString(reader.GetOrdinal("Year_"));
                                     cbxYears.Items.Add(addItem);
                                 }
                             }
                         }
                     }
                 }
-                catch (SqlException ex)
+                catch (OleDbException ex)
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -274,19 +274,19 @@ namespace HeliStat
         {
             using (DataTable dataTable = new DataTable())
             {
-                using (SqlConnection connection = new SqlConnection(Program.ConnString))
+                using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
                 {
                     try
                     {
                         connection.Open();
-                        string cmdText = string.Format("SELECT * FROM {0} WHERE Year = @Year", tableName);
+                        string cmdText = string.Format("SELECT * FROM {0} WHERE Year_ = @Year_", tableName);
 
-                        using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                        using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                         {
-                            cmd.Parameters.AddWithValue("@Year", selectedYear);
+                            cmd.Parameters.AddWithValue("@Year_", selectedYear);
                             cmd.ExecuteNonQuery();
 
-                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            using (OleDbDataReader reader = cmd.ExecuteReader())
                             {
                                 if (reader != null)
                                 {
@@ -295,7 +295,7 @@ namespace HeliStat
                             }
                         }
                     }
-                    catch (SqlException ex)
+                    catch (OleDbException ex)
                     {
                         MessageBox.Show("Error: " + ex.Message, "Error",
                             MessageBoxButtons.OK, MessageBoxIcon.Warning);
