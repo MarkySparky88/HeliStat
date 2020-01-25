@@ -5543,6 +5543,17 @@
             "Property" = "8:ProgramMenuFolder"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_A44E813787474BF4A83A39373319E419"
+                    {
+                    "Name" = "8:HeliStat"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_3EDC1CFABB1A43FA98B6F14B0E438405"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
         }
@@ -5562,7 +5573,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Setup"
         "ProductCode" = "8:{9FEF2605-69E9-45AE-B314-6C0D2BA26C8D}"
-        "PackageCode" = "8:{1468DE72-9330-4A0D-ADD3-DAD91832D9D0}"
+        "PackageCode" = "8:{6251FE5B-2AD1-4DE3-9D90-7B44B0582429}"
         "UpgradeCode" = "8:{3147136F-EB5B-4FE5-BB57-DC187B01E261}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -5691,7 +5702,7 @@
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
             "Target" = "8:_3D60D91BBC7A43028814EAB84C5FC346"
-            "Folder" = "8:_EBCE0B8070094EE2ABB236BAC090BB7D"
+            "Folder" = "8:_A44E813787474BF4A83A39373319E419"
             "WorkingFolder" = "8:_BEF8443E7E0A479AB8D478E0A8A5DCD2"
             "Icon" = "8:_087FCC71C6954BA3846033C32CB2337C"
             "Feature" = "8:"
