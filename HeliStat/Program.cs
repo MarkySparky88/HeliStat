@@ -15,7 +15,7 @@ namespace HeliStat
         {
             // Database location in user app data folder
             // TODO activate upon release!
-            AppDomain.CurrentDomain.SetData("DataDirectory", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
+            //AppDomain.CurrentDomain.SetData("DataDirectory", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
 
             // Connection string
             ConnString = Properties.Settings.Default.DBConnection;

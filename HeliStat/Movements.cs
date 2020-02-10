@@ -370,7 +370,7 @@ namespace HeliStat
         private void AddMovement(string tableName)
         {
             // Pre-set values
-            byte noOfEng = 0;
+            int noOfEng = 0;
             string registration = "";
             string aircraftType = "";
             string operatorName = "";
@@ -387,7 +387,7 @@ namespace HeliStat
         }
 
         // Add movement: Database access
-        private void AddMovementDatabaseAccess(string tableName, ref byte noOfEng, ref string registration, ref string aircraftType, ref string operatorName)
+        private void AddMovementDatabaseAccess(string tableName, ref int noOfEng, ref string registration, ref string aircraftType, ref string operatorName)
         {
             using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
             {
@@ -419,7 +419,7 @@ namespace HeliStat
                                 {
                                     registration = reader1.GetString(1);
                                     aircraftType = reader1.GetString(2);
-                                    noOfEng = reader1.GetByte(3);
+                                    noOfEng = reader1.GetInt32(3);
                                     operatorName = reader1.GetString(4);
                                 }
                             }
