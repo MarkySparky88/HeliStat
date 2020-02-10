@@ -38,27 +38,30 @@
             // tbxIcaoDesignator
             // 
             this.tbxIcaoDesignator.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbxIcaoDesignator.Location = new System.Drawing.Point(13, 35);
+            this.tbxIcaoDesignator.Location = new System.Drawing.Point(17, 43);
+            this.tbxIcaoDesignator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbxIcaoDesignator.MaxLength = 4;
             this.tbxIcaoDesignator.Name = "tbxIcaoDesignator";
-            this.tbxIcaoDesignator.Size = new System.Drawing.Size(261, 20);
+            this.tbxIcaoDesignator.Size = new System.Drawing.Size(347, 22);
             this.tbxIcaoDesignator.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 16);
+            this.label1.Location = new System.Drawing.Point(17, 20);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(217, 13);
+            this.label1.Size = new System.Drawing.Size(291, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "Add ICAO location designator (4-letter code):";
             // 
             // btnOK
             // 
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(118, 79);
+            this.btnOK.Location = new System.Drawing.Point(157, 97);
+            this.btnOK.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.Size = new System.Drawing.Size(100, 28);
             this.btnOK.TabIndex = 2;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -67,9 +70,10 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(199, 79);
+            this.btnCancel.Location = new System.Drawing.Point(265, 97);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(100, 28);
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -77,15 +81,17 @@
             // 
             // frmMovementsAddIcaoDes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AcceptButton = this.btnOK;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(296, 122);
+            this.ClientSize = new System.Drawing.Size(395, 150);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbxIcaoDesignator);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMovementsAddIcaoDes";

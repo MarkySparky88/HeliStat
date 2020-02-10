@@ -37,9 +37,10 @@
             // 
             // btnMovements
             // 
-            this.btnMovements.Location = new System.Drawing.Point(12, 12);
+            this.btnMovements.Location = new System.Drawing.Point(16, 15);
+            this.btnMovements.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnMovements.Name = "btnMovements";
-            this.btnMovements.Size = new System.Drawing.Size(217, 100);
+            this.btnMovements.Size = new System.Drawing.Size(289, 123);
             this.btnMovements.TabIndex = 0;
             this.btnMovements.Text = "Enter Movements";
             this.btnMovements.UseVisualStyleBackColor = true;
@@ -47,9 +48,10 @@
             // 
             // btnHelicopters
             // 
-            this.btnHelicopters.Location = new System.Drawing.Point(12, 129);
+            this.btnHelicopters.Location = new System.Drawing.Point(16, 159);
+            this.btnHelicopters.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnHelicopters.Name = "btnHelicopters";
-            this.btnHelicopters.Size = new System.Drawing.Size(100, 100);
+            this.btnHelicopters.Size = new System.Drawing.Size(133, 123);
             this.btnHelicopters.TabIndex = 1;
             this.btnHelicopters.Text = "Helicopters";
             this.btnHelicopters.UseVisualStyleBackColor = true;
@@ -57,9 +59,10 @@
             // 
             // btnStatistics
             // 
-            this.btnStatistics.Location = new System.Drawing.Point(129, 129);
+            this.btnStatistics.Location = new System.Drawing.Point(172, 159);
+            this.btnStatistics.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnStatistics.Name = "btnStatistics";
-            this.btnStatistics.Size = new System.Drawing.Size(100, 100);
+            this.btnStatistics.Size = new System.Drawing.Size(133, 123);
             this.btnStatistics.TabIndex = 2;
             this.btnStatistics.Text = "Statistics";
             this.btnStatistics.UseVisualStyleBackColor = true;
@@ -69,9 +72,10 @@
             // 
             this.btnAdmin.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnAdmin.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAdmin.Location = new System.Drawing.Point(12, 246);
+            this.btnAdmin.Location = new System.Drawing.Point(16, 303);
+            this.btnAdmin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAdmin.Name = "btnAdmin";
-            this.btnAdmin.Size = new System.Drawing.Size(217, 32);
+            this.btnAdmin.Size = new System.Drawing.Size(289, 39);
             this.btnAdmin.TabIndex = 3;
             this.btnAdmin.Text = "Administration";
             this.btnAdmin.UseVisualStyleBackColor = false;
@@ -79,15 +83,17 @@
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AcceptButton = this.btnMovements;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(241, 292);
+            this.ClientSize = new System.Drawing.Size(321, 359);
             this.Controls.Add(this.btnAdmin);
             this.Controls.Add(this.btnStatistics);
             this.Controls.Add(this.btnHelicopters);
             this.Controls.Add(this.btnMovements);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMain";

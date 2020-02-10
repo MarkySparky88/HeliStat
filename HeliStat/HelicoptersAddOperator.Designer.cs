@@ -38,9 +38,10 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(199, 79);
+            this.btnCancel.Location = new System.Drawing.Point(265, 97);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(100, 28);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -49,9 +50,10 @@
             // btnOK
             // 
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(118, 79);
+            this.btnOK.Location = new System.Drawing.Point(157, 97);
+            this.btnOK.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.Size = new System.Drawing.Size(100, 28);
             this.btnOK.TabIndex = 1;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -60,31 +62,35 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 16);
+            this.label1.Location = new System.Drawing.Point(17, 20);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 13);
+            this.label1.Size = new System.Drawing.Size(69, 17);
             this.label1.TabIndex = 5;
             this.label1.Text = "Operator:";
             // 
             // tbxOperator
             // 
-            this.tbxOperator.Location = new System.Drawing.Point(13, 35);
+            this.tbxOperator.Location = new System.Drawing.Point(17, 43);
+            this.tbxOperator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbxOperator.MaxLength = 50;
             this.tbxOperator.Name = "tbxOperator";
-            this.tbxOperator.Size = new System.Drawing.Size(261, 20);
+            this.tbxOperator.Size = new System.Drawing.Size(347, 22);
             this.tbxOperator.TabIndex = 0;
             // 
             // frmHelicoptersAddOperator
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AcceptButton = this.btnOK;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(296, 122);
+            this.ClientSize = new System.Drawing.Size(395, 150);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbxOperator);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmHelicoptersAddOperator";

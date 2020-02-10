@@ -54,25 +54,29 @@
             // 
             // menuStripAdmin
             // 
+            this.menuStripAdmin.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStripAdmin.Location = new System.Drawing.Point(0, 0);
             this.menuStripAdmin.Name = "menuStripAdmin";
-            this.menuStripAdmin.Size = new System.Drawing.Size(365, 24);
+            this.menuStripAdmin.Size = new System.Drawing.Size(487, 24);
             this.menuStripAdmin.TabIndex = 0;
             this.menuStripAdmin.Text = "menuStrip1";
             // 
             // toolStripAdmin
             // 
+            this.toolStripAdmin.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStripAdmin.Location = new System.Drawing.Point(0, 24);
             this.toolStripAdmin.Name = "toolStripAdmin";
-            this.toolStripAdmin.Size = new System.Drawing.Size(365, 25);
+            this.toolStripAdmin.Size = new System.Drawing.Size(487, 25);
             this.toolStripAdmin.TabIndex = 1;
             this.toolStripAdmin.Text = "toolStrip1";
             // 
             // statusStripAdmin
             // 
-            this.statusStripAdmin.Location = new System.Drawing.Point(0, 408);
+            this.statusStripAdmin.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStripAdmin.Location = new System.Drawing.Point(0, 507);
             this.statusStripAdmin.Name = "statusStripAdmin";
-            this.statusStripAdmin.Size = new System.Drawing.Size(365, 22);
+            this.statusStripAdmin.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStripAdmin.Size = new System.Drawing.Size(487, 22);
             this.statusStripAdmin.SizingGrip = false;
             this.statusStripAdmin.TabIndex = 2;
             this.statusStripAdmin.Text = "statusStrip1";
@@ -80,9 +84,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::HeliStat.Properties.Resources.calendar;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 52);
+            this.pictureBox1.Location = new System.Drawing.Point(16, 64);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(26, 27);
+            this.pictureBox1.Size = new System.Drawing.Size(35, 33);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
@@ -90,9 +95,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(44, 50);
+            this.label1.Location = new System.Drawing.Point(59, 62);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(309, 29);
+            this.label1.Size = new System.Drawing.Size(377, 36);
             this.label1.TabIndex = 4;
             this.label1.Text = "Calendar year management";
             // 
@@ -101,25 +107,28 @@
             this.cbxYears.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxYears.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbxYears.FormattingEnabled = true;
-            this.cbxYears.Location = new System.Drawing.Point(99, 136);
+            this.cbxYears.Location = new System.Drawing.Point(132, 167);
+            this.cbxYears.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbxYears.Name = "cbxYears";
-            this.cbxYears.Size = new System.Drawing.Size(120, 21);
+            this.cbxYears.Size = new System.Drawing.Size(159, 24);
             this.cbxYears.TabIndex = 5;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 139);
+            this.label2.Location = new System.Drawing.Point(16, 171);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 13);
+            this.label2.Size = new System.Drawing.Size(107, 17);
             this.label2.TabIndex = 6;
             this.label2.Text = "Set actual year:";
             // 
             // btnAddYear
             // 
-            this.btnAddYear.Location = new System.Drawing.Point(15, 180);
+            this.btnAddYear.Location = new System.Drawing.Point(20, 222);
+            this.btnAddYear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAddYear.Name = "btnAddYear";
-            this.btnAddYear.Size = new System.Drawing.Size(121, 23);
+            this.btnAddYear.Size = new System.Drawing.Size(161, 28);
             this.btnAddYear.TabIndex = 7;
             this.btnAddYear.Text = "Add year";
             this.btnAddYear.UseVisualStyleBackColor = true;
@@ -128,9 +137,10 @@
             // btnDeleteYear
             // 
             this.btnDeleteYear.Enabled = false;
-            this.btnDeleteYear.Location = new System.Drawing.Point(15, 209);
+            this.btnDeleteYear.Location = new System.Drawing.Point(20, 257);
+            this.btnDeleteYear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDeleteYear.Name = "btnDeleteYear";
-            this.btnDeleteYear.Size = new System.Drawing.Size(121, 23);
+            this.btnDeleteYear.Size = new System.Drawing.Size(161, 28);
             this.btnDeleteYear.TabIndex = 8;
             this.btnDeleteYear.Text = "Delete year";
             this.btnDeleteYear.UseVisualStyleBackColor = true;
@@ -139,9 +149,10 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::HeliStat.Properties.Resources.database;
-            this.pictureBox2.Location = new System.Drawing.Point(12, 262);
+            this.pictureBox2.Location = new System.Drawing.Point(16, 322);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(26, 26);
+            this.pictureBox2.Size = new System.Drawing.Size(35, 32);
             this.pictureBox2.TabIndex = 9;
             this.pictureBox2.TabStop = false;
             // 
@@ -149,18 +160,20 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(44, 259);
+            this.label3.Location = new System.Drawing.Point(59, 319);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(261, 29);
+            this.label3.Size = new System.Drawing.Size(317, 36);
             this.label3.TabIndex = 10;
             this.label3.Text = "Database management";
             // 
             // btnBackupDb
             // 
             this.btnBackupDb.Enabled = false;
-            this.btnBackupDb.Location = new System.Drawing.Point(15, 310);
+            this.btnBackupDb.Location = new System.Drawing.Point(20, 382);
+            this.btnBackupDb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBackupDb.Name = "btnBackupDb";
-            this.btnBackupDb.Size = new System.Drawing.Size(121, 23);
+            this.btnBackupDb.Size = new System.Drawing.Size(161, 28);
             this.btnBackupDb.TabIndex = 11;
             this.btnBackupDb.Text = "Backup database";
             this.btnBackupDb.UseVisualStyleBackColor = true;
@@ -169,9 +182,10 @@
             // btnDeleteDb
             // 
             this.btnDeleteDb.Enabled = false;
-            this.btnDeleteDb.Location = new System.Drawing.Point(15, 368);
+            this.btnDeleteDb.Location = new System.Drawing.Point(20, 453);
+            this.btnDeleteDb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDeleteDb.Name = "btnDeleteDb";
-            this.btnDeleteDb.Size = new System.Drawing.Size(121, 23);
+            this.btnDeleteDb.Size = new System.Drawing.Size(161, 28);
             this.btnDeleteDb.TabIndex = 12;
             this.btnDeleteDb.Text = "Delete database";
             this.btnDeleteDb.UseVisualStyleBackColor = true;
@@ -179,9 +193,10 @@
             // 
             // btnSetYear
             // 
-            this.btnSetYear.Location = new System.Drawing.Point(225, 134);
+            this.btnSetYear.Location = new System.Drawing.Point(300, 165);
+            this.btnSetYear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSetYear.Name = "btnSetYear";
-            this.btnSetYear.Size = new System.Drawing.Size(75, 23);
+            this.btnSetYear.Size = new System.Drawing.Size(100, 28);
             this.btnSetYear.TabIndex = 13;
             this.btnSetYear.Text = "Set";
             this.btnSetYear.UseVisualStyleBackColor = true;
@@ -190,9 +205,10 @@
             // btnRestoreDb
             // 
             this.btnRestoreDb.Enabled = false;
-            this.btnRestoreDb.Location = new System.Drawing.Point(15, 339);
+            this.btnRestoreDb.Location = new System.Drawing.Point(20, 417);
+            this.btnRestoreDb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRestoreDb.Name = "btnRestoreDb";
-            this.btnRestoreDb.Size = new System.Drawing.Size(121, 23);
+            this.btnRestoreDb.Size = new System.Drawing.Size(161, 28);
             this.btnRestoreDb.TabIndex = 14;
             this.btnRestoreDb.Text = "Restore database";
             this.btnRestoreDb.UseVisualStyleBackColor = true;
@@ -201,9 +217,10 @@
             // btnAchriveYear
             // 
             this.btnAchriveYear.Enabled = false;
-            this.btnAchriveYear.Location = new System.Drawing.Point(179, 180);
+            this.btnAchriveYear.Location = new System.Drawing.Point(239, 222);
+            this.btnAchriveYear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAchriveYear.Name = "btnAchriveYear";
-            this.btnAchriveYear.Size = new System.Drawing.Size(121, 23);
+            this.btnAchriveYear.Size = new System.Drawing.Size(161, 28);
             this.btnAchriveYear.TabIndex = 15;
             this.btnAchriveYear.Text = "Archive year";
             this.btnAchriveYear.UseVisualStyleBackColor = true;
@@ -212,9 +229,10 @@
             // btnRetrieveYear
             // 
             this.btnRetrieveYear.Enabled = false;
-            this.btnRetrieveYear.Location = new System.Drawing.Point(179, 209);
+            this.btnRetrieveYear.Location = new System.Drawing.Point(239, 257);
+            this.btnRetrieveYear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRetrieveYear.Name = "btnRetrieveYear";
-            this.btnRetrieveYear.Size = new System.Drawing.Size(121, 23);
+            this.btnRetrieveYear.Size = new System.Drawing.Size(161, 28);
             this.btnRetrieveYear.TabIndex = 16;
             this.btnRetrieveYear.Text = "Retrieve year";
             this.btnRetrieveYear.UseVisualStyleBackColor = true;
@@ -222,26 +240,29 @@
             // 
             // tbxActualYear
             // 
-            this.tbxActualYear.Location = new System.Drawing.Point(99, 110);
+            this.tbxActualYear.Location = new System.Drawing.Point(132, 135);
+            this.tbxActualYear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbxActualYear.Name = "tbxActualYear";
             this.tbxActualYear.ReadOnly = true;
-            this.tbxActualYear.Size = new System.Drawing.Size(120, 20);
+            this.tbxActualYear.Size = new System.Drawing.Size(159, 22);
             this.tbxActualYear.TabIndex = 17;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 113);
+            this.label4.Location = new System.Drawing.Point(16, 139);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 13);
+            this.label4.Size = new System.Drawing.Size(83, 17);
             this.label4.TabIndex = 18;
             this.label4.Text = "Actual year:";
             // 
             // frmAdministration
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AcceptButton = this.btnSetYear;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(365, 430);
+            this.ClientSize = new System.Drawing.Size(487, 529);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tbxActualYear);
             this.Controls.Add(this.btnRetrieveYear);
@@ -264,6 +285,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripAdmin;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAdministration";
