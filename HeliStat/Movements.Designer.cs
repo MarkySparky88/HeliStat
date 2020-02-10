@@ -81,7 +81,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxAircraftType.HideSelection = false;
             this.tbxAircraftType.Location = new System.Drawing.Point(17, 191);
-            this.tbxAircraftType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbxAircraftType.Margin = new System.Windows.Forms.Padding(4);
             this.tbxAircraftType.Name = "tbxAircraftType";
             this.tbxAircraftType.ReadOnly = true;
             this.tbxAircraftType.Size = new System.Drawing.Size(212, 22);
@@ -119,7 +119,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxOperator.Location = new System.Drawing.Point(17, 265);
-            this.tbxOperator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbxOperator.Margin = new System.Windows.Forms.Padding(4);
             this.tbxOperator.Name = "tbxOperator";
             this.tbxOperator.ReadOnly = true;
             this.tbxOperator.Size = new System.Drawing.Size(212, 22);
@@ -152,7 +152,7 @@
             "MIL",
             "MIL VIP"});
             this.cbxTypeOfOps.Location = new System.Drawing.Point(17, 338);
-            this.cbxTypeOfOps.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxTypeOfOps.Margin = new System.Windows.Forms.Padding(4);
             this.cbxTypeOfOps.Name = "cbxTypeOfOps";
             this.cbxTypeOfOps.Size = new System.Drawing.Size(212, 24);
             this.cbxTypeOfOps.TabIndex = 2;
@@ -202,7 +202,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddIcaoDes.Location = new System.Drawing.Point(17, 453);
-            this.btnAddIcaoDes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddIcaoDes.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddIcaoDes.Name = "btnAddIcaoDes";
             this.btnAddIcaoDes.Size = new System.Drawing.Size(31, 28);
             this.btnAddIcaoDes.TabIndex = 5;
@@ -216,7 +216,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnHelicopters.Location = new System.Drawing.Point(267, 114);
-            this.btnHelicopters.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHelicopters.Margin = new System.Windows.Forms.Padding(4);
             this.btnHelicopters.Name = "btnHelicopters";
             this.btnHelicopters.Size = new System.Drawing.Size(100, 28);
             this.btnHelicopters.TabIndex = 1;
@@ -232,7 +232,7 @@
             this.dtpDateOfFlight.CustomFormat = "dd.MM.yyyy";
             this.dtpDateOfFlight.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDateOfFlight.Location = new System.Drawing.Point(523, 647);
-            this.dtpDateOfFlight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpDateOfFlight.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDateOfFlight.Name = "dtpDateOfFlight";
             this.dtpDateOfFlight.Size = new System.Drawing.Size(212, 22);
             this.dtpDateOfFlight.TabIndex = 6;
@@ -244,7 +244,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSetLand.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.btnSetLand.Location = new System.Drawing.Point(523, 681);
-            this.btnSetLand.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSetLand.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetLand.Name = "btnSetLand";
             this.btnSetLand.Size = new System.Drawing.Size(100, 28);
             this.btnSetLand.TabIndex = 9;
@@ -259,7 +259,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSetTakeOff.BackColor = System.Drawing.Color.IndianRed;
             this.btnSetTakeOff.Location = new System.Drawing.Point(631, 681);
-            this.btnSetTakeOff.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSetTakeOff.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetTakeOff.Name = "btnSetTakeOff";
             this.btnSetTakeOff.Size = new System.Drawing.Size(100, 28);
             this.btnSetTakeOff.TabIndex = 11;
@@ -276,7 +276,7 @@
             this.cbxRegistration.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbxRegistration.FormattingEnabled = true;
             this.cbxRegistration.Location = new System.Drawing.Point(17, 117);
-            this.cbxRegistration.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxRegistration.Margin = new System.Windows.Forms.Padding(4);
             this.cbxRegistration.Name = "cbxRegistration";
             this.cbxRegistration.Size = new System.Drawing.Size(212, 24);
             this.cbxRegistration.TabIndex = 0;
@@ -293,7 +293,7 @@
             this.dgvMovements.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvMovements.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMovements.Location = new System.Drawing.Point(523, 114);
-            this.dgvMovements.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvMovements.Margin = new System.Windows.Forms.Padding(4);
             this.dgvMovements.MultiSelect = false;
             this.dgvMovements.Name = "dgvMovements";
             this.dgvMovements.ReadOnly = true;
@@ -309,7 +309,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRmvIcaoDes.Location = new System.Drawing.Point(56, 453);
-            this.btnRmvIcaoDes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRmvIcaoDes.Margin = new System.Windows.Forms.Padding(4);
             this.btnRmvIcaoDes.Name = "btnRmvIcaoDes";
             this.btnRmvIcaoDes.Size = new System.Drawing.Size(31, 28);
             this.btnRmvIcaoDes.TabIndex = 22;
@@ -323,7 +323,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDeleteMvmt.Location = new System.Drawing.Point(232, 612);
-            this.btnDeleteMvmt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDeleteMvmt.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteMvmt.Name = "btnDeleteMvmt";
             this.btnDeleteMvmt.Size = new System.Drawing.Size(100, 28);
             this.btnDeleteMvmt.TabIndex = 23;
@@ -339,7 +339,7 @@
             this.dtpActualTime.CustomFormat = "HH:mm LT";
             this.dtpActualTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpActualTime.Location = new System.Drawing.Point(744, 647);
-            this.dtpActualTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpActualTime.Margin = new System.Windows.Forms.Padding(4);
             this.dtpActualTime.Name = "dtpActualTime";
             this.dtpActualTime.ShowUpDown = true;
             this.dtpActualTime.Size = new System.Drawing.Size(212, 22);
@@ -351,7 +351,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddMvmt.Location = new System.Drawing.Point(16, 612);
-            this.btnAddMvmt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddMvmt.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddMvmt.Name = "btnAddMvmt";
             this.btnAddMvmt.Size = new System.Drawing.Size(100, 28);
             this.btnAddMvmt.TabIndex = 9;
@@ -365,7 +365,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUpdateMvmt.Location = new System.Drawing.Point(124, 612);
-            this.btnUpdateMvmt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpdateMvmt.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateMvmt.Name = "btnUpdateMvmt";
             this.btnUpdateMvmt.Size = new System.Drawing.Size(100, 28);
             this.btnUpdateMvmt.TabIndex = 9;
@@ -382,7 +382,7 @@
             this.cbxArrFrom.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbxArrFrom.FormattingEnabled = true;
             this.cbxArrFrom.Location = new System.Drawing.Point(17, 410);
-            this.cbxArrFrom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxArrFrom.Margin = new System.Windows.Forms.Padding(4);
             this.cbxArrFrom.Name = "cbxArrFrom";
             this.cbxArrFrom.Size = new System.Drawing.Size(212, 24);
             this.cbxArrFrom.TabIndex = 28;
@@ -396,7 +396,7 @@
             this.cbxDepTo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cbxDepTo.FormattingEnabled = true;
             this.cbxDepTo.Location = new System.Drawing.Point(267, 410);
-            this.cbxDepTo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxDepTo.Margin = new System.Windows.Forms.Padding(4);
             this.cbxDepTo.Name = "cbxDepTo";
             this.cbxDepTo.Size = new System.Drawing.Size(212, 24);
             this.cbxDepTo.TabIndex = 29;
@@ -407,7 +407,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClearFields.Location = new System.Drawing.Point(16, 560);
-            this.btnClearFields.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClearFields.Margin = new System.Windows.Forms.Padding(4);
             this.btnClearFields.Name = "btnClearFields";
             this.btnClearFields.Size = new System.Drawing.Size(316, 28);
             this.btnClearFields.TabIndex = 38;
@@ -421,7 +421,7 @@
             this.toolStripBtnAdd.Image = global::HeliStat.Properties.Resources.Plus;
             this.toolStripBtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnAdd.Name = "toolStripBtnAdd";
-            this.toolStripBtnAdd.Size = new System.Drawing.Size(29, 28);
+            this.toolStripBtnAdd.Size = new System.Drawing.Size(29, 24);
             this.toolStripBtnAdd.Text = "Add Movement";
             this.toolStripBtnAdd.Click += new System.EventHandler(this.toolStripBtnAdd_Click);
             // 
@@ -431,7 +431,7 @@
             this.toolStripBtnUpdate.Image = global::HeliStat.Properties.Resources.Update;
             this.toolStripBtnUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnUpdate.Name = "toolStripBtnUpdate";
-            this.toolStripBtnUpdate.Size = new System.Drawing.Size(29, 28);
+            this.toolStripBtnUpdate.Size = new System.Drawing.Size(29, 24);
             this.toolStripBtnUpdate.Text = "Update Movement";
             this.toolStripBtnUpdate.Click += new System.EventHandler(this.toolStripBtnUpdate_Click);
             // 
@@ -441,14 +441,14 @@
             this.toolStripBtnDelete.Image = global::HeliStat.Properties.Resources.Delete;
             this.toolStripBtnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnDelete.Name = "toolStripBtnDelete";
-            this.toolStripBtnDelete.Size = new System.Drawing.Size(29, 28);
+            this.toolStripBtnDelete.Size = new System.Drawing.Size(29, 24);
             this.toolStripBtnDelete.Text = "Delete Movement";
             this.toolStripBtnDelete.Click += new System.EventHandler(this.toolStripBtnDelete_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // toolStripMov
             // 
@@ -462,16 +462,16 @@
             this.toolStripTbxActualYear,
             this.toolStripBtnChangeYear,
             this.toolStripSeparator2});
-            this.toolStripMov.Location = new System.Drawing.Point(0, 30);
+            this.toolStripMov.Location = new System.Drawing.Point(0, 24);
             this.toolStripMov.Name = "toolStripMov";
-            this.toolStripMov.Size = new System.Drawing.Size(1872, 31);
+            this.toolStripMov.Size = new System.Drawing.Size(1872, 27);
             this.toolStripMov.TabIndex = 39;
             this.toolStripMov.Text = "toolStrip1";
             // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(40, 28);
+            this.toolStripLabel1.Size = new System.Drawing.Size(40, 24);
             this.toolStripLabel1.Text = "Year:";
             // 
             // toolStripTbxActualYear
@@ -479,7 +479,7 @@
             this.toolStripTbxActualYear.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTbxActualYear.Name = "toolStripTbxActualYear";
             this.toolStripTbxActualYear.ReadOnly = true;
-            this.toolStripTbxActualYear.Size = new System.Drawing.Size(132, 31);
+            this.toolStripTbxActualYear.Size = new System.Drawing.Size(132, 27);
             // 
             // toolStripBtnChangeYear
             // 
@@ -487,14 +487,14 @@
             this.toolStripBtnChangeYear.Image = global::HeliStat.Properties.Resources.calendar;
             this.toolStripBtnChangeYear.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnChangeYear.Name = "toolStripBtnChangeYear";
-            this.toolStripBtnChangeYear.Size = new System.Drawing.Size(29, 28);
+            this.toolStripBtnChangeYear.Size = new System.Drawing.Size(29, 24);
             this.toolStripBtnChangeYear.Text = "Change Year";
             this.toolStripBtnChangeYear.Click += new System.EventHandler(this.toolStripBtnChangeYear_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
             // statusStripMov
             // 
@@ -514,7 +514,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ckbOvernight.AutoSize = true;
             this.ckbOvernight.Location = new System.Drawing.Point(17, 500);
-            this.ckbOvernight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ckbOvernight.Margin = new System.Windows.Forms.Padding(4);
             this.ckbOvernight.Name = "ckbOvernight";
             this.ckbOvernight.Size = new System.Drawing.Size(100, 21);
             this.ckbOvernight.TabIndex = 42;
@@ -527,7 +527,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSetDateTimeNow.Location = new System.Drawing.Point(965, 646);
-            this.btnSetDateTimeNow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSetDateTimeNow.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetDateTimeNow.Name = "btnSetDateTimeNow";
             this.btnSetDateTimeNow.Size = new System.Drawing.Size(100, 28);
             this.btnSetDateTimeNow.TabIndex = 43;
@@ -543,9 +543,9 @@
             this.grbFilterDay.Controls.Add(this.btnSetToday);
             this.grbFilterDay.Controls.Add(this.dtpDayFilter);
             this.grbFilterDay.Location = new System.Drawing.Point(523, 48);
-            this.grbFilterDay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grbFilterDay.Margin = new System.Windows.Forms.Padding(4);
             this.grbFilterDay.Name = "grbFilterDay";
-            this.grbFilterDay.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grbFilterDay.Padding = new System.Windows.Forms.Padding(4);
             this.grbFilterDay.Size = new System.Drawing.Size(221, 59);
             this.grbFilterDay.TabIndex = 45;
             this.grbFilterDay.TabStop = false;
@@ -554,7 +554,7 @@
             // btnSetToday
             // 
             this.btnSetToday.Location = new System.Drawing.Point(111, 23);
-            this.btnSetToday.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSetToday.Margin = new System.Windows.Forms.Padding(4);
             this.btnSetToday.Name = "btnSetToday";
             this.btnSetToday.Size = new System.Drawing.Size(100, 28);
             this.btnSetToday.TabIndex = 11;
@@ -568,7 +568,7 @@
             this.dtpDayFilter.CustomFormat = "dd.MM";
             this.dtpDayFilter.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDayFilter.Location = new System.Drawing.Point(8, 25);
-            this.dtpDayFilter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpDayFilter.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDayFilter.Name = "dtpDayFilter";
             this.dtpDayFilter.ShowCheckBox = true;
             this.dtpDayFilter.ShowUpDown = true;
@@ -581,7 +581,7 @@
             this.menuStripMov.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStripMov.Location = new System.Drawing.Point(0, 0);
             this.menuStripMov.Name = "menuStripMov";
-            this.menuStripMov.Size = new System.Drawing.Size(1872, 30);
+            this.menuStripMov.Size = new System.Drawing.Size(1872, 24);
             this.menuStripMov.TabIndex = 40;
             this.menuStripMov.Text = "menuStrip1";
             // 
@@ -590,7 +590,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1872, 758);
             this.Controls.Add(this.grbFilterDay);
             this.Controls.Add(this.btnSetDateTimeNow);
@@ -624,7 +623,7 @@
             this.Controls.Add(this.tbxAircraftType);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripMov;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimizeBox = false;
             this.Name = "frmMovements";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
