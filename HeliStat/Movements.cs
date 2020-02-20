@@ -400,10 +400,13 @@ namespace HeliStat
                         string cmdText1 = @"SELECT * FROM tblHelicopters
                                         WHERE Registration = @Reg";
 
-                        string cmdText2 = string.Format(@"INSERT INTO {0} (Registration, AircraftType, NoOfEng, Operator,
-                                                            TypeOfOperation, ArrFrom, DepTo, Overnight, Year_)
-                                                            VALUES (@Registration, @AircraftType, @NoOfEng, @Operator,
-                                                            @TypeOfOperation, @ArrFrom, @DepTo, @Overnight, @Year_)", tableName);
+                        //string cmdText2 = string.Format(@"INSERT INTO {0} (Registration, AircraftType, NoOfEng, Operator,
+                        //                                    TypeOfOperation, ArrFrom, DepTo, Overnight, Year_)
+                        //                                    VALUES (@Registration, @AircraftType, @NoOfEng, @Operator,
+                        //                                    @TypeOfOperation, @ArrFrom, @DepTo, @Overnight, @Year_)", tableName);
+
+                        string cmdText2 = string.Format(@"INSERT INTO {0} (Registration)
+                                                            VALUES (@Registration)", tableName);
 
                         cmd.Connection = connection;
                         cmd.CommandType = CommandType.Text;
@@ -428,9 +431,9 @@ namespace HeliStat
                         // Second query (write movement into table)
                         cmd.CommandText = cmdText2;
                         cmd.Parameters.AddWithValue("@Registration", registration);
-                        cmd.Parameters.AddWithValue("@AircraftType", aircraftType);
-                        cmd.Parameters.AddWithValue("@NoOfEng", noOfEng);
-                        cmd.Parameters.AddWithValue("@Operator", operatorName);
+                        //cmd.Parameters.AddWithValue("@AircraftType", aircraftType);
+                        //cmd.Parameters.AddWithValue("@NoOfEng", noOfEng);
+                        //cmd.Parameters.AddWithValue("@Operator", operatorName);
                         //cmd.Parameters.AddWithValue("@TypeOfOperation", cbxTypeOfOps.SelectedItem.ToString());
                         //cmd.Parameters.AddWithValue("@ArrFrom", cbxArrFrom.SelectedItem.ToString());
                         //cmd.Parameters.AddWithValue("@DepTo", cbxDepTo.SelectedItem.ToString());
