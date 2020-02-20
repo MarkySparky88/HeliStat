@@ -431,11 +431,11 @@ namespace HeliStat
                         cmd.Parameters.AddWithValue("@AircraftType", aircraftType);
                         cmd.Parameters.AddWithValue("@NoOfEng", noOfEng);
                         cmd.Parameters.AddWithValue("@Operator", operatorName);
-                        cmd.Parameters.AddWithValue("@TypeOfOperation", cbxTypeOfOps.SelectedItem.ToString());
-                        cmd.Parameters.AddWithValue("@ArrFrom", cbxArrFrom.SelectedItem.ToString());
-                        cmd.Parameters.AddWithValue("@DepTo", cbxDepTo.SelectedItem.ToString());
-                        cmd.Parameters.AddWithValue("@Overnight", ckbOvernight.Checked);
-                        cmd.Parameters.AddWithValue("@Year_", GetActualYear());
+                        //cmd.Parameters.AddWithValue("@TypeOfOperation", cbxTypeOfOps.SelectedItem.ToString());
+                        //cmd.Parameters.AddWithValue("@ArrFrom", cbxArrFrom.SelectedItem.ToString());
+                        //cmd.Parameters.AddWithValue("@DepTo", cbxDepTo.SelectedItem.ToString());
+                        //cmd.Parameters.AddWithValue("@Overnight", ckbOvernight.Checked);
+                        //cmd.Parameters.AddWithValue("@Year_", GetActualYear());
                         cmd.ExecuteNonQuery();
                     }
                 }
