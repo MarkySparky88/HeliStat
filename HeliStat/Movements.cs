@@ -400,13 +400,14 @@ namespace HeliStat
                         string cmdText1 = @"SELECT * FROM tblHelicopters
                                         WHERE Registration = @Reg";
 
+                        // TODO "year" is a reserved word in the access database provider, you can write it in square brackets in the querry [year] then you can use it without renaming it to year_ (see stackoverflow..)
                         //string cmdText2 = string.Format(@"INSERT INTO {0} (Registration, AircraftType, NoOfEng, Operator,
                         //                                    TypeOfOperation, ArrFrom, DepTo, Overnight, Year_)
                         //                                    VALUES (@Registration, @AircraftType, @NoOfEng, @Operator,
                         //                                    @TypeOfOperation, @ArrFrom, @DepTo, @Overnight, @Year_)", tableName);
 
-                        string cmdText2 = string.Format(@"INSERT INTO {0} (Registration)
-                                                            VALUES (@Registration)", tableName);
+                        string cmdText2 = string.Format(@"INSERT INTO {0} (Registration, AircraftType)
+                                                            VALUES (@Registration, @AircraftType)", tableName);
 
                         cmd.Connection = connection;
                         cmd.CommandType = CommandType.Text;
@@ -431,7 +432,7 @@ namespace HeliStat
                         // Second query (write movement into table)
                         cmd.CommandText = cmdText2;
                         cmd.Parameters.AddWithValue("@Registration", registration);
-                        //cmd.Parameters.AddWithValue("@AircraftType", aircraftType);
+                        cmd.Parameters.AddWithValue("@AircraftType", aircraftType);
                         //cmd.Parameters.AddWithValue("@NoOfEng", noOfEng);
                         //cmd.Parameters.AddWithValue("@Operator", operatorName);
                         //cmd.Parameters.AddWithValue("@TypeOfOperation", cbxTypeOfOps.SelectedItem.ToString());
