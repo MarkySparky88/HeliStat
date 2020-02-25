@@ -369,16 +369,10 @@ namespace HeliStat
         // Add movement
         private void AddMovement(string tableName)
         {
-            // Pre-set values
-            int noOfEng = 0;
-            string registration = "";
-            string aircraftType = "";
-            string operatorName = "";
-
             if (NoEmptyFields())
             {
                 // Database access
-                AddMovementDatabaseAccess(tableName, ref noOfEng, ref registration, ref aircraftType, ref operatorName);
+                AddMovementDatabaseAccess(tableName);
 
                 // Refresh data
                 // TODO is there a better / other way to reload / refresh the new added data in the datagrid?
@@ -387,7 +381,7 @@ namespace HeliStat
         }
 
         // Add movement: Database access
-        private void AddMovementDatabaseAccess(string tableName, ref int noOfEng, ref string registration, ref string aircraftType, ref string operatorName)
+        private void AddMovementDatabaseAccess(string tableName)
         {
             using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
             {
@@ -397,24 +391,28 @@ namespace HeliStat
 
                     using (OleDbCommand cmd = new OleDbCommand())
                     {
+                        // Pre-set values
+                        int noOfEng = 0;
+                        string registration = "";
+                        string aircraftType = "";
+                        string operatorName = "";
+
                         string cmdText1 = @"SELECT * FROM tblHelicopters
                                         WHERE Registration = @Reg";
 
                         // TODO "year" is a reserved word in the access database provider, you can write it in square brackets in the querry [year] then you can use it without renaming it to year_ (see stackoverflow..)
-                        //string cmdText2 = string.Format(@"INSERT INTO {0} (Registration, AircraftType, NoOfEng, Operator,
-                        //                                    TypeOfOperation, ArrFrom, DepTo, Overnight, Year_)
-                        //                                    VALUES (@Registration, @AircraftType, @NoOfEng, @Operator,
-                        //                                    @TypeOfOperation, @ArrFrom, @DepTo, @Overnight, @Year_)", tableName);
-
-                        string cmdText2 = string.Format(@"INSERT INTO {0} (Registration, AircraftType)
-                                                            VALUES (@Registration, @AircraftType)", tableName);
+                        string cmdText2 = string.Format(@"INSERT INTO {0} (Registration, AircraftType, NoOfEng, Operator,
+                                                            TypeOfOperation, ArrFrom, DepTo, Overnight, Year_)
+                                                            VALUES (@Registration, @AircraftType, @NoOfEng, @Operator,
+                                                            @TypeOfOperation, @ArrFrom, @DepTo, @Overnight, @Year_)", tableName);
 
                         cmd.Connection = connection;
                         cmd.CommandType = CommandType.Text;
                         cmd.CommandText = cmdText1;
 
-                        // First query (get helicopter data)
+                        // First query (retrieve helicopter data)
                         cmd.Parameters.AddWithValue("@Reg", cbxRegistration.SelectedItem.ToString());
+
                         using (OleDbDataReader reader1 = cmd.ExecuteReader())
                         {
                             if (reader1 != null)
@@ -433,13 +431,13 @@ namespace HeliStat
                         cmd.CommandText = cmdText2;
                         cmd.Parameters.AddWithValue("@Registration", registration);
                         cmd.Parameters.AddWithValue("@AircraftType", aircraftType);
-                        //cmd.Parameters.AddWithValue("@NoOfEng", noOfEng);
-                        //cmd.Parameters.AddWithValue("@Operator", operatorName);
-                        //cmd.Parameters.AddWithValue("@TypeOfOperation", cbxTypeOfOps.SelectedItem.ToString());
-                        //cmd.Parameters.AddWithValue("@ArrFrom", cbxArrFrom.SelectedItem.ToString());
-                        //cmd.Parameters.AddWithValue("@DepTo", cbxDepTo.SelectedItem.ToString());
-                        //cmd.Parameters.AddWithValue("@Overnight", ckbOvernight.Checked);
-                        //cmd.Parameters.AddWithValue("@Year_", GetActualYear());
+                        cmd.Parameters.AddWithValue("@NoOfEng", noOfEng);
+                        cmd.Parameters.AddWithValue("@Operator", operatorName);
+                        cmd.Parameters.AddWithValue("@TypeOfOperation", cbxTypeOfOps.SelectedItem.ToString());
+                        cmd.Parameters.AddWithValue("@ArrFrom", cbxArrFrom.SelectedItem.ToString());
+                        cmd.Parameters.AddWithValue("@DepTo", cbxDepTo.SelectedItem.ToString());
+                        cmd.Parameters.AddWithValue("@Overnight", ckbOvernight.Checked);
+                        cmd.Parameters.AddWithValue("@Year_", GetActualYear());
                         cmd.ExecuteNonQuery();
                     }
                 }
