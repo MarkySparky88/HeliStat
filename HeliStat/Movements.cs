@@ -388,47 +388,50 @@ namespace HeliStat
                 try
                 {
                     connection.Open();
-
-                    using (OleDbCommand cmd = new OleDbCommand())
-                    {
-                        // Pre-set values
-                        int noOfEng = 0;
-                        string registration = "";
-                        string aircraftType = "";
-                        string operatorName = "";
-
-                        string cmdText1 = @"SELECT * FROM tblHelicopters
-                                        WHERE Registration = @Reg";
-
-                        // TODO "year" is a reserved word in the access database provider, you can write it in square brackets in the querry [year] then you can use it without renaming it to year_ (see stackoverflow..)
-                        string cmdText2 = string.Format(@"INSERT INTO {0} (Registration, AircraftType, NoOfEng, Operator,
+                    string cmdText = string.Format(@"INSERT INTO {0} (Registration, AircraftType, NoOfEng, Operator,
                                                             TypeOfOperation, ArrFrom, DepTo, Overnight, Year_)
                                                             VALUES (@Registration, @AircraftType, @NoOfEng, @Operator,
                                                             @TypeOfOperation, @ArrFrom, @DepTo, @Overnight, @Year_)", tableName);
 
-                        cmd.Connection = connection;
-                        cmd.CommandType = CommandType.Text;
-                        cmd.CommandText = cmdText1;
+                    using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
+                    {
+                        //// Pre-set values
+                        //int noOfEng = 0;
+                        //string registration = "";
+                        //string aircraftType = "";
+                        //string operatorName = "";
 
-                        // First query (retrieve helicopter data)
-                        cmd.Parameters.AddWithValue("@Reg", cbxRegistration.SelectedItem.ToString());
+                        //string cmdText1 = @"SELECT * FROM tblHelicopters
+                        //                WHERE Registration = @Reg";
 
-                        using (OleDbDataReader reader1 = cmd.ExecuteReader())
-                        {
-                            if (reader1 != null)
-                            {
-                                while (reader1.Read())
-                                {
-                                    registration = reader1.GetString(1);
-                                    aircraftType = reader1.GetString(2);
-                                    noOfEng = reader1.GetInt32(3);
-                                    operatorName = reader1.GetString(4);
-                                }
-                            }
-                        }
 
-                        // Second query (write movement into table)
-                        cmd.CommandText = cmdText2;
+
+                        //cmd.Connection = connection;
+                        //cmd.CommandType = CommandType.Text;
+                        //cmd.CommandText = cmdText1;
+
+                        //// First query (retrieve helicopter data)
+                        //cmd.Parameters.AddWithValue("@Reg", cbxRegistration.SelectedItem.ToString());
+
+                        //using (OleDbDataReader reader1 = cmd.ExecuteReader())
+                        //{
+                        //    if (reader1 != null)
+                        //    {
+                        //        while (reader1.Read())
+                        //        {
+                        //            registration = reader1.GetString(1);
+                        //            aircraftType = reader1.GetString(2);
+                        //            noOfEng = reader1.GetInt32(3);
+                        //            operatorName = reader1.GetString(4);
+                        //        }
+                        //    }
+                        //}
+
+                        //// Second query (write movement into table)
+                        //cmd.CommandText = cmdText;
+
+                        RetrieveHelicopterData();
+
                         cmd.Parameters.AddWithValue("@Registration", registration);
                         cmd.Parameters.AddWithValue("@AircraftType", aircraftType);
                         cmd.Parameters.AddWithValue("@NoOfEng", noOfEng);
@@ -445,6 +448,45 @@ namespace HeliStat
                 {
                     MessageBox.Show("Error: " + ex.Message, "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+
+        // Retrieve Helicopter data for adding movements
+        private void RetrieveHelicopterData()
+        {
+            using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
+            {
+                try
+                {
+                    connection.Open();
+                    string cmdText = @"SELECT * FROM tblHelicopters
+                                    WHERE Registration = @Reg";
+
+                    using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Reg", cbxRegistration.SelectedItem.ToString());
+
+                        using (OleDbDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader != null)
+                            {
+                                while (reader.Read())
+                                {
+                                    registration = reader.GetString(1);
+                                    aircraftType = reader.GetString(2);
+                                    noOfEng = reader.GetInt32(3);
+                                    operatorName = reader.GetString(4);
+                                }
+                            }
+                        }
+                    }
+
+                }
+                catch (Exception)
+                {
+
+                    throw;
                 }
             }
         }
