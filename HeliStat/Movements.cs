@@ -430,7 +430,7 @@ namespace HeliStat
                         //// Second query (write movement into table)
                         //cmd.CommandText = cmdText;
 
-                        RetrieveHelicopterData();
+                        RetrieveHelicopterData(out cbxRegistration, );
 
                         cmd.Parameters.AddWithValue("@Registration", registration);
                         cmd.Parameters.AddWithValue("@AircraftType", aircraftType);
@@ -453,7 +453,7 @@ namespace HeliStat
         }
 
         // Retrieve Helicopter data for adding movements
-        private void RetrieveHelicopterData()
+        private void RetrieveHelicopterData(out string registration, out string aircraftType, out int noOfEng, out string operatorName)
         {
             using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
             {
@@ -483,10 +483,10 @@ namespace HeliStat
                     }
 
                 }
-                catch (Exception)
+                catch (OleDbException ex)
                 {
-
-                    throw;
+                    MessageBox.Show("Error: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
