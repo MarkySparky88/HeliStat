@@ -395,42 +395,7 @@ namespace HeliStat
 
                     using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
-                        //// Pre-set values
-                        //int noOfEng = 0;
-                        //string registration = "";
-                        //string aircraftType = "";
-                        //string operatorName = "";
-
-                        //string cmdText1 = @"SELECT * FROM tblHelicopters
-                        //                WHERE Registration = @Reg";
-
-
-
-                        //cmd.Connection = connection;
-                        //cmd.CommandType = CommandType.Text;
-                        //cmd.CommandText = cmdText1;
-
-                        //// First query (retrieve helicopter data)
-                        //cmd.Parameters.AddWithValue("@Reg", cbxRegistration.SelectedItem.ToString());
-
-                        //using (OleDbDataReader reader1 = cmd.ExecuteReader())
-                        //{
-                        //    if (reader1 != null)
-                        //    {
-                        //        while (reader1.Read())
-                        //        {
-                        //            registration = reader1.GetString(1);
-                        //            aircraftType = reader1.GetString(2);
-                        //            noOfEng = reader1.GetInt32(3);
-                        //            operatorName = reader1.GetString(4);
-                        //        }
-                        //    }
-                        //}
-
-                        //// Second query (write movement into table)
-                        //cmd.CommandText = cmdText;
-
-                        RetrieveHelicopterData(out cbxRegistration, );
+                        RetrieveHelicopterData(out string registration, out string aircraftType, out int noOfEng, out string operatorName);
 
                         cmd.Parameters.AddWithValue("@Registration", registration);
                         cmd.Parameters.AddWithValue("@AircraftType", aircraftType);
@@ -452,9 +417,14 @@ namespace HeliStat
             }
         }
 
-        // Retrieve Helicopter data for adding movements
+        // Retrieve Helicopter details for adding movements
         private void RetrieveHelicopterData(out string registration, out string aircraftType, out int noOfEng, out string operatorName)
         {
+            registration = "";
+            aircraftType = "";
+            noOfEng = 0;
+            operatorName = "";
+
             using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
             {
                 try
