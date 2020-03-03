@@ -46,7 +46,9 @@ namespace HeliStat
                         connection.Open();
                         string cmdText = string.Format("SELECT * FROM {0} WHERE Year_ = @Year_", tableName);
 
+#pragma warning disable CA2100 // Review SQL queries for security vulnerabilities
                         using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
+#pragma warning restore CA2100 // Review SQL queries for security vulnerabilities
                         {
                             cmd.Parameters.AddWithValue("@Year_", GetActualYear());
                             cmd.ExecuteNonQuery();
@@ -393,7 +395,9 @@ namespace HeliStat
                                                             VALUES (@Registration, @AircraftType, @NoOfEng, @Operator,
                                                             @TypeOfOperation, @ArrFrom, @DepTo, @Overnight, @Year_)", tableName);
 
+#pragma warning disable CA2100 // Review SQL queries for security vulnerabilities
                     using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
+#pragma warning restore CA2100 // Review SQL queries for security vulnerabilities
                     {
                         RetrieveHelicopterData(out string registration, out string aircraftType, out int noOfEng, out string operatorName);
 
@@ -504,7 +508,9 @@ namespace HeliStat
                                                         ArrFrom = @arrFrom, DepTo = @depTo, Overnight = @overnight
                                                         WHERE ID = @ID", tableName);
 
+#pragma warning disable CA2100 // Review SQL queries for security vulnerabilities
                     using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
+#pragma warning restore CA2100 // Review SQL queries for security vulnerabilities
                     {
                         cmd.Parameters.AddWithValue("@ID", dgvMovements.SelectedRows[0].Cells[0].Value.ToString());
                         cmd.Parameters.AddWithValue("@registration", cbxRegistration.SelectedItem.ToString());
@@ -564,7 +570,9 @@ namespace HeliStat
                     connection.Open();
                     string cmdText = string.Format("DELETE FROM {0} WHERE ID = @ID", tableName);
 
+#pragma warning disable CA2100 // Review SQL queries for security vulnerabilities
                     using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
+#pragma warning restore CA2100 // Review SQL queries for security vulnerabilities
                     {
                         cmd.Parameters.AddWithValue("@ID", dgvMovements.SelectedRows[0].Cells[0].Value.ToString());
                         cmd.ExecuteNonQuery();
@@ -629,7 +637,9 @@ namespace HeliStat
                                                         ActualTimeArr = @actualTimeArr
                                                         WHERE ID = @ID", tableName);
 
+#pragma warning disable CA2100 // Review SQL queries for security vulnerabilities
                     using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
+#pragma warning restore CA2100 // Review SQL queries for security vulnerabilities
                     {
                         cmd.Parameters.AddWithValue("@ID", dgvMovements.SelectedRows[0].Cells[0].Value.ToString());
                         cmd.Parameters.AddWithValue("@dateOfArr", dtpDateOfFlight.Value);
@@ -689,7 +699,9 @@ namespace HeliStat
                                                         ActualTimeDep = @actualTimeDep
                                                         WHERE ID = @ID", tableName);
 
+#pragma warning disable CA2100 // Review SQL queries for security vulnerabilities
                     using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
+#pragma warning restore CA2100 // Review SQL queries for security vulnerabilities
                     {
                         cmd.Parameters.AddWithValue("@ID", dgvMovements.SelectedRows[0].Cells[0].Value.ToString());
                         cmd.Parameters.AddWithValue("@dateOfDep", dtpDateOfFlight.Value);

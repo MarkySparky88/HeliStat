@@ -421,7 +421,7 @@
             this.toolStripBtnAdd.Image = global::HeliStat.Properties.Resources.Plus;
             this.toolStripBtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnAdd.Name = "toolStripBtnAdd";
-            this.toolStripBtnAdd.Size = new System.Drawing.Size(29, 24);
+            this.toolStripBtnAdd.Size = new System.Drawing.Size(29, 28);
             this.toolStripBtnAdd.Text = "Add Movement";
             this.toolStripBtnAdd.Click += new System.EventHandler(this.toolStripBtnAdd_Click);
             // 
@@ -431,7 +431,7 @@
             this.toolStripBtnUpdate.Image = global::HeliStat.Properties.Resources.Update;
             this.toolStripBtnUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnUpdate.Name = "toolStripBtnUpdate";
-            this.toolStripBtnUpdate.Size = new System.Drawing.Size(29, 24);
+            this.toolStripBtnUpdate.Size = new System.Drawing.Size(29, 28);
             this.toolStripBtnUpdate.Text = "Update Movement";
             this.toolStripBtnUpdate.Click += new System.EventHandler(this.toolStripBtnUpdate_Click);
             // 
@@ -441,14 +441,14 @@
             this.toolStripBtnDelete.Image = global::HeliStat.Properties.Resources.Delete;
             this.toolStripBtnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnDelete.Name = "toolStripBtnDelete";
-            this.toolStripBtnDelete.Size = new System.Drawing.Size(29, 24);
+            this.toolStripBtnDelete.Size = new System.Drawing.Size(29, 28);
             this.toolStripBtnDelete.Text = "Delete Movement";
             this.toolStripBtnDelete.Click += new System.EventHandler(this.toolStripBtnDelete_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // toolStripMov
             // 
@@ -462,16 +462,16 @@
             this.toolStripTbxActualYear,
             this.toolStripBtnChangeYear,
             this.toolStripSeparator2});
-            this.toolStripMov.Location = new System.Drawing.Point(0, 24);
+            this.toolStripMov.Location = new System.Drawing.Point(0, 30);
             this.toolStripMov.Name = "toolStripMov";
-            this.toolStripMov.Size = new System.Drawing.Size(1872, 27);
+            this.toolStripMov.Size = new System.Drawing.Size(1872, 31);
             this.toolStripMov.TabIndex = 39;
             this.toolStripMov.Text = "toolStrip1";
             // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(40, 24);
+            this.toolStripLabel1.Size = new System.Drawing.Size(40, 28);
             this.toolStripLabel1.Text = "Year:";
             // 
             // toolStripTbxActualYear
@@ -479,7 +479,7 @@
             this.toolStripTbxActualYear.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTbxActualYear.Name = "toolStripTbxActualYear";
             this.toolStripTbxActualYear.ReadOnly = true;
-            this.toolStripTbxActualYear.Size = new System.Drawing.Size(132, 27);
+            this.toolStripTbxActualYear.Size = new System.Drawing.Size(132, 31);
             // 
             // toolStripBtnChangeYear
             // 
@@ -487,14 +487,14 @@
             this.toolStripBtnChangeYear.Image = global::HeliStat.Properties.Resources.calendar;
             this.toolStripBtnChangeYear.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnChangeYear.Name = "toolStripBtnChangeYear";
-            this.toolStripBtnChangeYear.Size = new System.Drawing.Size(29, 24);
+            this.toolStripBtnChangeYear.Size = new System.Drawing.Size(29, 28);
             this.toolStripBtnChangeYear.Text = "Change Year";
             this.toolStripBtnChangeYear.Click += new System.EventHandler(this.toolStripBtnChangeYear_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
             // 
             // statusStripMov
             // 
@@ -581,7 +581,7 @@
             this.menuStripMov.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStripMov.Location = new System.Drawing.Point(0, 0);
             this.menuStripMov.Name = "menuStripMov";
-            this.menuStripMov.Size = new System.Drawing.Size(1872, 24);
+            this.menuStripMov.Size = new System.Drawing.Size(1872, 30);
             this.menuStripMov.TabIndex = 40;
             this.menuStripMov.Text = "menuStrip1";
             // 
@@ -624,6 +624,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripMov;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMovements";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
