@@ -46,9 +46,7 @@ namespace HeliStat
                         connection.Open();
                         string cmdText = string.Format("SELECT * FROM {0} WHERE Year_ = @Year_", tableName);
 
-#pragma warning disable CA2100 // Review SQL queries for security vulnerabilities
                         using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
-#pragma warning restore CA2100 // Review SQL queries for security vulnerabilities
                         {
                             cmd.Parameters.AddWithValue("@Year_", GetActualYear());
                             cmd.ExecuteNonQuery();
@@ -395,9 +393,7 @@ namespace HeliStat
                                                             VALUES (@Registration, @AircraftType, @NoOfEng, @Operator,
                                                             @TypeOfOperation, @ArrFrom, @DepTo, @Overnight, @Year_)", tableName);
 
-#pragma warning disable CA2100 // Review SQL queries for security vulnerabilities
                     using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
-#pragma warning restore CA2100 // Review SQL queries for security vulnerabilities
                     {
                         RetrieveHelicopterData(out string registration, out string aircraftType, out int noOfEng, out string operatorName);
 
@@ -506,13 +502,11 @@ namespace HeliStat
                     string cmdText = string.Format(@"UPDATE {0} SET Registration = @registration, AircraftType = @aircraftType,
                                                         Operator = @operator, TypeOfOperation = @typeOfOperation,
                                                         ArrFrom = @arrFrom, DepTo = @depTo, Overnight = @overnight
-                                                        WHERE ID = @ID", tableName);
+                                                        WHERE ID = @id", tableName);
 
-#pragma warning disable CA2100 // Review SQL queries for security vulnerabilities
                     using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
-#pragma warning restore CA2100 // Review SQL queries for security vulnerabilities
                     {
-                        cmd.Parameters.AddWithValue("@ID", dgvMovements.SelectedRows[0].Cells[0].Value.ToString());
+                        cmd.Parameters.AddWithValue("@id", dgvMovements.SelectedRows[0].Cells[0].Value);
                         cmd.Parameters.AddWithValue("@registration", cbxRegistration.SelectedItem.ToString());
                         cmd.Parameters.AddWithValue("@aircraftType", tbxAircraftType.Text.ToString());
                         cmd.Parameters.AddWithValue("@operator", tbxOperator.Text.ToString());
@@ -520,6 +514,7 @@ namespace HeliStat
                         cmd.Parameters.AddWithValue("@arrFrom", cbxArrFrom.SelectedItem.ToString());
                         cmd.Parameters.AddWithValue("@depTo", cbxDepTo.SelectedItem.ToString());
                         cmd.Parameters.AddWithValue("@overnight", ckbOvernight.Checked);
+                        // TODO WIP ExecuteNonQuery gibt Wert 0 aus bei Ausführung..
                         cmd.ExecuteNonQuery();
 
                         MessageBox.Show("Movement has been updated successfully!", "Movement updated",
