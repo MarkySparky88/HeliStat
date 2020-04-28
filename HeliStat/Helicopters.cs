@@ -483,15 +483,17 @@ namespace HeliStat
             {
                 try
                 {
+                    // Get Id of selected row
+                    int id = Convert.ToInt32(dgvHelicopters.SelectedRows[0].Cells[0].Value);
+
                     connection.Open();
-                    string cmdText = @"UPDATE tblHelicopters SET
+                    string cmdText = string.Format(@"UPDATE tblHelicopters SET
                                      Registration = @registration, AircraftType = @aircraftType,
                                      NoOfEng = @noOfEng, Operator = @operator
-                                     WHERE ID = @ID";
+                                     WHERE ID = {0}", id);
 
                     using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
-                        cmd.Parameters.AddWithValue("@ID", dgvHelicopters.SelectedRows[0].Cells[0].Value.ToString());
                         cmd.Parameters.AddWithValue("@registration", tbxRegistration.Text.ToString());
                         cmd.Parameters.AddWithValue("@aircraftType", cbxAircraftType.SelectedItem.ToString());
                         cmd.Parameters.AddWithValue("@noOfEng", Convert.ToByte(cbxNoOfEng.SelectedItem));
