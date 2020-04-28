@@ -498,15 +498,17 @@ namespace HeliStat
             {
                 try
                 {
+                    // Get Id of selected row
+                    int id = Convert.ToInt32(dgvMovements.SelectedRows[0].Cells[0].Value);
+
                     connection.Open();
                     string cmdText = string.Format(@"UPDATE {0} SET Registration = @registration, AircraftType = @aircraftType,
                                                         Operator = @operator, TypeOfOperation = @typeOfOperation,
                                                         ArrFrom = @arrFrom, DepTo = @depTo, Overnight = @overnight
-                                                        WHERE ID = @id", tableName);
+                                                        WHERE ID = {1}", tableName, id);
 
                     using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
-                        cmd.Parameters.AddWithValue("@id", dgvMovements.SelectedRows[0].Cells[0].Value);
                         cmd.Parameters.AddWithValue("@registration", cbxRegistration.SelectedItem.ToString());
                         cmd.Parameters.AddWithValue("@aircraftType", tbxAircraftType.Text.ToString());
                         cmd.Parameters.AddWithValue("@operator", tbxOperator.Text.ToString());
@@ -514,8 +516,7 @@ namespace HeliStat
                         cmd.Parameters.AddWithValue("@arrFrom", cbxArrFrom.SelectedItem.ToString());
                         cmd.Parameters.AddWithValue("@depTo", cbxDepTo.SelectedItem.ToString());
                         cmd.Parameters.AddWithValue("@overnight", ckbOvernight.Checked);
-                        // TODO WIP ExecuteNonQuery gibt Wert 0 aus bei Ausführung..
-                        cmd.ExecuteNonQuery();
+                        Console.WriteLine(cmd.ExecuteNonQuery());
 
                         MessageBox.Show("Movement has been updated successfully!", "Movement updated",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
