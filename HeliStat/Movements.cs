@@ -516,7 +516,7 @@ namespace HeliStat
                         cmd.Parameters.AddWithValue("@arrFrom", cbxArrFrom.SelectedItem.ToString());
                         cmd.Parameters.AddWithValue("@depTo", cbxDepTo.SelectedItem.ToString());
                         cmd.Parameters.AddWithValue("@overnight", ckbOvernight.Checked);
-                        Console.WriteLine(cmd.ExecuteNonQuery());
+                        cmd.ExecuteNonQuery();
 
                         MessageBox.Show("Movement has been updated successfully!", "Movement updated",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
