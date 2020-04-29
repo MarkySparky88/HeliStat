@@ -628,14 +628,15 @@ namespace HeliStat
             {
                 try
                 {
+                    // Get Id of selected row
+                    int id = Convert.ToInt32(dgvMovements.SelectedRows[0].Cells[0].Value);
+
                     connection.Open();
                     string cmdText = string.Format(@"UPDATE {0} SET DateOfArr = @dateOfArr,
                                                         ActualTimeArr = @actualTimeArr
-                                                        WHERE ID = @ID", tableName);
+                                                        WHERE ID = {1}", tableName, id);
 
-#pragma warning disable CA2100 // Review SQL queries for security vulnerabilities
                     using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
-#pragma warning restore CA2100 // Review SQL queries for security vulnerabilities
                     {
                         cmd.Parameters.AddWithValue("@ID", dgvMovements.SelectedRows[0].Cells[0].Value.ToString());
                         cmd.Parameters.AddWithValue("@dateOfArr", dtpDateOfFlight.Value);
@@ -690,14 +691,15 @@ namespace HeliStat
             {
                 try
                 {
+                    // Get Id of selected row
+                    int id = Convert.ToInt32(dgvMovements.SelectedRows[0].Cells[0].Value);
+
                     connection.Open();
                     string cmdText = string.Format(@"UPDATE {0} SET DateOfDep = @dateOfDep,
                                                         ActualTimeDep = @actualTimeDep
-                                                        WHERE ID = @ID", tableName);
+                                                        WHERE ID = {1}", tableName, id);
 
-#pragma warning disable CA2100 // Review SQL queries for security vulnerabilities
                     using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
-#pragma warning restore CA2100 // Review SQL queries for security vulnerabilities
                     {
                         cmd.Parameters.AddWithValue("@ID", dgvMovements.SelectedRows[0].Cells[0].Value.ToString());
                         cmd.Parameters.AddWithValue("@dateOfDep", dtpDateOfFlight.Value);
