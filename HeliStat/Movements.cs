@@ -638,9 +638,9 @@ namespace HeliStat
 
                     using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
-                        cmd.Parameters.AddWithValue("@ID", dgvMovements.SelectedRows[0].Cells[0].Value.ToString());
-                        cmd.Parameters.AddWithValue("@dateOfArr", dtpDateOfFlight.Value);
-                        cmd.Parameters.AddWithValue("@actualTimeArr", dtpActualTime.Value.ToString("HH:mm"));
+                        cmd.Parameters.AddWithValue("@dateOfArr", dtpDateOfFlight.Value.Date);
+                        // WIP Zeit wird falsch gespeichert (12h / 24h format)
+                        cmd.Parameters.AddWithValue("@actualTimeArr", dtpActualTime.Value.TimeOfDay);
                         cmd.ExecuteNonQuery();
 
                         MessageBox.Show("Landing time & date has been updated successfully!", "Landing time updated",
@@ -701,9 +701,10 @@ namespace HeliStat
 
                     using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
-                        cmd.Parameters.AddWithValue("@ID", dgvMovements.SelectedRows[0].Cells[0].Value.ToString());
-                        cmd.Parameters.AddWithValue("@dateOfDep", dtpDateOfFlight.Value);
-                        cmd.Parameters.AddWithValue("@actualTimeDep", dtpActualTime.Value.ToString("HH:mm"));
+                        cmd.Parameters.AddWithValue("@dateOfDep", dtpDateOfFlight.Value.Date);
+                        // WIP Zeit wird falsch gespeichert (12h / 24h format)
+                        cmd.Parameters.AddWithValue("@actualTimeDep", dtpActualTime.Value.TimeOfDay);
+                        Console.WriteLine(dtpActualTime.Value);
                         cmd.ExecuteNonQuery();
 
                         MessageBox.Show("Take-off time & date has been updated successfully!", "Landing time updated",
