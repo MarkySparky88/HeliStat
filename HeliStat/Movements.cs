@@ -74,8 +74,10 @@ namespace HeliStat
         private void DataGridViewVisualSettings()
         {
             dgvMovements.Columns["Year_"].Visible = false;
-            dgvMovements.Columns["ActualTimeArr"].DefaultCellStyle.Format = @"hh\:mm";
-            dgvMovements.Columns["ActualTimeDep"].DefaultCellStyle.Format = @"hh\:mm";
+            //dgvMovements.Columns["ActualTimeArr"].DefaultCellStyle.Format = @"hh\:mm";
+            //dgvMovements.Columns["ActualTimeDep"].DefaultCellStyle.Format = @"hh\:mm";
+            dgvMovements.Columns["ActualTimeArr"].DefaultCellStyle.Format = "hh:mm";
+            dgvMovements.Columns["ActualTimeDep"].DefaultCellStyle.Format = "hh:mm";
             CustomHeaderText();
         }
 
@@ -640,7 +642,8 @@ namespace HeliStat
                     {
                         cmd.Parameters.AddWithValue("@dateOfArr", dtpDateOfFlight.Value.Date);
                         // WIP Zeit wird falsch gespeichert (12h / 24h format)
-                        cmd.Parameters.AddWithValue("@actualTimeArr", dtpActualTime.Value.TimeOfDay);
+                        // Fehler liegt in Funktion "DataGridViewVisualSettings()" ab Zeile 74
+                        cmd.Parameters.AddWithValue("@actualTimeArr", dtpActualTime.Value.ToShortTimeString());
                         cmd.ExecuteNonQuery();
 
                         MessageBox.Show("Landing time & date has been updated successfully!", "Landing time updated",
@@ -703,7 +706,8 @@ namespace HeliStat
                     {
                         cmd.Parameters.AddWithValue("@dateOfDep", dtpDateOfFlight.Value.Date);
                         // WIP Zeit wird falsch gespeichert (12h / 24h format)
-                        cmd.Parameters.AddWithValue("@actualTimeDep", dtpActualTime.Value.TimeOfDay);
+                        // Fehler liegt in Funktion "DataGridViewVisualSettings()" ab Zeile 74
+                        cmd.Parameters.AddWithValue("@actualTimeDep", dtpActualTime.Value.ToShortTimeString());
                         Console.WriteLine(dtpActualTime.Value);
                         cmd.ExecuteNonQuery();
 
