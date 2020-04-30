@@ -69,8 +69,8 @@ namespace HeliStat
         private void DataGridViewVisualSettings()
         {
             dgvStatistics.Columns["Year_"].Visible = false;
-            dgvStatistics.Columns["ActualTimeArr"].DefaultCellStyle.Format = @"hh\:mm";
-            dgvStatistics.Columns["ActualTimeDep"].DefaultCellStyle.Format = @"hh\:mm";
+            dgvStatistics.Columns["ActualTimeArr"].DefaultCellStyle.Format = "HH:mm";
+            dgvStatistics.Columns["ActualTimeDep"].DefaultCellStyle.Format = "HH:mm";
             CustomHeaderText();
         }
 
@@ -253,6 +253,7 @@ namespace HeliStat
 
             if (!string.IsNullOrWhiteSpace(saveFileDialog.FileName))
             {
+                // TODO throws exception when savefiledialog is cancelled
                 wb.SaveAs(saveFileDialog.FileName);
             }
 
@@ -302,58 +303,6 @@ namespace HeliStat
                     }
                 }
                 return dataTable;
-            }
-        }
-
-        // Get data for selected date (connectionless)
-        private DataTable GetDataTablePerDay()
-        {
-            using (DataTable dtPerDay = new DataTable())
-            {
-                dtPerDay.TableName = "Day xx.xx";
-
-                // TODO write function for connectionless dataTable
-
-                return dtPerDay;
-            }
-        }
-
-        // Get data for selected year (connectionless)
-        private DataTable GetDataTablePerYear()
-        {
-            using (DataTable dtPerYear = new DataTable())
-            {
-                dtPerYear.TableName = "Year";
-
-                // TODO write function for connectionless dataTable
-
-                return dtPerYear;
-            }
-        }
-
-        // Get data for total statistic overview (connectionless)
-        private DataTable GetDataTableTotalStatistic()
-        {
-            using (DataTable dataTable = new DataTable())
-            {
-                // Columns
-                dataTable.Columns.Add("Date");
-                dataTable.Columns.Add("Dep 1 Eng");
-                dataTable.Columns.Add("Dep 2 Eng");
-                dataTable.Columns.Add("Dep Total");
-                dataTable.Columns.Add("Arr 1 Eng");
-                dataTable.Columns.Add("Arr 2 Eng");
-                dataTable.Columns.Add("Arr Total");
-                dataTable.Columns.Add("Overnight");
-                dataTable.Columns.Add("Movements");
-
-                // Rows
-                // TODO add content
-                dataTable.Rows.Add();
-                dataTable.Rows.Add();
-                // TODO wip...
-
-                return dataTable;   
             }
         }
         #endregion
