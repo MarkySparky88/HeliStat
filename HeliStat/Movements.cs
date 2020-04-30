@@ -74,10 +74,8 @@ namespace HeliStat
         private void DataGridViewVisualSettings()
         {
             dgvMovements.Columns["Year_"].Visible = false;
-            //dgvMovements.Columns["ActualTimeArr"].DefaultCellStyle.Format = @"hh\:mm";
-            //dgvMovements.Columns["ActualTimeDep"].DefaultCellStyle.Format = @"hh\:mm";
-            dgvMovements.Columns["ActualTimeArr"].DefaultCellStyle.Format = "hh:mm";
-            dgvMovements.Columns["ActualTimeDep"].DefaultCellStyle.Format = "hh:mm";
+            dgvMovements.Columns["ActualTimeArr"].DefaultCellStyle.Format = "HH:mm";
+            dgvMovements.Columns["ActualTimeDep"].DefaultCellStyle.Format = "HH:mm";
             CustomHeaderText();
         }
 
@@ -641,8 +639,6 @@ namespace HeliStat
                     using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
                         cmd.Parameters.AddWithValue("@dateOfArr", dtpDateOfFlight.Value.Date);
-                        // WIP Zeit wird falsch gespeichert (12h / 24h format)
-                        // Fehler liegt in Funktion "DataGridViewVisualSettings()" ab Zeile 74
                         cmd.Parameters.AddWithValue("@actualTimeArr", dtpActualTime.Value.ToShortTimeString());
                         cmd.ExecuteNonQuery();
 
