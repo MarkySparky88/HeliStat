@@ -701,10 +701,7 @@ namespace HeliStat
                     using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                     {
                         cmd.Parameters.AddWithValue("@dateOfDep", dtpDateOfFlight.Value.Date);
-                        // WIP Zeit wird falsch gespeichert (12h / 24h format)
-                        // Fehler liegt in Funktion "DataGridViewVisualSettings()" ab Zeile 74
                         cmd.Parameters.AddWithValue("@actualTimeDep", dtpActualTime.Value.ToShortTimeString());
-                        Console.WriteLine(dtpActualTime.Value);
                         cmd.ExecuteNonQuery();
 
                         MessageBox.Show("Take-off time & date has been updated successfully!", "Landing time updated",

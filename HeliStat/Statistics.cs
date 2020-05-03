@@ -231,6 +231,10 @@ namespace HeliStat
                 // Create workbook and worksheets
                 using (var wb = new XLWorkbook())
                 {
+                    // WIP: Zelle L2 wird so im worksheet WEF 2018 richtig formatiert, jetzt muss Inhalt des dataSet noch in dieses worksheet eingefügt werden
+                    var ws = wb.Worksheets.Add("WEF 2018");
+                    ws.Cell("L2").Style.NumberFormat.Format = "HH:mm";
+
                     wb.Worksheets.Add(dataSet);
                     SaveExcelFile(wb, GetSelectedYear());
                 }
