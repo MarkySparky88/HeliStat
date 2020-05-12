@@ -219,23 +219,23 @@ namespace HeliStat
         #endregion
 
         #region Functions (Excel export)
-        /// Other solutions available under:
-        /// Var1 (Microsoft Office namespace): https://www.youtube.com/watch?v=YfcasWYaIzo&list=PL3WjWQ4vgGF-N4gf0wK8SR_J6upbM_TJI&index=29&t=201s
-        /// Var2 (Forum 3rd answer, class extension method) https://stackoverflow.com/questions/8207869/how-to-export-datatable-to-excel
-
-        // Excel export (closedXML)
+        // Excel export
         private void ExcelExport()
         {
-            using (DataSet dataSet = GetDataSetForExport())
+            // Retrieve data
+            using (DataTable dataTable = GetDataFromDatabase(TableNameMov(), GetSelectedYear()))
             {
-                // Create workbook and worksheets
+                // Create workbook
                 using (var wb = new XLWorkbook())
                 {
-                    // WIP: Zelle L2 wird so im worksheet WEF 2018 richtig formatiert, jetzt muss Inhalt des dataSet noch in dieses worksheet eingefügt werden
-                    var ws = wb.Worksheets.Add("WEF 2018");
-                    ws.Cell("L2").Style.NumberFormat.Format = "HH:mm";
+                    // Create worksheet
+                    var ws = wb.Worksheets.Add(dataTable, "Statistics");
 
-                    wb.Worksheets.Add(dataSet);
+                    // WIP: Style cells
+                    ws.Cell("L2").Style.NumberFormat.Format = "HH:mm";
+                    ws.Cell("N2").Style.NumberFormat.Format = "HH:mm";
+
+                    // Save workbook
                     SaveExcelFile(wb, GetSelectedYear());
                 }
             }
@@ -264,17 +264,7 @@ namespace HeliStat
             saveFileDialog.Dispose();
         }
 
-        // Get DataSet for excel export from different DataTables
-        private DataSet GetDataSetForExport()
-        {
-            using (DataSet dataSet = new DataSet())
-            {
-                dataSet.Tables.Add(GetDataFromDatabase(TableNameMov(), GetSelectedYear()));
-                return dataSet;
-            }
-        }
-
-        // Get data for excel export (from database)
+        // Get data from database
         private DataTable GetDataFromDatabase(string tableName, string selectedYear)
         {
             using (DataTable dataTable = new DataTable())
@@ -288,15 +278,11 @@ namespace HeliStat
 
                         using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
                         {
-                            cmd.Parameters.AddWithValue("@Year_", selectedYear);
-                            cmd.ExecuteNonQuery();
-
-                            using (OleDbDataReader reader = cmd.ExecuteReader())
+                            using (OleDbDataAdapter dataAdapter = new OleDbDataAdapter(cmd))
                             {
-                                if (reader != null)
-                                {
-                                    dataTable.Load(reader);
-                                }
+                                cmd.Parameters.AddWithValue("@Year_", selectedYear);
+                                cmd.ExecuteNonQuery();
+                                dataAdapter.Fill(dataTable);
                             }
                         }
                     }
@@ -310,6 +296,95 @@ namespace HeliStat
             }
         }
         #endregion
+
+        //#region Functions (Excel export)
+        //// Excel export (closedXML)
+        //private void ExcelExport()
+        //{
+        //    using (DataSet dataSet = GetDataSet())
+        //    {
+        //        // Create workbook and worksheets
+        //        using (var wb = new XLWorkbook())
+        //        {
+        //            // WIP: Zelle L2 wird so im worksheet WEF 2018 richtig formatiert, jetzt muss Inhalt des dataSet noch in dieses worksheet eingefügt werden
+        //            var ws = wb.Worksheets.Add("WEF 2018");
+        //            ws.Cell("L2").Style.NumberFormat.Format = "HH:mm";
+
+        //            wb.Worksheets.Add(dataSet);
+        //            SaveExcelFile(wb, GetSelectedYear());
+        //        }
+        //    }
+        //}
+
+        //// Save file dialog
+        //private static void SaveExcelFile(XLWorkbook wb, string selectedYear)
+        //{
+        //    string fileName = string.Format("WEF {0} Statistics", selectedYear);
+
+        //    SaveFileDialog saveFileDialog = new SaveFileDialog
+        //    {
+        //        Title = "Export statistics to Excel file",
+        //        FileName = fileName,
+        //        Filter = "Excel-Workbook (*.xlsx)|*.xlsx"
+        //    };
+
+        //    saveFileDialog.ShowDialog();
+
+        //    if (!string.IsNullOrWhiteSpace(saveFileDialog.FileName))
+        //    {
+        //        // TODO throws exception when savefiledialog is cancelled
+        //        wb.SaveAs(saveFileDialog.FileName);
+        //    }
+
+        //    saveFileDialog.Dispose();
+        //}
+
+        //// Get DataSet for excel export
+        //private DataSet GetDataSet()
+        //{
+        //    using (DataSet dataSet = new DataSet())
+        //    {
+        //        dataSet.Tables.Add(GetDataFromDatabase(TableNameMov(), GetSelectedYear()));
+        //        return dataSet;
+        //    }
+        //}
+
+        //// Get data for excel export (from database)
+        //private DataTable GetDataFromDatabase(string tableName, string selectedYear)
+        //{
+        //    using (DataTable dataTable = new DataTable())
+        //    {
+        //        using (OleDbConnection connection = new OleDbConnection(Program.ConnString))
+        //        {
+        //            try
+        //            {
+        //                connection.Open();
+        //                string cmdText = string.Format("SELECT * FROM {0} WHERE Year_ = @Year_", tableName);
+
+        //                using (OleDbCommand cmd = new OleDbCommand(cmdText, connection))
+        //                {
+        //                    cmd.Parameters.AddWithValue("@Year_", selectedYear);
+        //                    cmd.ExecuteNonQuery();
+
+        //                    using (OleDbDataReader reader = cmd.ExecuteReader())
+        //                    {
+        //                        if (reader != null)
+        //                        {
+        //                            dataTable.Load(reader);
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //            catch (OleDbException ex)
+        //            {
+        //                MessageBox.Show("Error: " + ex.Message, "Error",
+        //                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //            }
+        //        }
+        //        return dataTable;
+        //    }
+        //}
+        //#endregion
 
         #region Events
         // Update datagridview when year changed
