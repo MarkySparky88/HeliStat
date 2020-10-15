@@ -144,6 +144,14 @@ namespace HeliStat
         }
         #endregion
 
+        #region Menu strip
+        // File -> Exit
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        #endregion
+
         #region Functions
         // none
         #endregion
@@ -340,6 +348,6 @@ namespace HeliStat
             // TODO is ther another best practice to reload / refresh datagridview?
             dgvStatistics.DataSource = FillDataGridView(TableNameMov(), GetSelectedYear());
         }
-        #endregion
+        #endregion 
     }
 }

@@ -69,9 +69,12 @@
             this.btnSetToday = new System.Windows.Forms.Button();
             this.dtpDayFilter = new System.Windows.Forms.DateTimePicker();
             this.menuStripMov = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMovements)).BeginInit();
             this.toolStripMov.SuspendLayout();
             this.grbFilterDay.SuspendLayout();
+            this.menuStripMov.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbxAircraftType
@@ -547,12 +550,29 @@
             // menuStripMov
             // 
             this.menuStripMov.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStripMov.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
             this.menuStripMov.Location = new System.Drawing.Point(0, 0);
             this.menuStripMov.Name = "menuStripMov";
             this.menuStripMov.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
             this.menuStripMov.Size = new System.Drawing.Size(1404, 24);
             this.menuStripMov.TabIndex = 40;
             this.menuStripMov.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // frmMovements
             // 
@@ -602,6 +622,8 @@
             this.toolStripMov.ResumeLayout(false);
             this.toolStripMov.PerformLayout();
             this.grbFilterDay.ResumeLayout(false);
+            this.menuStripMov.ResumeLayout(false);
+            this.menuStripMov.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -648,5 +670,7 @@
         private System.Windows.Forms.Button btnSetToday;
         private System.Windows.Forms.DateTimePicker dtpDayFilter;
         private System.Windows.Forms.MenuStrip menuStripMov;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }

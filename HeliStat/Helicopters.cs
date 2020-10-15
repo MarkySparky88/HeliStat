@@ -193,6 +193,14 @@ namespace HeliStat
         }
         #endregion
 
+        #region Menu strip
+        // File -> Exit
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        #endregion
+
         #region Toolstrip
         // Toolstrip-Button "Add"
         private void toolStripBtnAdd_Click(object sender, EventArgs e)
@@ -671,6 +679,6 @@ namespace HeliStat
         {
             dgvHelicopters.Columns["Operator"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
-        #endregion
+        #endregion 
     }
 }

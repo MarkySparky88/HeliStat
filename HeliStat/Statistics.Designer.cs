@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStatistics));
-            this.toolStripStatistics = new System.Windows.Forms.ToolStrip();
-            this.menuStripStatistics = new System.Windows.Forms.MenuStrip();
             this.statusStripStatistics = new System.Windows.Forms.StatusStrip();
             this.dgvStatistics = new System.Windows.Forms.DataGridView();
             this.btnExcelExport = new System.Windows.Forms.Button();
@@ -40,26 +38,15 @@
             this.grbFilterDay = new System.Windows.Forms.GroupBox();
             this.btnSetToday = new System.Windows.Forms.Button();
             this.grbSelectYear = new System.Windows.Forms.GroupBox();
+            this.toolStripStatistics = new System.Windows.Forms.ToolStrip();
+            this.menuStripStatistics = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStatistics)).BeginInit();
             this.grbFilterDay.SuspendLayout();
             this.grbSelectYear.SuspendLayout();
+            this.menuStripStatistics.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // toolStripStatistics
-            // 
-            this.toolStripStatistics.Location = new System.Drawing.Point(0, 24);
-            this.toolStripStatistics.Name = "toolStripStatistics";
-            this.toolStripStatistics.Size = new System.Drawing.Size(1026, 25);
-            this.toolStripStatistics.TabIndex = 0;
-            this.toolStripStatistics.Text = "toolStrip1";
-            // 
-            // menuStripStatistics
-            // 
-            this.menuStripStatistics.Location = new System.Drawing.Point(0, 0);
-            this.menuStripStatistics.Name = "menuStripStatistics";
-            this.menuStripStatistics.Size = new System.Drawing.Size(1026, 24);
-            this.menuStripStatistics.TabIndex = 1;
-            this.menuStripStatistics.Text = "menuStrip1";
             // 
             // statusStripStatistics
             // 
@@ -124,7 +111,6 @@
             this.cbxYears.Size = new System.Drawing.Size(121, 21);
             this.cbxYears.TabIndex = 8;
             this.cbxYears.SelectedIndexChanged += new System.EventHandler(this.cbxYears_SelectedIndexChanged);
-            this.cbxYears.SelectedValueChanged += new System.EventHandler(this.cbxYears_SelectedValueChanged);
             // 
             // grbFilterDay
             // 
@@ -157,6 +143,39 @@
             this.grbSelectYear.TabStop = false;
             this.grbSelectYear.Text = "Select year";
             // 
+            // toolStripStatistics
+            // 
+            this.toolStripStatistics.Location = new System.Drawing.Point(0, 24);
+            this.toolStripStatistics.Name = "toolStripStatistics";
+            this.toolStripStatistics.Size = new System.Drawing.Size(1026, 25);
+            this.toolStripStatistics.TabIndex = 0;
+            this.toolStripStatistics.Text = "toolStrip1";
+            // 
+            // menuStripStatistics
+            // 
+            this.menuStripStatistics.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStripStatistics.Location = new System.Drawing.Point(0, 0);
+            this.menuStripStatistics.Name = "menuStripStatistics";
+            this.menuStripStatistics.Size = new System.Drawing.Size(1026, 24);
+            this.menuStripStatistics.TabIndex = 1;
+            this.menuStripStatistics.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // frmStatistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -181,15 +200,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvStatistics)).EndInit();
             this.grbFilterDay.ResumeLayout(false);
             this.grbSelectYear.ResumeLayout(false);
+            this.menuStripStatistics.ResumeLayout(false);
+            this.menuStripStatistics.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ToolStrip toolStripStatistics;
-        private System.Windows.Forms.MenuStrip menuStripStatistics;
         private System.Windows.Forms.StatusStrip statusStripStatistics;
         private System.Windows.Forms.DataGridView dgvStatistics;
         private System.Windows.Forms.Button btnExcelExport;
@@ -199,5 +217,9 @@
         private System.Windows.Forms.GroupBox grbFilterDay;
         private System.Windows.Forms.GroupBox grbSelectYear;
         private System.Windows.Forms.Button btnSetToday;
+        private System.Windows.Forms.ToolStrip toolStripStatistics;
+        private System.Windows.Forms.MenuStrip menuStripStatistics;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }

@@ -53,12 +53,15 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStripHeli = new System.Windows.Forms.MenuStrip();
             this.statusStripHeli = new System.Windows.Forms.StatusStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             registrationLabel = new System.Windows.Forms.Label();
             aircraftTypeLabel = new System.Windows.Forms.Label();
             noOfEngLabel = new System.Windows.Forms.Label();
             operatorLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHelicopters)).BeginInit();
             this.toolStripHeli.SuspendLayout();
+            this.menuStripHeli.SuspendLayout();
             this.SuspendLayout();
             // 
             // registrationLabel
@@ -292,6 +295,8 @@
             // 
             // menuStripHeli
             // 
+            this.menuStripHeli.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
             this.menuStripHeli.Location = new System.Drawing.Point(0, 0);
             this.menuStripHeli.Name = "menuStripHeli";
             this.menuStripHeli.Size = new System.Drawing.Size(848, 24);
@@ -306,6 +311,21 @@
             this.statusStripHeli.SizingGrip = false;
             this.statusStripHeli.TabIndex = 40;
             this.statusStripHeli.Text = "statusStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // frmHelicopters
             // 
@@ -343,6 +363,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvHelicopters)).EndInit();
             this.toolStripHeli.ResumeLayout(false);
             this.toolStripHeli.PerformLayout();
+            this.menuStripHeli.ResumeLayout(false);
+            this.menuStripHeli.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -369,5 +391,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.MenuStrip menuStripHeli;
         private System.Windows.Forms.StatusStrip statusStripHeli;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }

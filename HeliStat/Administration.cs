@@ -105,6 +105,14 @@ namespace HeliStat
         }
         #endregion
 
+        #region Menu strip
+        // File -> Exit
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        #endregion
+
         #region Functions
         // Add new year
         private void AddNewYear()
@@ -167,6 +175,6 @@ namespace HeliStat
         {
             return tbxActualYear.Text = Properties.Settings.Default.ActualYear;
         }
-        #endregion
+        #endregion  
     }
 }

@@ -239,6 +239,14 @@ namespace HeliStat
         }
         #endregion
 
+        #region MyRegion
+        // File -> Exit
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        #endregion
+
         #region Toolstrip
         // Toolstrip-Button "Add"
         private void toolStripBtnAdd_Click(object sender, EventArgs e)
