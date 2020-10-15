@@ -124,6 +124,7 @@
             this.cbxYears.Size = new System.Drawing.Size(121, 21);
             this.cbxYears.TabIndex = 8;
             this.cbxYears.SelectedIndexChanged += new System.EventHandler(this.cbxYears_SelectedIndexChanged);
+            this.cbxYears.SelectedValueChanged += new System.EventHandler(this.cbxYears_SelectedValueChanged);
             // 
             // grbFilterDay
             // 

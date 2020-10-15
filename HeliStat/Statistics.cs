@@ -216,6 +216,12 @@ namespace HeliStat
         {
             dtpDayFilter.Value = DateTime.Now;
         }
+
+        // Reset filter checkbox when year changed
+        private void cbxYears_SelectedValueChanged(object sender, EventArgs e)
+        {
+            dtpDayFilter.Checked = false;
+        }
         #endregion
 
         #region Functions (Excel export)
